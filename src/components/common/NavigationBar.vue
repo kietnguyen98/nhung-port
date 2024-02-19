@@ -1,7 +1,7 @@
 
 <style scoped>
     .navigation-bar-container{
-        padding: 1rem;
+        padding: 2rem;
         display: flex;
         justify-content: space-between;
     }

@@ -1,13 +1,13 @@
 import { createApp } from 'vue'
-import App from './App.vue'
+import App from '@/App.vue'
 // router
-import router from './router'
+import router from '@/router'
 // layouts
-import Container from './layouts/Container.vue'
+import Container from '@/layouts/Container.vue'
 // components
-import NavigationBar from './components/common/NavigationBar.vue'
+import NavigationBar from '@/components/common/NavigationBar.vue'
 // Importing the global css file
-import "./assets/global.css"
+import "@/assets/styles/global.css"
 
 const app = createApp(App)
 
