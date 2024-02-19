@@ -7,7 +7,7 @@ import Container from '@/layouts/Container.vue'
 // components
 import NavigationBar from '@/components/common/NavigationBar.vue'
 // Importing the global css file
-import "@/assets/styles/global.css"
+import "@/styles/global.css"
 
 const app = createApp(App)
 

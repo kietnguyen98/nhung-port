@@ -1,0 +1,49 @@
+/* import fonts settings */
+@import "fonts.css";
+
+a {
+    text-decoration: none;
+
+    :hover{
+        font-weight: bold;
+    }
+}
+
+p, h6, h5, h4, h3, h2, h1 {
+    margin: 0px;
+    font-weight: 400;
+    font-family: DancingScript;
+}
+
+p {
+    font-size: 1.5rem;
+}
+
+h6  {
+    font-size: 2rem;
+}
+
+h5 {
+    font-size: 2.5rem;
+}
+
+h4 {
+    font-size: 3rem;
+}
+
+h3 {
+    font-size: 3.5rem;
+}
+
+h2 {
+    font-size: 4rem;
+}
+
+h1 {
+    font-size: 4.5rem;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}

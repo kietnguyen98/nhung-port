@@ -20,7 +20,7 @@
     .navigation-links{
         display: flex;
         flex-direction: row;
-        gap: 1rem;
+        gap: 2rem;
     }
 </style>
 
@@ -28,12 +28,12 @@
     <div class="navigation-bar-container">
         <div class="portfolio-owner">
             <img class="portfolio-owner-icon" src="/assets/icons/mushroom.png"/>
-            <h2>Nhung's Port</h2>
+            <h6>Nhung's Port</h6>
         </div>
         <nav class="navigation-links">
-            <router-link to="/"><h3>Home</h3></router-link> | <router-link to="/about"><h3>About</h3></router-link> | <router-link to="/contact"><h3>
-                Contact
-            </h3></router-link>
+            <router-link to="/"><h6>Home</h6></router-link>
+            <router-link to="/about"><h6>About</h6></router-link>
+            <router-link to="/contact"><h6>Contact</h6></router-link>
         </nav>
     </div>
 </template>
