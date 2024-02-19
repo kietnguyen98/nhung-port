@@ -14,6 +14,8 @@
 <template>
     <NavigationBar/>
     <div class="container-wrapper">
-        <slot></slot>
+        <div class="children">
+            <slot></slot>
+        </div>
     </div>
 </template>
