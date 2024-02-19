@@ -5,7 +5,7 @@ import router from '@/router'
 // layouts
 import Container from '@/layouts/Container.vue'
 // components
-import NavigationBar from '@/components/common/NavigationBar.vue'
+import NavigationBar from '@/components/common/NavigationBar/NavigationBar.vue'
 // Importing the global css file
 import "@/styles/global.css"
 

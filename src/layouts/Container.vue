@@ -3,18 +3,23 @@
 </script>
 
 <style scoped>
+
     .container-wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 5rem;
+            position: relative;
+            padding: 0rem 5rem;
+
+            .container-children-wrapper {
+                display: flex;
+                flex-direction: column;
+                gap: 5rem;
+            }
     }
 </style>
 
 <template>
-    <NavigationBar/>
     <div class="container-wrapper">
-        <div class="children">
+        <NavigationBar/>
+        <div class="container-children-wrapper">
             <slot></slot>
         </div>
     </div>

@@ -1,6 +1,14 @@
 /* import fonts settings */
 @import "fonts.css";
 
+html {
+    scroll-behavior:smooth
+}
+
+body {
+    margin: 0px;
+}
+
 a {
     text-decoration: none;
 

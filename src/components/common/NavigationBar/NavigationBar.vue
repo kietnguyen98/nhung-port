@@ -1,7 +1,21 @@
 
+<script setup lang="ts">
+    import { ref } from "vue"
+    import NavigationButton from "./NavigationButton.vue";
+
+    const links = ref([{ name: 'Intro', href: "/#intro-section" }, {  name: 'About me', href: "/#about-section"}, {name: 'Contact', href: "/#contact-section"}])
+
+</script> 
+
 <style scoped>
     .navigation-bar-container{
-        padding: 2rem;
+        position: sticky;
+        top: 0.5rem;
+        z-index: 1;
+        padding: 0.25rem 0.5rem;
+        border-radius: 5rem;
+        border: 1px solid gray;
+        background-color: white;
         display: flex;
         justify-content: space-between;
     }
@@ -20,7 +34,7 @@
     .navigation-links{
         display: flex;
         flex-direction: row;
-        gap: 2rem;
+        gap: 1rem;
     }
 </style>
 
@@ -31,9 +45,7 @@
             <h6>Nhung's Port</h6>
         </div>
         <nav class="navigation-links">
-            <router-link to="/"><h6>Home</h6></router-link>
-            <router-link to="/about"><h6>About</h6></router-link>
-            <router-link to="/contact"><h6>Contact</h6></router-link>
+            <NavigationButton v-for="link in links" :href="link.href" :name="link.name"/>
         </nav>
     </div>
 </template>
