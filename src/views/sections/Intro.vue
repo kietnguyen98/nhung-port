@@ -46,7 +46,6 @@ defineProps<{
 }
 
 .intro-content-images {
-    padding: 2rem;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -68,7 +67,7 @@ defineProps<{
         border-radius: 1rem;
 
         &:hover {
-            transform: scale(1.5, 1.5);
+            transform: scale(1.25, 1.25);
         }
     }
 }
