@@ -9,6 +9,9 @@ defineProps<{
     position: relative;
     scroll-snap-align: start;
     scroll-snap-stop: always;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: calc(100vh - 5rem * 2);
     padding: 5rem;
     background-color: #e3e2df;
@@ -37,7 +40,7 @@ defineProps<{
 .intro-content {
     .intro-content__title {
         text-align: center;
-        margin-bottom: 2rem;
+        margin-bottom: 4rem;
         padding: 4rem 8rem;
         background-color: #feffff;
         border-radius: 50%;
