@@ -13,7 +13,6 @@ defineProps<{
     padding: 5rem;
     background-color: #fef9c7;
 }
-
 .contact-content {
     .contact-content__title {
         text-align: center;
@@ -39,19 +38,15 @@ defineProps<{
         <div class="contact-content">
             <h1 class="contact-content__title">Contact Section</h1>
             <h6>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+                deserunt mollit anim id est laborum.
             </h6>
             <div class="contact-content-images">
-                <img
-                    class="contact-content-images__image"
-                    src="/assets/images/image-5.jpg"
-                />
+                <img class="contact-content-images__image" src="/assets/images/image-5.jpg" />
             </div>
         </div>
     </div>
