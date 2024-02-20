@@ -1,12 +1,9 @@
 /* import fonts settings */
-@import "fonts.css";
-
-html {
-    scroll-behavior:smooth
-}
+@import "_fonts.css";
 
 body {
     margin: 0px;
+    overflow: hidden;
 }
 
 a {

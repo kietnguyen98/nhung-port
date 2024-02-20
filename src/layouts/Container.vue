@@ -1,25 +1,32 @@
 <script setup lang="ts">
-
 </script>
 
 <style scoped>
 
-    .container-wrapper {
+    .container {
+            height: 100vh;
             position: relative;
-            padding: 0rem 5rem;
+            .container__scroll-wrapper {
+                height: 100vh;
+                overflow-y: scroll;
+                scroll-behavior: smooth;
+                scroll-snap-type: y mandatory;
+                
+                /* hiding scroll bar */
+                -ms-overflow-style: none;  /* Internet Explorer 10+ */
+                scrollbar-width: none;  /* Firefox */
+            }
 
-            .container-children-wrapper {
-                display: flex;
-                flex-direction: column;
-                gap: 5rem;
+            .container__scroll-wrapper::-webkit-scrollbar {
+                display: none;  /* Safari and Chrome */
             }
     }
 </style>
 
 <template>
-    <div class="container-wrapper">
-        <NavigationBar/>
-        <div class="container-children-wrapper">
+    <div class="container">
+        <NavigationBar />
+        <div id="scroll-wrapper" class="container__scroll-wrapper">
             <slot></slot>
         </div>
     </div>

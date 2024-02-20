@@ -1,7 +1,8 @@
 <script setup lang="ts">
     defineProps<{
-      href: string
+      idName: string
       name: string
+      isActive: boolean
     }>()
 </script>
 
@@ -12,11 +13,11 @@
         border: none;
         background-color: unset;
         padding: 0.25rem 1rem;
-        border: 1px solid transparent;
+        border: 2px solid transparent;
         border-radius: 1.5rem;
         transition: all 0.15s linear;
         
-        & .navigation-button-name {
+        & .navigation-button__name {
             text-transform: uppercase;
             font-weight: bold;    
         }
@@ -26,12 +27,16 @@
             border-color: gray;
         }
     }
+
+    .navigation-button--activated {
+        background: lightcyan;
+        border-color: gray;
+    }
+    
 </style>
 
 <template>
-    <a :href="href">
-        <button class="navigation-button">
-            <p class="navigation-button-name">{{ name }}</p>
-        </button>
-    </a>
+    <button :class="['navigation-button', isActive && 'navigation-button--activated']">
+        <p class="navigation-button__name">{{ name }}</p>
+    </button>
 </template>
