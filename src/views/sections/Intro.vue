@@ -38,7 +38,7 @@ defineProps<{
     <div v-bind:id="sectionId" class="intro-section">
         <div class="intro-content">
             <h1 class="intro-content__title">Introduce Section</h1>
-            <p>
+            <h6>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -46,7 +46,7 @@ defineProps<{
                 in reprehenderit in voluptate velit esse cillum dolore eu fugiat
                 nulla pariatur. Excepteur sint occaecat cupidatat non proident,
                 sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
+            </h6>
             <div class="intro-content-images">
                 <img
                     class="intro-content-images__image"

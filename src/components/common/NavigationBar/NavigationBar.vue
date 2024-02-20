@@ -9,6 +9,8 @@ const links = ref([
 ]);
 const currentActive = ref(links.value[0].idName);
 
+const scrollWrapperElement = ref<HTMLElement>();
+
 onMounted(() => {
     const sectionList: Array<{
         idName: string;
@@ -23,13 +25,16 @@ onMounted(() => {
         };
     });
 
-    const scrollWrapperElement = document.getElementById(
+    scrollWrapperElement.value = document.getElementById(
         'scroll-wrapper'
     ) as HTMLElement;
 
-    scrollWrapperElement.addEventListener('scroll', () => {
+    scrollWrapperElement.value.addEventListener('scroll', () => {
         sectionList.forEach((section) => {
-            if (scrollWrapperElement.scrollTop === section.element.offsetTop) {
+            if (
+                scrollWrapperElement.value?.scrollTop ===
+                section.element.offsetTop
+            ) {
                 currentActive.value = section.idName;
             }
         });
