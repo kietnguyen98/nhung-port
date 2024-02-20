@@ -1,5 +1,5 @@
 /* import fonts settings */
-@import "_fonts.css";
+@import '_fonts.css';
 
 body {
     margin: 0px;
@@ -9,12 +9,18 @@ body {
 a {
     text-decoration: none;
 
-    :hover{
+    :hover {
         font-weight: bold;
     }
 }
 
-p, h6, h5, h4, h3, h2, h1 {
+p,
+h6,
+h5,
+h4,
+h3,
+h2,
+h1 {
     margin: 0px;
     font-weight: 400;
     font-family: DancingScript;
@@ -24,7 +30,7 @@ p {
     font-size: 1.5rem;
 }
 
-h6  {
+h6 {
     font-size: 2rem;
 }
 
