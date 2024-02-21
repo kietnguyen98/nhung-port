@@ -9,69 +9,74 @@ defineProps<{
     position: relative;
     scroll-snap-align: start;
     scroll-snap-stop: always;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 5rem * 2);
-    padding: 5rem;
-    background-color: #e3e2df;
+    height: calc(100vh - 1.5rem * 2);
+    padding: 1.5rem;
+    background-color: #f6f7c4;
     background-image: repeating-linear-gradient(
             45deg,
-            #e3afbc 25%,
+            #ff6868 25%,
             transparent 25%,
             transparent 75%,
-            #e3afbc 75%,
-            #e3afbc
+            #ff6868 75%,
+            #ff6868
         ),
         repeating-linear-gradient(
             45deg,
-            #e3afbc 25%,
-            #e5e5f7 25%,
-            #e5e5f7 75%,
-            #e3afbc 75%,
-            #e3afbc
+            #ff6868 25%,
+            #f6d6d6 25%,
+            #f6d6d6 75%,
+            #ff6868 75%,
+            #ff6868
         );
     background-position:
         0 0,
-        2rem 2rem;
-    background-size: 4rem 4rem;
+        1.5rem 1.5rem;
+    background-size: 3rem 3rem;
 }
-
 .intro-content {
+    background-color: #7bd3ea;
+    height: calc(100vh - 5rem * 2 - 1.5rem * 2);
+    padding: 5rem;
+    border-radius: 1.5rem;
     .intro-content__title {
         text-align: center;
         margin-bottom: 4rem;
-        padding: 4rem 8rem;
-        background-color: #feffff;
-        border-radius: 50%;
-        border: 2px solid gray;
+        color: white;
+
+        h1,
+        h4 {
+            line-height: 1.25;
+            text-shadow: 1.5px 1.5px darkred;
+        }
+
+        h1 {
+            margin-bottom: 2rem;
+        }
     }
 }
-
-.intro-content-images {
+.bubble-text {
+    margin: 10rem;
+    height: 40rem;
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     display: flex;
-    flex-direction: row;
     justify-content: center;
-    gap: 4rem;
-}
+    align-items: center;
 
-.image-card {
-    cursor: pointer;
-    height: 35rem;
-    width: fit-content;
-    padding: 0.5rem;
-    border-radius: 1rem;
-    outline-style: dashed;
-    outline-color: #5d001e;
-    overflow: hidden;
+    img {
+        position: absolute;
+        widows: 100%;
+    }
 
-    .image-card__image {
-        transition: all 0.5s ease-in-out;
-        border-radius: 1rem;
-
-        &:hover {
-            transform: scale(1.25, 1.25);
-        }
+    p {
+        position: absolute;
+        z-index: 1;
+        width: 70%;
+        color: black;
+        font-weight: bolder;
+        font-style: italic;
     }
 }
 </style>
@@ -80,30 +85,18 @@ defineProps<{
     <div v-bind:id="sectionId" class="intro-section">
         <div class="intro-content">
             <div class="intro-content__title">
-                <h1>Introduce Section</h1>
-                <h6>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit
-                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-                    occaecat cupidatat non proident, sunt in culpa qui officia
-                    deserunt mollit anim id est laborum.
-                </h6>
-            </div>
-            <div class="intro-content-images">
-                <div class="image-card">
-                    <img
-                        class="image-card__image"
-                        src="/assets/images/image-1.jpg"
-                    />
-                </div>
-                <div class="image-card">
-                    <img
-                        class="image-card__image"
-                        src="/assets/images/image-2.jpg"
-                    />
+                <h4>Welcome to</h4>
+                <h1 class="font-pacifico">Hồng Nhung Portfolio</h1>
+                <div class="bubble-text">
+                    <img src="/assets/clip-masks/mask-6.png" />
+                    <p class="font-lora">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+                        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
                 </div>
             </div>
         </div>

@@ -10,9 +10,7 @@ const props = defineProps<{
 const navigateToTarget = ref<() => void>();
 
 onMounted(() => {
-    const targetElement = document.getElementById(
-        `${props.idName}-section`
-    ) as HTMLElement;
+    const targetElement = document.getElementById(`${props.idName}-section`) as HTMLElement;
 
     navigateToTarget.value = () => {
         targetElement.scrollIntoView({ behavior: 'smooth' });
@@ -22,7 +20,6 @@ onMounted(() => {
 
 <style scoped>
 .navigation-button {
-    cursor: pointer;
     outline: none;
     border: none;
     background-color: unset;
@@ -54,10 +51,7 @@ onMounted(() => {
 
 <template>
     <button
-        :class="[
-            'navigation-button',
-            isActive && 'navigation-button--activated',
-        ]"
+        :class="['navigation-button', isActive && 'navigation-button--activated']"
         @click="navigateToTarget"
     >
         <p class="navigation-button__name">{{ name }}</p>

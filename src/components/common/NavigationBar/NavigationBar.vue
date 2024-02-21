@@ -5,6 +5,7 @@ import NavigationButton from './NavigationButton.vue';
 const links = ref([
     { name: 'Intro', idName: 'intro', isActive: false },
     { name: 'About me', idName: 'about', isActive: false },
+    { name: 'Work', idName: 'projects', isActive: false },
     { name: 'Contact', idName: 'contact', isActive: false },
 ]);
 const currentActive = ref(links.value[0].idName);
@@ -16,25 +17,18 @@ onMounted(() => {
         idName: string;
         element: HTMLElement;
     }> = links.value.map((link) => {
-        const element = document.getElementById(
-            `${link.idName}-section`
-        ) as HTMLElement;
+        const element = document.getElementById(`${link.idName}-section`) as HTMLElement;
         return {
             idName: link.idName,
             element: element,
         };
     });
 
-    scrollWrapperElement.value = document.getElementById(
-        'scroll-wrapper'
-    ) as HTMLElement;
+    scrollWrapperElement.value = document.getElementById('scroll-wrapper') as HTMLElement;
 
     scrollWrapperElement.value.addEventListener('scroll', () => {
         sectionList.forEach((section) => {
-            if (
-                scrollWrapperElement.value?.scrollTop ===
-                section.element.offsetTop
-            ) {
+            if (scrollWrapperElement.value?.scrollTop === section.element.offsetTop) {
                 currentActive.value = section.idName;
             }
         });
@@ -58,7 +52,6 @@ onMounted(() => {
 }
 
 .portfolio-owner {
-    cursor: pointer;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -82,10 +75,7 @@ onMounted(() => {
 <template>
     <div class="navigation-bar">
         <div class="portfolio-owner">
-            <img
-                class="portfolio-owner__icon"
-                src="/assets/icons/mushroom.png"
-            />
+            <img class="portfolio-owner__icon" src="/assets/icons/mushroom.png" />
             <h6 class="portfolio-owner__name">Nhung's Port</h6>
         </div>
         <nav class="navigation-links">

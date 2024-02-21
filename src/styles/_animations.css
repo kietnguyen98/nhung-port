@@ -1,0 +1,42 @@
+@keyframes card-border-glowing {
+    0% {
+        box-shadow:
+            rgba(240, 46, 170, 0.05) 5px 5px,
+            rgba(240, 46, 170, 0.3) 10px 10px,
+            rgba(240, 46, 170, 0.2) 15px 15px,
+            rgba(240, 46, 170, 0.1) 20px 20px,
+            rgba(240, 46, 170, 0.05) 25px 25px;
+    }
+    25% {
+        box-shadow:
+            rgba(240, 46, 170, 0.4) 5px 5px,
+            rgba(240, 46, 170, 0.05) 10px 10px,
+            rgba(240, 46, 170, 0.2) 15px 15px,
+            rgba(240, 46, 170, 0.1) 20px 20px,
+            rgba(240, 46, 170, 0.05) 25px 25px;
+    }
+    50% {
+        box-shadow:
+            rgba(240, 46, 170, 0.4) 5px 5px,
+            rgba(240, 46, 170, 0.3) 10px 10px,
+            rgba(240, 46, 170, 0.05) 15px 15px,
+            rgba(240, 46, 170, 0.1) 20px 20px,
+            rgba(240, 46, 170, 0.05) 25px 25px;
+    }
+    75% {
+        box-shadow:
+            rgba(240, 46, 170, 0.4) 5px 5px,
+            rgba(240, 46, 170, 0.3) 10px 10px,
+            rgba(240, 46, 170, 0.2) 15px 15px,
+            rgba(240, 46, 170, 0.05) 20px 20px,
+            rgba(240, 46, 170, 0.05) 25px 25px;
+    }
+    100% {
+        box-shadow:
+            rgba(240, 46, 170, 0.4) 5px 5px,
+            rgba(240, 46, 170, 0.3) 10px 10px,
+            rgba(240, 46, 170, 0.2) 15px 15px,
+            rgba(240, 46, 170, 0.1) 20px 20px,
+            rgba(240, 46, 170, 0.05) 25px 25px;
+    }
+}
