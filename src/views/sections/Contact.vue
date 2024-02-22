@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import MaskedImage1 from '@/components/common/MaskedImage/MaskedImage1.vue';
-
 defineProps<{
     sectionId: string;
 }>();
@@ -66,51 +64,58 @@ defineProps<{
             <div class="contact-content">
                 <h1 class="contact-content__title">Contact Section</h1>
                 <div class="contact-content-images">
-                    <MaskedImage1
+                    <MaskedImage
                         image-src="/assets/images/image-5.jpg"
                         alt="masked-image-5"
                         :height-rem="20"
                         :mask-number="1"
+                        :with-border="true"
                         border-color="#a1eebd"
                     />
-                    <MaskedImage1
+                    <MaskedImage
                         image-src="/assets/images/image-4.jpg"
                         alt="masked-image-4"
                         :height-rem="20"
                         :mask-number="2"
+                        :with-border="true"
                         border-color="#ff6868"
                     />
-                    <MaskedImage1
+                    <MaskedImage
                         image-src="/assets/images/image-3.jpg"
                         alt="masked-image-3"
                         :height-rem="20"
                         :mask-number="3"
+                        :with-border="true"
                         border-color="#7bd3ea"
                     />
                 </div>
                 <div class="contact-content-images">
-                    <MaskedImage1
+                    <MaskedImage
                         image-src="/assets/images/image-2.jpg"
                         alt="masked-image-5"
                         :height-rem="15"
                         :mask-number="4"
+                        :with-border="true"
                         border-color="#a1eebd"
                     />
-                    <MaskedImage1
+                    <MaskedImage
                         image-src="/assets/images/image-1.jpg"
                         alt="masked-image-4"
                         :height-rem="15"
                         :mask-number="5"
+                        :with-border="true"
                         border-color="#ff6868"
                     />
                 </div>
                 <h6>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                    ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+                    occaecat cupidatat non proident, sunt in culpa qui officia
+                    deserunt mollit anim id est laborum.
                 </h6>
             </div>
         </div>

@@ -5,8 +5,9 @@ import router from '@/router';
 // layouts
 import Container from '@/layouts/Container.vue';
 // components
-import NavigationBar from '@/components/common/NavigationBar/NavigationBar.vue';
-import MaskedImage1 from '@/components/common/MaskedImage/MaskedImage1.vue';
+import NavigationBar from '@/components/NavigationBar/NavigationBar.vue';
+import MaskedImage from '@/components/MaskedImage/MaskedImage.vue';
+import CurvedText from './components/CurvedText/CurvedText.vue';
 // Importing the global css file
 import '@/styles/global.css';
 
@@ -20,6 +21,7 @@ app.component('AppContainer', Container);
 
 // component register
 app.component('NavigationBar', NavigationBar);
-app.component('MaskedImage1', MaskedImage1);
+app.component('MaskedImage', MaskedImage);
+app.component('CurvedText', CurvedText);
 
 app.mount('#app');
