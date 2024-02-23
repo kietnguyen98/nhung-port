@@ -34,6 +34,7 @@ defineProps<{
     position: relative;
 
     h6 {
+        text-align: center;
         position: absolute;
         width: 70%;
         top: 15rem;

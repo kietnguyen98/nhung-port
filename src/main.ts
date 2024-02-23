@@ -7,7 +7,7 @@ import Container from '@/layouts/Container.vue';
 // components
 import NavigationBar from '@/components/NavigationBar/NavigationBar.vue';
 import MaskedImage from '@/components/MaskedImage/MaskedImage.vue';
-import CurvedText from './components/CurvedText/CurvedText.vue';
+import CurvedText from '@/components/CurvedText/CurvedText.vue';
 // Importing the global css file
 import '@/styles/global.css';
 

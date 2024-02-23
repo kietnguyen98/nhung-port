@@ -2,6 +2,8 @@
 import { ref, onMounted } from 'vue';
 import NavigationButton from './NavigationButton.vue';
 
+const MAXIMUM_PAGE_LENGTH = 99999;
+
 const links = ref([
     { name: 'Intro', idName: 'intro', isActive: false },
     { name: 'About me', idName: 'about', isActive: false },
@@ -34,13 +36,25 @@ onMounted(() => {
     ) as HTMLElement;
 
     scrollWrapperElement.value.addEventListener('scroll', () => {
+        for (let i = 0; i < sectionList.length - 1; i++) {
+            let currentSectionOffsetTop = sectionList[i]?.element.offsetTop;
+            let nextSectionOffsetTop =
+                sectionList[i + 1]?.element.offsetTop ?? MAXIMUM_PAGE_LENGTH;
+            let wrapperScrollTop = scrollWrapperElement.value
+                ?.scrollTop as number;
+            if (
+                wrapperScrollTop >= currentSectionOffsetTop &&
+                wrapperScrollTop < nextSectionOffsetTop
+            ) {
+                currentActive.value = sectionList[i].idName;
+            }
+        }
         sectionList.forEach((section) => {
             if (
                 scrollWrapperElement.value?.scrollTop ===
                 section.element.offsetTop
             ) {
                 currentActive.value = section.idName;
-                console.log(currentActive.value);
             }
         });
 

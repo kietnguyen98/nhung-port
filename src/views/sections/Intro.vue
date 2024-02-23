@@ -15,8 +15,9 @@ defineProps<{
 .intro-content-title {
     position: relative;
     background-color: var(--color-red);
-    padding: 7.5rem 5rem;
+    padding: 5rem 5rem 7.5rem 5rem;
     text-align: center;
+    line-height: 1;
     margin-bottom: 4rem;
     color: white;
 
@@ -69,8 +70,8 @@ defineProps<{
 
     .images-group__image-sub-3 {
         position: absolute;
-        top: 0rem;
-        right: -6rem;
+        top: 3rem;
+        right: -7rem;
     }
 }
 </style>
@@ -88,7 +89,7 @@ defineProps<{
                     class="images-group__image-main"
                     image-src="/assets/images/image-1.jpg"
                     alt="image-main"
-                    :height-rem="35"
+                    :height-rem="40"
                     :mask-number="2"
                     :with-border="false"
                 />

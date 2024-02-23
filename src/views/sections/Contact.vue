@@ -9,44 +9,41 @@ defineProps<{
     scroll-snap-align: start;
     scroll-snap-stop: always;
     height: calc(100vh);
-    background-color: #f6f7c4;
+    background-color: var(--color-pink);
 }
 
 .contact-content-wrapper {
     position: relative;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
 }
 
 .contact-content-wrapper::before {
     content: '';
     position: absolute;
-    z-index: 0;
     left: 0;
-    top: 0;
+    top: 5rem;
     right: 0;
     background-repeat: repeat;
-    height: calc((100vw - 2rem) / 2);
+    height: 8rem;
+    background-size: 8rem 8rem;
     background-image: radial-gradient(
-        circle at calc((100vw - 2rem) / 2) calc((100vw - 2rem) / 2 + 10rem),
-        #f6f7c4 calc((105vw - 2rem) / 2),
-        #7bd3ea calc((105vw - 2rem) / 2)
+        circle at 4rem 8rem,
+        var(--color-blue) 4rem,
+        var(--color-pink) 4rem
     );
 }
+
 .contact-content {
-    position: absolute;
-    z-index: 1;
-    bottom: 0;
-    padding: 5rem;
+    background-color: var(--color-blue);
+    height: calc(100vh - 10rem - 5rem);
+    margin-top: 10rem;
+    padding: 0rem 5rem 5rem 5rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    .contact-content__title {
-        text-align: center;
-        margin-bottom: 2rem;
-    }
 }
 
 .contact-content-images {
@@ -62,7 +59,6 @@ defineProps<{
     <div v-bind:id="sectionId" class="contact-section">
         <div class="contact-content-wrapper">
             <div class="contact-content">
-                <h1 class="contact-content__title">Contact Section</h1>
                 <div class="contact-content-images">
                     <MaskedImage
                         image-src="/assets/images/image-5.jpg"

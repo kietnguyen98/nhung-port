@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import GraphicPhotos from '@/components/Graphic/GraphicPhotos.vue';
+import GraphicBrands from '@/components/Graphic/GraphicBrands.vue';
+
 defineProps<{
     sectionId: string;
 }>();
@@ -8,14 +11,17 @@ defineProps<{
 .graphic-section {
     scroll-snap-align: start;
     scroll-snap-stop: always;
-    background-color: var(--color-pink);
+    background-color: var(--color-cream);
+    padding-top: 7.5rem;
 }
 
 .graphic-content-wrapper {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
+    background-color: var(--color-pink);
 }
 
 .graphic-content-wrapper::before {
@@ -49,11 +55,36 @@ defineProps<{
     }
 }
 
+.graphic-images {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    .graphic-images__image-1 {
+        position: relative;
+        top: -10rem;
+    }
+
+    .graphic-images__image-2 {
+        position: absolute;
+        bottom: 10rem;
+        left: -15rem;
+        transform: rotateZ(-25deg);
+    }
+
+    .graphic-images__image-3 {
+        position: absolute;
+        bottom: 10rem;
+        right: -15rem;
+        transform: rotateZ(25deg);
+    }
+}
+
 .graphic-content__text-wrapper {
     position: relative;
-    padding: 0rem 10rem 10rem 10rem;
+    padding: 0rem 20rem 10rem 20rem;
+
     h6 {
-        font-style: italic;
+        text-align: center;
     }
 }
 </style>
@@ -65,13 +96,31 @@ defineProps<{
                 <CurvedText text="Graphic Design" />
                 <div class="graphic-images">
                     <MaskedImage
-                        class="graphic-images__images"
+                        class="graphic-images__image-1"
+                        image-src="/assets/images/image-3.jpg"
+                        alt="masked-image-1"
+                        :height-rem="30"
+                        :mask-number="1"
+                        :with-border="true"
+                        border-color="#ed5ab3"
+                    />
+                    <MaskedImage
+                        class="graphic-images__image-2"
                         image-src="/assets/images/image-3.jpg"
                         alt="masked-image-2"
-                        :height-rem="25"
+                        :height-rem="15"
                         :mask-number="2"
                         :with-border="true"
                         border-color="#7bd3ea"
+                    />
+                    <MaskedImage
+                        class="graphic-images__image-3"
+                        image-src="/assets/images/image-3.jpg"
+                        alt="masked-image-3"
+                        :height-rem="15"
+                        :mask-number="3"
+                        :with-border="true"
+                        border-color="#a1eebd"
                     />
                 </div>
                 <div class="graphic-content__text-wrapper">
@@ -88,6 +137,8 @@ defineProps<{
                     </h6>
                 </div>
             </div>
+            <GraphicPhotos></GraphicPhotos>
+            <GraphicBrands></GraphicBrands>
         </div>
     </div>
 </template>
