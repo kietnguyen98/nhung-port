@@ -6,10 +6,12 @@
 @import '_variables.css';
 
 /* setup init styles */
-body {
-    margin: 0px;
-    overflow: hidden;
-    cursor: url(/assets/icons/pixel-kuromi.png), auto;
+@media (prefers-reduced-motion: no-preference) {
+    body {
+        margin: 0px;
+        overflow: hidden;
+        cursor: url(/assets/icons/pixel-kuromi.png), auto;
+    }
 }
 
 button {

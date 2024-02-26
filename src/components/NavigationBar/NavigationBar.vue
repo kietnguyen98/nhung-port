@@ -84,6 +84,9 @@ onMounted(() => {
     justify-content: space-between;
     transition: all 0.5s ease-in-out;
     color: var(--color-white);
+
+    /* animation */
+    animation: fade-in-normal 1.5s ease-in;
 }
 
 .navigation-bar--scrolled {

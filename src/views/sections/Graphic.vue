@@ -9,8 +9,6 @@ defineProps<{
 
 <style scoped>
 .graphic-section {
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
     background-color: var(--color-cream);
     padding-top: 7.5rem;
 }

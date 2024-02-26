@@ -8,7 +8,7 @@
         height: 100vh;
         overflow-y: scroll;
         scroll-behavior: smooth;
-        scroll-snap-type: y mandatory;
+        /* scroll-snap-type: y mandatory; */
 
         /* hiding scroll bar */
         -ms-overflow-style: none; /* Internet Explorer 10+ */

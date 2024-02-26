@@ -6,8 +6,6 @@ defineProps<{
 
 <style scoped>
 .contact-section {
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
     height: calc(100vh);
     background-color: var(--color-cream);
 }
