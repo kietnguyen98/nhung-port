@@ -23,7 +23,7 @@
     border: none;
     background-color: transparent;
     .view-more-button__text {
-        transition: all 0.25s linear;
+        transition: all 0.25s ease;
         line-height: 0.65;
     }
     .view-more-button__border {

@@ -8,7 +8,7 @@ const links = ref([
     { name: 'Intro', idName: 'intro', isActive: false },
     { name: 'About me', idName: 'about', isActive: false },
     { name: 'Works', idName: 'projects', isActive: false },
-    { name: 'Graphic only', idName: 'graphic', isActive: false },
+    // { name: 'Graphic only', idName: 'graphic', isActive: false },
     { name: 'Contact', idName: 'contact', isActive: false },
 ]);
 const currentActive = ref(links.value[0].idName);
