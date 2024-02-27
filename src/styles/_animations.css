@@ -122,6 +122,19 @@
         }
     }
 
+    @keyframes fade-out-to-top {
+        to {
+            opacity: 0;
+            transform: translateY(-50%);
+        }
+    }
+
+    @keyframes scale-out-from-top {
+        to {
+            transform: scale(1) translateY(0);
+        }
+    }
+
     @keyframes trans-background-color {
         0% {
             background-color: transparent;

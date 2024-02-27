@@ -7,14 +7,26 @@ defineProps<{
 
 onMounted(() => {
     setTimeout(() => {
+        const introContentTitleElement = document.getElementById(
+            'intro-content-title'
+        ) as HTMLElement;
         const introContentImagesElement = document.getElementById(
             'intro-content-images'
         ) as HTMLElement;
+
+        // update element's animation attribute
+        introContentTitleElement.classList.remove(
+            'intro-content-title--enter-ani'
+        );
+        introContentTitleElement.classList.add(
+            'intro-content-title--leave-ani'
+        );
+
         introContentImagesElement.classList.remove(
-            'intro-content-images--slide-ani'
+            'intro-content-images--enter-ani'
         );
         introContentImagesElement.classList.add(
-            'intro-content-images--fade-out-ani'
+            'intro-content-images--leave-ani'
         );
     }, 750);
 });
@@ -36,7 +48,6 @@ onMounted(() => {
     line-height: 1;
     margin-bottom: 4rem;
     color: white;
-    animation: slide-down 0.75s ease-in;
 
     h4 {
         font-weight: 300;
@@ -49,6 +60,16 @@ onMounted(() => {
         font-style: italic;
         animation: fade-in-slow 1.5s ease-in;
     }
+}
+
+.intro-content-title--enter-ani {
+    animation: slide-down 0.75s ease-in;
+}
+
+.intro-content-title--leave-ani {
+    animation: fade-out-to-top linear forwards;
+    animation-timeline: view();
+    animation-range: exit;
 }
 
 .intro-content-title::after {
@@ -73,14 +94,14 @@ onMounted(() => {
     align-items: center;
 }
 
-.intro-content-images--slide-ani {
+.intro-content-images--enter-ani {
     animation: slide-up 0.75s ease-in;
 }
 
-.intro-content-images--fade-out-ani {
+.intro-content-images--leave-ani {
     animation: fade-out linear;
     animation-timeline: view();
-    animation-range: exit -20rem;
+    animation-range: exit;
 }
 
 .images-group {
@@ -110,13 +131,16 @@ onMounted(() => {
 
 <template>
     <div v-bind:id="sectionId" class="intro-section">
-        <div class="intro-content-title">
+        <div
+            class="intro-content-title intro-content-title--enter-ani"
+            id="intro-content-title"
+        >
             <h4>Welcome to</h4>
             <h1 class="font-dancing-script">Hồng Nhung's</h1>
             <h4>Portfolio</h4>
         </div>
         <div
-            class="intro-content-images intro-content-images--slide-ani"
+            class="intro-content-images intro-content-images--enter-ani"
             id="intro-content-images"
         >
             <div class="images-group">

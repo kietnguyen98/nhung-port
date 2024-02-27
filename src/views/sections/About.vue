@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import { wordFlick } from '@/utils/wordFlickAnimation';
 defineProps<{
     sectionId: string;
 }>();
@@ -19,62 +20,18 @@ const title = ref<Array<string>>([
     '.',
 ]);
 
-var paragraphs: Array<string> = [
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
-        'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ',
-        'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ',
-        'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    ],
-    part: string,
-    i = 0,
-    offset = 0,
-    forwards = true,
-    skipCount = 0,
-    skipDelay = 35,
-    speed = 70;
-
-const wordFlick = function () {
-    setInterval(function () {
-        // check if we should go forward and print current paragraph
-        if (forwards) {
-            // check if we have print all the text in the paragraph and should go backward
-            if (offset >= paragraphs[i].length) {
-                ++skipCount;
-                if (skipCount === skipDelay) {
-                    forwards = false;
-                    skipCount = 0;
-                }
-            }
-        } else {
-            // check if we have finished go back and jump to the next paragraph
-            if (offset === 0) {
-                forwards = true;
-                i++;
-                offset = 0;
-                // check if we have reach the last paragraph and should be reset to the first paragraph
-                if (i >= paragraphs.length) {
-                    i = 0;
-                }
-            }
-        }
-
-        // get content base on current offset and calculate new offset
-        part = paragraphs[i].substring(0, offset);
-        if (skipCount === 0) {
-            if (forwards) {
-                offset++;
-            } else {
-                offset--;
-            }
-        }
-        (
-            document.getElementById('about-me-content') as HTMLHeadingElement
-        ).innerHTML = part;
-    }, speed);
-};
-
 onMounted(() => {
-    wordFlick();
+    wordFlick({
+        paragraphs: [
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
+            'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ',
+            'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ',
+            'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+        ],
+        printElement: document.getElementById(
+            'about-me-content'
+        ) as HTMLHeadingElement,
+    });
 });
 
 // animation on page scroll
@@ -82,8 +39,8 @@ onMounted(() => {
 
 <style scoped>
 .about-section {
+    padding: 10rem 0rem;
     background-color: var(--color-cream);
-    height: calc(100vh);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -101,13 +58,6 @@ onMounted(() => {
     display: flex;
     height: 20rem;
     gap: 0.1rem;
-    /* animation */
-    opacity: 0;
-    transform: translateY(-20rem);
-    scale: 0.5;
-    animation: fade-in-from-top linear forwards;
-    animation-timeline: view();
-    animation-range: entry;
 
     .about-content__title {
         text-align: center;
@@ -116,6 +66,16 @@ onMounted(() => {
         animation: letter-wavy 1.5s infinite;
         animation-delay: calc(0.1s * var(--i));
     }
+}
+
+.wavy-title-container--enter-ani {
+    /* animation */
+    opacity: 0;
+    transform: translateY(-20rem);
+    scale: 0.5;
+    animation: fade-in-from-top linear forwards;
+    animation-timeline: view();
+    animation-range: entry;
 }
 
 .about-content__text-wrapper {
@@ -128,12 +88,6 @@ onMounted(() => {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    /* animation */
-    transform: translateY(50rem);
-    opacity: 0;
-    animation: fade-in-from-bottom linear forwards;
-    animation-timeline: view();
-    animation-range: entry;
 
     h6 {
         text-align: center;
@@ -151,12 +105,21 @@ onMounted(() => {
         animation: cursor-blink 1s steps(2) infinite;
     }
 }
+
+.about-content__text-wrapper--enter-ani {
+    /* animation */
+    transform: translateY(50rem);
+    opacity: 0;
+    animation: fade-in-from-bottom linear forwards;
+    animation-timeline: view();
+    animation-range: entry;
+}
 </style>
 
 <template>
     <div v-bind:id="sectionId" class="about-section">
         <div class="about-content">
-            <div class="wavy-title-container">
+            <div class="wavy-title-container wavy-title-container--enter-ani">
                 <h1
                     v-for="(letter, index) in title"
                     :style="`--i:${index}`"
@@ -166,7 +129,9 @@ onMounted(() => {
                 </h1>
             </div>
 
-            <div class="about-content__text-wrapper">
+            <div
+                class="about-content__text-wrapper about-content__text-wrapper--enter-ani"
+            >
                 <!-- <img src="/assets/clip-masks/mask-6.png" /> -->
                 <h6>
                     <span
