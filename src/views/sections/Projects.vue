@@ -61,7 +61,7 @@ defineProps<{
 }
 
 .project-type-card--enter-ani {
-    transform: scale(0.25) translateY(-40rem);
+    transform: scale(0) translateY(-40rem);
 
     animation: scale-out-from-top linear forwards;
     animation-timeline: view();

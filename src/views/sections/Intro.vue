@@ -101,7 +101,7 @@ onMounted(() => {
 .intro-content-images--leave-ani {
     animation: fade-out linear;
     animation-timeline: view();
-    animation-range: exit;
+    animation-range: exit -30rem;
 }
 
 .images-group {

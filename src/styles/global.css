@@ -5,6 +5,13 @@
 /* import variables */
 @import '_variables.css';
 
+html {
+    scroll-behavior: smooth;
+
+    /* Custom cubic-bezier easing */
+    scroll-behavior: cubic-bezier(0.42, 0, 0.58, 1);
+}
+
 /* setup init styles */
 @media (prefers-reduced-motion: no-preference) {
     body {

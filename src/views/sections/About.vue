@@ -71,11 +71,11 @@ onMounted(() => {
 .wavy-title-container--enter-ani {
     /* animation */
     opacity: 0;
-    transform: translateY(-20rem);
-    scale: 0.5;
-    animation: fade-in-from-top linear forwards;
+    transform: translateX(-100rem) translateY(-50rem);
+    scale: 0;
+    animation: fade-in-from-top-left linear forwards;
     animation-timeline: view();
-    animation-range: entry;
+    animation-range: entry -30rem;
 }
 
 .about-content__text-wrapper {
@@ -108,9 +108,10 @@ onMounted(() => {
 
 .about-content__text-wrapper--enter-ani {
     /* animation */
-    transform: translateY(50rem);
+    transform: translateY(50rem) translateX(50rem);
     opacity: 0;
-    animation: fade-in-from-bottom linear forwards;
+    scale: 0;
+    animation: fade-in-from-bottom-right linear forwards;
     animation-timeline: view();
     animation-range: entry;
 }

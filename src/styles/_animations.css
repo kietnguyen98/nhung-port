@@ -115,6 +115,24 @@
         }
     }
 
+    @keyframes fade-in-from-top-left {
+        to {
+            transform: translateX(0);
+            transform: translateY(0);
+            opacity: 1;
+            scale: 1;
+        }
+    }
+
+    @keyframes fade-in-from-bottom-right {
+        to {
+            transform: translateX(0);
+            transform: translateY(0);
+            opacity: 1;
+            scale: 1;
+        }
+    }
+
     @keyframes fade-out {
         to {
             opacity: 0;
