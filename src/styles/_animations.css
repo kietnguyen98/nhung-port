@@ -166,6 +166,13 @@
         }
     }
 
+    @keyframes scale-out {
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
     @keyframes scale-out-from-top {
         to {
             opacity: 1;

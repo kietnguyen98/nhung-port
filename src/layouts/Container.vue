@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue';
 import { TSections } from '@/types/section.type';
 import { blockWheelEvent, animateWheelEvent } from '@/utils/wheelEvent';
+import CircleProgressBar from '@/components/circleProgressBar/CircleProgressBar.vue';
 
 const MAXIMUM_PAGE_LENGTH = 99999;
 
@@ -12,8 +13,8 @@ const sections = ref<TSections>([
     { name: 'Contact', idName: 'contact', isActive: false },
 ]);
 const currentActive = ref<string>(sections.value[0].idName);
-
 const isOnTop = ref<boolean>(true);
+const progress = ref<number>(0);
 
 onMounted(() => {
     // block user scrolling for 1.5seconds, wait for all animations to be finished
@@ -40,15 +41,17 @@ onMounted(() => {
     const sectionList: Array<{
         idName: string;
         element: HTMLElement;
-    }> = sections.value.map((link) => {
+    }> = sections.value.map((section) => {
         const element = document.getElementById(
-            `${link.idName}-section`
+            `${section.idName}-section`
         ) as HTMLElement;
         return {
-            idName: link.idName,
+            idName: section.idName,
             element: element,
         };
     });
+
+    const fullPageHeight = scrollWrapperElement.scrollHeight;
 
     scrollWrapperElement.addEventListener('scroll', () => {
         for (let i = 0; i < sectionList.length - 1; i++) {
@@ -76,19 +79,25 @@ onMounted(() => {
         } else {
             isOnTop.value = false;
         }
+
+        // check progress on scrolling
+        progress.value =
+            (scrollWrapperElement.scrollTop /
+                (fullPageHeight -
+                    2 * scrollWrapperElement.getBoundingClientRect().height)) *
+            100;
     });
 });
 </script>
 
 <style scoped>
 .container {
-    height: 100vh;
     position: relative;
     .container__scroll-wrapper {
         height: 100vh;
         background-color: var(--color-cream);
         overflow-y: scroll;
-        /* scroll-behavior: smooth; */
+        overflow-x: hidden;
 
         /* hiding scroll bar */
         -ms-overflow-style: none; /* Internet Explorer 10+ */
@@ -108,6 +117,7 @@ onMounted(() => {
             :sections="sections"
             :currentActive="currentActive"
         />
+        <CircleProgressBar :progressValue="progress" />
         <div id="scroll-wrapper" class="container__scroll-wrapper">
             <slot></slot>
         </div>

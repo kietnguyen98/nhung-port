@@ -11,7 +11,7 @@ defineProps<{
 <style scoped>
 .navigation-bar {
     margin: 0rem 5rem;
-    width: calc(100% - 2 * 5rem - 2 * 2rem);
+    width: calc(100vw - 2 * 5rem - 2 * 2rem);
     position: absolute;
     top: 0.5rem;
     z-index: 1;
