@@ -39,8 +39,7 @@ onMounted(() => {
 
 <style scoped>
 .about-section {
-    padding: 10rem 0rem;
-    background-color: var(--color-cream);
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -74,8 +73,8 @@ onMounted(() => {
     transform: translateX(-100rem) translateY(-50rem);
     scale: 0;
     animation: fade-in-from-top-left linear forwards;
-    animation-timeline: view();
-    animation-range: entry -30rem;
+    animation-timeline: view(20rem);
+    animation-range: entry;
 }
 
 .about-content__text-wrapper {
@@ -108,7 +107,7 @@ onMounted(() => {
 
 .about-content__text-wrapper--enter-ani {
     /* animation */
-    transform: translateY(50rem) translateX(50rem);
+    transform: translateY(50rem) translateX(100rem);
     opacity: 0;
     scale: 0;
     animation: fade-in-from-bottom-right linear forwards;

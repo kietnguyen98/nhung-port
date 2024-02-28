@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import animateScrollTo from 'animated-scroll-to';
 
 const props = defineProps<{
     idName: string;
@@ -8,6 +9,7 @@ const props = defineProps<{
     isScrolled: boolean;
 }>();
 
+const diffOffset = ref<number>(0);
 const navigateToTarget = ref<() => void>();
 
 onMounted(() => {
@@ -15,9 +17,50 @@ onMounted(() => {
         `${props.idName}-section`
     ) as HTMLElement;
 
+    const scrollWrapperElement = document.getElementById(
+        'scroll-wrapper'
+    ) as HTMLElement;
+
+    // initial offset value, handler function
+    diffOffset.value = Math.abs(
+        scrollWrapperElement.scrollTop - targetElement.offsetTop
+    );
+
     navigateToTarget.value = () => {
-        targetElement.scrollIntoView({ behavior: 'smooth' });
+        animateScrollTo(targetElement.offsetTop, {
+            cancelOnUserAction: true,
+            easing: (t) => {
+                return --t * t * t + 1;
+            },
+            minDuration:
+                ((diffOffset.value > 0 ? diffOffset.value : 1000) / 1000) *
+                1500,
+            elementToScroll: scrollWrapperElement,
+        });
     };
+
+    // update new offset value and new handler function on scrolling
+    scrollWrapperElement.addEventListener('scroll', () => {
+        diffOffset.value = Math.abs(
+            scrollWrapperElement.scrollTop - targetElement.offsetTop
+        );
+
+        navigateToTarget.value = () => {
+            animateScrollTo(targetElement.offsetTop, {
+                cancelOnUserAction: true,
+                easing: (t) => {
+                    return --t * t * t + 1;
+                },
+                minDuration: Math.min(
+                    ((diffOffset.value !== 0 ? diffOffset.value : 1000) /
+                        1000) *
+                        1250,
+                    3000
+                ),
+                elementToScroll: scrollWrapperElement,
+            });
+        };
+    });
 });
 </script>
 
@@ -91,7 +134,7 @@ onMounted(() => {
                     ? 'navigation-button--scrolled--activated'
                     : 'navigation-button--on-top--activated'),
         ]"
-        @click="navigateToTarget"
+        @:click="navigateToTarget"
     >
         <p class="navigation-button__name font-pacifico">{{ name }}</p>
     </button>
