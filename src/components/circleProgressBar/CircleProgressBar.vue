@@ -1,10 +1,31 @@
 <script setup lang="ts">
 const props = defineProps<{ progressValue: number }>();
-
-console.log(props.progressValue);
 </script>
 
 <style scoped>
+.progress-bar {
+    width: 6rem;
+    height: 6rem;
+    position: absolute;
+    bottom: 3rem;
+    right: 4rem;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    border-radius: 50%;
+    -webkit-box-shadow: 0px 0px 40px 10px rgba(255, 46, 182, 0.45);
+    -moz-box-shadow: 0px 0px 40px 10px rgba(255, 46, 182, 0.45);
+    box-shadow: 0px 0px 40px 10px rgba(255, 46, 182, 0.45);
+}
+
+.progress-bar--enter-ani {
+    transform: scale(0);
+    opacity: 0;
+    /* animation */
+    animation: scale-out 1.5s ease forwards;
+}
 .flower-wrapper {
     position: relative;
     width: 5rem;
@@ -39,14 +60,15 @@ console.log(props.progressValue);
         height: 2.5rem;
         top: calc(50% - 2.5rem / 2);
         left: calc(50% - 2.5rem / 2);
-        z-index: 3;
+        z-index: 4;
         transform: rotateZ(22.5deg);
         opacity: 1;
-        transition: all 0.3s linear;
+        transition: all 0.75s linear;
     }
 
     .face-happy--disappeared {
-        opacity: 0;
+        opacity: 0.5;
+        z-index: 3;
     }
 
     .face-laughing {
@@ -56,37 +78,14 @@ console.log(props.progressValue);
         top: calc(50% - 2.5rem / 2);
         left: calc(50% - 2.5rem / 2);
         z-index: 3;
-        opacity: 0;
-        transition: all 0.3s linear;
+        opacity: 0.5;
+        transition: all 0.75s linear;
     }
 
     .face-laughing--appeared {
         opacity: 1;
+        z-index: 4;
     }
-}
-
-.progress-bar {
-    width: 6rem;
-    height: 6rem;
-    position: absolute;
-    bottom: 2rem;
-    right: 4rem;
-    z-index: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    border-radius: 50%;
-    -webkit-box-shadow: 0px 0px 40px 10px rgba(255, 46, 182, 0.45);
-    -moz-box-shadow: 0px 0px 40px 10px rgba(255, 46, 182, 0.45);
-    box-shadow: 0px 0px 40px 10px rgba(255, 46, 182, 0.45);
-}
-
-.progress-bar--enter-ani {
-    transform: scale(0);
-    opacity: 0;
-    /* animation */
-    animation: scale-out 1.5s ease forwards;
 }
 </style>
 
