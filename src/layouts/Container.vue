@@ -2,7 +2,7 @@
 import { ref, onMounted } from 'vue';
 import { TSections } from '@/types/section.type';
 import { blockWheelEvent, animateWheelEvent } from '@/utils/wheelEvent';
-import CircleProgressBar from '@/components/circleProgressBar/CircleProgressBar.vue';
+import CircleProgressBar from '@/components/CircleProgressBar/CircleProgressBar.vue';
 
 const MAXIMUM_PAGE_LENGTH = 99999;
 

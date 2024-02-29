@@ -15,11 +15,11 @@ export const animateWheelEvent = (
     let scrollPosition = scrollWrapperElement.scrollTop + delta * scrollSpeed;
 
     animateScrollTo(scrollPosition, {
-        cancelOnUserAction: true,
+        cancelOnUserAction: false,
         easing: (t) => {
             return --t * t * t * t * t + 1;
         },
-        minDuration: 1000,
+        minDuration: 1250,
         elementToScroll: scrollWrapperElement,
     });
 };

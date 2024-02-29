@@ -1,11 +1,73 @@
 <script setup lang="ts">
 const props = defineProps<{ progressValue: number }>();
+
+console.log(props.progressValue);
 </script>
 
 <style scoped>
-.progress-bar {
+.flower-wrapper {
+    position: relative;
     width: 5rem;
     height: 5rem;
+
+    .leaves {
+        position: absolute;
+        top: -1rem;
+        left: -0.5rem;
+        z-index: 1;
+        height: 6rem;
+        width: 6rem;
+        transform: scale(0);
+        opacity: 0;
+        transition: all 1s linear;
+    }
+
+    .leaves--glowed {
+        opacity: 1;
+        transform: scale(1);
+    }
+    .flower {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 2;
+    }
+
+    .face-happy {
+        position: absolute;
+        width: 2.5rem;
+        height: 2.5rem;
+        top: calc(50% - 2.5rem / 2);
+        left: calc(50% - 2.5rem / 2);
+        z-index: 3;
+        transform: rotateZ(22.5deg);
+        opacity: 1;
+        transition: all 0.3s linear;
+    }
+
+    .face-happy--disappeared {
+        opacity: 0;
+    }
+
+    .face-laughing {
+        position: absolute;
+        width: 2.5rem;
+        height: 2.5rem;
+        top: calc(50% - 2.5rem / 2);
+        left: calc(50% - 2.5rem / 2);
+        z-index: 3;
+        opacity: 0;
+        transition: all 0.3s linear;
+    }
+
+    .face-laughing--appeared {
+        opacity: 1;
+    }
+}
+
+.progress-bar {
+    width: 6rem;
+    height: 6rem;
     position: absolute;
     bottom: 2rem;
     right: 4rem;
@@ -40,11 +102,39 @@ const props = defineProps<{ progressValue: number }>();
         conic-gradient(var(--color-purple) ${props.progressValue}%, var(--color-pink) 0)`,
         }"
     >
-        <img
-            src="/assets/icons/flower.png"
-            :style="{
-                transform: `rotateZ(${(props.progressValue / 100) * 360}deg)`,
-            }"
-        />
+        <div class="flower-wrapper">
+            <img
+                :class="{
+                    leaves: true,
+                    'leaves--glowed': props.progressValue === 100,
+                }"
+                src="/assets/icons/leaves.png"
+                alt="flower's leave"
+            />
+            <img
+                class="flower"
+                src="/assets/icons/flower.png"
+                alt="flower"
+                :style="{
+                    transform: `rotateZ(${(props.progressValue / 100) * 360}deg)`,
+                }"
+            />
+            <img
+                :class="{
+                    'face-happy': true,
+                    'face-happy--disappeared': props.progressValue === 100,
+                }"
+                src="/assets/icons/happy.png"
+                alt="emotion"
+            />
+            <img
+                :class="{
+                    'face-laughing': true,
+                    'face-laughing--appeared': props.progressValue === 100,
+                }"
+                src="/assets/icons/laughing.png"
+                alt="emotion"
+            />
+        </div>
     </div>
 </template>
