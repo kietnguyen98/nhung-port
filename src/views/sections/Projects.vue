@@ -16,7 +16,7 @@ defineProps<{
     .projects-content__title {
         text-align: center;
         height: 20rem;
-        margin-bottom: 10rem;
+        margin-bottom: 5rem;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -40,9 +40,11 @@ defineProps<{
         opacity: 0;
         transform: translateY(-20rem);
         scale: 0.5;
-        animation: fade-in-from-top linear forwards;
-        animation-timeline: view();
-        animation-range: entry;
+        animation:
+            fade-in-from-top linear forwards,
+            fade-out-to-top-with-scale linear forwards;
+        animation-timeline: view(), view(0rem);
+        animation-range: entry, exit;
     }
 }
 
@@ -82,9 +84,11 @@ defineProps<{
     opacity: 0;
     transform: scale(0) translateY(-40rem);
 
-    animation: scale-out-from-top linear forwards;
-    animation-timeline: view(10rem);
-    animation-range: entry 10rem;
+    animation:
+        scale-out-from-top linear forwards,
+        scale-in-to-top linear forwards;
+    animation-timeline: view(10rem), view(20rem);
+    animation-range: entry, exit;
 }
 </style>
 

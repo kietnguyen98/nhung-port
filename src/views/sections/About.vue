@@ -60,21 +60,23 @@ onMounted(() => {
 
     .about-content__title {
         text-align: center;
-        font-size: 10rem;
+        font-size: 12.5rem;
         font-weight: bolder;
         animation: letter-wavy 1.5s infinite;
         animation-delay: calc(0.1s * var(--i));
     }
 }
 
-.wavy-title-container--enter-ani {
+.wavy-title-container--enter-leave-ani {
     /* animation */
-    opacity: 0;
     transform: translateX(-100rem) translateY(-50rem);
+    opacity: 0;
     scale: 0;
-    animation: fade-in-from-top-left linear forwards;
-    animation-timeline: view(20rem);
-    animation-range: entry;
+    animation:
+        fade-in-from-top-left linear forwards,
+        fade-out-to-top-right linear forwards;
+    animation-timeline: view(20rem), view(0rem);
+    animation-range: entry, exit;
 }
 
 .about-content__text-wrapper {
@@ -105,21 +107,26 @@ onMounted(() => {
     }
 }
 
-.about-content__text-wrapper--enter-ani {
+.about-content__text-wrapper--enter-leave-ani {
     /* animation */
     transform: translateY(50rem) translateX(100rem);
     opacity: 0;
     scale: 0;
-    animation: fade-in-from-bottom-right linear forwards;
-    animation-timeline: view();
-    animation-range: entry;
+    animation:
+        fade-in-from-bottom-right linear forwards,
+        fade-out-to-bottom-left linear forwards;
+    animation-timeline: view(), view(20rem);
+    animation-range: entry, exit;
 }
 </style>
 
 <template>
     <div v-bind:id="sectionId" class="about-section">
         <div class="about-content">
-            <div class="wavy-title-container wavy-title-container--enter-ani">
+            <div
+                class="wavy-title-container wavy-title-container--enter-leave-ani"
+                id="about-content-wavy-title-container"
+            >
                 <h1
                     v-for="(letter, index) in title"
                     :style="`--i:${index}`"
@@ -130,7 +137,7 @@ onMounted(() => {
             </div>
 
             <div
-                class="about-content__text-wrapper about-content__text-wrapper--enter-ani"
+                class="about-content__text-wrapper about-content__text-wrapper--enter-leave-ani"
             >
                 <!-- <img src="/assets/clip-masks/mask-6.png" /> -->
                 <h6>

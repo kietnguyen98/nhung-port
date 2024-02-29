@@ -17,10 +17,10 @@ defineProps<{
 }
 
 .contact-content-wrapper--enter-ani {
-    transform: translateY(100%);
+    transform: translateY(50%);
     opacity: 0;
     animation: slide-up linear forwards;
-    animation-timeline: view();
+    animation-timeline: view(-30rem);
     animation-range: entry;
 }
 
