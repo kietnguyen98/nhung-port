@@ -6,8 +6,7 @@ defineProps<{
 
 <style scoped>
 .projects-section {
-    padding: 0rem 0rem 10rem 0rem;
-    background-color: var(--color-cream);
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -16,7 +15,8 @@ defineProps<{
 .projects-content {
     .projects-content__title {
         text-align: center;
-        height: 30rem;
+        height: 20rem;
+        margin-bottom: 5rem;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -40,9 +40,11 @@ defineProps<{
         opacity: 0;
         transform: translateY(-20rem);
         scale: 0.5;
-        animation: fade-in-from-top linear forwards;
-        animation-timeline: view();
-        animation-range: entry;
+        animation:
+            fade-in-from-top linear forwards,
+            fade-out-to-top-with-scale linear forwards;
+        animation-timeline: view(), view(0rem);
+        animation-range: entry, exit;
     }
 }
 
@@ -57,15 +59,36 @@ defineProps<{
     .project-type-card__title {
         margin-top: 2rem;
         text-align: center;
+        font-weight: bolder;
+        color: var(--color-dark);
+    }
+
+    .project-type-card__title--text-shadow-pink {
+        text-shadow: 2.5px 2.5px 0px var(--color-pink);
+    }
+
+    .project-type-card__title--text-shadow-blue {
+        text-shadow: 2.5px 2.5px 0px var(--color-blue);
+    }
+
+    .project-type-card__title--text-shadow-purple {
+        text-shadow: 2.5px 2.5px 0px var(--color-purple);
+    }
+
+    .project-type-card__title--text-shadow-green {
+        text-shadow: 2.5px 2.5px 0px var(--color-green);
     }
 }
 
 .project-type-card--enter-ani {
-    transform: scale(0.25) translateY(-40rem);
+    opacity: 0;
+    transform: scale(0) translateY(-40rem);
 
-    animation: scale-out-from-top linear forwards;
-    animation-timeline: view();
-    animation-range: entry 10rem;
+    animation:
+        scale-out-from-top linear forwards,
+        scale-in-to-top linear forwards;
+    animation-timeline: view(10rem), view(20rem);
+    animation-range: entry, exit;
 }
 </style>
 
@@ -87,7 +110,11 @@ defineProps<{
                         :with-border="true"
                         border-color="#fed9ed"
                     />
-                    <h5 class="project-type-card__title">Graphic Design</h5>
+                    <h5
+                        class="project-type-card__title project-type-card__title--text-shadow-pink"
+                    >
+                        Graphic Design
+                    </h5>
                 </div>
                 <div class="project-type-card project-type-card--enter-ani">
                     <MaskedImage
@@ -98,7 +125,11 @@ defineProps<{
                         :with-border="true"
                         border-color="#7bd3ea"
                     />
-                    <h5 class="project-type-card__title">Photography</h5>
+                    <h5
+                        class="project-type-card__title project-type-card__title--text-shadow-blue"
+                    >
+                        Photography
+                    </h5>
                 </div>
                 <div class="project-type-card project-type-card--enter-ani">
                     <MaskedImage
@@ -109,7 +140,11 @@ defineProps<{
                         :with-border="true"
                         border-color="#ed5ab3"
                     />
-                    <h5 class="project-type-card__title">Video Editing</h5>
+                    <h5
+                        class="project-type-card__title project-type-card__title--text-shadow-purple"
+                    >
+                        Video Editing
+                    </h5>
                 </div>
                 <div class="project-type-card project-type-card--enter-ani">
                     <MaskedImage
@@ -120,7 +155,11 @@ defineProps<{
                         :with-border="true"
                         border-color="#a1eebd"
                     />
-                    <h5 class="project-type-card__title">Illustration</h5>
+                    <h5
+                        class="project-type-card__title project-type-card__title--text-shadow-green"
+                    >
+                        Illustration
+                    </h5>
                 </div>
             </div>
         </div>

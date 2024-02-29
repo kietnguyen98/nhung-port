@@ -35,15 +35,12 @@ onMounted(() => {
 <style scoped>
 .intro-section {
     position: relative;
-    height: calc(100vh);
-    background-color: var(--color-cream);
-    /* animation */
-    animation: trans-background-color 1s ease-in;
+    min-height: 100vh;
 }
 .intro-content-title {
     position: relative;
     background-color: var(--color-red);
-    padding: 5rem 5rem 7.5rem 5rem;
+    padding: 7.5rem 5rem 2.5rem 5rem;
     text-align: center;
     line-height: 1;
     margin-bottom: 4rem;
@@ -99,8 +96,8 @@ onMounted(() => {
 }
 
 .intro-content-images--leave-ani {
-    animation: fade-out linear;
-    animation-timeline: view();
+    animation: fade-out linear forwards;
+    animation-timeline: view(30rem);
     animation-range: exit;
 }
 

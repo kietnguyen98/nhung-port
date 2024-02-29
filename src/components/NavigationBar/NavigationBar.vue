@@ -1,84 +1,22 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
 import NavigationButton from './NavigationButton.vue';
-
-const MAXIMUM_PAGE_LENGTH = 99999;
-
-const links = ref([
-    { name: 'Intro', idName: 'intro', isActive: false },
-    { name: 'About me', idName: 'about', isActive: false },
-    { name: 'Works', idName: 'projects', isActive: false },
-    // { name: 'Graphic only', idName: 'graphic', isActive: false },
-    { name: 'Contact', idName: 'contact', isActive: false },
-]);
-const currentActive = ref(links.value[0].idName);
-
-const scrollWrapperElement = ref<HTMLElement>();
-
-const isOnTop = ref<boolean>(true);
-
-onMounted(() => {
-    const sectionList: Array<{
-        idName: string;
-        element: HTMLElement;
-    }> = links.value.map((link) => {
-        const element = document.getElementById(
-            `${link.idName}-section`
-        ) as HTMLElement;
-        return {
-            idName: link.idName,
-            element: element,
-        };
-    });
-
-    scrollWrapperElement.value = document.getElementById(
-        'scroll-wrapper'
-    ) as HTMLElement;
-
-    scrollWrapperElement.value.addEventListener('scroll', () => {
-        for (let i = 0; i < sectionList.length - 1; i++) {
-            let currentSectionOffsetTop = sectionList[i]?.element.offsetTop;
-            let nextSectionOffsetTop =
-                sectionList[i + 1]?.element.offsetTop ?? MAXIMUM_PAGE_LENGTH;
-            let wrapperScrollTop = scrollWrapperElement.value
-                ?.scrollTop as number;
-            if (
-                wrapperScrollTop >= currentSectionOffsetTop &&
-                wrapperScrollTop < nextSectionOffsetTop
-            ) {
-                currentActive.value = sectionList[i].idName;
-            }
-        }
-        sectionList.forEach((section) => {
-            if (
-                scrollWrapperElement.value?.scrollTop ===
-                section.element.offsetTop
-            ) {
-                currentActive.value = section.idName;
-            }
-        });
-
-        if (scrollWrapperElement.value?.scrollTop === 0) {
-            setTimeout(() => {
-                isOnTop.value = true;
-            }, 250);
-        } else {
-            isOnTop.value = false;
-        }
-    });
-});
+import { TSections } from '@/types/section.type';
+defineProps<{
+    isOnTop: boolean;
+    sections: TSections;
+    currentActive: string;
+}>();
 </script>
 
 <style scoped>
 .navigation-bar {
     margin: 0rem 5rem;
-    width: calc(100vw - 2 * 5rem);
+    width: calc(100vw - 2 * 5rem - 2 * 2rem);
     position: absolute;
     top: 0.5rem;
     z-index: 1;
-    padding: 0.5rem 0.75rem;
+    padding: 1rem 2rem;
     border-radius: 5rem;
-    border: 2px solid transparent;
     background-color: transparent;
     display: flex;
     justify-content: space-between;
@@ -90,9 +28,12 @@ onMounted(() => {
 }
 
 .navigation-bar--scrolled {
-    border: 2px solid gray;
     background-color: white;
     color: var(--color-black);
+    box-shadow:
+        rgba(0, 0, 0, 0.2) 0px 12px 28px 0px,
+        rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
+        rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
 }
 
 .portfolio-owner {
@@ -132,10 +73,10 @@ onMounted(() => {
         </div>
         <nav class="navigation-links">
             <NavigationButton
-                v-for="link in links"
-                :idName="link.idName"
-                :name="link.name"
-                :isActive="link.idName === currentActive"
+                v-for="section in sections"
+                :idName="section.idName"
+                :name="section.name"
+                :isActive="section.idName === currentActive"
                 :isScrolled="!isOnTop"
             />
         </nav>

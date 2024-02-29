@@ -6,8 +6,7 @@ defineProps<{
 
 <style scoped>
 .contact-section {
-    height: calc(100vh);
-    background-color: var(--color-cream);
+    min-height: 100vh;
 }
 
 .contact-content-wrapper {
@@ -15,6 +14,14 @@ defineProps<{
     display: flex;
     justify-content: center;
     align-items: flex-end;
+}
+
+.contact-content-wrapper--enter-ani {
+    transform: translateY(50%);
+    opacity: 0;
+    animation: slide-up linear forwards;
+    animation-timeline: view(-30rem);
+    animation-range: entry;
 }
 
 .contact-content-wrapper::before {
@@ -27,9 +34,9 @@ defineProps<{
     height: 8rem;
     background-size: 8rem 8rem;
     background-image: radial-gradient(
-        circle at 4rem 8rem,
+        circle at 4rem 6rem,
         var(--color-blue) 4rem,
-        var(--color-cream) 4rem
+        transparent 4rem
     );
 }
 
@@ -51,6 +58,7 @@ defineProps<{
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-end;
+    color: var(--color-dark);
     gap: 7.5rem;
 
     .contact-content-text__title-group {
@@ -62,10 +70,27 @@ defineProps<{
         }
     }
 
+    .contact-content-text__title-group--enter-ani {
+        transform: translateX(-50rem);
+        opacity: 0;
+        /* animation */
+        animation: fade-in-from-left linear forwards;
+        animation-timeline: view(20rem);
+        animation-range: entry;
+    }
+
     .contact-content-text__info-group {
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
+    }
+
+    .contact-content-text__info-group--enter-ani {
+        opacity: 0;
+        /* animation */
+        animation: fade-in-slow linear forwards;
+        animation-timeline: view(2.5rem);
+        animation-range: entry;
     }
 }
 
@@ -102,73 +127,101 @@ defineProps<{
     .contact-content-images__image-5 {
         transform: translateX(5rem) rotateZ(10deg);
     }
+
+    .contact-content-images__image--enter-ani {
+        transform: perspective(20rem) scale(0) rotateY(-90deg);
+        opacity: 0;
+        /* animation */
+        animation: flip-out-y linear forwards;
+        animation-timeline: view(0rem);
+        animation-range: entry;
+    }
 }
 </style>
 
 <template>
     <div v-bind:id="sectionId" class="contact-section">
-        <div class="contact-content-wrapper">
+        <div class="contact-content-wrapper contact-content-wrapper--enter-ani">
             <div class="contact-content">
                 <div class="contact-content-text">
-                    <div class="contact-content-text__title-group">
+                    <div
+                        class="contact-content-text__title-group contact-content-text__title-group--enter-ani"
+                    >
                         <h1 class="font-dancing-script">thank</h1>
                         <h1 class="font-dancing-script">you !</h1>
                     </div>
-                    <div class="contact-content-text__info-group">
-                        <h5>Contact me at:</h5>
-                        <h5>Email: nhungnguyen07082000@gmail.com</h5>
-                        <h5>Phone Number: 0766782000</h5>
+                    <div
+                        class="contact-content-text__info-group contact-content-text__info-group--enter-ani"
+                    >
+                        <h6 class="font-lora">
+                            <strong>Contact me at:</strong>
+                        </h6>
+                        <h6 class="font-lora">
+                            Email: nhungnguyen07082000@gmail.com
+                        </h6>
+                        <h6 class="font-lora">Phone Number: 0766782000</h6>
                     </div>
                 </div>
                 <div class="contact-content-images">
                     <div class="contact-content-images__row">
-                        <MaskedImage
-                            image-src="/assets/images/image-4.jpg"
-                            class="contact-content-images__image-1"
-                            alt="masked-image-4"
-                            :height-rem="20"
-                            :mask-number="3"
-                            :with-border="true"
-                            border-color="#ff6868"
-                        />
-                        <MaskedImage
-                            image-src="/assets/images/image-3.jpg"
-                            class="contact-content-images__image-2"
-                            alt="masked-image-3"
-                            :height-rem="22.5"
-                            :mask-number="5"
-                            :with-border="true"
-                            border-color="#ed5ab3"
-                        />
+                        <div class="contact-content-images__image-1">
+                            <MaskedImage
+                                image-src="/assets/images/image-4.jpg"
+                                class="contact-content-images__image--enter-ani"
+                                alt="masked-image-4"
+                                :height-rem="20"
+                                :mask-number="3"
+                                :with-border="true"
+                                border-color="#ff6868"
+                            />
+                        </div>
+
+                        <div class="contact-content-images__image-2">
+                            <MaskedImage
+                                image-src="/assets/images/image-3.jpg"
+                                class="contact-content-images__image--enter-ani"
+                                alt="masked-image-3"
+                                :height-rem="22.5"
+                                :mask-number="5"
+                                :with-border="true"
+                                border-color="#ed5ab3"
+                            />
+                        </div>
                     </div>
                     <div class="contact-content-images__row">
-                        <MaskedImage
-                            image-src="/assets/images/image-2.jpg"
-                            class="contact-content-images__image-3"
-                            alt="masked-image-5"
-                            :height-rem="15"
-                            :mask-number="4"
-                            :with-border="true"
-                            border-color="#a1eebd"
-                        />
-                        <MaskedImage
-                            image-src="/assets/images/image-1.jpg"
-                            class="contact-content-images__image-4"
-                            alt="masked-image-4"
-                            :height-rem="15"
-                            :mask-number="2"
-                            :with-border="true"
-                            border-color="#f6f7c4"
-                        />
-                        <MaskedImage
-                            image-src="/assets/images/image-5.jpg"
-                            class="contact-content-images__image-5"
-                            alt="masked-image-5"
-                            :height-rem="30"
-                            :mask-number="1"
-                            :with-border="true"
-                            border-color="#a1eebd"
-                        />
+                        <div class="contact-content-images__image-3">
+                            <MaskedImage
+                                image-src="/assets/images/image-2.jpg"
+                                class="contact-content-images__image--enter-ani"
+                                alt="masked-image-5"
+                                :height-rem="15"
+                                :mask-number="4"
+                                :with-border="true"
+                                border-color="#a1eebd"
+                            />
+                        </div>
+                        <div class="contact-content-images__image-4">
+                            <MaskedImage
+                                image-src="/assets/images/image-1.jpg"
+                                class="contact-content-images__image--enter-ani"
+                                alt="masked-image-4"
+                                :height-rem="15"
+                                :mask-number="2"
+                                :with-border="true"
+                                border-color="#f6f7c4"
+                            />
+                        </div>
+                        <div class="contact-content-images__image-5">
+                            <MaskedImage
+                                image-src="/assets/images/image-5.jpg"
+                                class="contact-content-images__image--enter-ani"
+                                alt="masked-image-5"
+                                :height-rem="30"
+                                :mask-number="1"
+                                :with-border="true"
+                                border-color="#a1eebd"
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
