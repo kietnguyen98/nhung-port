@@ -51,7 +51,10 @@ onMounted(() => {
         };
     });
 
-    const fullPageHeight = scrollWrapperElement.scrollHeight;
+    const lastSection = document.getElementById(
+        `${sections.value[sections.value.length - 1].idName}-section`
+    ) as HTMLElement;
+    const fullPageHeight = lastSection.getBoundingClientRect().bottom;
 
     scrollWrapperElement.addEventListener('scroll', () => {
         for (let i = 0; i < sectionList.length - 1; i++) {
@@ -84,7 +87,7 @@ onMounted(() => {
         progress.value =
             (scrollWrapperElement.scrollTop /
                 (fullPageHeight -
-                    2 * scrollWrapperElement.getBoundingClientRect().height)) *
+                    scrollWrapperElement.getBoundingClientRect().height)) *
             100;
     });
 });

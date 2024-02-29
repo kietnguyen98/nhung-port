@@ -70,7 +70,6 @@ onMounted(() => {
 .wavy-title-container--enter-leave-ani {
     /* animation */
     transform: translateX(-100rem) translateY(-50rem);
-    opacity: 0;
     scale: 0;
     animation:
         fade-in-from-top-left linear forwards,
