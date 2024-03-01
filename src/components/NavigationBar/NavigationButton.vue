@@ -72,7 +72,7 @@ onMounted(() => {
     outline-style: solid;
     outline-width: 2px;
     border-radius: 1.5rem;
-    transition: all 0.25s linear;
+    transition: all 0.3s linear;
     background-color: transparent;
     outline-color: transparent;
 
@@ -93,31 +93,28 @@ onMounted(() => {
     }
 
     &:hover {
-        background-color: darkcyan;
-        outline-color: gray;
+        background-color: var(--color-cyan);
     }
 }
 
 .navigation-button--on-top--activated {
-    background-color: darkcyan;
-    outline-color: gray;
+    background-color: var(--color-cyan);
     padding: 0.25rem 1rem;
 }
 
 .navigation-button--scrolled {
     &.navigation-button__name {
         color: var(--color-black) !important;
+        font-weight: bolder;
     }
 
     &:hover {
-        background-color: lightcyan;
-        outline-color: gray;
+        background-color: var(--color-light-cyan);
     }
 }
 
 .navigation-button--scrolled--activated {
-    background-color: lightcyan;
-    outline-color: gray;
+    background-color: var(--color-light-cyan);
     padding: 0.25rem 1rem;
 }
 </style>
@@ -136,6 +133,6 @@ onMounted(() => {
         ]"
         @:click="navigateToTarget"
     >
-        <p class="navigation-button__name font-pacifico">{{ name }}</p>
+        <p class="navigation-button__name">{{ name }}</p>
     </button>
 </template>

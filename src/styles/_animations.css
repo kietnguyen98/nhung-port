@@ -74,6 +74,12 @@
         }
     }
 
+    @keyframes slide-up-only {
+        100% {
+            transform: translateY(0);
+        }
+    }
+
     @keyframes slide-up {
         0% {
             transform: translateY(100%);
@@ -81,6 +87,33 @@
         }
         100% {
             transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slide-left-ease-in {
+        0% {
+            transform: translateX(100%);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slide-right-ease-in {
+        0% {
+            transform: translateX();
+        }
+        100% {
+            transform: translateX(100%);
+        }
+    }
+
+    @keyframes fade-in-only {
+        0% {
+            opacity: 0;
+        }
+        100% {
             opacity: 1;
         }
     }
@@ -99,15 +132,15 @@
     @keyframes fade-in-slow {
         0% {
             opacity: 0;
-            scale: 0.8;
+            transform: scale(0.8);
         }
         50% {
             opacity: 0;
-            scale: 0.8;
+            transform: scale(0.8);
         }
         100% {
             opacity: 1;
-            scale: 1;
+            transform: scale(1);
         }
     }
 
@@ -218,7 +251,7 @@
         }
     }
 
-    @keyframes flip-out-y {
+    @keyframes flip-in-y {
         from {
             transform: perspective(20rem) scale(0) rotateY(-90deg);
             opacity: 0;
@@ -229,12 +262,32 @@
         }
     }
 
-    @keyframes trans-background-color {
+    @keyframes flip-out-y {
+        from {
+            transform: perspective(20rem) scale(1) rotateY(0);
+            opacity: 1;
+        }
+        to {
+            transform: perspective(20rem) scale(0) rotateY(-90deg);
+            opacity: 0;
+        }
+    }
+
+    @keyframes trans-background-color-to-dark {
         0% {
             background-color: transparent;
         }
         100% {
-            background-color: var(--color-cream);
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    }
+
+    @keyframes trans-background-color-to-clear {
+        0% {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        100% {
+            background-color: transparent;
         }
     }
 

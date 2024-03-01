@@ -1,16 +1,11 @@
 <script setup lang="ts">
 import GraphicPhotos from '@/components/Graphic/GraphicPhotos.vue';
 import GraphicBrands from '@/components/Graphic/GraphicBrands.vue';
-
-defineProps<{
-    sectionId: string;
-}>();
 </script>
 
 <style scoped>
 .graphic-section {
-    background-color: var(--color-cream);
-    padding-top: 7.5rem;
+    background-color: var(--color-pink);
 }
 
 .graphic-content-wrapper {
@@ -19,7 +14,6 @@ defineProps<{
     justify-content: center;
     align-items: center;
     position: relative;
-    background-color: var(--color-pink);
 }
 
 .graphic-content-wrapper::before {
@@ -39,9 +33,8 @@ defineProps<{
 }
 
 .graphic-content {
-    position: relative;
-    height: calc(100%);
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -88,7 +81,7 @@ defineProps<{
 </style>
 
 <template>
-    <div v-bind:id="sectionId" class="graphic-section">
+    <div class="graphic-section">
         <div class="graphic-content-wrapper">
             <div class="graphic-content">
                 <CurvedText text="Graphic Design" />

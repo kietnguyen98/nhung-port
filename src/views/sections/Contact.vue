@@ -17,10 +17,9 @@ defineProps<{
 }
 
 .contact-content-wrapper--enter-ani {
-    transform: translateY(50%);
     opacity: 0;
-    animation: slide-up linear forwards;
-    animation-timeline: view(-30rem);
+    animation: fade-in-only linear forwards;
+    animation-timeline: view();
     animation-range: entry;
 }
 
@@ -57,7 +56,7 @@ defineProps<{
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    align-items: flex-end;
+    align-items: center;
     color: var(--color-dark);
     gap: 7.5rem;
 
@@ -71,11 +70,11 @@ defineProps<{
     }
 
     .contact-content-text__title-group--enter-ani {
-        transform: translateX(-50rem);
         opacity: 0;
+        transform: scale(0);
         /* animation */
-        animation: fade-in-from-left linear forwards;
-        animation-timeline: view(20rem);
+        animation: fade-in-slow linear forwards;
+        animation-timeline: view();
         animation-range: entry;
     }
 
@@ -128,13 +127,26 @@ defineProps<{
         transform: translateX(5rem) rotateZ(10deg);
     }
 
-    .contact-content-images__image--enter-ani {
+    .contact-content-images-top__image--enter-ani {
         transform: perspective(20rem) scale(0) rotateY(-90deg);
         opacity: 0;
         /* animation */
-        animation: flip-out-y linear forwards;
-        animation-timeline: view(0rem);
-        animation-range: entry;
+        animation:
+            flip-in-y linear forwards,
+            flip-out-y linear forwards;
+        animation-timeline: view(15rem), view(15rem);
+        animation-range: entry, exit;
+    }
+
+    .contact-content-images-bottom__image--enter-ani {
+        transform: perspective(20rem) scale(0) rotateY(-90deg);
+        opacity: 0;
+        /* animation */
+        animation:
+            flip-in-y linear forwards,
+            flip-out-y linear forwards;
+        animation-timeline: view(), view();
+        animation-range: entry, exit;
     }
 }
 </style>
@@ -153,13 +165,11 @@ defineProps<{
                     <div
                         class="contact-content-text__info-group contact-content-text__info-group--enter-ani"
                     >
-                        <h6 class="font-lora">
+                        <h6>
                             <strong>Contact me at:</strong>
                         </h6>
-                        <h6 class="font-lora">
-                            Email: nhungnguyen07082000@gmail.com
-                        </h6>
-                        <h6 class="font-lora">Phone Number: 0766782000</h6>
+                        <h6>Email: nhungnguyen07082000@gmail.com</h6>
+                        <h6>Phone Number: 0766782000</h6>
                     </div>
                 </div>
                 <div class="contact-content-images">
@@ -167,7 +177,7 @@ defineProps<{
                         <div class="contact-content-images__image-1">
                             <MaskedImage
                                 image-src="/assets/images/image-4.jpg"
-                                class="contact-content-images__image--enter-ani"
+                                class="contact-content-images-top__image--enter-ani"
                                 alt="masked-image-4"
                                 :height-rem="20"
                                 :mask-number="3"
@@ -179,7 +189,7 @@ defineProps<{
                         <div class="contact-content-images__image-2">
                             <MaskedImage
                                 image-src="/assets/images/image-3.jpg"
-                                class="contact-content-images__image--enter-ani"
+                                class="contact-content-images-top__image--enter-ani"
                                 alt="masked-image-3"
                                 :height-rem="22.5"
                                 :mask-number="5"
@@ -192,7 +202,7 @@ defineProps<{
                         <div class="contact-content-images__image-3">
                             <MaskedImage
                                 image-src="/assets/images/image-2.jpg"
-                                class="contact-content-images__image--enter-ani"
+                                class="contact-content-images-bottom__image--enter-ani"
                                 alt="masked-image-5"
                                 :height-rem="15"
                                 :mask-number="4"
@@ -203,7 +213,7 @@ defineProps<{
                         <div class="contact-content-images__image-4">
                             <MaskedImage
                                 image-src="/assets/images/image-1.jpg"
-                                class="contact-content-images__image--enter-ani"
+                                class="contact-content-images-bottom__image--enter-ani"
                                 alt="masked-image-4"
                                 :height-rem="15"
                                 :mask-number="2"
@@ -214,7 +224,7 @@ defineProps<{
                         <div class="contact-content-images__image-5">
                             <MaskedImage
                                 image-src="/assets/images/image-5.jpg"
-                                class="contact-content-images__image--enter-ani"
+                                class="contact-content-images-bottom__image--enter-ani"
                                 alt="masked-image-5"
                                 :height-rem="30"
                                 :mask-number="1"

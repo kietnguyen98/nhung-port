@@ -12,6 +12,7 @@
     "@typescript-eslint/parser": "^7.0.2",
     "animated-scroll-to": "^2.3.0",
     "eslint-plugin-prettier": "^5.1.3",
+    "pinia": "^2.1.7",
     "stylelint": "^16.2.1",
     "stylelint-config-recommended": "^14.0.0",
     "vue": "^3.4.15",

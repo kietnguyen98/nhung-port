@@ -1,7 +1,13 @@
 <script setup lang="ts">
+import { useControlPopupStore } from '@/stores/controlPopupStore';
+import Graphic from '../projectContents/Graphic.vue';
+
 defineProps<{
     sectionId: string;
 }>();
+
+const store = useControlPopupStore();
+const { setIsPopupOpened } = store;
 </script>
 
 <style scoped>
@@ -87,7 +93,7 @@ defineProps<{
     animation:
         scale-out-from-top linear forwards,
         scale-in-to-top linear forwards;
-    animation-timeline: view(10rem), view(20rem);
+    animation-timeline: view(), view();
     animation-range: entry, exit;
 }
 </style>
@@ -101,7 +107,10 @@ defineProps<{
                 <h1 class="font-dancing-script">View all my works ...</h1>
             </div>
             <div class="project-type-card-container">
-                <div class="project-type-card project-type-card--enter-ani">
+                <div
+                    @:click="setIsPopupOpened"
+                    class="project-type-card project-type-card--enter-ani"
+                >
                     <MaskedImage
                         image-src="/assets/images/image-3.jpg"
                         alt="masked-image-1"
@@ -116,7 +125,10 @@ defineProps<{
                         Graphic Design
                     </h5>
                 </div>
-                <div class="project-type-card project-type-card--enter-ani">
+                <div
+                    @:click="setIsPopupOpened"
+                    class="project-type-card project-type-card--enter-ani"
+                >
                     <MaskedImage
                         image-src="/assets/images/image-3.jpg"
                         alt="masked-image-2"
@@ -131,7 +143,10 @@ defineProps<{
                         Photography
                     </h5>
                 </div>
-                <div class="project-type-card project-type-card--enter-ani">
+                <div
+                    @:click="setIsPopupOpened"
+                    class="project-type-card project-type-card--enter-ani"
+                >
                     <MaskedImage
                         image-src="/assets/images/image-3.jpg"
                         alt="masked-image-2"
@@ -146,7 +161,10 @@ defineProps<{
                         Video Editing
                     </h5>
                 </div>
-                <div class="project-type-card project-type-card--enter-ani">
+                <div
+                    @:click="setIsPopupOpened"
+                    class="project-type-card project-type-card--enter-ani"
+                >
                     <MaskedImage
                         image-src="/assets/images/image-3.jpg"
                         alt="masked-image-2"
@@ -164,4 +182,7 @@ defineProps<{
             </div>
         </div>
     </div>
+    <Popup>
+        <Graphic></Graphic>
+    </Popup>
 </template>

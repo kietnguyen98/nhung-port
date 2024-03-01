@@ -5,13 +5,18 @@ export const blockWheelEvent = (e: Event) => {
     return false;
 };
 
-export const animateWheelEvent = (
-    e: WheelEvent,
-    scrollWrapperElement: HTMLElement
-) => {
-    e.preventDefault();
+export type TAnimateWheelEventProps = {
+    event: WheelEvent;
+    scrollWrapperElement: HTMLElement;
+};
+
+export const animateWheelEvent = ({
+    event,
+    scrollWrapperElement,
+}: TAnimateWheelEventProps) => {
+    event.preventDefault();
     const scrollSpeed = 3;
-    let delta = e.deltaY;
+    let delta = event.deltaY;
     let scrollPosition = scrollWrapperElement.scrollTop + delta * scrollSpeed;
 
     animateScrollTo(scrollPosition, {
