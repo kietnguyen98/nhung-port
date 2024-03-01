@@ -61,7 +61,6 @@ onMounted(() => {
     .about-content__title {
         text-align: center;
         font-size: 12.5rem;
-        font-weight: bolder;
         animation: letter-wavy 1.5s infinite;
         animation-delay: calc(0.1s * var(--i));
     }
@@ -69,12 +68,13 @@ onMounted(() => {
 
 .wavy-title-container--enter-leave-ani {
     /* animation */
-    transform: translateX(-100rem) translateY(-50rem);
-    scale: 0;
+    opacity: 0;
+    transform: translateY(-20rem);
+    scale: 0.5;
     animation:
-        fade-in-from-top-left linear forwards,
-        fade-out-to-top-right linear forwards;
-    animation-timeline: view(20rem), view(0rem);
+        fade-in-from-top linear forwards,
+        fade-out-to-top-with-scale linear forwards;
+    animation-timeline: view(), view(0rem);
     animation-range: entry, exit;
 }
 
@@ -108,13 +108,13 @@ onMounted(() => {
 
 .about-content__text-wrapper--enter-leave-ani {
     /* animation */
-    transform: translateY(50rem) translateX(100rem);
     opacity: 0;
-    scale: 0;
+    transform: translateY(-20rem);
+    scale: 0.5;
     animation:
-        fade-in-from-bottom-right linear forwards,
-        fade-out-to-bottom-left linear forwards;
-    animation-timeline: view(), view(20rem);
+        fade-in-from-top linear forwards,
+        fade-out-to-top-with-scale linear forwards;
+    animation-timeline: view(), view(0rem);
     animation-range: entry, exit;
 }
 </style>

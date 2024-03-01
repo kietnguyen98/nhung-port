@@ -1,7 +1,18 @@
 <script setup lang="ts">
+import Graphic from './Graphic.vue';
+import { ref } from 'vue';
 defineProps<{
     sectionId: string;
 }>();
+
+const isPopupOpened = ref<boolean>(false);
+const openPopup = () => {
+    isPopupOpened.value = true;
+};
+
+const closePopup = () => {
+    isPopupOpened.value = false;
+};
 </script>
 
 <style scoped>
@@ -101,7 +112,10 @@ defineProps<{
                 <h1 class="font-dancing-script">View all my works ...</h1>
             </div>
             <div class="project-type-card-container">
-                <div class="project-type-card project-type-card--enter-ani">
+                <div
+                    @:click="openPopup()"
+                    class="project-type-card project-type-card--enter-ani"
+                >
                     <MaskedImage
                         image-src="/assets/images/image-3.jpg"
                         alt="masked-image-1"
@@ -164,4 +178,7 @@ defineProps<{
             </div>
         </div>
     </div>
+    <Popup :opened="isPopupOpened" @close-popup="closePopup">
+        <Graphic></Graphic>
+    </Popup>
 </template>

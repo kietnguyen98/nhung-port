@@ -4,6 +4,7 @@ import App from '@/App.vue';
 import router from '@/router';
 // layouts
 import Container from '@/layouts/Container.vue';
+import Popup from './layouts/Popup.vue';
 // components
 import NavigationBar from '@/components/NavigationBar/NavigationBar.vue';
 import MaskedImage from '@/components/MaskedImage/MaskedImage.vue';
@@ -18,6 +19,7 @@ app.use(router);
 
 // layout register
 app.component('AppContainer', Container);
+app.component('Popup', Popup);
 
 // component register
 app.component('NavigationBar', NavigationBar);

@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import GraphicPhotos from '@/components/Graphic/GraphicPhotos.vue';
 import GraphicBrands from '@/components/Graphic/GraphicBrands.vue';
-
-defineProps<{
-    sectionId: string;
-}>();
 </script>
 
 <style scoped>
@@ -88,7 +84,7 @@ defineProps<{
 </style>
 
 <template>
-    <div v-bind:id="sectionId" class="graphic-section">
+    <div class="graphic-section">
         <div class="graphic-content-wrapper">
             <div class="graphic-content">
                 <CurvedText text="Graphic Design" />

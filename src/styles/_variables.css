@@ -1,13 +1,15 @@
 :root {
     /* declare color variables */
-    --color-cream: #fdf0d1;
-    --color-blue: #7bd3ea;
-    --color-red: #ce5a67;
-    --color-green: #a1eebd;
-    --color-yellow: #f6f7c4;
-    --color-brown: #ffdd95;
-    --color-pink: #fed9ed;
-    --color-purple: #ed5ab3;
+    --color-cream: #fff8e3;
+    --color-blue: #9fd8df;
+    --color-red: #d35d6e;
+    --color-green: #5aa469;
+    --color-cyan: #468b97;
+    --color-light-cyan: #a1ccd1;
+    --color-yellow: #f8d49d;
+    --color-brown: #efb08c;
+    --color-pink: #f6c6ea;
+    --color-purple: #c490e4;
     --color-black: black;
     --color-dark: #191717;
     --color-white: whitesmoke;

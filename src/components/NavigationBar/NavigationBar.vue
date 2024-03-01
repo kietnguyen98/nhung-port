@@ -11,11 +11,11 @@ defineProps<{
 <style scoped>
 .navigation-bar {
     margin: 0rem 5rem;
-    width: calc(100vw - 2 * 5rem - 2 * 2rem);
+    width: calc(100vw - 2 * 5rem - 2 * 1.5rem);
     position: absolute;
     top: 0.5rem;
     z-index: 1;
-    padding: 1rem 2rem;
+    padding: 0.75rem 1.5rem;
     border-radius: 5rem;
     background-color: transparent;
     display: flex;
@@ -42,8 +42,8 @@ defineProps<{
     gap: 0.5rem;
 
     .portfolio-owner__icon {
-        width: 2.5rem;
-        height: 2.25rem;
+        width: 1.75rem;
+        height: 1.5rem;
     }
 
     .portfolio-owner__name {
@@ -69,7 +69,7 @@ defineProps<{
                 class="portfolio-owner__icon"
                 src="/assets/icons/mushroom.png"
             />
-            <h6 class="portfolio-owner__name">Nhung's Port</h6>
+            <p class="portfolio-owner__name">Nhung's Port</p>
         </div>
         <nav class="navigation-links">
             <NavigationButton
