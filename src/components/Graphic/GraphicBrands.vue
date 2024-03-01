@@ -56,8 +56,19 @@ const listBrandLogos = ref<
 </script>
 
 <style scoped>
-.brand-logos-container {
+.brands-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 5rem;
+    background-color: var(--color-pink);
+
+    .brands-container__title {
+        font-weight: bolder;
+    }
+}
+.brand-logos-container {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
@@ -66,17 +77,23 @@ const listBrandLogos = ref<
 
 .brand-logo {
     width: 15rem;
-    padding: 0.5rem 2rem;
+    padding: 1rem 2rem;
 }
 </style>
 
 <template>
-    <div class="brand-logos-container">
-        <img
-            v-for="brandLogo in listBrandLogos"
-            class="brand-logo"
-            :src="brandLogo.url"
-            :alt="`brand-logo-${brandLogo.name}`"
-        />
+    <div class="brands-container">
+        <h1 class="brands-container__title">Brands collaboration</h1>
+        <h6 class="brands-container__title">
+            click on brand's logo to view more
+        </h6>
+        <div class="brand-logos-container">
+            <img
+                v-for="brandLogo in listBrandLogos"
+                class="brand-logo"
+                :src="brandLogo.url"
+                :alt="`brand-logo-${brandLogo.name}`"
+            />
+        </div>
     </div>
 </template>

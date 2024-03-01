@@ -5,8 +5,7 @@ import GraphicBrands from '@/components/Graphic/GraphicBrands.vue';
 
 <style scoped>
 .graphic-section {
-    background-color: var(--color-cream);
-    padding-top: 7.5rem;
+    background-color: var(--color-pink);
 }
 
 .graphic-content-wrapper {
@@ -15,7 +14,6 @@ import GraphicBrands from '@/components/Graphic/GraphicBrands.vue';
     justify-content: center;
     align-items: center;
     position: relative;
-    background-color: var(--color-pink);
 }
 
 .graphic-content-wrapper::before {
@@ -35,9 +33,8 @@ import GraphicBrands from '@/components/Graphic/GraphicBrands.vue';
 }
 
 .graphic-content {
-    position: relative;
-    height: calc(100%);
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: center;
     align-items: center;

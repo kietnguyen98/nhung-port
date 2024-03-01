@@ -1,18 +1,13 @@
 <script setup lang="ts">
-import Graphic from './Graphic.vue';
-import { ref } from 'vue';
+import { useControlPopupStore } from '@/stores/controlPopupStore';
+import Graphic from '../projectContents/Graphic.vue';
+
 defineProps<{
     sectionId: string;
 }>();
 
-const isPopupOpened = ref<boolean>(false);
-const openPopup = () => {
-    isPopupOpened.value = true;
-};
-
-const closePopup = () => {
-    isPopupOpened.value = false;
-};
+const store = useControlPopupStore();
+const { setIsPopupOpened } = store;
 </script>
 
 <style scoped>
@@ -98,7 +93,7 @@ const closePopup = () => {
     animation:
         scale-out-from-top linear forwards,
         scale-in-to-top linear forwards;
-    animation-timeline: view(10rem), view(20rem);
+    animation-timeline: view(), view();
     animation-range: entry, exit;
 }
 </style>
@@ -113,7 +108,7 @@ const closePopup = () => {
             </div>
             <div class="project-type-card-container">
                 <div
-                    @:click="openPopup()"
+                    @:click="setIsPopupOpened"
                     class="project-type-card project-type-card--enter-ani"
                 >
                     <MaskedImage
@@ -130,7 +125,10 @@ const closePopup = () => {
                         Graphic Design
                     </h5>
                 </div>
-                <div class="project-type-card project-type-card--enter-ani">
+                <div
+                    @:click="setIsPopupOpened"
+                    class="project-type-card project-type-card--enter-ani"
+                >
                     <MaskedImage
                         image-src="/assets/images/image-3.jpg"
                         alt="masked-image-2"
@@ -145,7 +143,10 @@ const closePopup = () => {
                         Photography
                     </h5>
                 </div>
-                <div class="project-type-card project-type-card--enter-ani">
+                <div
+                    @:click="setIsPopupOpened"
+                    class="project-type-card project-type-card--enter-ani"
+                >
                     <MaskedImage
                         image-src="/assets/images/image-3.jpg"
                         alt="masked-image-2"
@@ -160,7 +161,10 @@ const closePopup = () => {
                         Video Editing
                     </h5>
                 </div>
-                <div class="project-type-card project-type-card--enter-ani">
+                <div
+                    @:click="setIsPopupOpened"
+                    class="project-type-card project-type-card--enter-ani"
+                >
                     <MaskedImage
                         image-src="/assets/images/image-3.jpg"
                         alt="masked-image-2"
@@ -178,7 +182,7 @@ const closePopup = () => {
             </div>
         </div>
     </div>
-    <Popup :opened="isPopupOpened" @close-popup="closePopup">
+    <Popup>
         <Graphic></Graphic>
     </Popup>
 </template>
