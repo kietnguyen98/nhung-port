@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { useControlPopupStore } from '@/stores/controlPopupStore';
 import Graphic from '../projectContents/Graphic.vue';
+import { projectMockData } from '@/data/graphic-design.data';
+import PostViewerPopup from '@/layouts/PostViewerPopup.vue';
 
 defineProps<{
     sectionId: string;
@@ -8,6 +10,8 @@ defineProps<{
 
 const store = useControlPopupStore();
 const { setIsPopupOpened } = store;
+
+const graphicDesignMockData = projectMockData[0];
 </script>
 
 <style scoped>
@@ -108,11 +112,11 @@ const { setIsPopupOpened } = store;
             </div>
             <div class="project-type-card-container">
                 <div
-                    @:click="setIsPopupOpened"
+                    @:click="setIsPopupOpened(true)"
                     class="project-type-card project-type-card--enter-ani"
                 >
                     <MaskedImage
-                        image-src="/assets/images/image-3.jpg"
+                        :image-src="graphicDesignMockData.outerImageUrl"
                         alt="masked-image-1"
                         :height-rem="25"
                         :mask-number="1"
@@ -122,11 +126,11 @@ const { setIsPopupOpened } = store;
                     <h5
                         class="project-type-card__title project-type-card__title--text-shadow-pink"
                     >
-                        Graphic Design
+                        {{ graphicDesignMockData.name }}
                     </h5>
                 </div>
                 <div
-                    @:click="setIsPopupOpened"
+                    @:click="setIsPopupOpened(true)"
                     class="project-type-card project-type-card--enter-ani"
                 >
                     <MaskedImage
@@ -144,7 +148,7 @@ const { setIsPopupOpened } = store;
                     </h5>
                 </div>
                 <div
-                    @:click="setIsPopupOpened"
+                    @:click="setIsPopupOpened(true)"
                     class="project-type-card project-type-card--enter-ani"
                 >
                     <MaskedImage
@@ -162,7 +166,7 @@ const { setIsPopupOpened } = store;
                     </h5>
                 </div>
                 <div
-                    @:click="setIsPopupOpened"
+                    @:click="setIsPopupOpened(true)"
                     class="project-type-card project-type-card--enter-ani"
                 >
                     <MaskedImage
@@ -183,6 +187,7 @@ const { setIsPopupOpened } = store;
         </div>
     </div>
     <Popup>
-        <Graphic></Graphic>
+        <Graphic :project="projectMockData[0]"></Graphic>
     </Popup>
+    <PostViewerPopup />
 </template>

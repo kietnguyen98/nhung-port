@@ -1,7 +1,17 @@
+<script setup lang="ts">
+import CardImage from '@/components/CardImage/CardImage.vue';
+import { TDemoImages } from '@/types/project.type';
+defineProps<{ demoImages: TDemoImages }>();
+</script>
 <style scoped>
 .graphic-photos-container {
     width: 100%;
-    background-color: var(--color-brown);
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    background-image: url('/assets/images/textured-paper.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,10 +22,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-left: 5rem;
+    padding-right: 5rem;
 }
 
 .right-photos {
     flex: 1;
+
+    color: var(--color-dark);
 }
 
 .view-more-button {
@@ -53,7 +67,7 @@
     }
 
     .images-container__image-2 {
-        transform: translateX(-2rem) translateY(-2rem) rotate(-15deg);
+        transform: translateX(0rem) translateY(-2rem) rotate(-15deg);
     }
 
     .images-container__image-3 {
@@ -65,54 +79,40 @@
 <template>
     <div class="graphic-photos-container">
         <div class="left-photos">
-            <MaskedImage
-                class="left-photo__main-photo"
-                image-src="/assets/images/image-4.jpg"
+            <CardImage
+                :image-src="demoImages.mainImageUrl"
                 alt="masked-image-1"
-                :height-rem="50"
-                :mask-number="4"
-                :with-border="true"
-                border-color="#ed5ab3"
             />
         </div>
         <div class="right-photos">
-            <h3>
+            <h5>
                 Click
                 <button class="view-more-button">
                     <h2 class="view-more-button__text">HERE</h2>
                     <span class="view-more-button__border"></span>
                 </button>
-            </h3>
-            <h3>to see more...</h3>
+            </h5>
+            <h5>to see more...</h5>
             <div class="images-container">
-                <MaskedImage
+                <CardImage
                     class="images-container__image-1"
-                    image-src="/assets/images/image-3.jpg"
-                    alt="masked-image-1"
-                    :height-rem="15"
-                    :mask-number="5"
-                    :with-border="true"
-                    border-color="#ed5ab3"
+                    :height-rem="17.5"
+                    :image-src="demoImages.subImageUrls[0]"
+                    alt="masked-image-2"
                 />
             </div>
             <div class="images-container">
-                <MaskedImage
+                <CardImage
                     class="images-container__image-2"
-                    image-src="/assets/images/image-3.jpg"
-                    alt="masked-image-2"
-                    :height-rem="20"
-                    :mask-number="2"
-                    :with-border="true"
-                    border-color="#7bd3ea"
-                />
-                <MaskedImage
-                    class="images-container__image-3"
-                    image-src="/assets/images/image-3.jpg"
+                    :height-rem="15"
+                    :image-src="demoImages.subImageUrls[1]"
                     alt="masked-image-3"
+                />
+                <CardImage
+                    class="images-container__image-3"
                     :height-rem="17.5"
-                    :mask-number="3"
-                    :with-border="true"
-                    border-color="#a1eebd"
+                    :image-src="demoImages.subImageUrls[2]"
+                    alt="masked-image-4"
                 />
             </div>
         </div>

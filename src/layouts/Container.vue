@@ -185,4 +185,3 @@ watch(
         </div>
     </div>
 </template>
-@/utils/wheelEvent @/stores/controlPopupStore

@@ -1,58 +1,17 @@
 <script setup lang="ts">
-import { BRAND_LOGO_URL_PREFIX } from '@/constants';
-import { ref } from 'vue';
+import { useControlPopupStore } from '@/stores/controlPopupStore';
+import { TBrand } from '@/types/project.type';
+defineProps<{
+    listBrands: Array<TBrand>;
+}>();
 
-const listBrandLogos = ref<
-    Array<{
-        name: string;
-        url: string;
-    }>
->([
-    {
-        name: 'megumi',
-        url: `${BRAND_LOGO_URL_PREFIX}/50_megumi.png`,
-    },
-    {
-        name: 'lip on lip',
-        url: `${BRAND_LOGO_URL_PREFIX}/lip_on_lip.png`,
-    },
-    {
-        name: 'lipice lipbalm',
-        url: `${BRAND_LOGO_URL_PREFIX}/lipice_lipbalm.png`,
-    },
-    {
-        name: 'rohto health science',
-        url: `${BRAND_LOGO_URL_PREFIX}/rohto_health_science.png`,
-    },
-    {
-        name: 'skin aqua',
-        url: `${BRAND_LOGO_URL_PREFIX}/skin_aqua.png`,
-    },
-    {
-        name: 'sociolla',
-        url: `${BRAND_LOGO_URL_PREFIX}/sociolla.webp`,
-    },
-    {
-        name: 'selsun',
-        url: `${BRAND_LOGO_URL_PREFIX}/selsun.png`,
-    },
-    {
-        name: 'hasaki',
-        url: `${BRAND_LOGO_URL_PREFIX}/hasaki.png`,
-    },
-    {
-        name: 'hannah olala',
-        url: `${BRAND_LOGO_URL_PREFIX}/hannah_olala.png`,
-    },
-    {
-        name: 'shark tank',
-        url: `${BRAND_LOGO_URL_PREFIX}/sharktank.png`,
-    },
-    {
-        name: 'huong nghiep day nghe',
-        url: `${BRAND_LOGO_URL_PREFIX}/huong_nghiep_day_nghe.png`,
-    },
-]);
+const store = useControlPopupStore();
+const { setIsPostViewerOpened, setBrandToView } = store;
+
+const openPostViewer = (brandData: TBrand) => {
+    setIsPostViewerOpened(true);
+    setBrandToView(brandData);
+};
 </script>
 
 <style scoped>
@@ -69,15 +28,38 @@ const listBrandLogos = ref<
     }
 }
 .brand-logos-container {
+    padding-top: 5rem;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
+    gap: 2rem;
 }
 
-.brand-logo {
-    width: 15rem;
-    padding: 1rem 2rem;
+.brand-card {
+    height: 12.5rem;
+    width: 12.5rem;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 1rem;
+    transition: all 0.5s ease;
+    box-shadow:
+        rgba(0, 0, 0, 0.16) 0px 3px 6px,
+        rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+    .brand-card__logo-image {
+        height: auto;
+    }
+
+    &:hover {
+        transform: translateY(-0.5rem);
+        box-shadow:
+            rgba(0, 0, 0, 0.25) 0px 14px 28px,
+            rgba(0, 0, 0, 0.22) 0px 10px 10px;
+    }
 }
 </style>
 
@@ -88,12 +70,17 @@ const listBrandLogos = ref<
             click on brand's logo to view more
         </h6>
         <div class="brand-logos-container">
-            <img
-                v-for="brandLogo in listBrandLogos"
-                class="brand-logo"
-                :src="brandLogo.url"
-                :alt="`brand-logo-${brandLogo.name}`"
-            />
+            <div
+                class="brand-card"
+                v-for="brand in listBrands"
+                @:click="openPostViewer(brand)"
+            >
+                <img
+                    class="brand-card__logo-image"
+                    :src="brand.logoURL"
+                    :alt="`${brand.name} Brand Logo`"
+                />
+            </div>
         </div>
     </div>
 </template>

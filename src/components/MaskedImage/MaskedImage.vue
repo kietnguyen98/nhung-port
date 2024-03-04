@@ -1,6 +1,7 @@
 <script setup lang="ts">
 defineProps<{
-    imageSrc: string;
+    imageSrc?: string;
+    googleDriveId?: string;
     alt: string;
     heightRem: number;
     maskNumber: number;
@@ -10,7 +11,7 @@ defineProps<{
 </script>
 
 <style scoped>
-.mask-border {
+.mask-card {
     mask-size: contain;
     mask-position: center;
     mask-repeat: no-repeat;
@@ -20,8 +21,14 @@ defineProps<{
     justify-content: center;
     align-items: center;
     overflow: hidden;
+
+    filter: drop-shadow(0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.5));
+    -webkit-filter: drop-shadow(0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.5));
+    -moz-filter: drop-shadow(0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.5));
+    -ms-filter: drop-shadow(0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.5));
+    -o-filter: drop-shadow(0.25rem 0.25rem 0.25rem rgba(0, 0, 0, 0.5));
 }
-.mask-border__image {
+.mask-card__image {
     z-index: 1;
     width: fit-content;
     mask-size: contain;
@@ -32,19 +39,23 @@ defineProps<{
 
 <template>
     <div
-        class="mask-border"
+        class="mask-card"
         :style="{
-            height: `${heightRem}rem`,
+            height: heightRem ? `${heightRem}rem` : 'auto',
             backgroundColor: withBorder ? borderColor : 'transparent',
             maskImage: `url(/assets/clip-masks/mask-${maskNumber}.png)`,
         }"
     >
         <img
-            class="mask-border__image"
+            class="mask-card__image"
             :style="{
                 maskImage: `url(/assets/clip-masks/mask-${maskNumber}.png)`,
             }"
-            :src="imageSrc"
+            :src="
+                imageSrc
+                    ? imageSrc
+                    : `https://lh3.googleusercontent.com/d/${googleDriveId}`
+            "
             :alt="alt"
         />
     </div>

@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import GraphicPhotos from '@/components/Graphic/GraphicPhotos.vue';
 import GraphicBrands from '@/components/Graphic/GraphicBrands.vue';
+import { TProject } from '@/types/project.type';
+
+defineProps<{
+    project: TProject;
+}>();
 </script>
 
 <style scoped>
@@ -72,9 +77,9 @@ import GraphicBrands from '@/components/Graphic/GraphicBrands.vue';
 
 .graphic-content__text-wrapper {
     position: relative;
-    padding: 0rem 20rem 10rem 20rem;
+    padding: 0rem 20rem 5rem 20rem;
 
-    h6 {
+    p {
         text-align: center;
     }
 }
@@ -84,11 +89,11 @@ import GraphicBrands from '@/components/Graphic/GraphicBrands.vue';
     <div class="graphic-section">
         <div class="graphic-content-wrapper">
             <div class="graphic-content">
-                <CurvedText text="Graphic Design" />
+                <CurvedText :text="project.name" />
                 <div class="graphic-images">
                     <MaskedImage
                         class="graphic-images__image-1"
-                        image-src="/assets/images/image-3.jpg"
+                        :image-src="project.introImageUrl[0]"
                         alt="masked-image-1"
                         :height-rem="30"
                         :mask-number="1"
@@ -97,39 +102,31 @@ import GraphicBrands from '@/components/Graphic/GraphicBrands.vue';
                     />
                     <MaskedImage
                         class="graphic-images__image-2"
-                        image-src="/assets/images/image-3.jpg"
+                        :image-src="project.introImageUrl[1]"
                         alt="masked-image-2"
-                        :height-rem="15"
+                        :height-rem="17.5"
                         :mask-number="2"
                         :with-border="true"
                         border-color="#7bd3ea"
                     />
                     <MaskedImage
                         class="graphic-images__image-3"
-                        image-src="/assets/images/image-3.jpg"
+                        :image-src="project.introImageUrl[2]"
                         alt="masked-image-3"
-                        :height-rem="15"
+                        :height-rem="17.5"
                         :mask-number="3"
                         :with-border="true"
                         border-color="#a1eebd"
                     />
                 </div>
                 <div class="graphic-content__text-wrapper">
-                    <h6>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea
-                        commodo consequat. Duis aute irure dolor in
-                        reprehenderit in voluptate velit esse cillum dolore eu
-                        fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-                        non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum.
-                    </h6>
+                    <p>
+                        {{ project.description }}
+                    </p>
                 </div>
             </div>
-            <GraphicPhotos></GraphicPhotos>
-            <GraphicBrands></GraphicBrands>
+            <GraphicPhotos :demo-images="project.demoImages"></GraphicPhotos>
+            <GraphicBrands :list-brands="project.brands"></GraphicBrands>
         </div>
     </div>
 </template>
