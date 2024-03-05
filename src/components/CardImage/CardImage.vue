@@ -1,7 +1,6 @@
 <script setup lang="ts">
 defineProps<{
-    imageSrc?: string;
-    googleDriveId?: string;
+    imageSrc: string;
     alt: string;
     heightRem?: number;
 }>();
@@ -26,11 +25,7 @@ defineProps<{
 <template>
     <div class="image-wrapper">
         <img
-            :src="
-                imageSrc
-                    ? imageSrc
-                    : `https://lh3.googleusercontent.com/d/${googleDriveId}`
-            "
+            :src="imageSrc"
             :alt="alt"
             :style="{ height: heightRem ? `${heightRem}rem` : '100%' }"
             class="image"

@@ -14,7 +14,7 @@ const MAXIMUM_PAGE_LENGTH = 99999;
 const sections = ref<TSections>([
     { name: 'Intro', idName: 'intro', isActive: false },
     { name: 'About me', idName: 'about', isActive: false },
-    { name: 'Works', idName: 'projects', isActive: false },
+    { name: 'Work', idName: 'projects', isActive: false },
     { name: 'Contact', idName: 'contact', isActive: false },
 ]);
 const containerScrollWrapperElement = ref<HTMLElement>();

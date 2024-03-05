@@ -59,7 +59,7 @@ watch(
 }
 
 .popup-wrapper--opened {
-    animation: trans-background-color-to-dark 0.5s ease-in forwards;
+    animation: trans-background-color-to-dark 0.75s ease-in forwards;
     visibility: visible;
 }
 
@@ -89,7 +89,7 @@ watch(
     .popup-content__close-button {
         position: absolute;
         top: 2rem;
-        right: 2rem;
+        right: 3rem;
         z-index: 999;
         outline: none;
         border: none;

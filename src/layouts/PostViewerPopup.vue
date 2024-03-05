@@ -3,6 +3,7 @@ import { ref, onMounted, watch } from 'vue';
 import { useControlPopupStore } from '@/stores/controlPopupStore';
 import { storeToRefs } from 'pinia';
 import { animateWheelEvent } from '@/utils/wheelEvent';
+import CardImage from '@/components/CardImage/CardImage.vue';
 
 const store = useControlPopupStore();
 const { isPostViewerOpened, brandToView } = storeToRefs(store);
@@ -32,27 +33,16 @@ watch(
             postViewerScrollWrapperElement.value
         )
             if (curValue) {
-                // wait for animation finished then add scroll listener
-                if (
-                    handlePostViewerWheelEvent.value &&
-                    postViewerScrollWrapperElement.value
-                ) {
-                    postViewerScrollWrapperElement.value.addEventListener(
-                        'wheel',
-                        handlePostViewerWheelEvent.value,
-                        { passive: false }
-                    );
-                }
+                postViewerScrollWrapperElement.value.addEventListener(
+                    'wheel',
+                    handlePostViewerWheelEvent.value,
+                    { passive: false }
+                );
             } else {
-                if (
-                    handlePostViewerWheelEvent.value &&
-                    postViewerScrollWrapperElement.value
-                ) {
-                    postViewerScrollWrapperElement.value.removeEventListener(
-                        'wheel',
-                        handlePostViewerWheelEvent.value
-                    );
-                }
+                postViewerScrollWrapperElement.value.removeEventListener(
+                    'wheel',
+                    handlePostViewerWheelEvent.value
+                );
             }
     }
 );
@@ -117,7 +107,7 @@ const handleClosePostViewer = () => {
     .content__close-button {
         position: fixed;
         top: 2rem;
-        right: 2rem;
+        right: 3rem;
         z-index: 9999;
         outline: none;
         border: none;
@@ -152,11 +142,22 @@ const handleClosePostViewer = () => {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5rem;
+    /* gap: 5rem; */
 
     .post-image {
         height: auto;
         width: auto;
+        border-radius: 1rem;
+    }
+
+    .post-image--enter--leave-ani {
+        transform: scale(0.75);
+
+        animation:
+            scale-in-slight linear forwards,
+            scale-out-slight linear forwards;
+        animation-timeline: view(), view();
+        animation-range: entry, exit;
     }
 }
 
@@ -202,7 +203,7 @@ const handleClosePostViewer = () => {
                     ]"
                 >
                     <img
-                        class="post-image"
+                        class="post-image post-image--enter--leave-ani"
                         v-for="imageUrl in brandToView?.postImageUrls"
                         :src="imageUrl"
                     />

@@ -251,6 +251,24 @@
         }
     }
 
+    @keyframes scale-in-slight {
+        from {
+            transform: scale(0.5);
+        }
+        to {
+            transform: scale(1);
+        }
+    }
+
+    @keyframes scale-out-slight {
+        from {
+            transform: scale(1);
+        }
+        to {
+            transform: scale(0.75);
+        }
+    }
+
     @keyframes flip-in-y {
         from {
             transform: perspective(20rem) scale(0) rotateY(-90deg);
