@@ -89,7 +89,6 @@ export const projectMockData: Array<TProject> = [
                     `${GOOGLE_DRIVE_FILE_PREFIX}1z6RhVkqF1S2Jj2SY3HS3p_x3hNkNo_gj`,
                     `${GOOGLE_DRIVE_FILE_PREFIX}1j5_h77sz9Q_OwrTSgP56Bt-wJXslJ219`,
                     `${GOOGLE_DRIVE_FILE_PREFIX}16lDMYbQHJg5_-w5ahKKcoI8IkLnvDwKr`,
-                    `${GOOGLE_DRIVE_FILE_PREFIX}`,
                 ],
             },
             {
@@ -216,7 +215,6 @@ export const projectMockData: Array<TProject> = [
                 postImageUrls: [
                     `${GOOGLE_DRIVE_FILE_PREFIX}1XSD_ppqCUwFgdfzoTmNr-xID297SeQOG`,
                     `${GOOGLE_DRIVE_FILE_PREFIX}18N7ZxS1eD2Ekp4BTz8mbO_-_hAYa8nNZ`,
-                    `${GOOGLE_DRIVE_FILE_PREFIX}`,
                 ],
             },
         ],

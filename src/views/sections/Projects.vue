@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useControlPopupStore } from '@/stores/controlPopupStore';
-import Graphic from '../projectContents/Graphic.vue';
+import ProjectView from '../projectContents/ProjectView.vue';
 import { projectMockData } from '@/data/graphic-design.data';
 import PostViewerPopup from '@/layouts/PostViewerPopup.vue';
 
@@ -187,7 +187,7 @@ const graphicDesignMockData = projectMockData[0];
         </div>
     </div>
     <Popup>
-        <Graphic :project="projectMockData[0]"></Graphic>
+        <ProjectView :project="projectMockData[0]"></ProjectView>
     </Popup>
     <PostViewerPopup />
 </template>

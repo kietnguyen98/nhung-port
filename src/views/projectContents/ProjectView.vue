@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import GraphicPhotos from '@/components/Graphic/GraphicPhotos.vue';
-import GraphicBrands from '@/components/Graphic/GraphicBrands.vue';
+import ProjectDemoPhotos from '@/components/Project/ProjectDemoPhotos.vue';
+import ProjectBrands from '@/components/Project/ProjectBrands.vue';
 import { TProject } from '@/types/project.type';
 
 defineProps<{
@@ -125,8 +125,10 @@ defineProps<{
                     </p>
                 </div>
             </div>
-            <GraphicPhotos :demo-images="project.demoImages"></GraphicPhotos>
-            <GraphicBrands :list-brands="project.brands"></GraphicBrands>
+            <ProjectDemoPhotos
+                :demo-images="project.demoImages"
+            ></ProjectDemoPhotos>
+            <ProjectBrands :list-brands="project.brands"></ProjectBrands>
         </div>
     </div>
 </template>

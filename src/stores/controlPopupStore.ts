@@ -23,7 +23,7 @@ export const useControlPopupStore = defineStore('controlPopup', {
         setIsPostViewerOpened(value: boolean) {
             this.isPostViewerOpened = value;
         },
-        setBrandToView(brandData: TBrand) {
+        setBrandToView(brandData: TBrand | undefined) {
             this.brandToView = brandData;
         },
     },
