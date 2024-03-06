@@ -4,6 +4,7 @@ import { storeToRefs } from 'pinia';
 import { useControlPopupStore } from '@/stores';
 import { animateWheelEvent } from '@/utilities';
 import { POST_TYPE_VALUES } from '@/constants';
+import { PostViewer } from '@/components';
 
 const store = useControlPopupStore();
 const { isPostViewerOpened, brandToView } = storeToRefs(store);
@@ -142,28 +143,6 @@ const handleClosePostViewer = () => {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* gap: 5rem; */
-
-    .post {
-        width: fit-content;
-        height: fit-content;
-    }
-
-    .post--enter--leave-ani {
-        transform: scale(0.75);
-
-        animation:
-            scale-in-slight linear forwards,
-            scale-out-slight linear forwards;
-        animation-timeline: view(), view();
-        animation-range: entry, exit;
-    }
-
-    .post__image {
-        height: auto;
-        width: auto;
-        border-radius: 1rem;
-    }
 }
 
 .posts-wrapper--appeared {
@@ -207,28 +186,16 @@ const handleClosePostViewer = () => {
                             : 'posts-wrapper--disappeared',
                     ]"
                 >
-                    <div
-                        class="post post--enter--leave-ani"
-                        v-for="post in brandToView?.posts"
-                    >
-                        <img
-                            v-if="post.type === POST_TYPE_VALUES.PHOTO"
-                            class="post__image"
-                            :src="post.sourceUrl"
-                        />
-                        <iframe
-                            v-if="post.type === POST_TYPE_VALUES.VIDEO"
-                            :src="post.sourceUrl"
-                            width="100%"
-                            height="100%"
-                            allow="autoplay"
-                            frameborder="0"
-                            allowfullscreen
-                        ></iframe>
-                    </div>
+                    <PostViewer
+                        v-if="brandToView?.posts.length"
+                        v-for="post in brandToView.posts"
+                        :post="post"
+                    />
+                    <h1 v-if="!brandToView?.posts.length">
+                        There is nothing here
+                    </h1>
                 </div>
             </div>
         </div>
     </div>
 </template>
-@/utilities/wheelEvent

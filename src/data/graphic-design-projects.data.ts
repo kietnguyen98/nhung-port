@@ -178,7 +178,7 @@ const _selsunBrandData: TBrand = {
 };
 
 const _refreeBrandData: TBrand = {
-    name: 'Refre',
+    name: 'Refree',
     logoURL: `${BRAND_LOGO_URL_PREFIX}refree.png`,
     posts: [
         {
@@ -529,7 +529,6 @@ export const graphicDesignProjectData: TProject = {
         _rohtoHealthScienceBrandData,
         _selsunBrandData,
         _sharkTankBrandData,
-        _skinAquaBrandData,
         _sociollaBrandData,
         _huongNghiepDayNgheBrandData,
     ],

@@ -14,6 +14,7 @@ const { setIsPopupOpened } = store;
 
 const graphicDesignMockData = projectMockData[0];
 const photographyMockData = projectMockData[1];
+const videoEditingMockData = projectMockData[2];
 
 const currentShowedProject = ref<TProject>();
 
@@ -158,9 +159,12 @@ const handleSelectProjectToShow = (project: TProject) => {
                         {{ photographyMockData.name }}
                     </h5>
                 </div>
-                <div class="project-type-card project-type-card--enter-ani">
+                <div
+                    @:click="handleSelectProjectToShow(videoEditingMockData)"
+                    class="project-type-card project-type-card--enter-ani"
+                >
                     <MaskedImage
-                        image-src="/assets/images/image-3.jpg"
+                        :image-src="videoEditingMockData.outerImageUrl"
                         alt="masked-image-2"
                         :height-rem="25"
                         :mask-number="5"
@@ -171,7 +175,7 @@ const handleSelectProjectToShow = (project: TProject) => {
                     <h5
                         class="project-type-card__title project-type-card__title--text-shadow-purple"
                     >
-                        Video Editing
+                        {{ videoEditingMockData.name }}
                     </h5>
                 </div>
                 <div class="project-type-card project-type-card--enter-ani">
