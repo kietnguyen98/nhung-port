@@ -3,7 +3,6 @@ import { ref, onMounted, watch } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useControlPopupStore } from '@/stores';
 import { animateWheelEvent } from '@/utilities';
-import { POST_TYPE_VALUES } from '@/constants';
 import { PostViewer } from '@/components';
 
 const store = useControlPopupStore();
