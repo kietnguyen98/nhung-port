@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue';
-import { TSections } from '@/types/section.type';
-import { blockWheelEvent, animateWheelEvent } from '@/utils/wheelEvent';
-import CircleProgressBar from '@/components/CircleProgressBar/CircleProgressBar.vue';
-import { useControlPopupStore } from '@/stores/controlPopupStore';
 import { storeToRefs } from 'pinia';
+import { TSections } from '@/types';
+import { blockWheelEvent, animateWheelEvent } from '@/utilities';
+import { CircleProgressBar } from '@/components';
+import { useControlPopupStore } from '@/stores';
 
 const store = useControlPopupStore();
 const { isPopupOpened } = storeToRefs(store);
@@ -14,7 +14,7 @@ const MAXIMUM_PAGE_LENGTH = 99999;
 const sections = ref<TSections>([
     { name: 'Intro', idName: 'intro', isActive: false },
     { name: 'About me', idName: 'about', isActive: false },
-    { name: 'Works', idName: 'projects', isActive: false },
+    { name: 'Work', idName: 'projects', isActive: false },
     { name: 'Contact', idName: 'contact', isActive: false },
 ]);
 const containerScrollWrapperElement = ref<HTMLElement>();
@@ -185,4 +185,4 @@ watch(
         </div>
     </div>
 </template>
-@/utils/wheelEvent @/stores/controlPopupStore
+@/utilities/wheelEvent

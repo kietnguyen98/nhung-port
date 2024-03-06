@@ -1,16 +1,13 @@
 import { createApp } from 'vue';
 import App from '@/App.vue';
-// router
-import router from '@/router';
 // import pinia to create store for states management
 import { createPinia } from 'pinia';
+// router
+import router from '@/router';
 // layouts
-import Container from '@/layouts/Container.vue';
-import Popup from './layouts/Popup.vue';
+import { Container, ProjectViewerPopup, PostViewerPopup } from '@/layouts';
 // components
-import NavigationBar from '@/components/NavigationBar/NavigationBar.vue';
-import MaskedImage from '@/components/MaskedImage/MaskedImage.vue';
-import CurvedText from '@/components/CurvedText/CurvedText.vue';
+import { NavigationBar, MaskedImage, CurvedText } from '@/components';
 // Importing the global css file
 import '@/styles/global.css';
 
@@ -24,7 +21,8 @@ app.use(pinia);
 
 // layout register
 app.component('AppContainer', Container);
-app.component('Popup', Popup);
+app.component('ProjectViewerPopup', ProjectViewerPopup);
+app.component('PostViewerPopup', PostViewerPopup);
 
 // component register
 app.component('NavigationBar', NavigationBar);

@@ -1,6 +1,9 @@
 <script setup lang="ts">
-import { useControlPopupStore } from '@/stores/controlPopupStore';
-import Graphic from '../projectContents/Graphic.vue';
+import { ref } from 'vue';
+import { useControlPopupStore } from '@/stores';
+import { projectMockData } from '@/data';
+import { TProject } from '@/types';
+import { ProjectView } from '..';
 
 defineProps<{
     sectionId: string;
@@ -8,6 +11,17 @@ defineProps<{
 
 const store = useControlPopupStore();
 const { setIsPopupOpened } = store;
+
+const graphicDesignMockData = projectMockData[0];
+const photographyMockData = projectMockData[1];
+const videoEditingMockData = projectMockData[2];
+
+const currentShowedProject = ref<TProject>();
+
+const handleSelectProjectToShow = (project: TProject) => {
+    currentShowedProject.value = project;
+    setIsPopupOpened(true);
+};
 </script>
 
 <style scoped>
@@ -104,67 +118,67 @@ const { setIsPopupOpened } = store;
             <div
                 class="projects-content__title projects-content__title--enter-ani"
             >
-                <h1 class="font-dancing-script">View all my works ...</h1>
+                <h1 class="font-dancing-script">View all my work ...</h1>
             </div>
             <div class="project-type-card-container">
                 <div
-                    @:click="setIsPopupOpened"
+                    @:click="handleSelectProjectToShow(graphicDesignMockData)"
                     class="project-type-card project-type-card--enter-ani"
                 >
                     <MaskedImage
-                        image-src="/assets/images/image-3.jpg"
+                        :image-src="graphicDesignMockData.outerImageUrl"
                         alt="masked-image-1"
                         :height-rem="25"
                         :mask-number="1"
                         :with-border="true"
                         border-color="#fed9ed"
+                        :withHover="true"
                     />
                     <h5
                         class="project-type-card__title project-type-card__title--text-shadow-pink"
                     >
-                        Graphic Design
+                        {{ graphicDesignMockData.name }}
                     </h5>
                 </div>
                 <div
-                    @:click="setIsPopupOpened"
+                    @:click="handleSelectProjectToShow(photographyMockData)"
                     class="project-type-card project-type-card--enter-ani"
                 >
                     <MaskedImage
-                        image-src="/assets/images/image-3.jpg"
+                        :image-src="photographyMockData.outerImageUrl"
                         alt="masked-image-2"
                         :height-rem="25"
                         :mask-number="2"
                         :with-border="true"
                         border-color="#7bd3ea"
+                        :withHover="true"
                     />
                     <h5
                         class="project-type-card__title project-type-card__title--text-shadow-blue"
                     >
-                        Photography
+                        {{ photographyMockData.name }}
                     </h5>
                 </div>
                 <div
-                    @:click="setIsPopupOpened"
+                    @:click="handleSelectProjectToShow(videoEditingMockData)"
                     class="project-type-card project-type-card--enter-ani"
                 >
                     <MaskedImage
-                        image-src="/assets/images/image-3.jpg"
+                        :image-src="videoEditingMockData.outerImageUrl"
                         alt="masked-image-2"
                         :height-rem="25"
                         :mask-number="5"
                         :with-border="true"
                         border-color="#ed5ab3"
+                        :withHover="true"
                     />
                     <h5
                         class="project-type-card__title project-type-card__title--text-shadow-purple"
                     >
-                        Video Editing
+                        {{ videoEditingMockData.name }}
                     </h5>
                 </div>
-                <div
-                    @:click="setIsPopupOpened"
-                    class="project-type-card project-type-card--enter-ani"
-                >
+                <div class="project-type-card project-type-card--enter-ani">
                     <MaskedImage
                         image-src="/assets/images/image-3.jpg"
                         alt="masked-image-2"
@@ -172,6 +186,7 @@ const { setIsPopupOpened } = store;
                         :mask-number="3"
                         :with-border="true"
                         border-color="#a1eebd"
+                        :withHover="true"
                     />
                     <h5
                         class="project-type-card__title project-type-card__title--text-shadow-green"
@@ -182,7 +197,11 @@ const { setIsPopupOpened } = store;
             </div>
         </div>
     </div>
-    <Popup>
-        <Graphic></Graphic>
-    </Popup>
+    <ProjectViewerPopup>
+        <ProjectView
+            v-if="currentShowedProject"
+            :project="currentShowedProject"
+        ></ProjectView>
+    </ProjectViewerPopup>
+    <PostViewerPopup />
 </template>
