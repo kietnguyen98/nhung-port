@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import Intro from './sections/Intro.vue';
-import About from './sections/About.vue';
-import Projects from './sections/Projects.vue';
-// import Graphic from './sections/Graphic.vue';
-import Contact from './sections/Contact.vue';
+import { About, Intro, Projects, Contact } from '.';
 </script>
 
 <template>

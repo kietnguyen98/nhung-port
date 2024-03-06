@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useControlPopupStore } from '@/stores/controlPopupStore';
-import ProjectView from '../projectContents/ProjectView.vue';
-import { projectMockData } from '@/data/projects.data';
-import PostViewerPopup from '@/layouts/PostViewerPopup.vue';
-import { TProject } from '@/types/project.type';
+import { useControlPopupStore } from '@/stores';
+import { projectMockData } from '@/data';
+import { TProject } from '@/types';
+import { ProjectView } from '..';
 
 defineProps<{
     sectionId: string;
@@ -194,11 +193,11 @@ const handleSelectProjectToShow = (project: TProject) => {
             </div>
         </div>
     </div>
-    <Popup>
+    <ProjectViewerPopup>
         <ProjectView
             v-if="currentShowedProject"
             :project="currentShowedProject"
         ></ProjectView>
-    </Popup>
+    </ProjectViewerPopup>
     <PostViewerPopup />
 </template>

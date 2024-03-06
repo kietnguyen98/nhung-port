@@ -1,7 +1,13 @@
+export type TPost = {
+    type: 'photo' | 'video';
+    sourceUrl: string;
+};
+
 export type TBrand = {
     name: string;
     logoURL: string;
-    postImageUrls: Array<string>;
+    // postImageUrls: Array<string>;
+    posts: Array<TPost>;
 };
 
 export type TDemoImages = {

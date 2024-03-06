@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { TBrand } from '@/types/project.type';
+import { TBrand } from '@/types';
 
 type TControlPopupStoreState = {
     isPopupOpened: boolean;

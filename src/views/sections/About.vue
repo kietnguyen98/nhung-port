@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { wordFlick } from '@/utils/wordFlickAnimation';
+import { wordFlick } from '@/utilities';
 defineProps<{
     sectionId: string;
 }>();
@@ -149,3 +149,4 @@ onMounted(() => {
         </div>
     </div>
 </template>
+@/utilities/wordFlickAnimation

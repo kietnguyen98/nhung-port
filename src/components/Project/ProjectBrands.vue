@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useControlPopupStore } from '@/stores/controlPopupStore';
-import { TBrand } from '@/types/project.type';
+import { useControlPopupStore } from '@/stores';
+import { TBrand } from '@/types';
 defineProps<{
     listBrands: Array<TBrand>;
 }>();

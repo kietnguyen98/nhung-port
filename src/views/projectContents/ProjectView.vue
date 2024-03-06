@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import ProjectDemoPhotos from '@/components/Project/ProjectDemoPhotos.vue';
-import ProjectBrands from '@/components/Project/ProjectBrands.vue';
-import { TProject } from '@/types/project.type';
+import { ProjectDemoPhotos, ProjectBrands } from '@/components';
+import { TProject } from '@/types';
 
 defineProps<{
     project: TProject;
@@ -129,14 +128,6 @@ defineProps<{
                 :demo-images="project.demoImages"
             ></ProjectDemoPhotos>
             <ProjectBrands :list-brands="project.brands"></ProjectBrands>
-            <!-- <iframe
-                src="https://drive.google.com/file/d/1wy303G6hR9a7TMVLQp1RuD7T4fQ9_SsR/preview"
-                width="100%"
-                height="1000px"
-                allow="autoplay"
-                frameborder="0"
-                allowfullscreen
-            ></iframe> -->
         </div>
     </div>
 </template>

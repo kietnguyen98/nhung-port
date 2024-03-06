@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue';
-import { animateWheelEvent } from '@/utils/wheelEvent';
-import { useControlPopupStore } from '@/stores/controlPopupStore';
 import { storeToRefs } from 'pinia';
+import { animateWheelEvent } from '@/utilities';
+import { useControlPopupStore } from '@/stores';
 
 const store = useControlPopupStore();
 const { isPopupOpened } = storeToRefs(store);
@@ -150,3 +150,4 @@ watch(
         </div>
     </div>
 </template>
+@/utilities/wheelEvent

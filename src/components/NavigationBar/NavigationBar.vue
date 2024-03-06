@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import NavigationButton from './NavigationButton.vue';
-import { TSections } from '@/types/section.type';
+import { TSections } from '@/types';
 defineProps<{
     isOnTop: boolean;
     sections: TSections;

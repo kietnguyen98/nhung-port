@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import CardImage from '@/components/CardImage/CardImage.vue';
-import { TDemoImages } from '@/types/project.type';
+import { CardImage } from '@/components';
+import { TDemoImages } from '@/types';
 defineProps<{ demoImages: TDemoImages }>();
 </script>
 <style scoped>

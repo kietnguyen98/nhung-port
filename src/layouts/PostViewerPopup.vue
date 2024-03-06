@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue';
-import { useControlPopupStore } from '@/stores/controlPopupStore';
 import { storeToRefs } from 'pinia';
-import { animateWheelEvent } from '@/utils/wheelEvent';
-import CardImage from '@/components/CardImage/CardImage.vue';
+import { useControlPopupStore } from '@/stores';
+import { animateWheelEvent } from '@/utilities';
+import { POST_TYPE_VALUES } from '@/constants';
 
 const store = useControlPopupStore();
 const { isPostViewerOpened, brandToView } = storeToRefs(store);
@@ -144,13 +144,12 @@ const handleClosePostViewer = () => {
     align-items: center;
     /* gap: 5rem; */
 
-    .post-image {
-        height: auto;
-        width: auto;
-        border-radius: 1rem;
+    .post {
+        width: fit-content;
+        height: fit-content;
     }
 
-    .post-image--enter--leave-ani {
+    .post--enter--leave-ani {
         transform: scale(0.75);
 
         animation:
@@ -158,6 +157,12 @@ const handleClosePostViewer = () => {
             scale-out-slight linear forwards;
         animation-timeline: view(), view();
         animation-range: entry, exit;
+    }
+
+    .post__image {
+        height: auto;
+        width: auto;
+        border-radius: 1rem;
     }
 }
 
@@ -202,13 +207,28 @@ const handleClosePostViewer = () => {
                             : 'posts-wrapper--disappeared',
                     ]"
                 >
-                    <img
-                        class="post-image post-image--enter--leave-ani"
-                        v-for="imageUrl in brandToView?.postImageUrls"
-                        :src="imageUrl"
-                    />
+                    <div
+                        class="post post--enter--leave-ani"
+                        v-for="post in brandToView?.posts"
+                    >
+                        <img
+                            v-if="post.type === POST_TYPE_VALUES.PHOTO"
+                            class="post__image"
+                            :src="post.sourceUrl"
+                        />
+                        <iframe
+                            v-if="post.type === POST_TYPE_VALUES.VIDEO"
+                            :src="post.sourceUrl"
+                            width="100%"
+                            height="100%"
+                            allow="autoplay"
+                            frameborder="0"
+                            allowfullscreen
+                        ></iframe>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </template>
+@/utilities/wheelEvent

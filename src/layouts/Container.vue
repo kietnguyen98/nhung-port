@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue';
-import { TSections } from '@/types/section.type';
-import { blockWheelEvent, animateWheelEvent } from '@/utils/wheelEvent';
-import CircleProgressBar from '@/components/CircleProgressBar/CircleProgressBar.vue';
-import { useControlPopupStore } from '@/stores/controlPopupStore';
 import { storeToRefs } from 'pinia';
+import { TSections } from '@/types';
+import { blockWheelEvent, animateWheelEvent } from '@/utilities';
+import { CircleProgressBar } from '@/components';
+import { useControlPopupStore } from '@/stores';
 
 const store = useControlPopupStore();
 const { isPopupOpened } = storeToRefs(store);
@@ -185,3 +185,4 @@ watch(
         </div>
     </div>
 </template>
+@/utilities/wheelEvent
