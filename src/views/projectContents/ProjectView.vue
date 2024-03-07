@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ProjectDemoPhotos, ProjectBrands } from '@/components';
+import { ProjectDemoPhotos, ProjectBrands, CurvedText } from '@/components';
 import { TProject } from '@/types';
 
 defineProps<{
@@ -42,12 +42,6 @@ defineProps<{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    .graphic-content__title {
-        text-align: center;
-        margin-bottom: 5rem;
-        font-size: 10rem;
-        font-weight: 300;
-    }
 }
 
 .graphic-images {

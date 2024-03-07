@@ -62,8 +62,7 @@ defineProps<{
 
     .contact-content-text__title-group {
         h1 {
-            font-size: 20rem;
-            line-height: 0.8;
+            line-height: 0.9;
             text-transform: capitalize;
             font-style: italic;
         }

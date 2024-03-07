@@ -78,7 +78,6 @@ onMounted(() => {
 
     & .navigation-button__name {
         text-transform: capitalize;
-        font-weight: bold;
         transition: all 0.5s ease-in-out;
     }
 
@@ -104,17 +103,17 @@ onMounted(() => {
 
 .navigation-button--scrolled {
     &.navigation-button__name {
-        color: var(--color-black) !important;
+        color: var(--color-white) !important;
         font-weight: bolder;
     }
 
     &:hover {
-        background-color: var(--color-light-cyan);
+        background-color: var(--color-strong-cream);
     }
 }
 
 .navigation-button--scrolled--activated {
-    background-color: var(--color-light-cyan);
+    background-color: var(--color-strong-cream);
     padding: 0.25rem 1rem;
 }
 </style>
@@ -133,6 +132,6 @@ onMounted(() => {
         ]"
         @:click="navigateToTarget"
     >
-        <p class="navigation-button__name">{{ name }}</p>
+        <p class="navigation-button__name font-pacifico">{{ name }}</p>
     </button>
 </template>

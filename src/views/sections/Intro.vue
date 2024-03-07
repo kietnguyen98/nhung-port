@@ -46,14 +46,11 @@ onMounted(() => {
     margin-bottom: 4rem;
     color: white;
 
-    h4 {
-        font-weight: 300;
+    h5 {
         animation: fade-in-slow 1.5s ease-in;
     }
 
     h1 {
-        font-size: 15rem;
-        font-weight: 300;
         font-style: italic;
         animation: fade-in-slow 1.5s ease-in;
     }
@@ -132,9 +129,9 @@ onMounted(() => {
             class="intro-content-title intro-content-title--enter-ani"
             id="intro-content-title"
         >
-            <h4>Welcome to</h4>
+            <h5>Welcome to</h5>
             <h1 class="font-dancing-script">Hồng Nhung's</h1>
-            <h4>Portfolio</h4>
+            <h5>Portfolio</h5>
         </div>
         <div
             class="intro-content-images intro-content-images--enter-ani"

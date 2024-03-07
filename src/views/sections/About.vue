@@ -60,7 +60,6 @@ onMounted(() => {
 
     .about-content__title {
         text-align: center;
-        font-size: 12.5rem;
         animation: letter-wavy 1.5s infinite;
         animation-delay: calc(0.1s * var(--i));
     }
@@ -138,7 +137,6 @@ onMounted(() => {
             <div
                 class="about-content__text-wrapper about-content__text-wrapper--enter-leave-ani"
             >
-                <!-- <img src="/assets/clip-masks/mask-6.png" /> -->
                 <h6>
                     <span
                         class="about-content__text"

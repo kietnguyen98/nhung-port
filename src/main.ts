@@ -5,9 +5,14 @@ import { createPinia } from 'pinia';
 // router
 import router from '@/router';
 // layouts
-import { Container, ProjectViewerPopup, PostViewerPopup } from '@/layouts';
+import {
+    Container,
+    ProjectViewerPopup,
+    PostViewerPopup,
+    NavigationBar,
+} from '@/layouts';
 // components
-import { NavigationBar, MaskedImage, CurvedText } from '@/components';
+import { MaskedImage, CurvedText } from '@/components';
 // Importing the global css file
 import '@/styles/global.css';
 
@@ -27,6 +32,5 @@ app.component('PostViewerPopup', PostViewerPopup);
 // component register
 app.component('NavigationBar', NavigationBar);
 app.component('MaskedImage', MaskedImage);
-app.component('CurvedText', CurvedText);
 
 app.mount('#app');

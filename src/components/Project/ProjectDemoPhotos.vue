@@ -88,7 +88,7 @@ defineProps<{ demoImages: TDemoImages }>();
             <h5>
                 Click
                 <button class="view-more-button">
-                    <h2 class="view-more-button__text">HERE</h2>
+                    <h4 class="view-more-button__text">HERE</h4>
                     <span class="view-more-button__border"></span>
                 </button>
             </h5>

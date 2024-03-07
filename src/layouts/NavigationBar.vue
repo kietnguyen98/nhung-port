@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import NavigationButton from './NavigationButton.vue';
+import { NavigationButton } from '@/components';
 import { TSections } from '@/types';
 defineProps<{
     isOnTop: boolean;
@@ -42,12 +42,7 @@ defineProps<{
     gap: 0.5rem;
 
     .portfolio-owner__icon {
-        width: 1.75rem;
-        height: 1.5rem;
-    }
-
-    .portfolio-owner__name {
-        font-weight: bold;
+        width: 1.5rem;
     }
 }
 .navigation-links {
@@ -69,7 +64,7 @@ defineProps<{
                 class="portfolio-owner__icon"
                 src="/assets/icons/mushroom.png"
             />
-            <p class="portfolio-owner__name">Nhung's Port</p>
+            <p class="font-pacifico">Nhung's Port</p>
         </div>
         <nav class="navigation-links">
             <NavigationButton

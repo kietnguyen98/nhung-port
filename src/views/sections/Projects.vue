@@ -41,10 +41,8 @@ const handleSelectProjectToShow = (project: TProject) => {
         justify-content: center;
         align-items: center;
 
-        h1 {
+        h2 {
             color: var(--color-red);
-            font-size: 10rem;
-            letter-spacing: -0.25rem;
             font-style: italic;
             font-weight: bolder;
             text-transform: capitalize;
@@ -118,7 +116,7 @@ const handleSelectProjectToShow = (project: TProject) => {
             <div
                 class="projects-content__title projects-content__title--enter-ani"
             >
-                <h1 class="font-dancing-script">View all my work ...</h1>
+                <h2 class="font-dancing-script">View all my work ...</h2>
             </div>
             <div class="project-type-card-container">
                 <div

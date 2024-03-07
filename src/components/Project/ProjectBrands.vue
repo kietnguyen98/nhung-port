@@ -65,7 +65,7 @@ const openPostViewer = (brandData: TBrand) => {
 
 <template>
     <div class="brands-container">
-        <h1 class="brands-container__title">Brands collaboration</h1>
+        <h4 class="brands-container__title">Brands collaboration</h4>
         <h6 class="brands-container__title">
             click on brand's logo to view more
         </h6>
