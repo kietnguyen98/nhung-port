@@ -1,6 +1,6 @@
 import { createApp } from 'vue';
 import App from '@/App.vue';
-// import pinia to create store for states management
+// pinia to create store for states management
 import { createPinia } from 'pinia';
 // router
 import router from '@/router';
@@ -12,7 +12,7 @@ import {
     NavigationBar,
 } from '@/layouts';
 // components
-import { MaskedImage, CurvedText } from '@/components';
+import { MaskedImage } from '@/components';
 // Importing the global css file
 import '@/styles/global.css';
 

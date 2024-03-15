@@ -4,7 +4,10 @@ import { storeToRefs } from 'pinia';
 import { TSections } from '@/types';
 import { blockWheelEvent, animateWheelEvent } from '@/utilities';
 import { CircleProgressBar } from '@/components';
-import { useControlPopupStore } from '@/stores';
+import { useControlPopupStore, useMediaQueriesStore } from '@/stores';
+
+const mediaQueriesStore = useMediaQueriesStore();
+const { initEvent } = mediaQueriesStore;
 
 const store = useControlPopupStore();
 const { isPopupOpened } = storeToRefs(store);
@@ -24,6 +27,8 @@ const isOnTop = ref<boolean>(true);
 const progress = ref<number>(0);
 
 onMounted(() => {
+    // init media queries
+    initEvent();
     // block user scrolling for 1.5seconds, wait for all animations to be finished
     containerScrollWrapperElement.value = document.getElementById(
         'scroll-wrapper'

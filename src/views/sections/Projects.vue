@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { useControlPopupStore } from '@/stores';
+import { storeToRefs } from 'pinia';
+import { useControlPopupStore, useMediaQueriesStore } from '@/stores';
 import { projectMockData } from '@/data';
 import { TProject } from '@/types';
+import { COMPONENT_SCALE_RATIO } from '@/constants';
 import { ProjectView } from '..';
 
 defineProps<{
@@ -22,6 +24,9 @@ const handleSelectProjectToShow = (project: TProject) => {
     currentShowedProject.value = project;
     setIsPopupOpened(true);
 };
+
+const mediaQueriesStore = useMediaQueriesStore();
+const { currentScreen } = storeToRefs(mediaQueriesStore);
 </script>
 
 <style scoped>
@@ -35,8 +40,6 @@ const handleSelectProjectToShow = (project: TProject) => {
 .projects-content {
     .projects-content__title {
         text-align: center;
-        height: 20rem;
-        margin-bottom: 5rem;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -61,7 +64,7 @@ const handleSelectProjectToShow = (project: TProject) => {
         animation:
             fade-in-from-top linear forwards,
             fade-out-to-top-with-scale linear forwards;
-        animation-timeline: view(), view(0rem);
+        animation-timeline: view(), view();
         animation-range: entry, exit;
     }
 }
@@ -69,7 +72,6 @@ const handleSelectProjectToShow = (project: TProject) => {
 .project-type-card-container {
     display: flex;
     justify-content: space-between;
-    gap: 2.5rem;
     align-items: center;
 }
 
@@ -115,10 +117,19 @@ const handleSelectProjectToShow = (project: TProject) => {
         <div class="projects-content">
             <div
                 class="projects-content__title projects-content__title--enter-ani"
+                :style="{
+                    height: `${20 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                    marginBottom: `${2.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                }"
             >
                 <h2 class="font-dancing-script">View all my work ...</h2>
             </div>
-            <div class="project-type-card-container">
+            <div
+                class="project-type-card-container"
+                :style="{
+                    gap: `${5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                }"
+            >
                 <div
                     @:click="handleSelectProjectToShow(graphicDesignMockData)"
                     class="project-type-card project-type-card--enter-ani"
@@ -126,7 +137,7 @@ const handleSelectProjectToShow = (project: TProject) => {
                     <MaskedImage
                         :image-src="graphicDesignMockData.outerImageUrl"
                         alt="masked-image-1"
-                        :height-rem="25"
+                        :height-rem="30"
                         :mask-number="1"
                         :with-border="true"
                         border-color="#fed9ed"
@@ -145,7 +156,7 @@ const handleSelectProjectToShow = (project: TProject) => {
                     <MaskedImage
                         :image-src="photographyMockData.outerImageUrl"
                         alt="masked-image-2"
-                        :height-rem="25"
+                        :height-rem="30"
                         :mask-number="2"
                         :with-border="true"
                         border-color="#7bd3ea"
@@ -164,7 +175,7 @@ const handleSelectProjectToShow = (project: TProject) => {
                     <MaskedImage
                         :image-src="videoEditingMockData.outerImageUrl"
                         alt="masked-image-2"
-                        :height-rem="25"
+                        :height-rem="30"
                         :mask-number="5"
                         :with-border="true"
                         border-color="#ed5ab3"
@@ -180,7 +191,7 @@ const handleSelectProjectToShow = (project: TProject) => {
                     <MaskedImage
                         image-src="/assets/images/image-3.jpg"
                         alt="masked-image-2"
-                        :height-rem="25"
+                        :height-rem="30"
                         :mask-number="3"
                         :with-border="true"
                         border-color="#a1eebd"

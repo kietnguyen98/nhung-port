@@ -33,8 +33,8 @@ const props = defineProps<{ progressValue: number }>();
 
     .leaves {
         position: absolute;
-        top: -1rem;
-        left: -0.5rem;
+        top: -0.6rem;
+        left: 0rem;
         z-index: 1;
         height: 6rem;
         width: 6rem;
@@ -45,7 +45,7 @@ const props = defineProps<{ progressValue: number }>();
 
     .leaves--glowed {
         opacity: 1;
-        transform: scale(1);
+        transform: scale(1.25);
     }
     .flower {
         position: absolute;

@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import { storeToRefs } from 'pinia';
 import { wordFlick } from '@/utilities';
+import { useMediaQueriesStore } from '@/stores';
+import { COMPONENT_SCALE_RATIO } from '@/constants';
+
 defineProps<{
     sectionId: string;
 }>();
@@ -34,7 +38,10 @@ onMounted(() => {
     });
 });
 
-// animation on page scroll
+const CONTENT_WRAPPER_BACKGROUND_IMAGE_HEIGHT_RATIO = 350 / 645;
+
+const mediaQueriesStore = useMediaQueriesStore();
+const { currentScreen } = storeToRefs(mediaQueriesStore);
 </script>
 
 <style scoped>
@@ -55,7 +62,8 @@ onMounted(() => {
 
 .wavy-title-container {
     display: flex;
-    height: 20rem;
+    justify-content: center;
+    align-items: center;
     gap: 0.1rem;
 
     .about-content__title {
@@ -73,13 +81,11 @@ onMounted(() => {
     animation:
         fade-in-from-top linear forwards,
         fade-out-to-top-with-scale linear forwards;
-    animation-timeline: view(), view(0rem);
+    animation-timeline: view(), view();
     animation-range: entry, exit;
 }
 
 .about-content__text-wrapper {
-    width: 80rem;
-    height: calc(350 / 645 * 80rem);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -113,7 +119,7 @@ onMounted(() => {
     animation:
         fade-in-from-top linear forwards,
         fade-out-to-top-with-scale linear forwards;
-    animation-timeline: view(), view(0rem);
+    animation-timeline: view(), view();
     animation-range: entry, exit;
 }
 </style>
@@ -123,6 +129,9 @@ onMounted(() => {
         <div class="about-content">
             <div
                 class="wavy-title-container wavy-title-container--enter-leave-ani"
+                :style="{
+                    height: `${20 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                }"
                 id="about-content-wavy-title-container"
             >
                 <h1
@@ -136,6 +145,10 @@ onMounted(() => {
 
             <div
                 class="about-content__text-wrapper about-content__text-wrapper--enter-leave-ani"
+                :style="{
+                    width: `${80 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                    height: `${80 * CONTENT_WRAPPER_BACKGROUND_IMAGE_HEIGHT_RATIO * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                }"
             >
                 <h6>
                     <span
@@ -147,4 +160,3 @@ onMounted(() => {
         </div>
     </div>
 </template>
-@/utilities/wordFlickAnimation

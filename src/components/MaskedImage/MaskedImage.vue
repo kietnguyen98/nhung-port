@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { storeToRefs } from 'pinia';
+import { useMediaQueriesStore } from '@/stores';
+import { COMPONENT_SCALE_RATIO } from '@/constants';
 
 const props = defineProps<{
     imageSrc?: string;
@@ -22,6 +25,9 @@ const handleMouseLeave = () => {
         isHovered.value = false;
     }
 };
+
+const mediaQueriesStore = useMediaQueriesStore();
+const { currentScreen } = storeToRefs(mediaQueriesStore);
 </script>
 
 <style scoped>
@@ -73,6 +79,7 @@ const handleMouseLeave = () => {
     mask-position: center;
     mask-repeat: no-repeat;
     transition: all 0.5s ease;
+    width: 100%;
 }
 </style>
 
@@ -80,7 +87,9 @@ const handleMouseLeave = () => {
     <div
         class="mask-card"
         :style="{
-            height: heightRem ? `${heightRem}rem` : 'auto',
+            height: heightRem
+                ? `${COMPONENT_SCALE_RATIO[currentScreen.label] * heightRem}rem`
+                : 'auto',
             backgroundColor: withBorder ? borderColor : 'transparent',
             maskImage: `url(/assets/clip-masks/mask-${maskNumber}.png)`,
         }"
@@ -90,7 +99,9 @@ const handleMouseLeave = () => {
         <div
             class="mask-card__mask"
             :style="{
-                height: heightRem ? `${heightRem + 0.5 * 2}rem` : 'auto',
+                height: heightRem
+                    ? `${COMPONENT_SCALE_RATIO[currentScreen.label] * heightRem + 0.5 * 2}rem`
+                    : 'auto',
                 maskImage: `url(/assets/clip-masks/mask-${maskNumber}.png)`,
                 backgroundColor: isHovered ? borderColor : 'transparent',
             }"

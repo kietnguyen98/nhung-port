@@ -13,9 +13,6 @@ export const useControlPopupStore = defineStore('controlPopup', {
         isPostViewerOpened: false,
         brandToView: undefined,
     }),
-    getters: {
-        getIsPopupOpened: (state) => state.isPopupOpened,
-    },
     actions: {
         setIsPopupOpened(value: boolean) {
             this.isPopupOpened = value;
