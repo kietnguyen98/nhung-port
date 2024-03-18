@@ -4,7 +4,10 @@ import { storeToRefs } from 'pinia';
 import { TSections } from '@/types';
 import { blockWheelEvent, animateWheelEvent } from '@/utilities';
 import { CircleProgressBar } from '@/components';
-import { useControlPopupStore } from '@/stores';
+import { useControlPopupStore, useMediaQueriesStore } from '@/stores';
+
+const mediaQueriesStore = useMediaQueriesStore();
+const { initEvent } = mediaQueriesStore;
 
 const store = useControlPopupStore();
 const { isPopupOpened } = storeToRefs(store);
@@ -24,6 +27,8 @@ const isOnTop = ref<boolean>(true);
 const progress = ref<number>(0);
 
 onMounted(() => {
+    // init media queries
+    initEvent();
     // block user scrolling for 1.5seconds, wait for all animations to be finished
     containerScrollWrapperElement.value = document.getElementById(
         'scroll-wrapper'
@@ -61,9 +66,9 @@ onMounted(() => {
                 }
             );
         }
-    }, 1500);
+    }, 1500); // 1500ms = time for intro section enter animation to finish
 
-    // get current scrolled section
+    // get sections List
     const sectionList: Array<{
         idName: string;
         element: HTMLElement;
@@ -77,20 +82,17 @@ onMounted(() => {
         };
     });
 
-    const lastSection = document.getElementById(
-        `${sections.value[sections.value.length - 1].idName}-section`
-    ) as HTMLElement;
-    const fullPageHeight = lastSection.getBoundingClientRect().bottom;
-
     containerScrollWrapperElement.value.addEventListener('scroll', () => {
         if (containerScrollWrapperElement.value) {
-            for (let i = 0; i < sectionList.length - 1; i++) {
-                let currentSectionOffsetTop = sectionList[i]?.element.offsetTop;
-                let nextSectionOffsetTop =
+            for (let i = 0; i <= sectionList.length - 1; i++) {
+                const currentSectionOffsetTop =
+                    sectionList[i]?.element.offsetTop;
+                const nextSectionOffsetTop =
                     sectionList[i + 1]?.element.offsetTop ??
                     MAXIMUM_PAGE_LENGTH;
-                let wrapperScrollTop = containerScrollWrapperElement.value
+                const wrapperScrollTop = containerScrollWrapperElement.value
                     .scrollTop as number;
+
                 if (
                     wrapperScrollTop >= currentSectionOffsetTop &&
                     wrapperScrollTop < nextSectionOffsetTop
@@ -98,14 +100,6 @@ onMounted(() => {
                     currentActive.value = sectionList[i].idName;
                 }
             }
-            sectionList.forEach((section) => {
-                if (
-                    containerScrollWrapperElement.value?.scrollTop ===
-                    section.element.offsetTop
-                ) {
-                    currentActive.value = section.idName;
-                }
-            });
 
             if (containerScrollWrapperElement.value.scrollTop === 0) {
                 setTimeout(() => {
@@ -115,12 +109,14 @@ onMounted(() => {
                 isOnTop.value = false;
             }
 
+            const fullPageHeight =
+                containerScrollWrapperElement.value.scrollHeight;
+
             // check progress on scrolling
             progress.value =
                 (containerScrollWrapperElement.value.scrollTop /
                     (fullPageHeight -
-                        containerScrollWrapperElement.value.getBoundingClientRect()
-                            .height)) *
+                        containerScrollWrapperElement.value.clientHeight)) *
                 100;
         }
     });
@@ -185,4 +181,3 @@ watch(
         </div>
     </div>
 </template>
-@/utilities/wheelEvent

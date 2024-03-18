@@ -1,10 +1,16 @@
 <script setup lang="ts">
-import { ProjectDemoPhotos, ProjectBrands } from '@/components';
+import { storeToRefs } from 'pinia';
+import { ProjectDemoPhotos, ProjectBrands, CurvedText } from '@/components';
 import { TProject } from '@/types';
+import { useMediaQueriesStore } from '@/stores';
+import { COMPONENT_SCALE_RATIO } from '@/constants';
 
 defineProps<{
     project: TProject;
 }>();
+
+const mediaQueriesStore = useMediaQueriesStore();
+const { currentScreen } = storeToRefs(mediaQueriesStore);
 </script>
 
 <style scoped>
@@ -42,27 +48,19 @@ defineProps<{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    .graphic-content__title {
-        text-align: center;
-        margin-bottom: 5rem;
-        font-size: 10rem;
-        font-weight: 300;
-    }
 }
 
 .graphic-images {
     position: relative;
     display: flex;
     justify-content: center;
+
     .graphic-images__image-1 {
         position: relative;
-        top: -10rem;
     }
 
     .graphic-images__image-2 {
         position: absolute;
-        bottom: 10rem;
-        left: -15rem;
         transform: rotateZ(-25deg);
     }
 
@@ -76,11 +74,7 @@ defineProps<{
 
 .graphic-content__text-wrapper {
     position: relative;
-    padding: 0rem 20rem 5rem 20rem;
-
-    p {
-        text-align: center;
-    }
+    text-align: center;
 }
 </style>
 
@@ -90,38 +84,63 @@ defineProps<{
             <div class="graphic-content">
                 <CurvedText :text="project.name" />
                 <div class="graphic-images">
-                    <MaskedImage
+                    <div
                         class="graphic-images__image-1"
-                        :image-src="project.introImageUrl[0]"
-                        alt="masked-image-1"
-                        :height-rem="30"
-                        :mask-number="1"
-                        :with-border="true"
-                        border-color="#ed5ab3"
-                    />
-                    <MaskedImage
+                        :style="{
+                            top: `${-15 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                        }"
+                    >
+                        <MaskedImage
+                            :image-src="project.introImageUrl[0]"
+                            alt="masked-image-1"
+                            :height-rem="50"
+                            :mask-number="1"
+                            :with-border="true"
+                            border-color="#ed5ab3"
+                        />
+                    </div>
+                    <div
                         class="graphic-images__image-2"
-                        :image-src="project.introImageUrl[1]"
-                        alt="masked-image-2"
-                        :height-rem="17.5"
-                        :mask-number="2"
-                        :with-border="true"
-                        border-color="#7bd3ea"
-                    />
-                    <MaskedImage
+                        :style="{
+                            left: `${-20 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                            bottom: `${10 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                        }"
+                    >
+                        <MaskedImage
+                            :image-src="project.introImageUrl[1]"
+                            alt="masked-image-2"
+                            :height-rem="25"
+                            :mask-number="2"
+                            :with-border="true"
+                            border-color="#7bd3ea"
+                        />
+                    </div>
+                    <div
                         class="graphic-images__image-3"
-                        :image-src="project.introImageUrl[2]"
-                        alt="masked-image-3"
-                        :height-rem="17.5"
-                        :mask-number="3"
-                        :with-border="true"
-                        border-color="#a1eebd"
-                    />
+                        :style="{
+                            right: `${-20 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                            bottom: `${10 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                        }"
+                    >
+                        <MaskedImage
+                            :image-src="project.introImageUrl[2]"
+                            alt="masked-image-3"
+                            :height-rem="25"
+                            :mask-number="3"
+                            :with-border="true"
+                            border-color="#a1eebd"
+                        />
+                    </div>
                 </div>
-                <div class="graphic-content__text-wrapper">
-                    <p>
+                <div
+                    class="graphic-content__text-wrapper"
+                    :style="{
+                        padding: `0rem ${20 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem ${5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem ${20 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                    }"
+                >
+                    <h6>
                         {{ project.description }}
-                    </p>
+                    </h6>
                 </div>
             </div>
             <ProjectDemoPhotos

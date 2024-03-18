@@ -55,7 +55,7 @@ defineProps<{
         <img
             v-if="post.type === POST_TYPE_VALUES.PHOTO"
             class="post__image"
-            :src="post.sourceUrl"
+            v-lazy="post.sourceUrl"
         />
         <div
             v-if="post.type === POST_TYPE_VALUES.VIDEO"

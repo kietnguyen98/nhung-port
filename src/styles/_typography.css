@@ -1,0 +1,362 @@
+/* import fonts settings */
+@import '_fonts.css';
+@import '_responsive.css';
+
+:root {
+    --p-tag-base-font-size: 2rem;
+    --h6-tag-base-font-size: 2.75rem;
+    --h5-tag-base-font-size: 4rem;
+    --h4-tag-base-font-size: 6.25rem;
+    --h3-tag-base-font-size: 8.75rem;
+    --h2-tag-base-font-size: 10.75rem;
+    --h1-tag-base-font-size: 12.75rem;
+    --big-title-base-font-size: 25rem;
+}
+
+p,
+h6,
+h5,
+h4,
+h3,
+h2,
+h1 {
+    margin: 0px;
+    font-weight: 300;
+    font-family: Bodoni;
+}
+
+@media only screen and (min-width: 2560px) and (orientation: landscape) {
+    p {
+        font-size: calc(
+            var(--p-tag-base-font-size) * var(--2560px-screen-ratio)
+        );
+    }
+
+    h6 {
+        font-size: calc(
+            var(--h6-tag-base-font-size) * var(--2560px-screen-ratio)
+        );
+    }
+
+    h5 {
+        font-size: calc(
+            var(--h5-tag-base-font-size) * var(--2560px-screen-ratio)
+        );
+    }
+
+    h4 {
+        font-size: calc(
+            var(--h4-tag-base-font-size) * var(--2560px-screen-ratio)
+        );
+    }
+
+    h3 {
+        font-size: calc(
+            var(--h3-tag-base-font-size) * var(--2560px-screen-ratio)
+        );
+    }
+
+    h2 {
+        font-size: calc(
+            var(--h2-tag-base-font-size) * var(--2560px-screen-ratio)
+        );
+    }
+
+    h1 {
+        font-size: calc(
+            var(--h1-tag-base-font-size) * var(--2560px-screen-ratio)
+        );
+    }
+
+    textPath {
+        font-size: calc(
+            var(--h1-tag-base-font-size) * var(--2560px-screen-ratio)
+        );
+    }
+
+    .fs-big {
+        font-size: calc(
+            var(--big-title-base-font-size) * var(--2560px-screen-ratio)
+        );
+    }
+}
+
+@media only screen and (min-width: 2048px) and (max-width: 2559px) and (orientation: landscape) {
+    p {
+        font-size: calc(
+            var(--p-tag-base-font-size) * var(--2048px-screen-ratio)
+        );
+    }
+
+    h6 {
+        font-size: calc(
+            var(--h6-tag-base-font-size) * var(--2048px-screen-ratio)
+        );
+    }
+
+    h5 {
+        font-size: calc(
+            var(--h5-tag-base-font-size) * var(--2048px-screen-ratio)
+        );
+    }
+
+    h4 {
+        font-size: calc(
+            var(--h4-tag-base-font-size) * var(--2048px-screen-ratio)
+        );
+    }
+
+    h3 {
+        font-size: calc(
+            var(--h3-tag-base-font-size) * var(--2048px-screen-ratio)
+        );
+    }
+
+    h2 {
+        font-size: calc(
+            var(--h2-tag-base-font-size) * var(--2048px-screen-ratio)
+        );
+    }
+
+    h1 {
+        font-size: calc(
+            var(--h1-tag-base-font-size) * var(--2048px-screen-ratio)
+        );
+    }
+
+    textPath {
+        font-size: calc(
+            var(--h1-tag-base-font-size) * var(--2048px-screen-ratio)
+        );
+    }
+
+    .fs-big {
+        font-size: calc(
+            var(--big-title-base-font-size) * var(--2048px-screen-ratio)
+        );
+    }
+}
+
+@media only screen and (min-width: 1920px) and (max-width: 2047px) and (orientation: landscape) {
+    p {
+        font-size: calc(
+            var(--p-tag-base-font-size) * var(--1920px-screen-ratio)
+        );
+    }
+
+    h6 {
+        font-size: calc(
+            var(--h6-tag-base-font-size) * var(--1920px-screen-ratio)
+        );
+    }
+
+    h5 {
+        font-size: calc(
+            var(--h5-tag-base-font-size) * var(--1920px-screen-ratio)
+        );
+    }
+
+    h4 {
+        font-size: calc(
+            var(--h4-tag-base-font-size) * var(--1920px-screen-ratio)
+        );
+    }
+
+    h3 {
+        font-size: calc(
+            var(--h3-tag-base-font-size) * var(--1920px-screen-ratio)
+        );
+    }
+
+    h2 {
+        font-size: calc(
+            var(--h2-tag-base-font-size) * var(--1920px-screen-ratio)
+        );
+    }
+
+    h1 {
+        font-size: calc(
+            var(--h1-tag-base-font-size) * var(--1920px-screen-ratio)
+        );
+    }
+
+    textPath {
+        font-size: calc(
+            var(--h1-tag-base-font-size) * var(--1920px-screen-ratio)
+        );
+    }
+
+    .fs-big {
+        font-size: calc(
+            var(--big-title-base-font-size) * var(--1920px-screen-ratio)
+        );
+    }
+}
+
+@media only screen and (min-width: 1600px) and (max-width: 1919px) and (orientation: landscape) {
+    p {
+        font-size: calc(
+            var(--p-tag-base-font-size) * var(--1600px-screen-ratio)
+        );
+    }
+
+    h6 {
+        font-size: calc(
+            var(--h6-tag-base-font-size) * var(--1600px-screen-ratio)
+        );
+    }
+
+    h5 {
+        font-size: calc(
+            var(--h5-tag-base-font-size) * var(--1600px-screen-ratio)
+        );
+    }
+
+    h4 {
+        font-size: calc(
+            var(--h4-tag-base-font-size) * var(--1600px-screen-ratio)
+        );
+    }
+
+    h3 {
+        font-size: calc(
+            var(--h3-tag-base-font-size) * var(--1600px-screen-ratio)
+        );
+    }
+
+    h2 {
+        font-size: calc(
+            var(--h2-tag-base-font-size) * var(--1600px-screen-ratio)
+        );
+    }
+
+    h1 {
+        font-size: calc(
+            var(--h1-tag-base-font-size) * var(--1600px-screen-ratio)
+        );
+    }
+
+    textPath {
+        font-size: calc(
+            var(--h1-tag-base-font-size) * var(--1600px-screen-ratio)
+        );
+    }
+
+    .fs-big {
+        font-size: calc(
+            var(--big-title-base-font-size) * var(--1600px-screen-ratio)
+        );
+    }
+}
+
+@media only screen and (min-width: 1280px) and (max-width: 1599px) and (orientation: landscape) {
+    p {
+        font-size: calc(
+            var(--p-tag-base-font-size) * var(--1280px-screen-ratio)
+        );
+    }
+
+    h6 {
+        font-size: calc(
+            var(--h6-tag-base-font-size) * var(--1280px-screen-ratio)
+        );
+    }
+
+    h5 {
+        font-size: calc(
+            var(--h5-tag-base-font-size) * var(--1280px-screen-ratio)
+        );
+    }
+
+    h4 {
+        font-size: calc(
+            var(--h4-tag-base-font-size) * var(--1280px-screen-ratio)
+        );
+    }
+
+    h3 {
+        font-size: calc(
+            var(--h3-tag-base-font-size) * var(--1280px-screen-ratio)
+        );
+    }
+
+    h2 {
+        font-size: calc(
+            var(--h2-tag-base-font-size) * var(--1280px-screen-ratio)
+        );
+    }
+
+    h1 {
+        font-size: calc(
+            var(--h1-tag-base-font-size) * var(--1280px-screen-ratio)
+        );
+    }
+
+    textPath {
+        font-size: calc(
+            var(--h1-tag-base-font-size) * var(--1280px-screen-ratio)
+        );
+    }
+
+    .fs-big {
+        font-size: calc(
+            var(--big-title-base-font-size) * var(--1280px-screen-ratio)
+        );
+    }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1279px) and (orientation: landscape) {
+    p {
+        font-size: calc(
+            var(--p-tag-base-font-size) * var(--1024px-screen-ratio)
+        );
+    }
+
+    h6 {
+        font-size: calc(
+            var(--h6-tag-base-font-size) * var(--1024px-screen-ratio)
+        );
+    }
+
+    h5 {
+        font-size: calc(
+            var(--h5-tag-base-font-size) * var(--1024px-screen-ratio)
+        );
+    }
+
+    h4 {
+        font-size: calc(
+            var(--h4-tag-base-font-size) * var(--1024px-screen-ratio)
+        );
+    }
+
+    h3 {
+        font-size: calc(
+            var(--h3-tag-base-font-size) * var(--1024px-screen-ratio)
+        );
+    }
+
+    h2 {
+        font-size: calc(
+            var(--h2-tag-base-font-size) * var(--1024px-screen-ratio)
+        );
+    }
+
+    h1 {
+        font-size: calc(
+            var(--h1-tag-base-font-size) * var(--1024px-screen-ratio)
+        );
+    }
+
+    textPath {
+        font-size: calc(
+            var(--h1-tag-base-font-size) * var(--1024px-screen-ratio)
+        );
+    }
+
+    .fs-big {
+        font-size: calc(
+            var(--big-title-base-font-size) * var(--1024px-screen-ratio)
+        );
+    }
+}

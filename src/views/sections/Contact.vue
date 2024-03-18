@@ -1,7 +1,14 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia';
+import { useMediaQueriesStore } from '@/stores';
+import { COMPONENT_SCALE_RATIO } from '@/constants';
+
 defineProps<{
     sectionId: string;
 }>();
+
+const mediaQueriesStore = useMediaQueriesStore();
+const { currentScreen } = storeToRefs(mediaQueriesStore);
 </script>
 
 <style scoped>
@@ -10,10 +17,10 @@ defineProps<{
 }
 
 .contact-content-wrapper {
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    overflow: hidden;
 }
 
 .contact-content-wrapper--enter-ani {
@@ -23,28 +30,25 @@ defineProps<{
     animation-range: entry;
 }
 
-.contact-content-wrapper::before {
+.contact-content::before {
     content: '';
     position: absolute;
     left: 0;
-    top: 5rem;
+    top: calc(0rem - var(--bubble-size) / 2);
     right: 0;
     background-repeat: repeat;
-    height: 8rem;
-    background-size: 8rem 8rem;
+    height: var(--bubble-size);
+    background-size: var(--bubble-size) var(--bubble-size);
     background-image: radial-gradient(
-        circle at 4rem 6rem,
-        var(--color-blue) 4rem,
-        transparent 4rem
+        circle at calc(var(--bubble-size) / 2) calc(var(--bubble-size) / 2),
+        var(--color-blue) calc(var(--bubble-size) / 2),
+        transparent calc(var(--bubble-size) / 2)
     );
 }
 
 .contact-content {
+    position: relative;
     background-color: var(--color-blue);
-    height: calc(100vh - 10rem - 5rem);
-    width: 100%;
-    margin-top: 10rem;
-    padding: 0rem 5rem 5rem 5rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,41 +59,16 @@ defineProps<{
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     color: var(--color-dark);
-    gap: 7.5rem;
 
     .contact-content-text__title-group {
         h1 {
-            font-size: 20rem;
-            line-height: 0.8;
+            line-height: 0.9;
             text-transform: capitalize;
             font-style: italic;
         }
-    }
-
-    .contact-content-text__title-group--enter-ani {
-        opacity: 0;
-        transform: scale(0);
-        /* animation */
-        animation: fade-in-slow linear forwards;
-        animation-timeline: view();
-        animation-range: entry;
-    }
-
-    .contact-content-text__info-group {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .contact-content-text__info-group--enter-ani {
-        opacity: 0;
-        /* animation */
-        animation: fade-in-slow linear forwards;
-        animation-timeline: view(2.5rem);
-        animation-range: entry;
     }
 }
 
@@ -106,64 +85,36 @@ defineProps<{
         justify-content: center;
         align-items: flex-end;
     }
-
-    .contact-content-images__image-1 {
-        transform: translateY(13rem) rotateZ(-15deg);
-    }
-
-    .contact-content-images__image-2 {
-        transform: translateY(5rem);
-    }
-
-    .contact-content-images__image-3 {
-        transform: translateY(-3rem) translateX(3rem);
-    }
-
-    .contact-content-images__image-4 {
-        transform: translateY(-5rem) translateX(5rem) rotateZ(-15deg);
-    }
-
-    .contact-content-images__image-5 {
-        transform: translateX(5rem) rotateZ(10deg);
-    }
-
-    .contact-content-images-top__image--enter-ani {
-        transform: perspective(20rem) scale(0) rotateY(-90deg);
-        opacity: 0;
-        /* animation */
-        animation:
-            flip-in-y linear forwards,
-            flip-out-y linear forwards;
-        animation-timeline: view(15rem), view(15rem);
-        animation-range: entry, exit;
-    }
-
-    .contact-content-images-bottom__image--enter-ani {
-        transform: perspective(20rem) scale(0) rotateY(-90deg);
-        opacity: 0;
-        /* animation */
-        animation:
-            flip-in-y linear forwards,
-            flip-out-y linear forwards;
-        animation-timeline: view(), view();
-        animation-range: entry, exit;
-    }
 }
 </style>
 
 <template>
     <div v-bind:id="sectionId" class="contact-section">
         <div class="contact-content-wrapper contact-content-wrapper--enter-ani">
-            <div class="contact-content">
+            <div
+                class="contact-content"
+                :style="{
+                    width: `calc(100vw - ${10 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem * 2)`,
+                    height: `calc(100vh - ${10 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem - ${5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem * 2)`,
+                    marginTop: `${10 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                    padding: `${5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem ${10 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem ${5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem ${10 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                }"
+            >
                 <div class="contact-content-text">
                     <div
-                        class="contact-content-text__title-group contact-content-text__title-group--enter-ani"
+                        class="contact-content-text__title-group"
+                        :style="{
+                            transform: `translateX(${10 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem)`,
+                        }"
                     >
-                        <h1 class="font-dancing-script">thank</h1>
-                        <h1 class="font-dancing-script">you !</h1>
+                        <h1 class="fs-big font-dancing-script">thank</h1>
+                        <h1 class="fs-big font-dancing-script">you !</h1>
                     </div>
                     <div
                         class="contact-content-text__info-group contact-content-text__info-group--enter-ani"
+                        :style="{
+                            transform: `translateX(${5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem)`,
+                        }"
                     >
                         <h6>
                             <strong>Contact me at:</strong>
@@ -174,24 +125,30 @@ defineProps<{
                 </div>
                 <div class="contact-content-images">
                     <div class="contact-content-images__row">
-                        <div class="contact-content-images__image-1">
+                        <div
+                            :style="{
+                                transform: `translateY(${20 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem) rotateZ(-15deg)`,
+                            }"
+                        >
                             <MaskedImage
                                 image-src="/assets/images/image-4.jpg"
-                                class="contact-content-images-top__image--enter-ani"
                                 alt="masked-image-4"
-                                :height-rem="20"
+                                :height-rem="25"
                                 :mask-number="3"
                                 :with-border="true"
                                 border-color="#ff6868"
                             />
                         </div>
 
-                        <div class="contact-content-images__image-2">
+                        <div
+                            :style="{
+                                transform: `translateY(${10 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem)`,
+                            }"
+                        >
                             <MaskedImage
                                 image-src="/assets/images/image-3.jpg"
-                                class="contact-content-images-top__image--enter-ani"
                                 alt="masked-image-3"
-                                :height-rem="22.5"
+                                :height-rem="40"
                                 :mask-number="5"
                                 :with-border="true"
                                 border-color="#ed5ab3"
@@ -199,34 +156,43 @@ defineProps<{
                         </div>
                     </div>
                     <div class="contact-content-images__row">
-                        <div class="contact-content-images__image-3">
+                        <div
+                            :style="{
+                                transform: `translateY(${1.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem)  rotateZ(15deg)`,
+                            }"
+                        >
                             <MaskedImage
                                 image-src="/assets/images/image-2.jpg"
-                                class="contact-content-images-bottom__image--enter-ani"
                                 alt="masked-image-5"
-                                :height-rem="15"
-                                :mask-number="4"
+                                :height-rem="22.5"
+                                :mask-number="6"
                                 :with-border="true"
                                 border-color="#a1eebd"
                             />
                         </div>
-                        <div class="contact-content-images__image-4">
+                        <div
+                            :style="{
+                                transform: `translateY(${1.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem) rotateZ(-15deg)`,
+                            }"
+                        >
                             <MaskedImage
                                 image-src="/assets/images/image-1.jpg"
-                                class="contact-content-images-bottom__image--enter-ani"
                                 alt="masked-image-4"
-                                :height-rem="15"
+                                :height-rem="25"
                                 :mask-number="2"
                                 :with-border="true"
                                 border-color="#f6f7c4"
                             />
                         </div>
-                        <div class="contact-content-images__image-5">
+                        <div
+                            :style="{
+                                transform: `translateY(${2.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem) translateX(${-1.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem) rotateZ(10deg)`,
+                            }"
+                        >
                             <MaskedImage
                                 image-src="/assets/images/image-5.jpg"
-                                class="contact-content-images-bottom__image--enter-ani"
                                 alt="masked-image-5"
-                                :height-rem="30"
+                                :height-rem="40"
                                 :mask-number="1"
                                 :with-border="true"
                                 border-color="#a1eebd"

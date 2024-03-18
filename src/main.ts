@@ -1,15 +1,25 @@
 import { createApp } from 'vue';
 import App from '@/App.vue';
-// import pinia to create store for states management
+// pinia to create store for states management
 import { createPinia } from 'pinia';
+// lazyLoad image
+import VueLazyload from 'vue-lazyload';
 // router
 import router from '@/router';
 // layouts
-import { Container, ProjectViewerPopup, PostViewerPopup } from '@/layouts';
+import {
+    Container,
+    ProjectViewerPopup,
+    PostViewerPopup,
+    NavigationBar,
+} from '@/layouts';
 // components
-import { NavigationBar, MaskedImage, CurvedText } from '@/components';
+import { MaskedImage } from '@/components';
 // Importing the global css file
 import '@/styles/global.css';
+
+import loadingImage from '@/assets/images/loader-320px.gif';
+import errorNotFoundImage from '@/assets/images/not-found.svg';
 
 const app = createApp(App);
 const pinia = createPinia();
@@ -18,6 +28,13 @@ const pinia = createPinia();
 app.use(router);
 // pinia import
 app.use(pinia);
+// lazyLoad import
+app.use(VueLazyload, {
+    preLoad: 1.3,
+    error: errorNotFoundImage,
+    loading: loadingImage,
+    attempt: 1,
+});
 
 // layout register
 app.component('AppContainer', Container);
@@ -27,6 +44,5 @@ app.component('PostViewerPopup', PostViewerPopup);
 // component register
 app.component('NavigationBar', NavigationBar);
 app.component('MaskedImage', MaskedImage);
-app.component('CurvedText', CurvedText);
 
 app.mount('#app');

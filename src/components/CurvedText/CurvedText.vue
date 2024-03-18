@@ -1,7 +1,23 @@
 <script setup lang="ts">
+import { ref, onMounted } from 'vue';
 defineProps<{
     text: string;
 }>();
+
+const popupViewWidth = ref<number>(0);
+
+onMounted(() => {
+    const popupScrollWrapperElement = document.getElementById(
+        'popup-scroll-wrapper'
+    ) as HTMLElement;
+    popupViewWidth.value =
+        popupScrollWrapperElement.getBoundingClientRect().width;
+
+    window.addEventListener('resize', () => {
+        popupViewWidth.value =
+            popupScrollWrapperElement.getBoundingClientRect().width;
+    });
+});
 </script>
 
 <style scoped>
@@ -15,20 +31,23 @@ text {
 
 textPath {
     text-align: center;
-    font-size: 10rem;
     font-weight: 300;
     letter-spacing: -0.25rem;
 }
 </style>
 
 <template>
-    <svg width="1040" height="520">
-        <path id="curve" d="M 0 520 C 0 520, 520 0, 1040 520" />
+    <svg :width="(popupViewWidth * 2) / 3" :height="popupViewWidth / 3">
+        <path
+            id="title-curve"
+            :d="`M 0 ${popupViewWidth / 3} C 0 ${popupViewWidth / 3}, ${popupViewWidth / 3} 0, ${(popupViewWidth * 2) / 3} ${popupViewWidth / 3}`"
+        />
         <text>
             <textPath
-                xlink:href="#curve"
+                xlink:href="#title-curve"
                 class="font-dancing-script"
-                startOffset="180"
+                startOffset="50%"
+                text-anchor="middle"
             >
                 {{ text }}
             </textPath>

@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
+import { storeToRefs } from 'pinia';
+import { useMediaQueriesStore } from '@/stores';
+import { COMPONENT_SCALE_RATIO } from '@/constants';
 
 defineProps<{
     sectionId: string;
@@ -30,30 +33,34 @@ onMounted(() => {
         );
     }, 750);
 });
+
+const mediaQueriesStore = useMediaQueriesStore();
+const { currentScreen } = storeToRefs(mediaQueriesStore);
 </script>
 
 <style scoped>
 .intro-section {
     position: relative;
     min-height: 100vh;
+    display: grid;
 }
 .intro-content-title {
     position: relative;
     background-color: var(--color-red);
-    padding: 7.5rem 5rem 2.5rem 5rem;
     text-align: center;
     line-height: 1;
-    margin-bottom: 4rem;
+    margin-bottom: calc(var(--bubble-size) / 2);
     color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
-    h4 {
-        font-weight: 300;
+    h5 {
         animation: fade-in-slow 1.5s ease-in;
     }
 
     h1 {
-        font-size: 15rem;
-        font-weight: 300;
         font-style: italic;
         animation: fade-in-slow 1.5s ease-in;
     }
@@ -73,15 +80,15 @@ onMounted(() => {
     content: '';
     position: absolute;
     left: 0;
-    bottom: -4rem;
+    bottom: calc(0px - var(--bubble-size) / 2);
     right: 0;
     background-repeat: repeat;
-    height: 4rem;
-    background-size: 8rem 8rem;
+    height: calc(var(--bubble-size) / 2);
+    background-size: var(--bubble-size) var(--bubble-size);
     background-image: radial-gradient(
-        circle at 4rem 0rem,
-        var(--color-red) 4rem,
-        transparent 4rem
+        circle at calc(var(--bubble-size) / 2) 0rem,
+        var(--color-red) calc(var(--bubble-size) / 2),
+        transparent calc(var(--bubble-size) / 2)
     );
 }
 
@@ -97,7 +104,7 @@ onMounted(() => {
 
 .intro-content-images--leave-ani {
     animation: fade-out linear forwards;
-    animation-timeline: view(30rem);
+    animation-timeline: view();
     animation-range: exit;
 }
 
@@ -130,49 +137,74 @@ onMounted(() => {
     <div v-bind:id="sectionId" class="intro-section">
         <div
             class="intro-content-title intro-content-title--enter-ani"
+            :style="{
+                paddingTop: `${7.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+            }"
             id="intro-content-title"
         >
-            <h4>Welcome to</h4>
+            <h5>Welcome to</h5>
             <h1 class="font-dancing-script">Hồng Nhung's</h1>
-            <h4>Portfolio</h4>
+            <h5>Portfolio</h5>
         </div>
         <div
             class="intro-content-images intro-content-images--enter-ani"
             id="intro-content-images"
         >
             <div class="images-group">
-                <MaskedImage
-                    class="images-group__image-main"
-                    image-src="/assets/images/image-1.jpg"
-                    alt="image-main"
-                    :height-rem="40"
-                    :mask-number="2"
-                    :with-border="false"
-                />
-                <MaskedImage
+                <div class="images-group__image-main">
+                    <MaskedImage
+                        image-src="/assets/images/image-1.jpg"
+                        alt="image-main"
+                        :height-rem="40"
+                        :mask-number="2"
+                        :with-border="false"
+                    />
+                </div>
+                <div
                     class="images-group__image-sub-1"
-                    image-src="/assets/images/image-4.jpg"
-                    alt="image sub"
-                    :height-rem="15"
-                    :mask-number="4"
-                    :with-border="false"
-                />
-                <MaskedImage
+                    :style="{
+                        top: `${7.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                        left: `${-10 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                    }"
+                >
+                    <MaskedImage
+                        image-src="/assets/images/image-4.jpg"
+                        alt="image sub"
+                        :height-rem="15"
+                        :mask-number="4"
+                        :with-border="false"
+                    />
+                </div>
+                <div
                     class="images-group__image-sub-2"
-                    image-src="/assets/images/image-5.jpg"
-                    alt="image sub"
-                    :height-rem="15"
-                    :mask-number="5"
-                    :with-border="false"
-                />
-                <MaskedImage
+                    :style="{
+                        bottom: `${-2.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                        right: `${-8 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                    }"
+                >
+                    <MaskedImage
+                        image-src="/assets/images/image-5.jpg"
+                        alt="image sub"
+                        :height-rem="15"
+                        :mask-number="5"
+                        :with-border="false"
+                    />
+                </div>
+                <div
                     class="images-group__image-sub-3"
-                    image-src="/assets/images/image-2.jpg"
-                    alt="image sub"
-                    :height-rem="7.5"
-                    :mask-number="3"
-                    :with-border="false"
-                />
+                    :style="{
+                        top: `${3 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                        right: `${-7 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                    }"
+                >
+                    <MaskedImage
+                        image-src="/assets/images/image-2.jpg"
+                        alt="image sub"
+                        :height-rem="7.5"
+                        :mask-number="3"
+                        :with-border="false"
+                    />
+                </div>
             </div>
         </div>
     </div>
