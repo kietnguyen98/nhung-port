@@ -150,4 +150,3 @@ watch(
         </div>
     </div>
 </template>
-@/utilities/wheelEvent

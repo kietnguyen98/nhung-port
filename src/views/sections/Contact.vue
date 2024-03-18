@@ -20,6 +20,7 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    overflow: hidden;
 }
 
 .contact-content-wrapper--enter-ani {
@@ -69,29 +70,6 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
             font-style: italic;
         }
     }
-
-    .contact-content-text__title-group--enter-ani {
-        opacity: 0;
-        transform: scale(0);
-        /* animation */
-        animation: fade-in-slow linear forwards;
-        animation-timeline: view();
-        animation-range: entry;
-    }
-
-    .contact-content-text__info-group {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .contact-content-text__info-group--enter-ani {
-        opacity: 0;
-        /* animation */
-        animation: fade-in-slow linear forwards;
-        animation-timeline: view(2.5rem);
-        animation-range: entry;
-    }
 }
 
 .contact-content-images {
@@ -106,28 +84,6 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
         display: flex;
         justify-content: center;
         align-items: flex-end;
-    }
-
-    .contact-content-images-top__image--enter-ani {
-        transform: perspective(20rem) scale(0) rotateY(-90deg);
-        opacity: 0;
-        /* animation */
-        animation:
-            flip-in-y linear forwards,
-            flip-out-y linear forwards;
-        animation-timeline: view(), view();
-        animation-range: entry, exit;
-    }
-
-    .contact-content-images-bottom__image--enter-ani {
-        transform: perspective(20rem) scale(0) rotateY(-90deg);
-        opacity: 0;
-        /* animation */
-        animation:
-            flip-in-y linear forwards,
-            flip-out-y linear forwards;
-        animation-timeline: view(), view();
-        animation-range: entry, exit;
     }
 }
 </style>
@@ -146,13 +102,19 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
             >
                 <div class="contact-content-text">
                     <div
-                        class="contact-content-text__title-group contact-content-text__title-group--enter-ani"
+                        class="contact-content-text__title-group"
+                        :style="{
+                            transform: `translateX(${10 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem)`,
+                        }"
                     >
                         <h1 class="fs-big font-dancing-script">thank</h1>
                         <h1 class="fs-big font-dancing-script">you !</h1>
                     </div>
                     <div
                         class="contact-content-text__info-group contact-content-text__info-group--enter-ani"
+                        :style="{
+                            transform: `translateX(${5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem)`,
+                        }"
                     >
                         <h6>
                             <strong>Contact me at:</strong>
@@ -165,14 +127,13 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
                     <div class="contact-content-images__row">
                         <div
                             :style="{
-                                transform: `translateY(${15 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem) rotateZ(-15deg)`,
+                                transform: `translateY(${20 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem) rotateZ(-15deg)`,
                             }"
                         >
                             <MaskedImage
                                 image-src="/assets/images/image-4.jpg"
-                                class="contact-content-images-top__image--enter-ani"
                                 alt="masked-image-4"
-                                :height-rem="30"
+                                :height-rem="25"
                                 :mask-number="3"
                                 :with-border="true"
                                 border-color="#ff6868"
@@ -181,14 +142,13 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
 
                         <div
                             :style="{
-                                transform: `translateY(${5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem)`,
+                                transform: `translateY(${10 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem)`,
                             }"
                         >
                             <MaskedImage
                                 image-src="/assets/images/image-3.jpg"
-                                class="contact-content-images-top__image--enter-ani"
                                 alt="masked-image-3"
-                                :height-rem="35"
+                                :height-rem="40"
                                 :mask-number="5"
                                 :with-border="true"
                                 border-color="#ed5ab3"
@@ -198,27 +158,25 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
                     <div class="contact-content-images__row">
                         <div
                             :style="{
-                                transform: `translateY(${-2.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem) translateX(${0 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem)`,
+                                transform: `translateY(${1.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem)  rotateZ(15deg)`,
                             }"
                         >
                             <MaskedImage
                                 image-src="/assets/images/image-2.jpg"
-                                class="contact-content-images-bottom__image--enter-ani"
                                 alt="masked-image-5"
-                                :height-rem="25"
-                                :mask-number="4"
+                                :height-rem="22.5"
+                                :mask-number="6"
                                 :with-border="true"
                                 border-color="#a1eebd"
                             />
                         </div>
                         <div
                             :style="{
-                                transform: `translateY(${-4 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem) translateX(${2.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem) rotateZ(-15deg)`,
+                                transform: `translateY(${1.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem) rotateZ(-15deg)`,
                             }"
                         >
                             <MaskedImage
                                 image-src="/assets/images/image-1.jpg"
-                                class="contact-content-images-bottom__image--enter-ani"
                                 alt="masked-image-4"
                                 :height-rem="25"
                                 :mask-number="2"
@@ -228,14 +186,13 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
                         </div>
                         <div
                             :style="{
-                                transform: `translateY(${-2.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem) translateX(${2.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem) rotateZ(10deg)`,
+                                transform: `translateY(${2.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem) translateX(${-1.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem) rotateZ(10deg)`,
                             }"
                         >
                             <MaskedImage
                                 image-src="/assets/images/image-5.jpg"
-                                class="contact-content-images-bottom__image--enter-ani"
                                 alt="masked-image-5"
-                                :height-rem="45"
+                                :height-rem="40"
                                 :mask-number="1"
                                 :with-border="true"
                                 border-color="#a1eebd"

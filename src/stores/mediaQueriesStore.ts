@@ -16,16 +16,16 @@ export const useMediaQueriesStore = defineStore('mediaQueries', {
             Object.values(SCREEN_VALUES).forEach((value) => {
                 if (
                     window.innerWidth >= value.queries.minWidth &&
-                    window.innerWidth < value.queries.maxWidth
+                    window.innerWidth <= value.queries.maxWidth
                 )
                     this.setScreen(value);
             });
-            // run once when on first render and the document.window are ready
+            // run on every resize event
             window.addEventListener('resize', () => {
                 Object.values(SCREEN_VALUES).forEach((value) => {
                     if (
                         window.innerWidth >= value.queries.minWidth &&
-                        window.innerWidth < value.queries.maxWidth
+                        window.innerWidth <= value.queries.maxWidth
                     )
                         this.setScreen(value);
                 });

@@ -25,7 +25,7 @@ export const SCREEN_VALUES: {
         },
     },
     L: {
-        label: 'XL',
+        label: 'L',
         queries: {
             minWidth: 1920,
             minHeight: 1920 * SCREEN_DIMENSIONS_RATIO,
@@ -34,7 +34,7 @@ export const SCREEN_VALUES: {
         },
     },
     M: {
-        label: 'L',
+        label: 'M',
         queries: {
             minWidth: 1600,
             minHeight: 1600 * SCREEN_DIMENSIONS_RATIO,
@@ -43,7 +43,7 @@ export const SCREEN_VALUES: {
         },
     },
     S: {
-        label: 'M',
+        label: 'S',
         queries: {
             minWidth: 1280,
             minHeight: 1280 * SCREEN_DIMENSIONS_RATIO,
@@ -52,7 +52,7 @@ export const SCREEN_VALUES: {
         },
     },
     XS: {
-        label: 'S',
+        label: 'XS',
         queries: {
             minWidth: 1024,
             minHeight: 1024 * SCREEN_DIMENSIONS_RATIO,

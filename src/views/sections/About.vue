@@ -146,8 +146,8 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
             <div
                 class="about-content__text-wrapper about-content__text-wrapper--enter-leave-ani"
                 :style="{
-                    width: `${80 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                    height: `${80 * CONTENT_WRAPPER_BACKGROUND_IMAGE_HEIGHT_RATIO * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                    width: `${100 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                    height: `${100 * CONTENT_WRAPPER_BACKGROUND_IMAGE_HEIGHT_RATIO * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
                 }"
             >
                 <h6>

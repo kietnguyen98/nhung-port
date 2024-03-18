@@ -66,7 +66,7 @@ onMounted(() => {
                 }
             );
         }
-    }, 1500);
+    }, 1500); // 1500ms = time for intro section enter animation to finish
 
     // get current scrolled section
     const sectionList: Array<{
@@ -81,11 +81,6 @@ onMounted(() => {
             element: element,
         };
     });
-
-    const lastSection = document.getElementById(
-        `${sections.value[sections.value.length - 1].idName}-section`
-    ) as HTMLElement;
-    const fullPageHeight = lastSection.getBoundingClientRect().bottom;
 
     containerScrollWrapperElement.value.addEventListener('scroll', () => {
         if (containerScrollWrapperElement.value) {
@@ -120,12 +115,14 @@ onMounted(() => {
                 isOnTop.value = false;
             }
 
+            const fullPageHeight =
+                containerScrollWrapperElement.value.scrollHeight;
+
             // check progress on scrolling
             progress.value =
                 (containerScrollWrapperElement.value.scrollTop /
                     (fullPageHeight -
-                        containerScrollWrapperElement.value.getBoundingClientRect()
-                            .height)) *
+                        containerScrollWrapperElement.value.clientHeight)) *
                 100;
         }
     });
@@ -190,4 +187,3 @@ watch(
         </div>
     </div>
 </template>
-@/utilities/wheelEvent

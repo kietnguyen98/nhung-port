@@ -49,7 +49,7 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
     background-color: var(--color-red);
     text-align: center;
     line-height: 1;
-    margin-bottom: 4rem;
+    margin-bottom: calc(var(--bubble-size) / 2);
     color: white;
     display: flex;
     flex-direction: column;
@@ -139,7 +139,6 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
             class="intro-content-title intro-content-title--enter-ani"
             :style="{
                 paddingTop: `${7.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                paddingBottom: `${2.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
             }"
             id="intro-content-title"
         >
