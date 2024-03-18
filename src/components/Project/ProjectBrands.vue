@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import { useControlPopupStore } from '@/stores';
+import { storeToRefs } from 'pinia';
+import { useControlPopupStore, useMediaQueriesStore } from '@/stores';
+import { COMPONENT_SCALE_RATIO } from '@/constants';
 import { TBrand } from '@/types';
 defineProps<{
     listBrands: Array<TBrand>;
@@ -12,6 +14,9 @@ const openPostViewer = (brandData: TBrand) => {
     setIsPostViewerOpened(true);
     setBrandToView(brandData);
 };
+
+const mediaQueriesStore = useMediaQueriesStore();
+const { currentScreen } = storeToRefs(mediaQueriesStore);
 </script>
 
 <style scoped>
@@ -37,9 +42,7 @@ const openPostViewer = (brandData: TBrand) => {
 }
 
 .brand-card {
-    height: 12.5rem;
-    width: 12.5rem;
-    padding: 2rem;
+    padding: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -73,6 +76,10 @@ const openPostViewer = (brandData: TBrand) => {
             <div
                 class="brand-card"
                 v-for="brand in listBrands"
+                :style="{
+                    height: `${15 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                    width: `${15 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                }"
                 @:click="openPostViewer(brand)"
             >
                 <img
