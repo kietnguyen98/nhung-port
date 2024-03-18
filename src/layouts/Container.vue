@@ -68,7 +68,7 @@ onMounted(() => {
         }
     }, 1500); // 1500ms = time for intro section enter animation to finish
 
-    // get current scrolled section
+    // get sections List
     const sectionList: Array<{
         idName: string;
         element: HTMLElement;
@@ -84,13 +84,15 @@ onMounted(() => {
 
     containerScrollWrapperElement.value.addEventListener('scroll', () => {
         if (containerScrollWrapperElement.value) {
-            for (let i = 0; i < sectionList.length - 1; i++) {
-                let currentSectionOffsetTop = sectionList[i]?.element.offsetTop;
-                let nextSectionOffsetTop =
+            for (let i = 0; i <= sectionList.length - 1; i++) {
+                const currentSectionOffsetTop =
+                    sectionList[i]?.element.offsetTop;
+                const nextSectionOffsetTop =
                     sectionList[i + 1]?.element.offsetTop ??
                     MAXIMUM_PAGE_LENGTH;
-                let wrapperScrollTop = containerScrollWrapperElement.value
+                const wrapperScrollTop = containerScrollWrapperElement.value
                     .scrollTop as number;
+
                 if (
                     wrapperScrollTop >= currentSectionOffsetTop &&
                     wrapperScrollTop < nextSectionOffsetTop
@@ -98,14 +100,6 @@ onMounted(() => {
                     currentActive.value = sectionList[i].idName;
                 }
             }
-            sectionList.forEach((section) => {
-                if (
-                    containerScrollWrapperElement.value?.scrollTop ===
-                    section.element.offsetTop
-                ) {
-                    currentActive.value = section.idName;
-                }
-            });
 
             if (containerScrollWrapperElement.value.scrollTop === 0) {
                 setTimeout(() => {
