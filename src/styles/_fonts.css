@@ -1,6 +1,7 @@
 @font-face {
     font-family: 'DancingScript';
-    src: url('@/assets/fonts/DancingScript/DancingScript-Regular.ttf') format('truetype');
+    src: url('@/assets/fonts/DancingScript/DancingScript-Regular.ttf')
+        format('truetype');
 }
 
 @font-face {
@@ -15,5 +16,23 @@
 
 @font-face {
     font-family: 'Bodoni';
-    src: url('@/assets/fonts/Bodoni/bodoni-72-oldstyle-book.ttf') format('truetype');
+    src: url('@/assets/fonts/Bodoni/bodoni-72-oldstyle-book.ttf')
+        format('truetype');
+}
+
+/* custom class with styles */
+.font-pacifico {
+    font-family: Pacifico;
+}
+
+.font-dancing-script {
+    font-family: DancingScript;
+}
+
+.font-lora {
+    font-family: Lora;
+}
+
+.font-bodoni {
+    font-family: Bodoni;
 }

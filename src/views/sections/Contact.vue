@@ -14,6 +14,8 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
 <style scoped>
 .contact-section {
     min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
 }
 
 .contact-content-wrapper {

@@ -10,8 +10,10 @@ defineProps<{
 
 <style scoped>
 .post {
-    width: fit-content;
-    height: fit-content;
+    height: calc(100vh - 5rem * 2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .post--enter--leave-ani {
