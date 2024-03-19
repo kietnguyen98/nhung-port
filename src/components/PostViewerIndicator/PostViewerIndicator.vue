@@ -100,10 +100,8 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
             >
                 <div class="section-popover">
                     <div class="section-popover__title">
-                        <span v-if="progress < 100">You are here !</span>
-                        <span v-if="progress === 100"
-                            >End of photos list !</span
-                        >
+                        <span v-if="progress < 100">You are here!</span>
+                        <span v-if="progress === 100">End of list!</span>
                     </div>
                 </div>
             </div>
