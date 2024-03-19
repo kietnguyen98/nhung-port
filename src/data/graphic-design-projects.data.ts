@@ -31,10 +31,6 @@ const _50MegumiBrandData: TBrand = {
         },
         {
             type: POST_TYPE_VALUES.PHOTO,
-            sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1wPnqDlMXPmfO9IskuoBFlK1pHkbFZV31`,
-        },
-        {
-            type: POST_TYPE_VALUES.PHOTO,
             sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1iZYn9TK3K9IlS9UvCVwAR56-u1QcTiw6`,
         },
         {

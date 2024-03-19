@@ -1,16 +1,31 @@
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue';
 import { storeToRefs } from 'pinia';
-import { useControlPopupStore } from '@/stores';
+import {
+    useControlPopupStore,
+    useMediaQueriesStore,
+    useViewScrollingStore,
+} from '@/stores';
 import { animateWheelEvent } from '@/utilities';
-import { PostViewer } from '@/components';
+import { PostViewer, PostViewerIndicator } from '@/components';
+import { COMPONENT_SCALE_RATIO } from '@/constants';
 
-const store = useControlPopupStore();
-const { isPostViewerOpened, brandToView } = storeToRefs(store);
-const { setIsPostViewerOpened, setBrandToView } = store;
+// control popup
+const popupStore = useControlPopupStore();
+const { isPostViewerOpened, brandToView } = storeToRefs(popupStore);
+const { setIsPostViewerOpened, setBrandToView } = popupStore;
+
+// view scrolling progress
+const viewScrollingStore = useViewScrollingStore();
+const { setViewProgress } = viewScrollingStore;
+
+// media query for responsive
+const mediaQueriesStore = useMediaQueriesStore();
+const { currentScreen } = storeToRefs(mediaQueriesStore);
 
 const postViewerScrollWrapperElement = ref<HTMLElement>();
 const handlePostViewerWheelEvent = ref<(e: WheelEvent) => void>();
+const handlePostViewerScrollEvent = ref<(e?: Event) => void>();
 
 onMounted(() => {
     postViewerScrollWrapperElement.value = document.getElementById(
@@ -23,6 +38,25 @@ onMounted(() => {
             scrollWrapperElement:
                 postViewerScrollWrapperElement.value as HTMLElement,
         });
+
+    handlePostViewerScrollEvent.value = () => {
+        if (postViewerScrollWrapperElement.value) {
+            const fullScrollWrapperHeight =
+                postViewerScrollWrapperElement.value.scrollHeight;
+            const currentScrollOffsetTop =
+                postViewerScrollWrapperElement.value.scrollTop;
+            const currentScreenViewHeight =
+                postViewerScrollWrapperElement.value.clientHeight;
+
+            setViewProgress(
+                Math.ceil(
+                    (currentScrollOffsetTop /
+                        (fullScrollWrapperHeight - currentScreenViewHeight)) *
+                        100
+                )
+            );
+        }
+    };
 });
 
 watch(
@@ -30,19 +64,41 @@ watch(
     (curValue) => {
         if (
             handlePostViewerWheelEvent.value &&
-            postViewerScrollWrapperElement.value
+            postViewerScrollWrapperElement.value &&
+            handlePostViewerScrollEvent.value
         )
             if (curValue) {
+                // popup opened
                 postViewerScrollWrapperElement.value.addEventListener(
                     'wheel',
                     handlePostViewerWheelEvent.value,
                     { passive: false }
                 );
+
+                postViewerScrollWrapperElement.value.addEventListener(
+                    'scroll',
+                    handlePostViewerScrollEvent.value,
+                    {
+                        passive: false,
+                    }
+                );
             } else {
+                // popup closed
                 postViewerScrollWrapperElement.value.removeEventListener(
                     'wheel',
                     handlePostViewerWheelEvent.value
                 );
+
+                postViewerScrollWrapperElement.value.removeEventListener(
+                    'scroll',
+                    handlePostViewerScrollEvent.value
+                );
+
+                // reset viewer progress to 0
+                setTimeout(() => {
+                    // wait for popup totally closed
+                    setViewProgress(0);
+                }, 1000);
             }
     }
 );
@@ -63,8 +119,6 @@ const handleClosePostViewer = () => {
     z-index: 999;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
 }
 
 .viewer-popup--opened {
@@ -81,34 +135,22 @@ const handleClosePostViewer = () => {
     visibility: hidden;
 }
 
-.content-wrapper {
-    width: 100%;
-    height: 100vh;
+.viewer-content {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
     overflow-y: scroll;
     overflow-x: hidden;
     /* hiding scroll bar */
     -ms-overflow-style: none; /* Internet Explorer 10+ */
     scrollbar-width: none; /* Firefox */
-}
 
-.content-wrapper::-webkit-scrollbar {
-    display: none; /* Safari and Chrome */
-}
-
-.content {
-    padding: 10rem;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 4rem;
-
-    .content__close-button {
+    .viewer-content__close-button {
         position: fixed;
         top: 2rem;
         right: 3rem;
-        z-index: 9999;
+        z-index: 1;
         outline: none;
         border: none;
         font-size: 2rem;
@@ -126,22 +168,35 @@ const handleClosePostViewer = () => {
             rgba(0, 0, 0, 0.07) 0px 32px 64px;
     }
 
-    .content__close-button--appeared {
+    .viewer-content__close__close-button--appeared {
         transform: rotateZ(0deg) scale(1);
         transition: transform 0.5s 0.5s linear;
     }
 
-    .content__close-button--disappeared {
+    .viewer-content__close-button--disappeared {
         transform: rotateZ(-360deg) scale(0);
         transition: transform 0.5s linear;
     }
+
+    .viewer-content__viewer-indicator {
+        position: fixed;
+        bottom: 1rem;
+        z-index: 1;
+    }
+
+    .viewer-content__viewer-indicator--appeared {
+        opacity: 1;
+        transition: opacity 0.5s 0.5s linear;
+    }
+
+    .viewer-content__viewer-indicator--disappeared {
+        opacity: 0;
+        transition: opacity 0.5s linear;
+    }
 }
 
-.posts-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.viewer-content::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
 }
 
 .posts-wrapper--appeared {
@@ -152,6 +207,14 @@ const handleClosePostViewer = () => {
 .posts-wrapper--disappeared {
     opacity: 0;
     transition: opacity 0.5s linear;
+}
+
+.empty-post {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 </style>
 
@@ -164,37 +227,52 @@ const handleClosePostViewer = () => {
                 : 'viewer-popup--closed',
         ]"
     >
-        <div class="content-wrapper" id="post-viewer-scroll-wrapper">
-            <div class="content">
-                <button
-                    :class="[
-                        'content__close-button',
-                        isPostViewerOpened
-                            ? 'content__close-button--appeared'
-                            : 'content__close-button--disappeared',
-                    ]"
-                    @click="handleClosePostViewer"
-                >
-                    X
-                </button>
-                <div
-                    :class="[
-                        'posts-wrapper',
-                        isPostViewerOpened
-                            ? 'posts-wrapper--appeared'
-                            : 'posts-wrapper--disappeared',
-                    ]"
-                >
-                    <PostViewer
-                        v-if="brandToView?.posts.length"
-                        v-for="post in brandToView.posts"
-                        :post="post"
-                    />
-                    <h1 v-if="!brandToView?.posts.length">
-                        There is nothing here
-                    </h1>
-                </div>
+        <div
+            class="viewer-content"
+            :style="{
+                padding: `${5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                height: `calc(100vh - ${5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem * 2)`,
+                width: `calc(100vw - ${5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem * 2)`,
+            }"
+            id="post-viewer-scroll-wrapper"
+        >
+            <button
+                :class="[
+                    'viewer-content__close-button',
+                    isPostViewerOpened
+                        ? 'viewer-content__close-button--appeared'
+                        : 'viewer-content__close-button--disappeared',
+                ]"
+                @click="handleClosePostViewer"
+            >
+                X
+            </button>
+            <div v-if="!brandToView?.posts.length" class="empty-post">
+                <h1>There is nothing here !</h1>
             </div>
+            <div
+                :class="[
+                    'posts-wrapper',
+                    isPostViewerOpened
+                        ? 'posts-wrapper--appeared'
+                        : 'posts-wrapper--disappeared',
+                ]"
+            >
+                <PostViewer
+                    v-if="brandToView?.posts.length"
+                    v-for="post in brandToView.posts"
+                    :post="post"
+                />
+            </div>
+            <PostViewerIndicator
+                :class="[
+                    'viewer-content__viewer-indicator',
+                    isPostViewerOpened
+                        ? 'viewer-content__viewer-indicator--appeared'
+                        : 'viewer-content__viewer-indicator--disappeared',
+                ]"
+                :posts="brandToView?.posts"
+            />
         </div>
     </div>
 </template>
