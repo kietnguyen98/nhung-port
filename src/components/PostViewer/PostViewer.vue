@@ -8,6 +8,28 @@ defineProps<{
 }>();
 </script>
 
+<template>
+    <div class="post post--enter--leave-ani">
+        <img
+            v-if="post.type === POST_TYPE_VALUES.PHOTO"
+            v-lazy="post.sourceUrl"
+            class="post__image"
+        />
+        <div
+            v-if="post.type === POST_TYPE_VALUES.VIDEO"
+            class="post__video-wrapper"
+        >
+            <LoadingIndicator></LoadingIndicator>
+            <iframe
+                :src="post.sourceUrl"
+                class="post__video"
+                allow="autoplay; fullscreen"
+                frameborder="0"
+            ></iframe>
+        </div>
+    </div>
+</template>
+
 <style scoped>
 .post {
     height: calc(100vh - 5rem * 2);
@@ -51,25 +73,3 @@ defineProps<{
     border-radius: 1rem;
 }
 </style>
-
-<template>
-    <div class="post post--enter--leave-ani">
-        <img
-            v-if="post.type === POST_TYPE_VALUES.PHOTO"
-            class="post__image"
-            v-lazy="post.sourceUrl"
-        />
-        <div
-            v-if="post.type === POST_TYPE_VALUES.VIDEO"
-            class="post__video-wrapper"
-        >
-            <LoadingIndicator></LoadingIndicator>
-            <iframe
-                :src="post.sourceUrl"
-                class="post__video"
-                allow="autoplay; fullscreen"
-                frameborder="0"
-            ></iframe>
-        </div>
-    </div>
-</template>

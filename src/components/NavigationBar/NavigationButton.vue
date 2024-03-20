@@ -64,6 +64,24 @@ onMounted(() => {
 });
 </script>
 
+<template>
+    <button
+        :class="[
+            'navigation-button',
+            isScrolled
+                ? 'navigation-button--scrolled'
+                : 'navigation-button--on-top',
+            isActive &&
+                (isScrolled
+                    ? 'navigation-button--scrolled--activated'
+                    : 'navigation-button--on-top--activated'),
+        ]"
+        @:click="navigateToTarget"
+    >
+        <p class="navigation-button__name font-pacifico">{{ name }}</p>
+    </button>
+</template>
+
 <style scoped>
 .navigation-button {
     outline: none;
@@ -117,21 +135,3 @@ onMounted(() => {
     padding: 0.25rem 1rem;
 }
 </style>
-
-<template>
-    <button
-        v-bind:class="[
-            'navigation-button',
-            isScrolled
-                ? 'navigation-button--scrolled'
-                : 'navigation-button--on-top',
-            isActive &&
-                (isScrolled
-                    ? 'navigation-button--scrolled--activated'
-                    : 'navigation-button--on-top--activated'),
-        ]"
-        @:click="navigateToTarget"
-    >
-        <p class="navigation-button__name font-pacifico">{{ name }}</p>
-    </button>
-</template>

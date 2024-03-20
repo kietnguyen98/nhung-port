@@ -18,9 +18,58 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
 
 const { isScrolling } = useScrollingDebounce({
     scrollWrapperElement: props.scrollWrapperElement,
-    debounceTime: 1000,
+    debounceTime: 500,
 });
 </script>
+
+<template>
+    <div
+        :class="[
+            'indicator-container',
+            isScrolling
+                ? 'indicator-container--appeared'
+                : 'indicator-container--disappeared',
+        ]"
+    >
+        <div v-if="posts && posts.length > 0" class="indicator">
+            <div
+                class="view-section"
+                :style="{
+                    height: `calc(${6 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem)`,
+                    width: `calc(${6 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem)`,
+                    left: `calc(1rem - 0.125rem + (100% - ${6 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem - 1rem * 2) * ${progress} / 100)`,
+                }"
+            >
+                <div class="section-popover">
+                    <div class="section-popover__title">
+                        <span v-if="progress < 100">You are here!</span>
+                        <span v-if="progress === 100">End of list!</span>
+                    </div>
+                </div>
+            </div>
+            <div class="posts-container">
+                <div
+                    v-for="post in posts"
+                    :key="post.sourceUrl"
+                    class="post-wrapper"
+                    :style="{
+                        height: `calc(${6 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem)`,
+                        width: `calc(${6 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem)`,
+                    }"
+                >
+                    <img
+                        v-lazy="
+                            post.type === POST_TYPE_VALUES.PHOTO
+                                ? post.sourceUrl
+                                : post.thumbnailUrl
+                        "
+                        class="post-wrapper__post_image"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
 
 <style scoped>
 .indicator-container {
@@ -114,52 +163,3 @@ const { isScrolling } = useScrollingDebounce({
     }
 }
 </style>
-
-<template>
-    <div
-        :class="[
-            'indicator-container',
-            isScrolling
-                ? 'indicator-container--appeared'
-                : 'indicator-container--disappeared',
-        ]"
-    >
-        <div class="indicator" v-if="posts && posts.length > 0">
-            <div
-                class="view-section"
-                :style="{
-                    height: `calc(${6 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem)`,
-                    width: `calc(${6 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem)`,
-
-                    left: `calc(1rem - 0.125rem + (100% - ${6 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem - 1rem * 2) * ${progress} / 100)`,
-                }"
-            >
-                <div class="section-popover">
-                    <div class="section-popover__title">
-                        <span v-if="progress < 100">You are here!</span>
-                        <span v-if="progress === 100">End of list!</span>
-                    </div>
-                </div>
-            </div>
-            <div class="posts-container">
-                <div
-                    v-for="post in posts"
-                    class="post-wrapper"
-                    :style="{
-                        height: `calc(${6 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem)`,
-                        width: `calc(${6 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem)`,
-                    }"
-                >
-                    <img
-                        class="post-wrapper__post_image"
-                        v-lazy="
-                            post.type === POST_TYPE_VALUES.PHOTO
-                                ? post.sourceUrl
-                                : post.thumbnailUrl
-                        "
-                    />
-                </div>
-            </div>
-        </div>
-    </div>
-</template>

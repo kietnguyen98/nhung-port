@@ -11,87 +11,8 @@ const mediaQueriesStore = useMediaQueriesStore();
 const { currentScreen } = storeToRefs(mediaQueriesStore);
 </script>
 
-<style scoped>
-.contact-section {
-    min-height: 100vh;
-    display: flex;
-    align-items: flex-end;
-}
-
-.contact-content-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    overflow: hidden;
-}
-
-.contact-content-wrapper--enter-ani {
-    opacity: 0;
-    animation: fade-in-only linear forwards;
-    animation-timeline: view();
-    animation-range: entry;
-}
-
-.contact-content::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: calc(0rem - var(--bubble-size) / 2);
-    right: 0;
-    background-repeat: repeat;
-    height: var(--bubble-size);
-    background-size: var(--bubble-size) var(--bubble-size);
-    background-image: radial-gradient(
-        circle at calc(var(--bubble-size) / 2) calc(var(--bubble-size) / 2),
-        var(--color-blue) calc(var(--bubble-size) / 2),
-        transparent calc(var(--bubble-size) / 2)
-    );
-}
-
-.contact-content {
-    position: relative;
-    background-color: var(--color-blue);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.contact-content-text {
-    flex: 1;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    color: var(--color-dark);
-
-    .contact-content-text__title-group {
-        h1 {
-            line-height: 0.9;
-            text-transform: capitalize;
-            font-style: italic;
-        }
-    }
-}
-
-.contact-content-images {
-    flex: 1;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-
-    .contact-content-images__row {
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-    }
-}
-</style>
-
 <template>
-    <div v-bind:id="sectionId" class="contact-section">
+    <div :id="sectionId" class="contact-section">
         <div class="contact-content-wrapper contact-content-wrapper--enter-ani">
             <div
                 class="contact-content"
@@ -206,3 +127,82 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
         </div>
     </div>
 </template>
+
+<style scoped>
+.contact-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-end;
+}
+
+.contact-content-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    overflow: hidden;
+}
+
+.contact-content-wrapper--enter-ani {
+    opacity: 0;
+    animation: fade-in-only linear forwards;
+    animation-timeline: view();
+    animation-range: entry;
+}
+
+.contact-content::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: calc(0rem - var(--bubble-size) / 2);
+    right: 0;
+    background-repeat: repeat;
+    height: var(--bubble-size);
+    background-size: var(--bubble-size) var(--bubble-size);
+    background-image: radial-gradient(
+        circle at calc(var(--bubble-size) / 2) calc(var(--bubble-size) / 2),
+        var(--color-blue) calc(var(--bubble-size) / 2),
+        transparent calc(var(--bubble-size) / 2)
+    );
+}
+
+.contact-content {
+    position: relative;
+    background-color: var(--color-blue);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-content-text {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--color-dark);
+
+    .contact-content-text__title-group {
+        h1 {
+            line-height: 0.9;
+            text-transform: capitalize;
+            font-style: italic;
+        }
+    }
+}
+
+.contact-content-images {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+
+    .contact-content-images__row {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+    }
+}
+</style>

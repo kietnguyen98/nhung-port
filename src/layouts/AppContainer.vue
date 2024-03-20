@@ -66,7 +66,8 @@ onMounted(() => {
                 }
             );
         }
-    }, 1500); // 1500ms = time for intro section enter animation to finish
+        // 1500ms = time for intro section enter animation to finish
+    }, 1500);
 
     // get sections List
     const sectionList: Array<{
@@ -148,6 +149,20 @@ watch(
 );
 </script>
 
+<template>
+    <div class="container">
+        <NavigationBar
+            :is-on-top="isOnTop"
+            :sections="sections"
+            :current-active="currentActive"
+        />
+        <CircleProgressBar :progress-value="progress" />
+        <div id="scroll-wrapper" class="container__scroll-wrapper">
+            <slot></slot>
+        </div>
+    </div>
+</template>
+
 <style scoped>
 .container {
     position: relative;
@@ -167,17 +182,3 @@ watch(
     }
 }
 </style>
-
-<template>
-    <div class="container">
-        <NavigationBar
-            :isOnTop="isOnTop"
-            :sections="sections"
-            :currentActive="currentActive"
-        />
-        <CircleProgressBar :progressValue="progress" />
-        <div id="scroll-wrapper" class="container__scroll-wrapper">
-            <slot></slot>
-        </div>
-    </div>
-</template>

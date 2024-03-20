@@ -38,6 +38,83 @@ const mediaQueriesStore = useMediaQueriesStore();
 const { currentScreen } = storeToRefs(mediaQueriesStore);
 </script>
 
+<template>
+    <div :id="sectionId" class="intro-section">
+        <div
+            id="intro-content-title"
+            class="intro-content-title intro-content-title--enter-ani"
+            :style="{
+                paddingTop: `${7.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+            }"
+        >
+            <h5>Welcome to</h5>
+            <h1 class="font-dancing-script">Hồng Nhung's</h1>
+            <h5>Portfolio</h5>
+        </div>
+        <div
+            id="intro-content-images"
+            class="intro-content-images intro-content-images--enter-ani"
+        >
+            <div class="images-group">
+                <div class="images-group__image-main">
+                    <MaskedImage
+                        image-src="/assets/images/image-1.jpg"
+                        alt="image-main"
+                        :height-rem="40"
+                        :mask-number="2"
+                        :with-border="false"
+                    />
+                </div>
+                <div
+                    class="images-group__image-sub-1"
+                    :style="{
+                        top: `${7.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                        left: `${-10 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                    }"
+                >
+                    <MaskedImage
+                        image-src="/assets/images/image-4.jpg"
+                        alt="image sub"
+                        :height-rem="15"
+                        :mask-number="4"
+                        :with-border="false"
+                    />
+                </div>
+                <div
+                    class="images-group__image-sub-2"
+                    :style="{
+                        bottom: `${-2.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                        right: `${-8 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                    }"
+                >
+                    <MaskedImage
+                        image-src="/assets/images/image-5.jpg"
+                        alt="image sub"
+                        :height-rem="15"
+                        :mask-number="5"
+                        :with-border="false"
+                    />
+                </div>
+                <div
+                    class="images-group__image-sub-3"
+                    :style="{
+                        top: `${3 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                        right: `${-7 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                    }"
+                >
+                    <MaskedImage
+                        image-src="/assets/images/image-2.jpg"
+                        alt="image sub"
+                        :height-rem="7.5"
+                        :mask-number="3"
+                        :with-border="false"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
 <style scoped>
 .intro-section {
     position: relative;
@@ -132,80 +209,3 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
     }
 }
 </style>
-
-<template>
-    <div v-bind:id="sectionId" class="intro-section">
-        <div
-            class="intro-content-title intro-content-title--enter-ani"
-            :style="{
-                paddingTop: `${7.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-            }"
-            id="intro-content-title"
-        >
-            <h5>Welcome to</h5>
-            <h1 class="font-dancing-script">Hồng Nhung's</h1>
-            <h5>Portfolio</h5>
-        </div>
-        <div
-            class="intro-content-images intro-content-images--enter-ani"
-            id="intro-content-images"
-        >
-            <div class="images-group">
-                <div class="images-group__image-main">
-                    <MaskedImage
-                        image-src="/assets/images/image-1.jpg"
-                        alt="image-main"
-                        :height-rem="40"
-                        :mask-number="2"
-                        :with-border="false"
-                    />
-                </div>
-                <div
-                    class="images-group__image-sub-1"
-                    :style="{
-                        top: `${7.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                        left: `${-10 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                    }"
-                >
-                    <MaskedImage
-                        image-src="/assets/images/image-4.jpg"
-                        alt="image sub"
-                        :height-rem="15"
-                        :mask-number="4"
-                        :with-border="false"
-                    />
-                </div>
-                <div
-                    class="images-group__image-sub-2"
-                    :style="{
-                        bottom: `${-2.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                        right: `${-8 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                    }"
-                >
-                    <MaskedImage
-                        image-src="/assets/images/image-5.jpg"
-                        alt="image sub"
-                        :height-rem="15"
-                        :mask-number="5"
-                        :with-border="false"
-                    />
-                </div>
-                <div
-                    class="images-group__image-sub-3"
-                    :style="{
-                        top: `${3 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                        right: `${-7 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                    }"
-                >
-                    <MaskedImage
-                        image-src="/assets/images/image-2.jpg"
-                        alt="image sub"
-                        :height-rem="7.5"
-                        :mask-number="3"
-                        :with-border="false"
-                    />
-                </div>
-            </div>
-        </div>
-    </div>
-</template>

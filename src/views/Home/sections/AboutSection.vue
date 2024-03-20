@@ -44,6 +44,44 @@ const mediaQueriesStore = useMediaQueriesStore();
 const { currentScreen } = storeToRefs(mediaQueriesStore);
 </script>
 
+<template>
+    <div :id="sectionId" class="about-section">
+        <div class="about-content">
+            <div
+                id="about-content-wavy-title-container"
+                class="wavy-title-container wavy-title-container--enter-leave-ani"
+                :style="{
+                    height: `${20 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                }"
+            >
+                <h1
+                    v-for="(letter, index) in title"
+                    :key="letter"
+                    :style="`--i:${index}`"
+                    class="about-content__title font-dancing-script"
+                >
+                    {{ letter !== 'space' ? letter : '&nbsp;' }}
+                </h1>
+            </div>
+
+            <div
+                class="about-content__text-wrapper about-content__text-wrapper--enter-leave-ani"
+                :style="{
+                    width: `${100 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                    height: `${100 * CONTENT_WRAPPER_BACKGROUND_IMAGE_HEIGHT_RATIO * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                }"
+            >
+                <h6>
+                    <span
+                        id="about-me-content"
+                        class="about-content__text"
+                    ></span>
+                </h6>
+            </div>
+        </div>
+    </div>
+</template>
+
 <style scoped>
 .about-section {
     min-height: 100vh;
@@ -123,40 +161,3 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
     animation-range: entry, exit;
 }
 </style>
-
-<template>
-    <div v-bind:id="sectionId" class="about-section">
-        <div class="about-content">
-            <div
-                class="wavy-title-container wavy-title-container--enter-leave-ani"
-                :style="{
-                    height: `${20 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                }"
-                id="about-content-wavy-title-container"
-            >
-                <h1
-                    v-for="(letter, index) in title"
-                    :style="`--i:${index}`"
-                    class="about-content__title font-dancing-script"
-                >
-                    {{ letter !== 'space' ? letter : '&nbsp;' }}
-                </h1>
-            </div>
-
-            <div
-                class="about-content__text-wrapper about-content__text-wrapper--enter-leave-ani"
-                :style="{
-                    width: `${100 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                    height: `${100 * CONTENT_WRAPPER_BACKGROUND_IMAGE_HEIGHT_RATIO * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                }"
-            >
-                <h6>
-                    <span
-                        class="about-content__text"
-                        id="about-me-content"
-                    ></span>
-                </h6>
-            </div>
-        </div>
-    </div>
-</template>

@@ -19,6 +19,33 @@ const mediaQueriesStore = useMediaQueriesStore();
 const { currentScreen } = storeToRefs(mediaQueriesStore);
 </script>
 
+<template>
+    <div class="brands-container">
+        <h4 class="brands-container__title">Brands collaboration</h4>
+        <h6 class="brands-container__title">
+            click on brand's logo to view more
+        </h6>
+        <div class="brand-logos-container">
+            <div
+                v-for="brand in listBrands"
+                :key="brand.name"
+                class="brand-card brand-card--enter-ani"
+                :style="{
+                    height: `${15 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                    width: `${15 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                }"
+                @:click="openPostViewer(brand)"
+            >
+                <img
+                    class="brand-card__logo-image"
+                    :src="brand.logoURL"
+                    :alt="`${brand.name} Brand Logo`"
+                />
+            </div>
+        </div>
+    </div>
+</template>
+
 <style scoped>
 .brands-container {
     display: flex;
@@ -72,29 +99,3 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
     animation-range: entry;
 }
 </style>
-
-<template>
-    <div class="brands-container">
-        <h4 class="brands-container__title">Brands collaboration</h4>
-        <h6 class="brands-container__title">
-            click on brand's logo to view more
-        </h6>
-        <div class="brand-logos-container">
-            <div
-                class="brand-card brand-card--enter-ani"
-                v-for="brand in listBrands"
-                :style="{
-                    height: `${15 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                    width: `${15 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                }"
-                @:click="openPostViewer(brand)"
-            >
-                <img
-                    class="brand-card__logo-image"
-                    :src="brand.logoURL"
-                    :alt="`${brand.name} Brand Logo`"
-                />
-            </div>
-        </div>
-    </div>
-</template>

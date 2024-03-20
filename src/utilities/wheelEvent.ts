@@ -17,8 +17,8 @@ export const animateWheelEvent = ({
 }: TAnimateWheelEventProps) => {
     event.preventDefault();
     const scrollSpeed = 3;
-    let delta = event.deltaY;
-    let scrollPosition = scrollWrapperElement.scrollTop + delta * scrollSpeed;
+    const delta = event.deltaY;
+    const scrollPosition = scrollWrapperElement.scrollTop + delta * scrollSpeed;
 
     animateScrollTo(scrollPosition, {
         cancelOnUserAction: false,

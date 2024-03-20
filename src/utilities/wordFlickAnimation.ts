@@ -8,8 +8,8 @@ export const wordFlick = ({ paragraphs, printElement }: wordFlickProps) => {
         i = 0,
         offset = 0,
         forwards = true,
-        skipCount = 0,
-        skipDelay = 35,
+        skipCount = 0;
+    const skipDelay = 35,
         speed = 70;
 
     setInterval(function () {

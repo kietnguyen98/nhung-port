@@ -2,6 +2,55 @@
 const props = defineProps<{ progressValue: number }>();
 </script>
 
+<template>
+    <div
+        class="progress-bar progress-bar--enter-ani"
+        :style="{
+            background: `radial-gradient(
+            closest-side,
+            var(--color-white) 79%,
+            transparent 80% 100%
+        ),
+        conic-gradient(var(--color-purple) ${props.progressValue}%, var(--color-pink) 0)`,
+        }"
+    >
+        <div class="flower-wrapper">
+            <img
+                :class="{
+                    leaves: true,
+                    'leaves--glowed': props.progressValue === 100,
+                }"
+                src="/assets/icons/leaves.png"
+                alt="flower's leave"
+            />
+            <img
+                class="flower"
+                src="/assets/icons/flower.png"
+                alt="flower"
+                :style="{
+                    transform: `rotateZ(${(props.progressValue / 100) * 360}deg)`,
+                }"
+            />
+            <img
+                :class="{
+                    'face-happy': true,
+                    'face-happy--disappeared': props.progressValue === 100,
+                }"
+                src="/assets/icons/happy.png"
+                alt="emotion"
+            />
+            <img
+                :class="{
+                    'face-laughing': true,
+                    'face-laughing--appeared': props.progressValue === 100,
+                }"
+                src="/assets/icons/laughing.png"
+                alt="emotion"
+            />
+        </div>
+    </div>
+</template>
+
 <style scoped>
 .progress-bar {
     width: 6rem;
@@ -88,52 +137,3 @@ const props = defineProps<{ progressValue: number }>();
     }
 }
 </style>
-
-<template>
-    <div
-        class="progress-bar progress-bar--enter-ani"
-        :style="{
-            background: `radial-gradient(
-            closest-side,
-            var(--color-white) 79%,
-            transparent 80% 100%
-        ),
-        conic-gradient(var(--color-purple) ${props.progressValue}%, var(--color-pink) 0)`,
-        }"
-    >
-        <div class="flower-wrapper">
-            <img
-                :class="{
-                    leaves: true,
-                    'leaves--glowed': props.progressValue === 100,
-                }"
-                src="/assets/icons/leaves.png"
-                alt="flower's leave"
-            />
-            <img
-                class="flower"
-                src="/assets/icons/flower.png"
-                alt="flower"
-                :style="{
-                    transform: `rotateZ(${(props.progressValue / 100) * 360}deg)`,
-                }"
-            />
-            <img
-                :class="{
-                    'face-happy': true,
-                    'face-happy--disappeared': props.progressValue === 100,
-                }"
-                src="/assets/icons/happy.png"
-                alt="emotion"
-            />
-            <img
-                :class="{
-                    'face-laughing': true,
-                    'face-laughing--appeared': props.progressValue === 100,
-                }"
-                src="/assets/icons/laughing.png"
-                alt="emotion"
-            />
-        </div>
-    </div>
-</template>

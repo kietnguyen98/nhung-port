@@ -44,6 +44,38 @@ watch(
 );
 </script>
 
+<template>
+    <div
+        :class="[
+            'popup-wrapper',
+            isPopupOpened ? 'popup-wrapper--opened' : 'popup-wrapper--closed',
+        ]"
+    >
+        <div
+            id="popup-scroll-wrapper"
+            :class="{
+                'popup-container': true,
+            }"
+        >
+            <div
+                :class="{
+                    'popup-content': true,
+                    'popup-content--enter-ani': isPopupOpened,
+                    'popup-content--leave-ani': !isPopupOpened,
+                }"
+            >
+                <button
+                    class="popup-content__close-button"
+                    @click="setIsPopupOpened(false)"
+                >
+                    X
+                </button>
+                <slot></slot>
+            </div>
+        </div>
+    </div>
+</template>
+
 <style scoped>
 .popup-wrapper {
     position: absolute;
@@ -118,35 +150,3 @@ watch(
     animation: slide-right-ease-in 0.75s cubic-bezier(1, 0, 0.25, 0.9) forwards;
 }
 </style>
-
-<template>
-    <div
-        v-bind:class="[
-            'popup-wrapper',
-            isPopupOpened ? 'popup-wrapper--opened' : 'popup-wrapper--closed',
-        ]"
-    >
-        <div
-            :class="{
-                'popup-container': true,
-            }"
-            id="popup-scroll-wrapper"
-        >
-            <div
-                :class="{
-                    'popup-content': true,
-                    'popup-content--enter-ani': isPopupOpened,
-                    'popup-content--leave-ani': !isPopupOpened,
-                }"
-            >
-                <button
-                    class="popup-content__close-button"
-                    @click="setIsPopupOpened(false)"
-                >
-                    X
-                </button>
-                <slot></slot>
-            </div>
-        </div>
-    </div>
-</template>

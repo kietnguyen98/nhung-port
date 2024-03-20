@@ -20,22 +20,6 @@ onMounted(() => {
 });
 </script>
 
-<style scoped>
-path {
-    fill: transparent;
-}
-
-text {
-    fill: var(--color-black);
-}
-
-textPath {
-    text-align: center;
-    font-weight: 300;
-    letter-spacing: -0.25rem;
-}
-</style>
-
 <template>
     <svg :width="(popupViewWidth * 2) / 3" :height="popupViewWidth / 3">
         <path
@@ -54,3 +38,19 @@ textPath {
         </text>
     </svg>
 </template>
+
+<style scoped>
+path {
+    fill: transparent;
+}
+
+text {
+    fill: var(--color-black);
+}
+
+textPath {
+    text-align: center;
+    font-weight: 300;
+    letter-spacing: -0.25rem;
+}
+</style>
