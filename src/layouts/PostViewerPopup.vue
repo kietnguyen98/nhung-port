@@ -216,6 +216,16 @@ const handleClosePostViewer = () => {
     justify-content: center;
     align-items: center;
 }
+
+.empty-post--appeared {
+    opacity: 1;
+    transition: opacity 0.5s linear;
+}
+
+.empty-post--disappeared {
+    opacity: 0;
+    transition: opacity 0.5s linear;
+}
 </style>
 
 <template>
@@ -247,7 +257,15 @@ const handleClosePostViewer = () => {
             >
                 X
             </button>
-            <div v-if="!brandToView?.posts.length" class="empty-post">
+            <div
+                v-if="!brandToView?.posts.length"
+                :class="[
+                    'empty-post',
+                    isPostViewerOpened
+                        ? 'empty-post--appeared'
+                        : 'empty-post--disappeared',
+                ]"
+            >
                 <h1>There is nothing here !</h1>
             </div>
             <div

@@ -64,6 +64,13 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
             rgba(0, 0, 0, 0.22) 0px 10px 10px;
     }
 }
+
+.brand-card--enter-ani {
+    opacity: 0;
+    animation: fade-in-only linear forwards;
+    animation-timeline: view();
+    animation-range: entry;
+}
 </style>
 
 <template>
@@ -74,7 +81,7 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
         </h6>
         <div class="brand-logos-container">
             <div
-                class="brand-card"
+                class="brand-card brand-card--enter-ani"
                 v-for="brand in listBrands"
                 :style="{
                     height: `${15 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
