@@ -27,7 +27,10 @@ module.exports = {
     },
     plugins: ['@typescript-eslint', 'vue', 'prettier'],
     rules: {
-        'linebreak-style': ['error', 'windows'],
+        'linebreak-style': [
+            'error',
+            process.platform === 'win32' ? 'windows' : 'unix',
+        ],
         quotes: ['error', 'single'],
         semi: ['error', 'always'],
         camelcase: ['error', { properties: 'always' }],
