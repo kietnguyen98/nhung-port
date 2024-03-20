@@ -282,15 +282,19 @@ const handleClosePostViewer = () => {
                     :post="post"
                 />
             </div>
-            <PostViewerIndicator
+            <div
                 :class="[
                     'viewer-content__viewer-indicator',
                     isPostViewerOpened
                         ? 'viewer-content__viewer-indicator--appeared'
                         : 'viewer-content__viewer-indicator--disappeared',
                 ]"
-                :posts="brandToView?.posts"
-            />
+            >
+                <PostViewerIndicator
+                    :posts="brandToView?.posts"
+                    :scroll-wrapper-element="postViewerScrollWrapperElement"
+                />
+            </div>
         </div>
     </div>
 </template>

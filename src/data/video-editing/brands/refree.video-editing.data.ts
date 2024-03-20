@@ -15,7 +15,7 @@ export const _refreeBrandData: TBrand = {
             sourceUrl: getGGDriveVideoResourceUrl(
                 '1kyJYSg8hmUC7HO0XrKHWRu6v4MVHb2_q'
             ),
-            thumbnailUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1M9u13ilyZOVEnd3tORNICvpl4YxC2hvu`,
+            thumbnailUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1kyJYSg8hmUC7HO0XrKHWRu6v4MVHb2_q`,
         },
         {
             type: POST_TYPE_VALUES.VIDEO,
@@ -29,7 +29,7 @@ export const _refreeBrandData: TBrand = {
             sourceUrl: getGGDriveVideoResourceUrl(
                 '1M9u13ilyZOVEnd3tORNICvpl4YxC2hvu'
             ),
-            thumbnailUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1kyJYSg8hmUC7HO0XrKHWRu6v4MVHb2_q`,
+            thumbnailUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1M9u13ilyZOVEnd3tORNICvpl4YxC2hvu`,
         },
     ],
 };
