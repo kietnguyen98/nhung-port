@@ -1,3 +1,12 @@
+<template>
+    <div class="container">
+        <h1 class="title font-lora">
+            This device resolution are not support on this page!. Please use a
+            device with a higher resolution to view
+        </h1>
+    </div>
+</template>
+
 <style scoped>
 .container {
     padding: 5rem;
@@ -16,12 +25,3 @@
     }
 }
 </style>
-
-<template>
-    <div class="container">
-        <h1 class="title font-lora">
-            This device resolution are not support on this page!. Please use a
-            device with a higher resolution to view
-        </h1>
-    </div>
-</template>

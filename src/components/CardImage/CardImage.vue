@@ -14,20 +14,6 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
 const IMAGE_CARD_WIDTH_HEIGHT_RATIO = 9 / 16;
 </script>
 
-<style scoped>
-.image-wrapper {
-    border: 1rem solid var(--color-white);
-    border-radius: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-</style>
-
 <template>
     <div
         class="image-wrapper"
@@ -42,3 +28,17 @@ const IMAGE_CARD_WIDTH_HEIGHT_RATIO = 9 / 16;
         }"
     ></div>
 </template>
+
+<style scoped>
+.image-wrapper {
+    border: 1rem solid var(--color-white);
+    border-radius: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+</style>

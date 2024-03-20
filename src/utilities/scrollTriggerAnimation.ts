@@ -23,11 +23,11 @@ export const scrollTriggerAnimation = ({
         'scroll-wrapper'
     ) as HTMLElement;
     element.classList.add(defaultAnimationClass);
-    var lastScrollTop = scrollWrapperElement.scrollTop;
-    var isEntered: boolean = false;
+    let lastScrollTop = scrollWrapperElement.scrollTop;
+    let isEntered: boolean = false;
 
     scrollWrapperElement.addEventListener('scroll', () => {
-        let scrollDirection =
+        const scrollDirection =
             lastScrollTop - scrollWrapperElement.scrollTop > 0
                 ? -1
                 : lastScrollTop - scrollWrapperElement.scrollTop < 0
@@ -36,27 +36,19 @@ export const scrollTriggerAnimation = ({
         lastScrollTop = scrollWrapperElement.scrollTop;
         // scroll direction = -1 -> scroll up, = 1 -> scroll down, = 0 -> not scroll
 
-        let scrollWrapperElementBoundingBottom =
+        const scrollWrapperElementBoundingBottom =
             scrollWrapperElement.getBoundingClientRect().bottom +
             scrollWrapperElement.scrollTop;
-        let scrollWrapperElementBoundingTop =
+        const scrollWrapperElementBoundingTop =
             scrollWrapperElement.getBoundingClientRect().top +
             scrollWrapperElement.scrollTop;
-        let elementBoundingBottom =
+        const elementBoundingBottom =
             element.getBoundingClientRect().bottom +
             scrollWrapperElement.scrollTop;
-        let elementBoundingTop =
+        const elementBoundingTop =
             element.getBoundingClientRect().top +
             scrollWrapperElement.scrollTop;
 
-        console.log(scrollDirection === 1 && 'scroll down');
-        console.log(scrollDirection === -1 && 'scroll up');
-        console.log({
-            scrollWrapperElementBoundingBottom,
-            scrollWrapperElementBoundingTop,
-            elementBoundingBottom,
-            elementBoundingTop,
-        });
         // check if element entered view port
         if (
             scrollWrapperElementBoundingTop < elementBoundingBottom ||

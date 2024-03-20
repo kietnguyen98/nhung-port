@@ -1,12 +1,12 @@
 export type TPost = {
     type: 'photo' | 'video';
+    thumbnailUrl?: string;
     sourceUrl: string;
 };
 
 export type TBrand = {
     name: string;
     logoURL: string;
-    // postImageUrls: Array<string>;
     posts: Array<TPost>;
 };
 

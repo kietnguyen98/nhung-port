@@ -33,6 +33,56 @@ const cardWidthHeightRatio =
     MASK_CARD_DIMENSIONS[props.maskNumber].HEIGHT;
 </script>
 
+<template>
+    <div
+        class="mask-card"
+        :style="{
+            height: heightRem
+                ? `${COMPONENT_SCALE_RATIO[currentScreen.label] * heightRem}rem`
+                : 'auto',
+            width: heightRem
+                ? `${COMPONENT_SCALE_RATIO[currentScreen.label] * heightRem * cardWidthHeightRatio}rem`
+                : 'auto',
+            backgroundColor: withBorder ? borderColor : 'transparent',
+            maskImage: `url(/assets/clip-masks/mask-${maskNumber}.png)`,
+        }"
+        :onmouseenter="handleMouseEnter"
+        :onmouseleave="handleMouseLeave"
+    >
+        <div
+            class="mask-card__mask"
+            :style="{
+                height: heightRem
+                    ? `${COMPONENT_SCALE_RATIO[currentScreen.label] * heightRem + 0.5 * 2}rem`
+                    : 'auto',
+                width: heightRem
+                    ? `${COMPONENT_SCALE_RATIO[currentScreen.label] * heightRem * cardWidthHeightRatio + 0.5 * 2}rem`
+                    : 'auto',
+                maskImage: `url(/assets/clip-masks/mask-${maskNumber}.png)`,
+                backgroundColor: isHovered ? borderColor : 'transparent',
+            }"
+        >
+            <h6
+                :class="[
+                    'mask-text',
+                    isHovered
+                        ? 'mask-text--appeared'
+                        : 'mask-text--disappeared',
+                ]"
+            >
+                View all work
+            </h6>
+        </div>
+        <div
+            class="mask-card__image"
+            :style="{
+                maskImage: `url(/assets/clip-masks/mask-${maskNumber}.png)`,
+                backgroundImage: `url(${imageSrc})`,
+            }"
+        ></div>
+    </div>
+</template>
+
 <style scoped>
 .mask-card {
     position: relative;
@@ -92,53 +142,3 @@ const cardWidthHeightRatio =
     width: 100%;
 }
 </style>
-
-<template>
-    <div
-        class="mask-card"
-        :style="{
-            height: heightRem
-                ? `${COMPONENT_SCALE_RATIO[currentScreen.label] * heightRem}rem`
-                : 'auto',
-            width: heightRem
-                ? `${COMPONENT_SCALE_RATIO[currentScreen.label] * heightRem * cardWidthHeightRatio}rem`
-                : 'auto',
-            backgroundColor: withBorder ? borderColor : 'transparent',
-            maskImage: `url(/assets/clip-masks/mask-${maskNumber}.png)`,
-        }"
-        :onmouseenter="handleMouseEnter"
-        :onmouseleave="handleMouseLeave"
-    >
-        <div
-            class="mask-card__mask"
-            :style="{
-                height: heightRem
-                    ? `${COMPONENT_SCALE_RATIO[currentScreen.label] * heightRem + 0.5 * 2}rem`
-                    : 'auto',
-                width: heightRem
-                    ? `${COMPONENT_SCALE_RATIO[currentScreen.label] * heightRem * cardWidthHeightRatio + 0.5 * 2}rem`
-                    : 'auto',
-                maskImage: `url(/assets/clip-masks/mask-${maskNumber}.png)`,
-                backgroundColor: isHovered ? borderColor : 'transparent',
-            }"
-        >
-            <h6
-                :class="[
-                    'mask-text',
-                    isHovered
-                        ? 'mask-text--appeared'
-                        : 'mask-text--disappeared',
-                ]"
-            >
-                View all work
-            </h6>
-        </div>
-        <div
-            class="mask-card__image"
-            :style="{
-                maskImage: `url(/assets/clip-masks/mask-${maskNumber}.png)`,
-                backgroundImage: `url(${imageSrc})`,
-            }"
-        ></div>
-    </div>
-</template>

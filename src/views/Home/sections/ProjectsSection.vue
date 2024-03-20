@@ -5,7 +5,7 @@ import { useControlPopupStore, useMediaQueriesStore } from '@/stores';
 import { projectMockData } from '@/data';
 import { TProject } from '@/types';
 import { COMPONENT_SCALE_RATIO } from '@/constants';
-import { ProjectView } from '..';
+import { ProjectView } from '@/views';
 
 defineProps<{
     sectionId: string;
@@ -28,6 +28,109 @@ const handleSelectProjectToShow = (project: TProject) => {
 const mediaQueriesStore = useMediaQueriesStore();
 const { currentScreen } = storeToRefs(mediaQueriesStore);
 </script>
+
+<template>
+    <div :id="sectionId" class="projects-section">
+        <div class="projects-content">
+            <div
+                class="projects-content__title projects-content__title--enter-ani"
+                :style="{
+                    height: `${20 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                    marginBottom: `${2.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                }"
+            >
+                <h2 class="font-dancing-script">View all my work ...</h2>
+            </div>
+            <div
+                class="project-type-card-container"
+                :style="{
+                    gap: `${5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                }"
+            >
+                <div
+                    class="project-type-card project-type-card--enter-ani"
+                    @:click="handleSelectProjectToShow(graphicDesignMockData)"
+                >
+                    <MaskedImage
+                        :image-src="graphicDesignMockData.outerImageUrl"
+                        alt="masked-image-1"
+                        :height-rem="30"
+                        :mask-number="1"
+                        :with-border="true"
+                        border-color="#fed9ed"
+                        :with-hover="true"
+                    />
+                    <h5
+                        class="project-type-card__title project-type-card__title--text-shadow-pink"
+                    >
+                        {{ graphicDesignMockData.name }}
+                    </h5>
+                </div>
+                <div
+                    class="project-type-card project-type-card--enter-ani"
+                    @:click="handleSelectProjectToShow(photographyMockData)"
+                >
+                    <MaskedImage
+                        :image-src="photographyMockData.outerImageUrl"
+                        alt="masked-image-2"
+                        :height-rem="30"
+                        :mask-number="2"
+                        :with-border="true"
+                        border-color="#7bd3ea"
+                        :with-hover="true"
+                    />
+                    <h5
+                        class="project-type-card__title project-type-card__title--text-shadow-blue"
+                    >
+                        {{ photographyMockData.name }}
+                    </h5>
+                </div>
+                <div
+                    class="project-type-card project-type-card--enter-ani"
+                    @:click="handleSelectProjectToShow(videoEditingMockData)"
+                >
+                    <MaskedImage
+                        :image-src="videoEditingMockData.outerImageUrl"
+                        alt="masked-image-2"
+                        :height-rem="30"
+                        :mask-number="5"
+                        :with-border="true"
+                        border-color="#ed5ab3"
+                        :with-hover="true"
+                    />
+                    <h5
+                        class="project-type-card__title project-type-card__title--text-shadow-purple"
+                    >
+                        {{ videoEditingMockData.name }}
+                    </h5>
+                </div>
+                <div class="project-type-card project-type-card--enter-ani">
+                    <MaskedImage
+                        image-src="/assets/images/image-3.jpg"
+                        alt="masked-image-2"
+                        :height-rem="30"
+                        :mask-number="3"
+                        :with-border="true"
+                        border-color="#a1eebd"
+                        :with-hover="true"
+                    />
+                    <h5
+                        class="project-type-card__title project-type-card__title--text-shadow-green"
+                    >
+                        Illustration
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ProjectViewerPopup>
+        <ProjectView
+            v-if="currentShowedProject"
+            :project="currentShowedProject"
+        ></ProjectView>
+    </ProjectViewerPopup>
+    <PostViewerPopup />
+</template>
 
 <style scoped>
 .projects-section {
@@ -111,106 +214,3 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
     animation-range: entry, exit;
 }
 </style>
-
-<template>
-    <div v-bind:id="sectionId" class="projects-section">
-        <div class="projects-content">
-            <div
-                class="projects-content__title projects-content__title--enter-ani"
-                :style="{
-                    height: `${20 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                    marginBottom: `${2.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                }"
-            >
-                <h2 class="font-dancing-script">View all my work ...</h2>
-            </div>
-            <div
-                class="project-type-card-container"
-                :style="{
-                    gap: `${5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                }"
-            >
-                <div
-                    @:click="handleSelectProjectToShow(graphicDesignMockData)"
-                    class="project-type-card project-type-card--enter-ani"
-                >
-                    <MaskedImage
-                        :image-src="graphicDesignMockData.outerImageUrl"
-                        alt="masked-image-1"
-                        :height-rem="30"
-                        :mask-number="1"
-                        :with-border="true"
-                        border-color="#fed9ed"
-                        :withHover="true"
-                    />
-                    <h5
-                        class="project-type-card__title project-type-card__title--text-shadow-pink"
-                    >
-                        {{ graphicDesignMockData.name }}
-                    </h5>
-                </div>
-                <div
-                    @:click="handleSelectProjectToShow(photographyMockData)"
-                    class="project-type-card project-type-card--enter-ani"
-                >
-                    <MaskedImage
-                        :image-src="photographyMockData.outerImageUrl"
-                        alt="masked-image-2"
-                        :height-rem="30"
-                        :mask-number="2"
-                        :with-border="true"
-                        border-color="#7bd3ea"
-                        :withHover="true"
-                    />
-                    <h5
-                        class="project-type-card__title project-type-card__title--text-shadow-blue"
-                    >
-                        {{ photographyMockData.name }}
-                    </h5>
-                </div>
-                <div
-                    @:click="handleSelectProjectToShow(videoEditingMockData)"
-                    class="project-type-card project-type-card--enter-ani"
-                >
-                    <MaskedImage
-                        :image-src="videoEditingMockData.outerImageUrl"
-                        alt="masked-image-2"
-                        :height-rem="30"
-                        :mask-number="5"
-                        :with-border="true"
-                        border-color="#ed5ab3"
-                        :withHover="true"
-                    />
-                    <h5
-                        class="project-type-card__title project-type-card__title--text-shadow-purple"
-                    >
-                        {{ videoEditingMockData.name }}
-                    </h5>
-                </div>
-                <div class="project-type-card project-type-card--enter-ani">
-                    <MaskedImage
-                        image-src="/assets/images/image-3.jpg"
-                        alt="masked-image-2"
-                        :height-rem="30"
-                        :mask-number="3"
-                        :with-border="true"
-                        border-color="#a1eebd"
-                        :withHover="true"
-                    />
-                    <h5
-                        class="project-type-card__title project-type-card__title--text-shadow-green"
-                    >
-                        Illustration
-                    </h5>
-                </div>
-            </div>
-        </div>
-    </div>
-    <ProjectViewerPopup>
-        <ProjectView
-            v-if="currentShowedProject"
-            :project="currentShowedProject"
-        ></ProjectView>
-    </ProjectViewerPopup>
-    <PostViewerPopup />
-</template>

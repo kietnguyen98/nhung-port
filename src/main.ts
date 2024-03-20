@@ -8,7 +8,7 @@ import VueLazyload from 'vue-lazyload';
 import router from '@/router';
 // layouts
 import {
-    Container,
+    AppContainer,
     ProjectViewerPopup,
     PostViewerPopup,
     NavigationBar,
@@ -37,7 +37,7 @@ app.use(VueLazyload, {
 });
 
 // layout register
-app.component('AppContainer', Container);
+app.component('AppContainer', AppContainer);
 app.component('ProjectViewerPopup', ProjectViewerPopup);
 app.component('PostViewerPopup', PostViewerPopup);
 

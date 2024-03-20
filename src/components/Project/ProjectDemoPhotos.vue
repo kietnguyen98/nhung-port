@@ -10,6 +10,69 @@ defineProps<{ demoImages: TDemoImages }>();
 const mediaQueriesStore = useMediaQueriesStore();
 const { currentScreen } = storeToRefs(mediaQueriesStore);
 </script>
+<template>
+    <div class="graphic-photos-container">
+        <div class="left-photos">
+            <CardImage
+                :height-rem="80"
+                :image-src="demoImages.mainImageUrl"
+                alt="masked-image-1"
+            />
+        </div>
+        <div class="right-photos">
+            <div
+                :style="{
+                    transform: `translateY(${20 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem)`,
+                }"
+            >
+                <h5>
+                    Click
+                    <button class="view-more-button">
+                        <h4 class="view-more-button__text">HERE</h4>
+                        <span class="view-more-button__border"></span>
+                    </button>
+                </h5>
+                <h5>to see more...</h5>
+            </div>
+
+            <div class="images-container">
+                <div class="images-container__image-1">
+                    <CardImage
+                        :height-rem="40"
+                        :image-src="demoImages.subImageUrls[0]"
+                        alt="masked-image-2"
+                    />
+                </div>
+            </div>
+            <div class="images-container">
+                <div
+                    :style="{
+                        transform: `translateX(${-2.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem) translateY(${-10 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem) rotate(-15deg)`,
+                    }"
+                >
+                    <CardImage
+                        :height-rem="35"
+                        :image-src="demoImages.subImageUrls[1]"
+                        alt="masked-image-3"
+                    />
+                </div>
+
+                <div
+                    :style="{
+                        transform: `translateX(${1 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem) translateY(${-20 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem) rotate(20deg)`,
+                    }"
+                >
+                    <CardImage
+                        :height-rem="35"
+                        :image-src="demoImages.subImageUrls[2]"
+                        alt="masked-image-4"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
 <style scoped>
 .graphic-photos-container {
     width: 100%;
@@ -77,66 +140,3 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
     }
 }
 </style>
-
-<template>
-    <div class="graphic-photos-container">
-        <div class="left-photos">
-            <CardImage
-                :height-rem="80"
-                :image-src="demoImages.mainImageUrl"
-                alt="masked-image-1"
-            />
-        </div>
-        <div class="right-photos">
-            <div
-                :style="{
-                    transform: `translateY(${20 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem)`,
-                }"
-            >
-                <h5>
-                    Click
-                    <button class="view-more-button">
-                        <h4 class="view-more-button__text">HERE</h4>
-                        <span class="view-more-button__border"></span>
-                    </button>
-                </h5>
-                <h5>to see more...</h5>
-            </div>
-
-            <div class="images-container">
-                <div class="images-container__image-1">
-                    <CardImage
-                        :height-rem="40"
-                        :image-src="demoImages.subImageUrls[0]"
-                        alt="masked-image-2"
-                    />
-                </div>
-            </div>
-            <div class="images-container">
-                <div
-                    :style="{
-                        transform: `translateX(${-2.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem) translateY(${-10 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem) rotate(-15deg)`,
-                    }"
-                >
-                    <CardImage
-                        :height-rem="35"
-                        :image-src="demoImages.subImageUrls[1]"
-                        alt="masked-image-3"
-                    />
-                </div>
-
-                <div
-                    :style="{
-                        transform: `translateX(${1 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem) translateY(${-20 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem) rotate(20deg)`,
-                    }"
-                >
-                    <CardImage
-                        :height-rem="35"
-                        :image-src="demoImages.subImageUrls[2]"
-                        alt="masked-image-4"
-                    />
-                </div>
-            </div>
-        </div>
-    </div>
-</template>

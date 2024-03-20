@@ -1,6 +1,5 @@
 export * from './projectContents';
-export * from './sections';
-import Home from './Home.vue';
+export * from './Home';
 import NotSupportScreen from './NotSupportScreen.vue';
 
-export { Home, NotSupportScreen };
+export { NotSupportScreen };

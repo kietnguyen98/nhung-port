@@ -113,6 +113,78 @@ const handleClosePostViewer = () => {
 };
 </script>
 
+<template>
+    <div
+        :class="[
+            'viewer-popup',
+            isPostViewerOpened
+                ? 'viewer-popup--opened'
+                : 'viewer-popup--closed',
+        ]"
+    >
+        <div
+            id="post-viewer-scroll-wrapper"
+            class="viewer-content"
+            :style="{
+                padding: `${5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                height: `calc(100vh - ${5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem * 2)`,
+                width: `calc(100vw - ${5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem * 2)`,
+            }"
+        >
+            <button
+                :class="[
+                    'viewer-content__close-button',
+                    isPostViewerOpened
+                        ? 'viewer-content__close-button--appeared'
+                        : 'viewer-content__close-button--disappeared',
+                ]"
+                @click="handleClosePostViewer"
+            >
+                X
+            </button>
+            <div
+                v-if="!brandToView?.posts.length"
+                :class="[
+                    'empty-post',
+                    isPostViewerOpened
+                        ? 'empty-post--appeared'
+                        : 'empty-post--disappeared',
+                ]"
+            >
+                <h1>There is nothing here !</h1>
+            </div>
+            <div
+                v-if="brandToView?.posts.length"
+                :class="[
+                    'posts-wrapper',
+                    isPostViewerOpened
+                        ? 'posts-wrapper--appeared'
+                        : 'posts-wrapper--disappeared',
+                ]"
+            >
+                <PostViewer
+                    v-for="post in brandToView.posts"
+                    :key="post.sourceUrl"
+                    :post="post"
+                />
+            </div>
+            <div
+                :class="[
+                    'viewer-content__viewer-indicator',
+                    isPostViewerOpened
+                        ? 'viewer-content__viewer-indicator--appeared'
+                        : 'viewer-content__viewer-indicator--disappeared',
+                ]"
+            >
+                <PostViewerIndicator
+                    :posts="brandToView?.posts"
+                    :scroll-wrapper-element="postViewerScrollWrapperElement"
+                />
+            </div>
+        </div>
+    </div>
+</template>
+
 <style scope>
 .viewer-popup {
     position: absolute;
@@ -216,63 +288,14 @@ const handleClosePostViewer = () => {
     justify-content: center;
     align-items: center;
 }
-</style>
 
-<template>
-    <div
-        :class="[
-            'viewer-popup',
-            isPostViewerOpened
-                ? 'viewer-popup--opened'
-                : 'viewer-popup--closed',
-        ]"
-    >
-        <div
-            class="viewer-content"
-            :style="{
-                padding: `${5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                height: `calc(100vh - ${5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem * 2)`,
-                width: `calc(100vw - ${5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem * 2)`,
-            }"
-            id="post-viewer-scroll-wrapper"
-        >
-            <button
-                :class="[
-                    'viewer-content__close-button',
-                    isPostViewerOpened
-                        ? 'viewer-content__close-button--appeared'
-                        : 'viewer-content__close-button--disappeared',
-                ]"
-                @click="handleClosePostViewer"
-            >
-                X
-            </button>
-            <div v-if="!brandToView?.posts.length" class="empty-post">
-                <h1>There is nothing here !</h1>
-            </div>
-            <div
-                :class="[
-                    'posts-wrapper',
-                    isPostViewerOpened
-                        ? 'posts-wrapper--appeared'
-                        : 'posts-wrapper--disappeared',
-                ]"
-            >
-                <PostViewer
-                    v-if="brandToView?.posts.length"
-                    v-for="post in brandToView.posts"
-                    :post="post"
-                />
-            </div>
-            <PostViewerIndicator
-                :class="[
-                    'viewer-content__viewer-indicator',
-                    isPostViewerOpened
-                        ? 'viewer-content__viewer-indicator--appeared'
-                        : 'viewer-content__viewer-indicator--disappeared',
-                ]"
-                :posts="brandToView?.posts"
-            />
-        </div>
-    </div>
-</template>
+.empty-post--appeared {
+    opacity: 1;
+    transition: opacity 0.5s linear;
+}
+
+.empty-post--disappeared {
+    opacity: 0;
+    transition: opacity 0.5s linear;
+}
+</style>

@@ -31,3 +31,5 @@ export const MASK_CARD_DIMENSIONS: { [key: number]: TMaskCardDimension } = {
         HEIGHT: 350,
     },
 };
+
+export const MIN_WHEEL_SCROLL_DURATION: number = 1250;

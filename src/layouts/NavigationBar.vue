@@ -8,6 +8,33 @@ defineProps<{
 }>();
 </script>
 
+<template>
+    <div
+        :class="{
+            'navigation-bar': true,
+            'navigation-bar--scrolled': !isOnTop,
+        }"
+    >
+        <div class="portfolio-owner">
+            <img
+                class="portfolio-owner__icon"
+                src="/assets/icons/mushroom.png"
+            />
+            <p class="font-pacifico">Nhung's Port</p>
+        </div>
+        <nav class="navigation-links">
+            <NavigationButton
+                v-for="section in sections"
+                :key="section.idName"
+                :id-name="section.idName"
+                :name="section.name"
+                :is-active="section.idName === currentActive"
+                :is-scrolled="!isOnTop"
+            />
+        </nav>
+    </div>
+</template>
+
 <style scoped>
 .navigation-bar {
     margin: 0rem 5rem;
@@ -51,29 +78,3 @@ defineProps<{
     gap: 1rem;
 }
 </style>
-
-<template>
-    <div
-        v-bind:class="{
-            'navigation-bar': true,
-            'navigation-bar--scrolled': !isOnTop,
-        }"
-    >
-        <div class="portfolio-owner">
-            <img
-                class="portfolio-owner__icon"
-                src="/assets/icons/mushroom.png"
-            />
-            <p class="font-pacifico">Nhung's Port</p>
-        </div>
-        <nav class="navigation-links">
-            <NavigationButton
-                v-for="section in sections"
-                :idName="section.idName"
-                :name="section.name"
-                :isActive="section.idName === currentActive"
-                :isScrolled="!isOnTop"
-            />
-        </nav>
-    </div>
-</template>
