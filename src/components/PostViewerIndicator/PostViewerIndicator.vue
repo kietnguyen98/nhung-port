@@ -3,7 +3,7 @@ import { storeToRefs } from 'pinia';
 
 import { COMPONENT_SCALE_RATIO, POST_TYPE_VALUES } from '@/constants';
 import { useScrollingDebounce } from '@/hooks';
-import { useMediaQueriesStore, useViewScrollingStore } from '@/stores';
+import { useResponsiveStore, useViewScrollingStore } from '@/stores';
 import { TPost } from '@/types';
 
 const props = defineProps<{
@@ -14,8 +14,9 @@ const props = defineProps<{
 const viewScrollingStore = useViewScrollingStore();
 const { progress } = storeToRefs(viewScrollingStore);
 
-const mediaQueriesStore = useMediaQueriesStore();
-const { currentScreen } = storeToRefs(mediaQueriesStore);
+const mediaQueriesStore = useResponsiveStore();
+const { currentScreen, currentViewWidth, currentViewHeight } =
+    storeToRefs(mediaQueriesStore);
 
 const { isScrolling } = useScrollingDebounce({
     scrollWrapperElement: props.scrollWrapperElement,
@@ -37,8 +38,8 @@ const { isScrolling } = useScrollingDebounce({
                 class="view-section"
                 :style="{
                     height: `calc(${6 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem)`,
-                    width: `calc(${6 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem)`,
-                    left: `calc(1rem - 0.125rem + (100% - ${6 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem - 1rem * 2) * ${progress} / 100)`,
+                    width: `calc(${(6 * COMPONENT_SCALE_RATIO[currentScreen.label] * currentViewWidth) / currentViewHeight}rem)`,
+                    left: `calc(1rem - 0.125rem + (100% - ${(6 * COMPONENT_SCALE_RATIO[currentScreen.label] * currentViewWidth) / currentViewHeight}rem - 1rem * 2) * ${progress} / 100)`,
                 }"
             >
                 <div class="section-popover">
@@ -55,7 +56,6 @@ const { isScrolling } = useScrollingDebounce({
                     class="post-wrapper"
                     :style="{
                         height: `calc(${6 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem)`,
-                        width: `calc(${6 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem)`,
                     }"
                 >
                     <img
@@ -75,7 +75,7 @@ const { isScrolling } = useScrollingDebounce({
 <style scoped>
 .indicator-container {
     background-color: rgba(0, 0, 0, 0.75);
-    border-radius: 0.5rem;
+    border-radius: 1rem;
 }
 
 .indicator-container--appeared {
@@ -150,14 +150,10 @@ const { isScrolling } = useScrollingDebounce({
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.25rem;
+    gap: 0.125rem;
 }
 
 .post-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
     .post-wrapper__post-image {
         height: auto;
         width: auto;

@@ -2,7 +2,7 @@
 import { storeToRefs } from 'pinia';
 
 import { COMPONENT_SCALE_RATIO } from '@/constants';
-import { useControlPopupStore, useMediaQueriesStore } from '@/stores';
+import { useControlPopupStore, useResponsiveStore } from '@/stores';
 import { TBrand } from '@/types';
 defineProps<{
     listBrands: Array<TBrand>;
@@ -16,7 +16,7 @@ const openPostViewer = (brandData: TBrand) => {
     setBrandToView(brandData);
 };
 
-const mediaQueriesStore = useMediaQueriesStore();
+const mediaQueriesStore = useResponsiveStore();
 const { currentScreen } = storeToRefs(mediaQueriesStore);
 </script>
 

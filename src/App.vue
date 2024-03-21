@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 
-import { useMediaQueriesStore } from '@/stores';
+import { useResponsiveStore } from '@/stores';
 import { NotSupportScreen } from '@/views';
 
-const mediaQueriesStore = useMediaQueriesStore();
+const mediaQueriesStore = useResponsiveStore();
 const { isNotSupport } = storeToRefs(mediaQueriesStore);
 </script>
 

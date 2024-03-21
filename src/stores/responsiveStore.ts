@@ -4,33 +4,44 @@ import { SCREEN_VALUES } from '@/constants';
 import { TScreen } from '@/types';
 
 type TMediaQueriesStoreState = {
+    currentViewWidth: number;
+    currentViewHeight: number;
     currentScreen: TScreen;
     isNotSupport: boolean;
 };
 
-export const useMediaQueriesStore = defineStore('mediaQueries', {
+export const useResponsiveStore = defineStore('mediaQueries', {
     state: (): TMediaQueriesStoreState => ({
+        currentViewHeight: window.innerHeight,
+        currentViewWidth: window.innerWidth,
         currentScreen: SCREEN_VALUES.XL,
         isNotSupport: false,
     }),
     actions: {
         initEvent() {
             // first run
-            if (window.innerWidth < SCREEN_VALUES.XS.queries.minWidth)
+            this.currentViewHeight = window.innerHeight;
+            this.currentViewWidth = window.innerWidth;
+
+            if (this.currentViewWidth < SCREEN_VALUES.XS.queries.minWidth)
                 this.isNotSupport = true;
 
             Object.values(SCREEN_VALUES).forEach((value) => {
                 if (
-                    window.innerWidth >= value.queries.minWidth &&
-                    window.innerWidth <= value.queries.maxWidth
+                    this.currentViewWidth >= value.queries.minWidth &&
+                    this.currentViewWidth <= value.queries.maxWidth
                 )
                     this.setScreen(value);
 
                 // check for not support device
             });
+
             // run on every resize event
             window.addEventListener('resize', () => {
-                if (window.innerWidth < SCREEN_VALUES.XS.queries.minWidth) {
+                this.currentViewHeight = window.innerHeight;
+                this.currentViewWidth = window.innerWidth;
+
+                if (this.currentViewWidth < SCREEN_VALUES.XS.queries.minWidth) {
                     this.isNotSupport = true;
                 } else {
                     this.isNotSupport = false;
@@ -38,8 +49,8 @@ export const useMediaQueriesStore = defineStore('mediaQueries', {
 
                 Object.values(SCREEN_VALUES).forEach((value) => {
                     if (
-                        window.innerWidth >= value.queries.minWidth &&
-                        window.innerWidth <= value.queries.maxWidth
+                        this.currentViewWidth >= value.queries.minWidth &&
+                        this.currentViewWidth <= value.queries.maxWidth
                     )
                         this.setScreen(value);
                 });

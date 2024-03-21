@@ -2,7 +2,7 @@
 import { storeToRefs } from 'pinia';
 
 import { COMPONENT_SCALE_RATIO } from '@/constants';
-import { useMediaQueriesStore } from '@/stores';
+import { useResponsiveStore } from '@/stores';
 
 defineProps<{
     imageSrc: string;
@@ -10,7 +10,7 @@ defineProps<{
     heightRem?: number;
 }>();
 
-const mediaQueriesStore = useMediaQueriesStore();
+const mediaQueriesStore = useResponsiveStore();
 const { currentScreen } = storeToRefs(mediaQueriesStore);
 const IMAGE_CARD_WIDTH_HEIGHT_RATIO = 9 / 16;
 </script>

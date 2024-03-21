@@ -3,11 +3,11 @@ import { storeToRefs } from 'pinia';
 import { onMounted, ref, watch } from 'vue';
 
 import { CircleProgressBar } from '@/components';
-import { useControlPopupStore, useMediaQueriesStore } from '@/stores';
+import { useControlPopupStore, useResponsiveStore } from '@/stores';
 import { TSections } from '@/types';
-import { animateWheelEvent,blockWheelEvent } from '@/utilities';
+import { animateWheelEvent, blockWheelEvent } from '@/utilities';
 
-const mediaQueriesStore = useMediaQueriesStore();
+const mediaQueriesStore = useResponsiveStore();
 const { initEvent } = mediaQueriesStore;
 
 const store = useControlPopupStore();

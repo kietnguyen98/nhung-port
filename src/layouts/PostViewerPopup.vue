@@ -6,7 +6,7 @@ import { PostViewer, PostViewerIndicator } from '@/components';
 import { COMPONENT_SCALE_RATIO } from '@/constants';
 import {
     useControlPopupStore,
-    useMediaQueriesStore,
+    useResponsiveStore,
     useViewScrollingStore,
 } from '@/stores';
 import { animateWheelEvent } from '@/utilities';
@@ -21,7 +21,7 @@ const viewScrollingStore = useViewScrollingStore();
 const { setViewProgress } = viewScrollingStore;
 
 // media query for responsive
-const mediaQueriesStore = useMediaQueriesStore();
+const mediaQueriesStore = useResponsiveStore();
 const { currentScreen } = storeToRefs(mediaQueriesStore);
 
 const postViewerScrollWrapperElement = ref<HTMLElement>();
@@ -36,23 +36,24 @@ onUpdated(() => {
     handlePostViewerWheelEvent.value = (e: WheelEvent) =>
         animateWheelEvent({
             event: e,
+            wheelDirection: 'horizontal',
             scrollWrapperElement:
                 postViewerScrollWrapperElement.value as HTMLElement,
         });
 
     handlePostViewerScrollEvent.value = () => {
         if (postViewerScrollWrapperElement.value) {
-            const fullScrollWrapperHeight =
-                postViewerScrollWrapperElement.value.scrollHeight;
-            const currentScrollOffsetTop =
-                postViewerScrollWrapperElement.value.scrollTop;
-            const currentScreenViewHeight =
-                postViewerScrollWrapperElement.value.clientHeight;
+            const fullScrollWrapperWidth =
+                postViewerScrollWrapperElement.value.scrollWidth;
+            const currentScrollOffsetLeft =
+                postViewerScrollWrapperElement.value.scrollLeft;
+            const currentScreenViewWidth =
+                postViewerScrollWrapperElement.value.clientWidth;
 
             setViewProgress(
                 Math.ceil(
-                    (currentScrollOffsetTop /
-                        (fullScrollWrapperHeight - currentScreenViewHeight)) *
+                    (currentScrollOffsetLeft /
+                        (fullScrollWrapperWidth - currentScreenViewWidth)) *
                         100
                 )
             );
@@ -157,6 +158,7 @@ const handleClosePostViewer = () => {
                         : 'posts-wrapper--disappeared',
                 ]"
                 :style="{
+                    gap: `${2 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
                     padding: `${5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
                     height: `calc(100vh - ${5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem * 2)`,
                     width: `calc(100vw - ${5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem * 2)`,
@@ -209,12 +211,10 @@ const handleClosePostViewer = () => {
 }
 
 .viewer-content {
-    height: 100vh;
-    width: 100vw;
     position: relative;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
 
     .viewer-content__close-button {
         position: fixed;
@@ -267,11 +267,10 @@ const handleClosePostViewer = () => {
 
 .posts-wrapper {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    overflow-x: auto;
     /* hiding scroll bar */
     -ms-overflow-style: none; /* Internet Explorer 10+ */
     scrollbar-width: none; /* Firefox */
