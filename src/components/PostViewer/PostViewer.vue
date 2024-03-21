@@ -34,6 +34,7 @@ defineProps<{
 <style scoped>
 .post {
     height: calc(100vh - 5rem * 2);
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
