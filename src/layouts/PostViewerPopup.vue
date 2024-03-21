@@ -178,6 +178,7 @@ const handleClosePostViewer = () => {
                 ]"
             >
                 <PostViewerIndicator
+                    v-if="postViewerScrollWrapperElement"
                     :posts="brandToView?.posts"
                     :scroll-wrapper-element="postViewerScrollWrapperElement"
                 />

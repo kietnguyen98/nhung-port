@@ -8,7 +8,7 @@ import { TPost } from '@/types';
 
 const props = defineProps<{
     posts?: Array<TPost>;
-    scrollWrapperElement?: HTMLElement;
+    scrollWrapperElement: HTMLElement;
 }>();
 
 const viewScrollingStore = useViewScrollingStore();
