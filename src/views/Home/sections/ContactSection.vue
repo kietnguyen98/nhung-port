@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { useMediaQueriesStore } from '@/stores';
+
 import { COMPONENT_SCALE_RATIO } from '@/constants';
+import { useMediaQueriesStore } from '@/stores';
 
 defineProps<{
     sectionId: string;

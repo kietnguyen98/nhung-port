@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { POST_TYPE_VALUES } from '@/constants';
-import { LoadingIndicator } from '..';
 import { TPost } from '@/types';
+
+import { LoadingIndicator } from '..';
 
 defineProps<{
     post: TPost;

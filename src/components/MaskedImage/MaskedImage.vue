@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import { storeToRefs } from 'pinia';
-import { useMediaQueriesStore } from '@/stores';
+import { ref } from 'vue';
+
 import { COMPONENT_SCALE_RATIO, MASK_CARD_DIMENSIONS } from '@/constants';
+import { useMediaQueriesStore } from '@/stores';
 
 const props = defineProps<{
     imageSrc?: string;

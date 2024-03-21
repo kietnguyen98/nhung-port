@@ -1,4 +1,5 @@
 import { ref } from 'vue';
+
 import { MIN_WHEEL_SCROLL_DURATION } from '@/constants';
 
 type TUseScrollingDebounceProps = {

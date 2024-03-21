@@ -1,4 +1,5 @@
 import animateScrollTo from 'animated-scroll-to';
+
 import { MIN_WHEEL_SCROLL_DURATION } from '@/constants';
 
 export const blockWheelEvent = (e: Event) => {

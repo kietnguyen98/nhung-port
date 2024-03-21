@@ -1,25 +1,26 @@
-import { createApp } from 'vue';
-import App from '@/App.vue';
-// pinia to create store for states management
-import { createPinia } from 'pinia';
-// lazyLoad image
-import VueLazyload from 'vue-lazyload';
-// router
-import router from '@/router';
-// layouts
-import {
-    AppContainer,
-    ProjectViewerPopup,
-    PostViewerPopup,
-    NavigationBar,
-} from '@/layouts';
-// components
-import { MaskedImage } from '@/components';
 // Importing the global css file
 import '@/styles/global.css';
 
+// pinia to create store for states management
+import { createPinia } from 'pinia';
+import { createApp } from 'vue';
+// lazyLoad image
+import VueLazyload from 'vue-lazyload';
+
+import App from '@/App.vue';
 import loadingImage from '@/assets/images/loader-320px.gif';
 import errorNotFoundImage from '@/assets/images/not-found.svg';
+// components
+import { MaskedImage } from '@/components';
+// layouts
+import {
+    AppContainer,
+    NavigationBar,
+    PostViewerPopup,
+    ProjectViewerPopup,
+} from '@/layouts';
+// router
+import router from '@/router';
 
 const app = createApp(App);
 const pinia = createPinia();

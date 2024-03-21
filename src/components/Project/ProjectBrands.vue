@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { useControlPopupStore, useMediaQueriesStore } from '@/stores';
+
 import { COMPONENT_SCALE_RATIO } from '@/constants';
+import { useControlPopupStore, useMediaQueriesStore } from '@/stores';
 import { TBrand } from '@/types';
 defineProps<{
     listBrands: Array<TBrand>;

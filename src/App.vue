@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { NotSupportScreen } from '@/views';
+
 import { useMediaQueriesStore } from '@/stores';
+import { NotSupportScreen } from '@/views';
 
 const mediaQueriesStore = useMediaQueriesStore();
 const { isNotSupport } = storeToRefs(mediaQueriesStore);

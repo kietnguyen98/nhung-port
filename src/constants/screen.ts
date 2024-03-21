@@ -1,4 +1,4 @@
-import { TScreenLabel, TScreen } from '@/types';
+import { TScreen, TScreenLabel } from '@/types';
 
 export const SCREEN_MAXIMUM_WIDTH = 16000;
 export const SCREEN_DIMENSIONS_RATIO = 16 / 9;

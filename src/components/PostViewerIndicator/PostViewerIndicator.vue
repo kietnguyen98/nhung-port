@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { TPost } from '@/types';
-import { useViewScrollingStore, useMediaQueriesStore } from '@/stores';
+
 import { COMPONENT_SCALE_RATIO, POST_TYPE_VALUES } from '@/constants';
 import { useScrollingDebounce } from '@/hooks';
+import { useMediaQueriesStore, useViewScrollingStore } from '@/stores';
+import { TPost } from '@/types';
 
 const props = defineProps<{
     posts?: Array<TPost>;

@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue';
 import { storeToRefs } from 'pinia';
-import { TSections } from '@/types';
-import { blockWheelEvent, animateWheelEvent } from '@/utilities';
+import { onMounted, ref, watch } from 'vue';
+
 import { CircleProgressBar } from '@/components';
 import { useControlPopupStore, useMediaQueriesStore } from '@/stores';
+import { TSections } from '@/types';
+import { animateWheelEvent,blockWheelEvent } from '@/utilities';
 
 const mediaQueriesStore = useMediaQueriesStore();
 const { initEvent } = mediaQueriesStore;

@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+
 import { TBrand } from '@/types';
 
 type TControlPopupStoreState = {

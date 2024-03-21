@@ -1,9 +1,9 @@
-import { TBrand } from '@/types';
 import {
     BRAND_LOGO_URL_PREFIX,
     GOOGLE_DRIVE_FILE_PREFIX,
     POST_TYPE_VALUES,
 } from '@/constants';
+import { TBrand } from '@/types';
 
 export const _lipiceSheerColorBrandData: TBrand = {
     name: 'Lipice Sheer Color',

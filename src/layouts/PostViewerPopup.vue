@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue';
 import { storeToRefs } from 'pinia';
+import { onMounted, ref, watch } from 'vue';
+
+import { PostViewer, PostViewerIndicator } from '@/components';
+import { COMPONENT_SCALE_RATIO } from '@/constants';
 import {
     useControlPopupStore,
     useMediaQueriesStore,
     useViewScrollingStore,
 } from '@/stores';
 import { animateWheelEvent } from '@/utilities';
-import { PostViewer, PostViewerIndicator } from '@/components';
-import { COMPONENT_SCALE_RATIO } from '@/constants';
 
 // control popup
 const popupStore = useControlPopupStore();

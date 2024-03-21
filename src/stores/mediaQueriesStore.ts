@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
-import { TScreen } from '@/types';
+
 import { SCREEN_VALUES } from '@/constants';
+import { TScreen } from '@/types';
 
 type TMediaQueriesStoreState = {
     currentScreen: TScreen;
