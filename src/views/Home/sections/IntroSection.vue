@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import { storeToRefs } from 'pinia';
 import { onMounted } from 'vue';
-
-import { COMPONENT_SCALE_RATIO } from '@/constants';
-import { useResponsiveStore } from '@/stores';
 
 defineProps<{
     sectionId: string;
@@ -34,82 +30,52 @@ onMounted(() => {
         );
     }, 750);
 });
-
-const mediaQueriesStore = useResponsiveStore();
-const { currentScreen } = storeToRefs(mediaQueriesStore);
 </script>
 
 <template>
     <div :id="sectionId" class="intro-section">
         <div
-            id="intro-content-title"
-            class="intro-content-title intro-content-title--enter-ani"
-            :style="{
-                paddingTop: `${7.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-            }"
-        >
-            <h5>Welcome to</h5>
-            <h1 class="font-dancing-script">Hồng Nhung's</h1>
-            <h5>Portfolio</h5>
-        </div>
-        <div
             id="intro-content-images"
             class="intro-content-images intro-content-images--enter-ani"
         >
             <div class="images-group">
-                <div class="images-group__image-main">
-                    <MaskedImage
-                        image-src="/assets/images/image-1.jpg"
-                        alt="image-main"
-                        :height-rem="40"
-                        :mask-number="2"
-                        :with-border="false"
-                    />
+                <div class="images-group__sub images-group__intro-title">
+                    <h2 class="font-dancing-script">WelcomeTo</h2>
                 </div>
-                <div
-                    class="images-group__image-sub-1"
-                    :style="{
-                        top: `${7.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                        left: `${-10 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                    }"
-                >
-                    <MaskedImage
-                        image-src="/assets/images/image-4.jpg"
-                        alt="image sub"
-                        :height-rem="15"
-                        :mask-number="4"
-                        :with-border="false"
-                    />
-                </div>
-                <div
-                    class="images-group__image-sub-2"
-                    :style="{
-                        bottom: `${-2.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                        right: `${-8 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                    }"
-                >
-                    <MaskedImage
-                        image-src="/assets/images/image-5.jpg"
-                        alt="image sub"
-                        :height-rem="15"
-                        :mask-number="5"
-                        :with-border="false"
-                    />
-                </div>
-                <div
-                    class="images-group__image-sub-3"
-                    :style="{
-                        top: `${3 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                        right: `${-7 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                    }"
-                >
-                    <MaskedImage
-                        image-src="/assets/images/image-2.jpg"
-                        alt="image sub"
-                        :height-rem="7.5"
-                        :mask-number="3"
-                        :with-border="false"
-                    />
+                <img
+                    class="images-group__main"
+                    src="/assets/images/porifile-photo.png"
+                />
+                <img
+                    class="images-group__sub images-group__butterfly"
+                    src="/assets/images/butterfly-2.png"
+                />
+                <img
+                    class="images-group__sub images-group__rose"
+                    src="/assets/images/rose-2.png"
+                />
+                <img
+                    class="images-group__sub images-group__stamp-1"
+                    src="/assets/images/stamp-graphic-designer.png"
+                />
+                <img
+                    class="images-group__sub images-group__stamp-2"
+                    src="/assets/images/stamp-illustrator.png"
+                />
+                <img
+                    class="images-group__sub images-group__stamp-3"
+                    src="/assets/images/stamp-stylist.png"
+                />
+                <img
+                    class="images-group__sub images-group__stamp-4"
+                    src="/assets/images/stamp-wave.png"
+                />
+                <img
+                    class="images-group__sub images-group__stamp-5"
+                    src="/assets/images/stamp-flower.png"
+                />
+                <div class="images-group__sub images-group__port-title">
+                    <h5>portfolio.</h5>
                 </div>
             </div>
         </div>
@@ -119,55 +85,8 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
 <style scoped>
 .intro-section {
     position: relative;
-    min-height: 100vh;
-    display: grid;
-}
-.intro-content-title {
-    position: relative;
-    background-color: var(--color-red);
-    text-align: center;
-    line-height: 1;
-    margin-bottom: calc(var(--bubble-size) / 2);
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    h5 {
-        animation: fade-in-slow 1.5s ease-in;
-    }
-
-    h1 {
-        font-style: italic;
-        animation: fade-in-slow 1.5s ease-in;
-    }
-}
-
-.intro-content-title--enter-ani {
-    animation: slide-down 0.75s ease-in;
-}
-
-.intro-content-title--leave-ani {
-    animation: fade-out-to-top linear forwards;
-    animation-timeline: view();
-    animation-range: exit;
-}
-
-.intro-content-title::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: calc(0px - var(--bubble-size) / 2);
-    right: 0;
-    background-repeat: repeat;
-    height: calc(var(--bubble-size) / 2);
-    background-size: var(--bubble-size) var(--bubble-size);
-    background-image: radial-gradient(
-        circle at calc(var(--bubble-size) / 2) 0rem,
-        var(--color-red) calc(var(--bubble-size) / 2),
-        transparent calc(var(--bubble-size) / 2)
-    );
+    padding-top: 15rem;
+    padding-bottom: 10rem;
 }
 
 .intro-content-images {
@@ -188,25 +107,89 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
 
 .images-group {
     position: relative;
-    .images-group__image-sub-1 {
-        position: absolute;
-        top: 7.5rem;
-        left: -10rem;
-        animation: bubble-bounce 2s infinite ease-in-out;
+
+    .images-group__main {
+        height: auto;
+        width: auto;
     }
 
-    .images-group__image-sub-2 {
+    .images-group__sub {
         position: absolute;
-        bottom: -2.5rem;
+    }
+
+    .images-group__intro-title {
+        top: -5rem;
+        left: 12.5rem;
+    }
+
+    .images-group__butterfly {
+        height: 12.5rem;
+        top: -6.5rem;
+        left: -15.5rem;
+        animation: bubble-bounce 2s infinite;
+    }
+
+    .images-group__rose {
+        height: 45rem;
+        top: -5rem;
+        right: -25rem;
+    }
+
+    .images-group__stamp-1 {
+        height: 26.5rem;
+        top: -2.5rem;
+        left: -7.5rem;
+        animation: bubble-bounce 3s infinite;
+    }
+
+    .images-group__stamp-2 {
+        height: 21rem;
+        top: 10rem;
+        right: -2rem;
+        animation: bubble-bounce 4s infinite;
+    }
+
+    .images-group__stamp-3 {
+        height: 16rem;
+        bottom: 11.5rem;
+        left: -5rem;
+        animation: bubble-bounce 5s infinite;
+    }
+
+    .images-group__stamp-4 {
+        height: 10rem;
+        top: 25rem;
+        left: -8rem;
+    }
+
+    .images-group__stamp-5 {
+        height: 14rem;
+        bottom: 11rem;
         right: -8rem;
-        animation: bubble-bounce 1.5s infinite ease-in-out;
     }
 
-    .images-group__image-sub-3 {
-        position: absolute;
-        top: 3rem;
-        right: -7rem;
-        animation: bubble-bounce 2.5s infinite ease-in-out;
+    .images-group__port-title {
+        /* position */
+        bottom: 1.5rem;
+        right: -2.5rem;
+        /* attributes */
+        background-image: url(/assets/images/portfolio-title-bg.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 4rem;
+        width: 20rem;
+        border-radius: 0.25rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        letter-spacing: 0.125rem;
+        box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+        h4 {
+            line-height: 100%;
+        }
     }
 }
 </style>

@@ -169,7 +169,6 @@ watch(
     position: relative;
     .container__scroll-wrapper {
         height: 100vh;
-        background-color: var(--color-cream);
         overflow-y: scroll;
         overflow-x: hidden;
 
