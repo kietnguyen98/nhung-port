@@ -113,13 +113,14 @@ onMounted(() => {
 
             const fullPageHeight =
                 containerScrollWrapperElement.value.scrollHeight;
-
-            // check progress on scrolling
-            progress.value =
+            const scrollingProgress =
                 (containerScrollWrapperElement.value.scrollTop /
                     (fullPageHeight -
                         containerScrollWrapperElement.value.clientHeight)) *
                 100;
+
+            // check progress on scrolling
+            progress.value = Math.min(Math.ceil(scrollingProgress), 100);
         }
     });
 });

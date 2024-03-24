@@ -2,24 +2,21 @@ import animateScrollTo from 'animated-scroll-to';
 
 import { MIN_WHEEL_SCROLL_DURATION } from '@/constants';
 
-export const blockWheelEvent = (e: Event) => {
-    e.preventDefault();
-    return false;
-};
-
 export type TAnimateWheelEventProps = {
     event: WheelEvent;
+    wheelSpeed?: number;
     wheelDirection?: 'horizontal' | 'vertical';
     scrollWrapperElement: HTMLElement;
 };
 
 export const animateWheelEvent = ({
     event,
+    wheelSpeed = 3.5,
     wheelDirection = 'vertical',
     scrollWrapperElement,
 }: TAnimateWheelEventProps) => {
     event.preventDefault();
-    const scrollSpeed = 3;
+    const scrollSpeed = wheelSpeed;
     const delta = event.deltaY;
     const scrollPosition =
         (wheelDirection === 'vertical'

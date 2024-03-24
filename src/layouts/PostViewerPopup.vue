@@ -36,6 +36,7 @@ onUpdated(() => {
     handlePostViewerWheelEvent.value = (e: WheelEvent) =>
         animateWheelEvent({
             event: e,
+            wheelSpeed: 5,
             wheelDirection: 'horizontal',
             scrollWrapperElement:
                 postViewerScrollWrapperElement.value as HTMLElement,
@@ -158,10 +159,10 @@ const handleClosePostViewer = () => {
                         : 'posts-wrapper--disappeared',
                 ]"
                 :style="{
-                    gap: `${2 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                    padding: `${5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                    height: `calc(100vh - ${5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem * 2)`,
-                    width: `calc(100vw - ${5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem * 2)`,
+                    gap: `${5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                    padding: `${10 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                    height: `calc(100vh - ${10 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem * 2)`,
+                    width: `calc(100vw - ${10 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem * 2)`,
                 }"
             >
                 <PostViewer
@@ -198,7 +199,7 @@ const handleClosePostViewer = () => {
 
 .viewer-popup--opened {
     transition: backdrop-filter 0.5s ease;
-    backdrop-filter: blur(1rem);
+    backdrop-filter: blur(1.5rem);
     visibility: visible;
 }
 
@@ -291,8 +292,8 @@ const handleClosePostViewer = () => {
 }
 
 .empty-post {
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;

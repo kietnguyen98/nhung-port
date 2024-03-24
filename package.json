@@ -9,7 +9,7 @@
         "preview": "vite preview",
         "lint": "eslint \"src/**/*.{ts,vue}\" --quiet --fix",
         "format": "prettier --write",
-        "prepare": "husky install"
+        "prepare": "husky"
     },
     "dependencies": {
         "animated-scroll-to": "^2.3.0",
