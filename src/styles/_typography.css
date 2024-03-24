@@ -3,6 +3,7 @@
 @import '_responsive.css';
 
 :root {
+    --span-tag-base-font-size: 1.5rem;
     --p-tag-base-font-size: 2rem;
     --h6-tag-base-font-size: 2.75rem;
     --h5-tag-base-font-size: 4rem;
@@ -26,6 +27,12 @@ h1 {
 }
 
 @media only screen and (min-width: 2560px) and (orientation: landscape) {
+    span {
+        font-size: calc(
+            var(--span-tag-base-font-size) * var(--2560px-screen-ratio)
+        );
+    }
+
     p {
         font-size: calc(
             var(--p-tag-base-font-size) * var(--2560px-screen-ratio)
@@ -82,6 +89,12 @@ h1 {
 }
 
 @media only screen and (min-width: 2048px) and (max-width: 2559px) and (orientation: landscape) {
+    span {
+        font-size: calc(
+            var(--span-tag-base-font-size) * var(--2048px-screen-ratio)
+        );
+    }
+
     p {
         font-size: calc(
             var(--p-tag-base-font-size) * var(--2048px-screen-ratio)
@@ -138,6 +151,12 @@ h1 {
 }
 
 @media only screen and (min-width: 1920px) and (max-width: 2047px) and (orientation: landscape) {
+    span {
+        font-size: calc(
+            var(--span-tag-base-font-size) * var(--1920px-screen-ratio)
+        );
+    }
+
     p {
         font-size: calc(
             var(--p-tag-base-font-size) * var(--1920px-screen-ratio)
@@ -194,6 +213,12 @@ h1 {
 }
 
 @media only screen and (min-width: 1600px) and (max-width: 1919px) and (orientation: landscape) {
+    span {
+        font-size: calc(
+            var(--span-tag-base-font-size) * var(--1600px-screen-ratio)
+        );
+    }
+
     p {
         font-size: calc(
             var(--p-tag-base-font-size) * var(--1600px-screen-ratio)
@@ -250,6 +275,12 @@ h1 {
 }
 
 @media only screen and (min-width: 1280px) and (max-width: 1599px) and (orientation: landscape) {
+    span {
+        font-size: calc(
+            var(--span-tag-base-font-size) * var(--1280px-screen-ratio)
+        );
+    }
+
     p {
         font-size: calc(
             var(--p-tag-base-font-size) * var(--1280px-screen-ratio)
@@ -306,6 +337,12 @@ h1 {
 }
 
 @media only screen and (min-width: 1024px) and (max-width: 1279px) and (orientation: landscape) {
+    span {
+        font-size: calc(
+            var(--span-tag-base-font-size) * var(--1024px-screen-ratio)
+        );
+    }
+
     p {
         font-size: calc(
             var(--p-tag-base-font-size) * var(--1024px-screen-ratio)
