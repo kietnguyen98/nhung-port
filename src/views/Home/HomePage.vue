@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { AboutSection, IntroSection, ProjectsSection, ContactSection } from '.';
+import { AboutSection, ContactSection,IntroSection, ProjectsSection } from '.';
 </script>
 
 <template>

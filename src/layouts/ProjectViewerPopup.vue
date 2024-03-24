@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue';
 import { storeToRefs } from 'pinia';
-import { animateWheelEvent } from '@/utilities';
+import { onMounted, ref, watch } from 'vue';
+
 import { useControlPopupStore } from '@/stores';
+import { animateWheelEvent } from '@/utilities';
 
 const store = useControlPopupStore();
 const { isPopupOpened } = storeToRefs(store);

@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { POST_TYPE_VALUES } from '@/constants';
-import { LoadingIndicator } from '..';
 import { TPost } from '@/types';
+
+import { LoadingIndicator } from '..';
 
 defineProps<{
     post: TPost;
@@ -9,7 +10,7 @@ defineProps<{
 </script>
 
 <template>
-    <div class="post post--enter--leave-ani">
+    <div class="post">
         <img
             v-if="post.type === POST_TYPE_VALUES.PHOTO"
             v-lazy="post.sourceUrl"
@@ -32,20 +33,11 @@ defineProps<{
 
 <style scoped>
 .post {
-    height: calc(100vh - 5rem * 2);
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.post--enter--leave-ani {
-    transform: scale(0.75);
-
-    animation:
-        scale-in-slight linear forwards,
-        scale-out-slight linear forwards;
-    animation-timeline: view(), view();
-    animation-range: entry, exit;
+    flex: 0 0 auto;
 }
 
 .post__image {

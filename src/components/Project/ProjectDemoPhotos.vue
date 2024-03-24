@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { useMediaQueriesStore } from '@/stores';
-import { COMPONENT_SCALE_RATIO } from '@/constants';
+
 import { CardImage } from '@/components';
+import { COMPONENT_SCALE_RATIO } from '@/constants';
+import { useResponsiveStore } from '@/stores';
 import { TDemoImages } from '@/types';
 
 defineProps<{ demoImages: TDemoImages }>();
 
-const mediaQueriesStore = useMediaQueriesStore();
+const mediaQueriesStore = useResponsiveStore();
 const { currentScreen } = storeToRefs(mediaQueriesStore);
 </script>
 <template>

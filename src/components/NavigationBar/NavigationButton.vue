@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
 import animateScrollTo from 'animated-scroll-to';
+import { onMounted, ref } from 'vue';
 
 const props = defineProps<{
     idName: string;

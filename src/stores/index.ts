@@ -1,3 +1,3 @@
 export * from './controlPopupStore';
-export * from './mediaQueriesStore';
+export * from './responsiveStore';
 export * from './viewerScrollingStore';

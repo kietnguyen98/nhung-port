@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import { storeToRefs } from 'pinia';
-import { useControlPopupStore, useMediaQueriesStore } from '@/stores';
-import { projectMockData } from '@/data';
-import { TProject } from '@/types';
+import { ref } from 'vue';
+
 import { COMPONENT_SCALE_RATIO } from '@/constants';
+import { projectMockData } from '@/data';
+import { useControlPopupStore, useResponsiveStore } from '@/stores';
+import { TProject } from '@/types';
 import { ProjectView } from '@/views';
 
 defineProps<{
@@ -25,7 +26,7 @@ const handleSelectProjectToShow = (project: TProject) => {
     setIsPopupOpened(true);
 };
 
-const mediaQueriesStore = useMediaQueriesStore();
+const mediaQueriesStore = useResponsiveStore();
 const { currentScreen } = storeToRefs(mediaQueriesStore);
 </script>
 

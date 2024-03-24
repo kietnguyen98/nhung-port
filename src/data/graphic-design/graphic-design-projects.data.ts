@@ -1,24 +1,25 @@
 import { TProject } from '@/types';
+
 import {
     _50MegumiBrandData,
     _hannahOlalaBrandData,
     _hasakiBrandData,
     _huongNghiepDayNgheBrandData,
-    _lipOnLipBrandData,
     _lipiceHelloKittyBrandData,
     _lipiceLipbalmBrandData,
     _lipiceMeltyCreamBrandData,
     _lipiceSheerColorBrandData,
     _lipiceSheerQBrandData,
+    _lipOnLipBrandData,
     _lipsticianBrandData,
     _mentholatumBrandData,
+    _pharmacityBrandData,
     _refreeBrandData,
     _rohtoHealthScienceBrandData,
     _selsunBrandData,
     _sharkTankBrandData,
     _skinAquaBrandData,
     _sociollaBrandData,
-    _pharmacityBrandData,
 } from './brands';
 
 export const graphicDesignProjectData: TProject = {

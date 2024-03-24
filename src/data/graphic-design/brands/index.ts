@@ -10,32 +10,32 @@ import { _lipiceSheerColorBrandData } from './lipice-sheer-color.graphic-design.
 import { _lipiceSheerQBrandData } from './lipice-sheer-q.graphic-design.data';
 import { _lipsticianBrandData } from './lipstician.graphic-design.data';
 import { _mentholatumBrandData } from './mentholatum.graphic-design.data';
+import { _pharmacityBrandData } from './pharmacity.graphic-design.data';
 import { _refreeBrandData } from './refree.graphic-design.data';
 import { _rohtoHealthScienceBrandData } from './rohto-health-science.graphic-design.data';
 import { _selsunBrandData } from './selsun.graphic-design.data';
 import { _sharkTankBrandData } from './shark-tank.graphic-design.data';
 import { _skinAquaBrandData } from './skin-aqua.graphic-design.data';
 import { _sociollaBrandData } from './sociolla.graphic-design.data';
-import { _pharmacityBrandData } from './pharmacity.graphic-design.data';
 
 export {
     _50MegumiBrandData,
-    _skinAquaBrandData,
     _hannahOlalaBrandData,
     _hasakiBrandData,
-    _lipOnLipBrandData,
+    _huongNghiepDayNgheBrandData,
     _lipiceHelloKittyBrandData,
     _lipiceLipbalmBrandData,
     _lipiceMeltyCreamBrandData,
     _lipiceSheerColorBrandData,
     _lipiceSheerQBrandData,
+    _lipOnLipBrandData,
     _lipsticianBrandData,
     _mentholatumBrandData,
+    _pharmacityBrandData,
     _refreeBrandData,
     _rohtoHealthScienceBrandData,
     _selsunBrandData,
     _sharkTankBrandData,
+    _skinAquaBrandData,
     _sociollaBrandData,
-    _huongNghiepDayNgheBrandData,
-    _pharmacityBrandData,
 };

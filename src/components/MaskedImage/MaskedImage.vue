@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import { storeToRefs } from 'pinia';
-import { useMediaQueriesStore } from '@/stores';
+import { ref } from 'vue';
+
 import { COMPONENT_SCALE_RATIO, MASK_CARD_DIMENSIONS } from '@/constants';
+import { useResponsiveStore } from '@/stores';
 
 const props = defineProps<{
     imageSrc?: string;
@@ -26,7 +27,7 @@ const handleMouseLeave = () => {
     }
 };
 
-const mediaQueriesStore = useMediaQueriesStore();
+const mediaQueriesStore = useResponsiveStore();
 const { currentScreen } = storeToRefs(mediaQueriesStore);
 const cardWidthHeightRatio =
     MASK_CARD_DIMENSIONS[props.maskNumber].WIDTH /

@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
-import { useMediaQueriesStore } from '@/stores';
+import { onMounted } from 'vue';
+
 import { COMPONENT_SCALE_RATIO } from '@/constants';
+import { useResponsiveStore } from '@/stores';
 
 defineProps<{
     sectionId: string;
@@ -34,7 +35,7 @@ onMounted(() => {
     }, 750);
 });
 
-const mediaQueriesStore = useMediaQueriesStore();
+const mediaQueriesStore = useResponsiveStore();
 const { currentScreen } = storeToRefs(mediaQueriesStore);
 </script>
 

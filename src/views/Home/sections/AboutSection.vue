@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
-import { wordFlick } from '@/utilities';
-import { useMediaQueriesStore } from '@/stores';
+import { onMounted, ref } from 'vue';
+
 import { COMPONENT_SCALE_RATIO } from '@/constants';
+import { useResponsiveStore } from '@/stores';
+import { wordFlick } from '@/utilities';
 
 defineProps<{
     sectionId: string;
@@ -40,7 +41,7 @@ onMounted(() => {
 
 const CONTENT_WRAPPER_BACKGROUND_IMAGE_HEIGHT_RATIO = 350 / 645;
 
-const mediaQueriesStore = useMediaQueriesStore();
+const mediaQueriesStore = useResponsiveStore();
 const { currentScreen } = storeToRefs(mediaQueriesStore);
 </script>
 

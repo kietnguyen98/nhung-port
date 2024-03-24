@@ -1,4 +1,5 @@
 import { TProject } from '@/types';
+
 import { _refreeBrandData, _sunplayBrandData } from './brands';
 
 export const videoEditingProjectData: TProject = {

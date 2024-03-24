@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { ProjectDemoPhotos, ProjectBrands, CurvedText } from '@/components';
-import { TProject } from '@/types';
-import { useMediaQueriesStore } from '@/stores';
+
+import { CurvedText, ProjectBrands, ProjectDemoPhotos } from '@/components';
 import { COMPONENT_SCALE_RATIO } from '@/constants';
+import { useResponsiveStore } from '@/stores';
+import { TProject } from '@/types';
 
 defineProps<{
     project: TProject;
 }>();
 
-const mediaQueriesStore = useMediaQueriesStore();
+const mediaQueriesStore = useResponsiveStore();
 const { currentScreen } = storeToRefs(mediaQueriesStore);
 </script>
 
