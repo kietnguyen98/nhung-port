@@ -2,7 +2,6 @@
 import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
 
-import { COMPONENT_SCALE_RATIO } from '@/constants';
 import { useResponsiveStore } from '@/stores';
 
 defineProps<{
@@ -22,11 +21,17 @@ const title = ref<Array<string>>([
 ]);
 
 const mediaQueriesStore = useResponsiveStore();
-const { currentScreen } = storeToRefs(mediaQueriesStore);
+const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
 </script>
 
 <template>
-    <div :id="sectionId" class="about-section">
+    <div
+        :id="sectionId"
+        class="about-section"
+        :style="{
+            top: `${-10 * currentScaleRatio}rem`,
+        }"
+    >
         <!-- background -->
         <img
             class="about-section__bg-image"
@@ -36,14 +41,25 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
         <img
             src="/assets/images/rose-1.png"
             class="about-section__sub-image about-section__flower"
+            :style="{
+                height: `${85 * currentScaleRatio}rem`,
+                maxHeight: `${85 * currentScaleRatio}rem`,
+                bottom: `${12.5 * currentScaleRatio}rem`,
+                left: `${-9 * currentScaleRatio}rem`,
+            }"
         />
         <!-- content -->
-        <div class="content-container">
+        <div
+            class="content-container"
+            :style="{
+                padding: `0rem ${20 * currentScaleRatio}rem`,
+            }"
+        >
             <div
                 id="about-content-wavy-title-container"
                 class="wavy-title-container"
                 :style="{
-                    height: `${10 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                    height: `${12.5 * currentScaleRatio}rem`,
                 }"
             >
                 <h4
@@ -55,7 +71,6 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
                     {{ letter !== 'space' ? letter : '&nbsp;' }}
                 </h4>
             </div>
-
             <div class="about-content__text-wrapper">
                 <h6 class="font-lora">
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -78,7 +93,7 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
     justify-content: center;
     align-items: center;
     position: relative;
-    top: -8rem;
+    top: -6.25rem;
 
     .about-section__bg-image {
         width: 100%;
@@ -90,8 +105,6 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
 
     .about-section__flower {
         z-index: 1;
-        bottom: 13.5rem;
-        left: -5rem;
     }
 }
 
@@ -115,5 +128,9 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
 
 .about-content__text-wrapper {
     text-align: center;
+
+    h6 {
+        font-weight: bolder;
+    }
 }
 </style>

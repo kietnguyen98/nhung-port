@@ -2,126 +2,65 @@
 import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
 
-import { COMPONENT_SCALE_RATIO } from '@/constants';
-import { projectMockData } from '@/data';
-import { useControlPopupStore, useResponsiveStore } from '@/stores';
+import {
+    ProjectAnimationCard,
+    ProjectFavorites,
+    ProjectGraphicDesignCard,
+    ProjectIllustrationCard,
+    ProjectPhotosCard,
+} from '@/components';
+import { useResponsiveStore } from '@/stores';
 import { TProject } from '@/types';
 import { ProjectView } from '@/views';
-
 defineProps<{
     sectionId: string;
 }>();
 
-const store = useControlPopupStore();
-const { setIsPopupOpened } = store;
-
-const graphicDesignMockData = projectMockData[0];
-const photographyMockData = projectMockData[1];
-const videoEditingMockData = projectMockData[2];
-
 const currentShowedProject = ref<TProject>();
-
-const handleSelectProjectToShow = (project: TProject) => {
-    currentShowedProject.value = project;
-    setIsPopupOpened(true);
-};
-
 const mediaQueriesStore = useResponsiveStore();
-const { currentScreen } = storeToRefs(mediaQueriesStore);
+const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
 </script>
 
 <template>
-    <div :id="sectionId" class="projects-section">
-        <div class="projects-content">
-            <div
-                class="projects-content__title projects-content__title--enter-ani"
+    <div
+        :id="sectionId"
+        class="projects-section"
+        :style="{
+            top: `${-17.5 * currentScaleRatio}rem`,
+            paddingBottom: `${30 * currentScaleRatio}rem`,
+        }"
+    >
+        <div class="title">
+            <img
+                src="/assets/images/view-all-project-bg.png"
+                alt="view all my works title"
                 :style="{
-                    height: `${20 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                    marginBottom: `${2.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                    height: `${27.5 * currentScaleRatio}rem`,
                 }"
-            >
-                <h2 class="font-dancing-script">View all my work ...</h2>
-            </div>
-            <div
-                class="project-type-card-container"
+            />
+            <img
+                src="/assets/images/butterfly-4.png"
+                alt="butterfly 4"
+                class="title__butterfly"
                 :style="{
-                    gap: `${5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                    height: `${25 * currentScaleRatio}rem`,
+                    top: `${17.5 * currentScaleRatio}rem`,
+                    right: `${-32.5 * currentScaleRatio}rem`,
                 }"
-            >
-                <div
-                    class="project-type-card project-type-card--enter-ani"
-                    @:click="handleSelectProjectToShow(graphicDesignMockData)"
-                >
-                    <MaskedImage
-                        :image-src="graphicDesignMockData.outerImageUrl"
-                        alt="masked-image-1"
-                        :height-rem="30"
-                        :mask-number="1"
-                        :with-border="true"
-                        border-color="#fed9ed"
-                        :with-hover="true"
-                    />
-                    <h5
-                        class="project-type-card__title project-type-card__title--text-shadow-pink"
-                    >
-                        {{ graphicDesignMockData.name }}
-                    </h5>
-                </div>
-                <div
-                    class="project-type-card project-type-card--enter-ani"
-                    @:click="handleSelectProjectToShow(photographyMockData)"
-                >
-                    <MaskedImage
-                        :image-src="photographyMockData.outerImageUrl"
-                        alt="masked-image-2"
-                        :height-rem="30"
-                        :mask-number="2"
-                        :with-border="true"
-                        border-color="#7bd3ea"
-                        :with-hover="true"
-                    />
-                    <h5
-                        class="project-type-card__title project-type-card__title--text-shadow-blue"
-                    >
-                        {{ photographyMockData.name }}
-                    </h5>
-                </div>
-                <div
-                    class="project-type-card project-type-card--enter-ani"
-                    @:click="handleSelectProjectToShow(videoEditingMockData)"
-                >
-                    <MaskedImage
-                        :image-src="videoEditingMockData.outerImageUrl"
-                        alt="masked-image-2"
-                        :height-rem="30"
-                        :mask-number="5"
-                        :with-border="true"
-                        border-color="#ed5ab3"
-                        :with-hover="true"
-                    />
-                    <h5
-                        class="project-type-card__title project-type-card__title--text-shadow-purple"
-                    >
-                        {{ videoEditingMockData.name }}
-                    </h5>
-                </div>
-                <div class="project-type-card project-type-card--enter-ani">
-                    <MaskedImage
-                        image-src="/assets/images/image-3.jpg"
-                        alt="masked-image-2"
-                        :height-rem="30"
-                        :mask-number="3"
-                        :with-border="true"
-                        border-color="#a1eebd"
-                        :with-hover="true"
-                    />
-                    <h5
-                        class="project-type-card__title project-type-card__title--text-shadow-green"
-                    >
-                        Illustration
-                    </h5>
-                </div>
+            />
+        </div>
+        <div class="project-cards">
+            <div class="project-cards__row">
+                <ProjectGraphicDesignCard />
+                <ProjectAnimationCard />
             </div>
+            <div class="project-cards__row">
+                <ProjectPhotosCard />
+                <ProjectIllustrationCard />
+            </div>
+        </div>
+        <div>
+            <ProjectFavorites />
         </div>
     </div>
     <ProjectViewerPopup>
@@ -138,80 +77,31 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+}
+
+.title {
+    position: relative;
+
+    .title__butterfly {
+        position: absolute;
+    }
+}
+
+.project-cards {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-.projects-content {
-    .projects-content__title {
-        text-align: center;
+
+    .project-cards__row {
+        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-
-        h2 {
-            color: var(--color-red);
-            font-style: italic;
-            font-weight: bolder;
-            text-transform: capitalize;
-            text-shadow:
-                5px 2.5px 0px var(--color-pink),
-                10px 5px 0px var(--color-blue),
-                15px 7.5px 0px var(--color-green);
-        }
     }
-
-    .projects-content__title--enter-ani {
-        /* animation */
-        opacity: 0;
-        transform: translateY(-20rem);
-        scale: 0.5;
-        animation:
-            fade-in-from-top linear forwards,
-            fade-out-to-top-with-scale linear forwards;
-        animation-timeline: view(), view();
-        animation-range: entry, exit;
-    }
-}
-
-.project-type-card-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.project-type-card {
-    .project-type-card__title {
-        margin-top: 2rem;
-        text-align: center;
-        font-weight: bolder;
-        color: var(--color-dark);
-    }
-
-    .project-type-card__title--text-shadow-pink {
-        text-shadow: 2.5px 2.5px 0px var(--color-pink);
-    }
-
-    .project-type-card__title--text-shadow-blue {
-        text-shadow: 2.5px 2.5px 0px var(--color-blue);
-    }
-
-    .project-type-card__title--text-shadow-purple {
-        text-shadow: 2.5px 2.5px 0px var(--color-purple);
-    }
-
-    .project-type-card__title--text-shadow-green {
-        text-shadow: 2.5px 2.5px 0px var(--color-green);
-    }
-}
-
-.project-type-card--enter-ani {
-    opacity: 0;
-    transform: scale(0) translateY(-40rem);
-
-    animation:
-        scale-out-from-top linear forwards,
-        scale-in-to-top linear forwards;
-    animation-timeline: view(), view();
-    animation-range: entry, exit;
 }
 </style>

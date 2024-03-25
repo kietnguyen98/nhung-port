@@ -1,80 +1,119 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { storeToRefs } from 'pinia';
+
+import { useResponsiveStore } from '@/stores';
 
 defineProps<{
     sectionId: string;
 }>();
 
-onMounted(() => {
-    setTimeout(() => {
-        const introContentTitleElement = document.getElementById(
-            'intro-content-title'
-        ) as HTMLElement;
-        const introContentImagesElement = document.getElementById(
-            'intro-content-images'
-        ) as HTMLElement;
-
-        // update element's animation attribute
-        introContentTitleElement.classList.remove(
-            'intro-content-title--enter-ani'
-        );
-        introContentTitleElement.classList.add(
-            'intro-content-title--leave-ani'
-        );
-
-        introContentImagesElement.classList.remove(
-            'intro-content-images--enter-ani'
-        );
-        introContentImagesElement.classList.add(
-            'intro-content-images--leave-ani'
-        );
-    }, 750);
-});
+const mediaQueriesStore = useResponsiveStore();
+const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
 </script>
 
 <template>
-    <div :id="sectionId" class="intro-section">
+    <div
+        :id="sectionId"
+        class="intro-section"
+        :style="{
+            paddingTop: `${20 * currentScaleRatio}rem`,
+            paddingBottom: `${15 * currentScaleRatio}rem`,
+        }"
+    >
         <div
             id="intro-content-images"
             class="intro-content-images intro-content-images--enter-ani"
         >
             <div class="images-group">
-                <div class="images-group__sub images-group__intro-title">
+                <div
+                    class="images-group__sub images-group__intro-title"
+                    :style="{
+                        top: `${-8.5 * currentScaleRatio}rem`,
+                        left: `${18.5 * currentScaleRatio}rem`,
+                    }"
+                >
                     <h2 class="font-dancing-script">WelcomeTo</h2>
                 </div>
                 <img
                     class="images-group__main"
-                    src="/assets/images/porifile-photo.png"
+                    src="/assets/images/profile-photo.png"
+                    :style="{
+                        height: `${85 * currentScaleRatio}rem`,
+                    }"
                 />
                 <img
-                    class="images-group__sub images-group__butterfly"
                     src="/assets/images/butterfly-2.png"
+                    class="images-group__sub images-group__butterfly"
+                    :style="{
+                        height: `${17 * currentScaleRatio}rem`,
+                        top: `${-10 * currentScaleRatio}rem`,
+                        left: `${-20.5 * currentScaleRatio}rem`,
+                    }"
                 />
                 <img
-                    class="images-group__sub images-group__rose"
                     src="/assets/images/rose-2.png"
+                    class="images-group__sub images-group__rose"
+                    :style="{
+                        height: `${95 * currentScaleRatio}rem`,
+                        maxHeight: `${95 * currentScaleRatio}rem`,
+                        top: `${-7.5 * currentScaleRatio}rem`,
+                        right: `${-57.5 * currentScaleRatio}rem`,
+                    }"
                 />
                 <img
-                    class="images-group__sub images-group__stamp-1"
                     src="/assets/images/stamp-graphic-designer.png"
+                    class="images-group__sub images-group__stamp-1"
+                    :style="{
+                        height: `${32.5 * currentScaleRatio}rem`,
+                        top: `${-3.5 * currentScaleRatio}rem`,
+                        left: `${-9.5 * currentScaleRatio}rem`,
+                    }"
                 />
                 <img
-                    class="images-group__sub images-group__stamp-2"
                     src="/assets/images/stamp-illustrator.png"
+                    class="images-group__sub images-group__stamp-2"
+                    :style="{
+                        height: `${27 * currentScaleRatio}rem`,
+                        top: `${13.5 * currentScaleRatio}rem`,
+                        right: `${-2 * currentScaleRatio}rem`,
+                    }"
                 />
                 <img
-                    class="images-group__sub images-group__stamp-3"
                     src="/assets/images/stamp-stylist.png"
+                    class="images-group__sub images-group__stamp-3"
+                    :style="{
+                        height: `${21 * currentScaleRatio}rem`,
+                        bottom: `${14.5 * currentScaleRatio}rem`,
+                        left: `${-7 * currentScaleRatio}rem`,
+                    }"
                 />
                 <img
-                    class="images-group__sub images-group__stamp-4"
                     src="/assets/images/stamp-wave.png"
+                    class="images-group__sub images-group__stamp-4"
+                    :style="{
+                        height: `${15 * currentScaleRatio}rem`,
+                        top: `${32.5 * currentScaleRatio}rem`,
+                        left: `${-12.5 * currentScaleRatio}rem`,
+                    }"
                 />
                 <img
-                    class="images-group__sub images-group__stamp-5"
                     src="/assets/images/stamp-flower.png"
+                    class="images-group__sub images-group__stamp-5"
+                    :style="{
+                        height: `${21 * currentScaleRatio}rem`,
+                        bottom: `${12.5 * currentScaleRatio}rem`,
+                        right: `${-11 * currentScaleRatio}rem`,
+                    }"
                 />
-                <div class="images-group__sub images-group__port-title">
+                <div
+                    class="images-group__sub images-group__port-title"
+                    :style="{
+                        height: `${6 * currentScaleRatio}rem`,
+                        width: `${30 * currentScaleRatio}rem`,
+                        bottom: `${1.5 * currentScaleRatio}rem`,
+                        right: `${-7 * currentScaleRatio}rem`,
+                    }"
+                >
                     <h5>portfolio.</h5>
                 </div>
             </div>
@@ -85,8 +124,6 @@ onMounted(() => {
 <style scoped>
 .intro-section {
     position: relative;
-    padding-top: 15rem;
-    padding-bottom: 10rem;
 }
 
 .intro-content-images {
@@ -123,62 +160,27 @@ onMounted(() => {
     }
 
     .images-group__butterfly {
-        height: 12.5rem;
-        top: -6.5rem;
-        left: -15.5rem;
         animation: bubble-bounce 2s infinite;
     }
 
-    .images-group__rose {
-        height: 45rem;
-        top: -5rem;
-        right: -25rem;
-    }
-
     .images-group__stamp-1 {
-        height: 26.5rem;
-        top: -2.5rem;
-        left: -7.5rem;
         animation: bubble-bounce 3s infinite;
     }
 
     .images-group__stamp-2 {
-        height: 21rem;
-        top: 10rem;
-        right: -2rem;
         animation: bubble-bounce 4s infinite;
     }
 
     .images-group__stamp-3 {
-        height: 16rem;
-        bottom: 11.5rem;
-        left: -5rem;
         animation: bubble-bounce 5s infinite;
     }
 
-    .images-group__stamp-4 {
-        height: 10rem;
-        top: 25rem;
-        left: -8rem;
-    }
-
-    .images-group__stamp-5 {
-        height: 14rem;
-        bottom: 11rem;
-        right: -8rem;
-    }
-
     .images-group__port-title {
-        /* position */
-        bottom: 1.5rem;
-        right: -2.5rem;
         /* attributes */
         background-image: url(/assets/images/portfolio-title-bg.png);
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
-        height: 4rem;
-        width: 20rem;
         border-radius: 0.25rem;
         display: flex;
         justify-content: center;

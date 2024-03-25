@@ -19,55 +19,7 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
         <div class="graphic-content-wrapper">
             <div class="graphic-content">
                 <CurvedText :text="project.name" />
-                <div class="graphic-images">
-                    <div
-                        class="graphic-images__image-1"
-                        :style="{
-                            top: `${-15 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                        }"
-                    >
-                        <MaskedImage
-                            :image-src="project.introImageUrl[0]"
-                            alt="masked-image-1"
-                            :height-rem="50"
-                            :mask-number="1"
-                            :with-border="true"
-                            border-color="#ed5ab3"
-                        />
-                    </div>
-                    <div
-                        class="graphic-images__image-2"
-                        :style="{
-                            left: `${-20 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                            bottom: `${10 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                        }"
-                    >
-                        <MaskedImage
-                            :image-src="project.introImageUrl[1]"
-                            alt="masked-image-2"
-                            :height-rem="25"
-                            :mask-number="2"
-                            :with-border="true"
-                            border-color="#7bd3ea"
-                        />
-                    </div>
-                    <div
-                        class="graphic-images__image-3"
-                        :style="{
-                            right: `${-20 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                            bottom: `${10 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                        }"
-                    >
-                        <MaskedImage
-                            :image-src="project.introImageUrl[2]"
-                            alt="masked-image-3"
-                            :height-rem="25"
-                            :mask-number="3"
-                            :with-border="true"
-                            border-color="#a1eebd"
-                        />
-                    </div>
-                </div>
+                <div class="graphic-images"></div>
                 <div
                     class="graphic-content__text-wrapper"
                     :style="{

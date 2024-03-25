@@ -17,16 +17,16 @@ import { AboutSection, ContactSection, IntroSection, ProjectsSection } from '.';
 ..
 <style scoped>
 .home-page-intro {
-    background-image: url(/public/assets/images/home-page-bg.png);
+    background-image: url(/assets/images/home-page-bg.png);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
 }
 
 .home-page-about-project-contact {
-    background-image: url(/public/assets/images/old-paper-bg.jpg);
+    background-image: url(/assets/images/paper-bg.png);
     background-position: center;
-    background-size: cover;
+    background-size: contain;
     background-repeat: repeat-y;
 }
 </style>

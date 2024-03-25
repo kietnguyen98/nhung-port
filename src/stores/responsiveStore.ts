@@ -1,12 +1,13 @@
 import { defineStore } from 'pinia';
 
-import { SCREEN_VALUES } from '@/constants';
+import { COMPONENT_SCALE_RATIO, SCREEN_VALUES } from '@/constants';
 import { TScreen } from '@/types';
 
 type TMediaQueriesStoreState = {
     currentViewWidth: number;
     currentViewHeight: number;
     currentScreen: TScreen;
+    currentScaleRatio: number;
     isNotSupport: boolean;
 };
 
@@ -15,6 +16,7 @@ export const useResponsiveStore = defineStore('mediaQueries', {
         currentViewHeight: window.innerHeight,
         currentViewWidth: window.innerWidth,
         currentScreen: SCREEN_VALUES.XL,
+        currentScaleRatio: 1,
         isNotSupport: false,
     }),
     actions: {
@@ -22,42 +24,51 @@ export const useResponsiveStore = defineStore('mediaQueries', {
             // first run
             this.currentViewHeight = window.innerHeight;
             this.currentViewWidth = window.innerWidth;
-
+            // check for not support device
             if (this.currentViewWidth < SCREEN_VALUES.XS.queries.minWidth)
                 this.isNotSupport = true;
-
-            Object.values(SCREEN_VALUES).forEach((value) => {
+            // get component scale ratio
+            Object.values(SCREEN_VALUES).forEach((screenValue) => {
                 if (
-                    this.currentViewWidth >= value.queries.minWidth &&
-                    this.currentViewWidth <= value.queries.maxWidth
-                )
-                    this.setScreen(value);
-
-                // check for not support device
+                    this.currentViewWidth >= screenValue.queries.minWidth &&
+                    this.currentViewWidth <= screenValue.queries.maxWidth
+                ) {
+                    this.setScreen(screenValue);
+                    this.setScaleRatio(
+                        COMPONENT_SCALE_RATIO[screenValue.label]
+                    );
+                }
             });
 
             // run on every resize event
             window.addEventListener('resize', () => {
                 this.currentViewHeight = window.innerHeight;
                 this.currentViewWidth = window.innerWidth;
-
+                // check for not support device
                 if (this.currentViewWidth < SCREEN_VALUES.XS.queries.minWidth) {
                     this.isNotSupport = true;
                 } else {
                     this.isNotSupport = false;
                 }
-
-                Object.values(SCREEN_VALUES).forEach((value) => {
+                // get component scale ratio
+                Object.values(SCREEN_VALUES).forEach((screenValue) => {
                     if (
-                        this.currentViewWidth >= value.queries.minWidth &&
-                        this.currentViewWidth <= value.queries.maxWidth
-                    )
-                        this.setScreen(value);
+                        this.currentViewWidth >= screenValue.queries.minWidth &&
+                        this.currentViewWidth <= screenValue.queries.maxWidth
+                    ) {
+                        this.setScreen(screenValue);
+                        this.setScaleRatio(
+                            COMPONENT_SCALE_RATIO[screenValue.label]
+                        );
+                    }
                 });
             });
         },
         setScreen(value: TScreen) {
             this.currentScreen = value;
+        },
+        setScaleRatio(value: number) {
+            this.currentScaleRatio = value;
         },
     },
 });

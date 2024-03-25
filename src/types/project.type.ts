@@ -23,3 +23,10 @@ export type TProject = {
     demoImages: TDemoImages;
     brands: Array<TBrand>;
 };
+
+export type TProjects = {
+    graphicDesign?: TProject;
+    animation?: TProject;
+    photo?: TProject;
+    illustration?: TProject;
+};
