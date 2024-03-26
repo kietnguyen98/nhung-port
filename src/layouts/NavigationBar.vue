@@ -16,9 +16,13 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
 
 <template>
     <div
-        class="navigation-bar-container navigation-bar-enter-animation"
+        :class="[
+            'navigation-bar-container',
+            'navigation-bar-enter-animation',
+            !isOnTop && 'navigation-bar-container--on-scrolled',
+        ]"
         :style="{
-            paddingTop: `${7 * currentScaleRatio}rem`,
+            marginTop: `${7 * currentScaleRatio}rem`,
         }"
     >
         <div class="navigation-bar-wrapper">
@@ -74,9 +78,11 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
 
 <style scoped>
 .navigation-bar-container {
-    width: 100vw;
+    width: 95vw;
     position: absolute;
+    left: 2.5vw;
     z-index: 999;
+    transition: backdrop-filter 0.25s linear;
 
     .navigation-bar-wrapper {
         position: relative;
@@ -90,7 +96,7 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
     }
 
     .navigation-button-container {
-        width: 95vw;
+        width: 100%;
         display: flex;
         justify-content: space-around;
         align-items: center;
@@ -98,6 +104,10 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
         border-top: 0.2rem solid var(--color-dark);
         border-bottom: 0.2rem solid var(--color-dark);
     }
+}
+
+.navigation-bar-container--on-scrolled {
+    backdrop-filter: blur(1rem);
 }
 
 .navigation-bar-enter-animation {
