@@ -21,8 +21,8 @@ const FILM_STRIP_BACKGROUND_IMAGE_SIZE = 108;
         class="project-favorite-container"
         :style="{
             marginTop: `${25 * currentScaleRatio}rem`,
-            height: `calc(100vw * ${FILM_STRIP_IMAGE_HEIGHT_WIDTH_RATIO} * ${(FILM_STRIP_BACKGROUND_IMAGE_SIZE / 100) * currentScaleRatio})`,
-            backgroundSize: `${FILM_STRIP_BACKGROUND_IMAGE_SIZE * currentScaleRatio}vw`,
+            height: `calc(100vw * ${FILM_STRIP_IMAGE_HEIGHT_WIDTH_RATIO} * ${FILM_STRIP_BACKGROUND_IMAGE_SIZE / 100})`,
+            backgroundSize: `${FILM_STRIP_BACKGROUND_IMAGE_SIZE}vw`,
             backgroundPosition: `${-8.5 * currentScaleRatio}rem ${4 * currentScaleRatio}rem`,
             paddingBottom: `${4 * currentScaleRatio}rem`,
         }"
@@ -121,8 +121,8 @@ const FILM_STRIP_BACKGROUND_IMAGE_SIZE = 108;
                 class="favorite-project__image-film-pin"
                 :style="{
                     height: `${14 * currentScaleRatio}rem`,
-                    bottom: `${-3.5 * currentScaleRatio}rem`,
-                    right: `${40 * currentScaleRatio}rem`,
+                    bottom: `${-4.5 * currentScaleRatio}rem`,
+                    right: `${47.5 * currentScaleRatio}rem`,
                 }"
             />
         </div>

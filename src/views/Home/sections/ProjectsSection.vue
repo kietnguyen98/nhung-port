@@ -27,7 +27,6 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
         class="projects-section"
         :style="{
             top: `${-17.5 * currentScaleRatio}rem`,
-            paddingBottom: `${30 * currentScaleRatio}rem`,
         }"
     >
         <div class="title">
