@@ -1,5 +1,21 @@
+<script setup lang="ts">
+import { storeToRefs } from 'pinia';
+
+import { useResponsiveStore } from '@/stores';
+
+const mediaQueriesStore = useResponsiveStore();
+const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
+</script>
+
 <template>
-    <div class="project-illustration-card">
+    <div
+        class="project-illustration-card"
+        :style="{
+            height: `${82.5 * currentScaleRatio}rem`,
+            maxHeight: `${82.5 * currentScaleRatio}rem`,
+            transform: `translateY(${25 * currentScaleRatio}rem) translateX(${0.5 * currentScaleRatio}rem)`,
+        }"
+    >
         <img
             src="/assets/images/project-illustration frame.png"
             alt="project illustration frame"
@@ -9,37 +25,43 @@
             src="/assets/images/butterfly-1.png"
             alt="butterfly 1"
             class="illustration__sub-image-butterfly"
+            :style="{
+                height: `${22.5 * currentScaleRatio}rem`,
+                left: `${-27.5 * currentScaleRatio}rem`,
+                bottom: `${15 * currentScaleRatio}rem`,
+            }"
         />
-        <div class="illustration__outer-image"></div>
+        <div
+            class="illustration__outer-image"
+            :style="{
+                height: `${45 * currentScaleRatio}rem`,
+                width: `${43.5 * currentScaleRatio}rem`,
+                top: `${21.25 * currentScaleRatio}rem`,
+                left: `${9 * currentScaleRatio}rem`,
+            }"
+        ></div>
     </div>
 </template>
 
 <style scoped>
 .project-illustration-card {
-    height: 55rem;
     position: relative;
-    transform: translateY(20rem) translateX(2rem);
 
     .illustration__frame {
+        width: 100%;
+        height: 100%;
         position: relative;
         z-index: 1;
     }
 
     .illustration__sub-image-butterfly {
         position: absolute;
-        height: 15rem;
-        left: -20rem;
-        bottom: 10rem;
     }
 
     .illustration__outer-image {
-        height: 30rem;
-        width: 29rem;
         transform: rotateZ(9deg);
         position: absolute;
         z-index: 0;
-        top: 14.25rem;
-        left: 6rem;
 
         /* background image settings */
         background-color: var(--color-dark);

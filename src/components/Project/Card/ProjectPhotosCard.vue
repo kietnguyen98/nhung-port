@@ -1,10 +1,23 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia';
+
 import { projectMockData } from '@/data';
+import { useResponsiveStore } from '@/stores';
 const outerImageUrl = projectMockData.photo?.outerImageUrl;
+
+const mediaQueriesStore = useResponsiveStore();
+const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
 </script>
 
 <template>
-    <div class="project-photo-card">
+    <div
+        class="project-photo-card"
+        :style="{
+            height: `${80 * currentScaleRatio}rem`,
+            maxHeight: `${80 * currentScaleRatio}rem`,
+            transform: `translateY(${-3 * currentScaleRatio}rem) translateX(${-5 * currentScaleRatio}rem)`,
+        }"
+    >
         <img
             src="/assets/images/project-photos-frame.png"
             alt="project photos frame"
@@ -14,11 +27,20 @@ const outerImageUrl = projectMockData.photo?.outerImageUrl;
             src="/assets/images/butterfly-3.png"
             alt="butterfly 3"
             class="photos__sub-image-butterfly"
+            :style="{
+                height: `${27.5 * currentScaleRatio}rem`,
+                left: `${6.5 * currentScaleRatio}rem`,
+                top: `${-18.5 * currentScaleRatio}rem`,
+            }"
         />
         <div
             class="photos__outer-image"
             :style="{
                 backgroundImage: `url(${outerImageUrl})`,
+                height: `${43.75 * currentScaleRatio}rem`,
+                width: `${42.25 * currentScaleRatio}rem`,
+                top: `${12.5 * currentScaleRatio}rem`,
+                left: `${18.75 * currentScaleRatio}rem`,
             }"
         ></div>
     </div>
@@ -26,11 +48,11 @@ const outerImageUrl = projectMockData.photo?.outerImageUrl;
 
 <style scoped>
 .project-photo-card {
-    height: 55rem;
     position: relative;
-    transform: translateY(-2.5rem) translateX(-2rem);
 
     .photos__frame {
+        width: 100%;
+        height: 100%;
         position: relative;
         z-index: 1;
     }
@@ -43,12 +65,8 @@ const outerImageUrl = projectMockData.photo?.outerImageUrl;
     }
 
     .photos__outer-image {
-        height: 30rem;
-        width: 29rem;
         position: absolute;
         z-index: 0;
-        left: 12.75rem;
-        top: 8.5rem;
         transform: rotateZ(-21deg);
 
         /* background image settings */

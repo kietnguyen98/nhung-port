@@ -14,9 +14,9 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
     <div
         class="animation-card"
         :style="{
-            height: `${80 * currentScaleRatio}rem`,
-            maxHeight: `${80 * currentScaleRatio}rem`,
-            transform: `translateY(${27.5 * currentScaleRatio}rem) translateX(${2 * currentScaleRatio}rem)`,
+            height: `${87.5 * currentScaleRatio}rem`,
+            maxHeight: `${87.5 * currentScaleRatio}rem`,
+            transform: `translateY(${30 * currentScaleRatio}rem) translateX(${2 * currentScaleRatio}rem)`,
         }"
     >
         <img
@@ -28,10 +28,10 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
             class="animation__outer-image"
             :style="{
                 backgroundImage: `url(${outerImageUrl})`,
-                height: `${41.5 * currentScaleRatio}rem`,
-                width: `${39.5 * currentScaleRatio}rem`,
-                top: `${8.25 * currentScaleRatio}rem`,
-                left: `${10.25 * currentScaleRatio}rem`,
+                height: `${45 * currentScaleRatio}rem`,
+                width: `${43 * currentScaleRatio}rem`,
+                top: `${9.25 * currentScaleRatio}rem`,
+                left: `${11.5 * currentScaleRatio}rem`,
             }"
         ></div>
     </div>

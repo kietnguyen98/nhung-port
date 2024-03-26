@@ -11,16 +11,28 @@ const favoriteProjectImageUrl =
 
 const mediaQueriesStore = useResponsiveStore();
 const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
+
+const FILM_STRIP_IMAGE_HEIGHT_WIDTH_RATIO = 450 / 1024;
+const FILM_STRIP_BACKGROUND_IMAGE_SIZE = 108;
 </script>
 
 <template>
-    <div class="container">
+    <div
+        class="project-favorite-container"
+        :style="{
+            marginTop: `${25 * currentScaleRatio}rem`,
+            height: `calc(100vw * ${FILM_STRIP_IMAGE_HEIGHT_WIDTH_RATIO} * ${(FILM_STRIP_BACKGROUND_IMAGE_SIZE / 100) * currentScaleRatio})`,
+            backgroundSize: `${FILM_STRIP_BACKGROUND_IMAGE_SIZE * currentScaleRatio}vw`,
+            backgroundPosition: `${-8.5 * currentScaleRatio}rem ${4 * currentScaleRatio}rem`,
+            paddingBottom: `${4 * currentScaleRatio}rem`,
+        }"
+    >
         <div class="favorite-project">
             <div
                 class="favorite-project__title"
                 :style="{
-                    height: `${40 * currentScaleRatio}rem`,
-                    top: `${-21.5 * currentScaleRatio}rem`,
+                    height: `${42.5 * currentScaleRatio}rem`,
+                    top: `${-22.5 * currentScaleRatio}rem`,
                     left: `${15 * currentScaleRatio}rem`,
                 }"
             >
@@ -31,8 +43,8 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
                 <h4
                     class="favorite-project-title__text font-dancing-script"
                     :style="{
-                        top: `${10 * currentScaleRatio}rem`,
-                        padding: `0rem ${5 * currentScaleRatio}rem 0rem ${5 * currentScaleRatio}rem `,
+                        top: `${11.5 * currentScaleRatio}rem`,
+                        padding: `0rem ${6 * currentScaleRatio}rem 0rem ${6 * currentScaleRatio}rem `,
                     }"
                 >
                     Some of my favorite Works
@@ -98,9 +110,9 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
                 alt="film pin 2"
                 class="favorite-project__image-film-pin"
                 :style="{
-                    height: `${14 * currentScaleRatio}rem`,
-                    top: `${-12 * currentScaleRatio}rem`,
-                    right: `${10 * currentScaleRatio}rem`,
+                    height: `${15 * currentScaleRatio}rem`,
+                    top: `${-13 * currentScaleRatio}rem`,
+                    right: `${14 * currentScaleRatio}rem`,
                 }"
             />
             <img
@@ -118,13 +130,9 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
 </template>
 
 <style scoped>
-.container {
-    margin-top: 20rem;
+.project-favorite-container {
     width: 100vw;
-    height: calc(100vw * 450 / 1024);
     background-image: url(/assets/images/film-strip-1.png);
-    background-position: center;
-    background-size: cover;
     background-repeat: no-repeat;
     display: flex;
 }

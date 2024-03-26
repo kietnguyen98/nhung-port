@@ -14,9 +14,9 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
     <div
         class="graphic-design-card"
         :style="{
-            height: `${80 * currentScaleRatio}rem`,
-            maxHeight: `${80 * currentScaleRatio}rem`,
-            transform: `translateY(${-16.5 * currentScaleRatio}rem) translateX(${-2 * currentScaleRatio}rem)`,
+            height: `${90 * currentScaleRatio}rem`,
+            maxHeight: `${90 * currentScaleRatio}rem`,
+            transform: `translateY(${-20 * currentScaleRatio}rem) translateX(${-1.5 * currentScaleRatio}rem)`,
         }"
     >
         <img
@@ -28,10 +28,10 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
             class="graphic-design__outer-image"
             :style="{
                 backgroundImage: `url(${outerImageUrl})`,
-                height: `${39.5 * currentScaleRatio}rem`,
-                width: `${38 * currentScaleRatio}rem`,
-                top: `${25.75 * currentScaleRatio}rem`,
-                left: `${15 * currentScaleRatio}rem`,
+                height: `${44.5 * currentScaleRatio}rem`,
+                width: `${42.5 * currentScaleRatio}rem`,
+                top: `${28.75 * currentScaleRatio}rem`,
+                left: `${17 * currentScaleRatio}rem`,
             }"
         ></div>
     </div>
