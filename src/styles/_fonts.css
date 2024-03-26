@@ -1,4 +1,14 @@
 @font-face {
+    font-family: 'Bodoni72';
+    src: url('@/assets/fonts/Bodoni/bodoni-72-medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Bodoni72Bold';
+    src: url('@/assets/fonts/Bodoni/bodoni-72-bold.otf') format('opentype');
+}
+
+@font-face {
     font-family: 'DancingScript';
     src: url('@/assets/fonts/DancingScript/DancingScript-Regular.ttf')
         format('truetype');
@@ -31,6 +41,10 @@
 /* custom class with styles */
 .font-bodoni72 {
     font-family: Bodoni72;
+}
+
+.font-bodoni72-bold {
+    font-family: Bodoni72Bold;
 }
 
 .font-arielScript {

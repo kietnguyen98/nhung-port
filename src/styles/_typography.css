@@ -1,6 +1,7 @@
 /* import fonts settings */
 @import '_fonts.css';
 @import '_responsive.css';
+@import '_variables.css';
 
 :root {
     --span-tag-base-font-size: 1.5rem;

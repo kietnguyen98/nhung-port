@@ -16,7 +16,7 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
         :id="sectionId"
         class="intro-section"
         :style="{
-            paddingTop: `${20 * currentScaleRatio}rem`,
+            paddingTop: `${30 * currentScaleRatio}rem`,
             paddingBottom: `${15 * currentScaleRatio}rem`,
         }"
     >
@@ -28,8 +28,8 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
                 <div
                     class="images-group__sub images-group__intro-title"
                     :style="{
-                        top: `${-11 * currentScaleRatio}rem`,
-                        left: `${16.5 * currentScaleRatio}rem`,
+                        top: `${-10.5 * currentScaleRatio}rem`,
+                        left: `${18 * currentScaleRatio}rem`,
                     }"
                 >
                     <h1 class="font-arielScript">Welcome to</h1>
@@ -155,8 +155,9 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
     }
 
     .images-group__intro-title {
-        top: -5rem;
-        left: 12.5rem;
+        h1 {
+            letter-spacing: -0.5rem;
+        }
     }
 
     .images-group__butterfly {
