@@ -28,11 +28,11 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
                 <div
                     class="images-group__sub images-group__intro-title"
                     :style="{
-                        top: `${-8.5 * currentScaleRatio}rem`,
-                        left: `${18.5 * currentScaleRatio}rem`,
+                        top: `${-11 * currentScaleRatio}rem`,
+                        left: `${16.5 * currentScaleRatio}rem`,
                     }"
                 >
-                    <h2 class="font-dancing-script">WelcomeTo</h2>
+                    <h1 class="font-arielScript">Welcome to</h1>
                 </div>
                 <img
                     class="images-group__main"
@@ -109,12 +109,12 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
                     class="images-group__sub images-group__port-title"
                     :style="{
                         height: `${6 * currentScaleRatio}rem`,
-                        width: `${30 * currentScaleRatio}rem`,
+                        width: `${28 * currentScaleRatio}rem`,
                         bottom: `${1.5 * currentScaleRatio}rem`,
                         right: `${-7 * currentScaleRatio}rem`,
                     }"
                 >
-                    <h5>portfolio.</h5>
+                    <h6 class="font-ibmPlexMono">portfolio.</h6>
                 </div>
             </div>
         </div>
@@ -186,7 +186,6 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
         justify-content: center;
         align-items: center;
         color: white;
-        letter-spacing: 0.125rem;
         box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 
         h4 {

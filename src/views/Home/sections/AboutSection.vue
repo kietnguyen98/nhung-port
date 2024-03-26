@@ -44,7 +44,7 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
             :style="{
                 height: `${85 * currentScaleRatio}rem`,
                 maxHeight: `${85 * currentScaleRatio}rem`,
-                bottom: `${12.5 * currentScaleRatio}rem`,
+                bottom: `${14.5 * currentScaleRatio}rem`,
                 left: `${-9 * currentScaleRatio}rem`,
             }"
         />
@@ -52,27 +52,24 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
         <div
             class="content-container"
             :style="{
-                padding: `0rem ${20 * currentScaleRatio}rem`,
+                padding: `0rem ${20 * currentScaleRatio}rem ${8 * currentScaleRatio}rem ${20 * currentScaleRatio}rem`,
             }"
         >
             <div
                 id="about-content-wavy-title-container"
                 class="wavy-title-container"
-                :style="{
-                    height: `${12.5 * currentScaleRatio}rem`,
-                }"
             >
                 <h4
                     v-for="(letter, index) in title"
                     :key="letter"
                     :style="`--i:${index}`"
-                    class="about-content__title font-lora"
+                    class="about-content__title font-iCeilBeCool"
                 >
                     {{ letter !== 'space' ? letter : '&nbsp;' }}
                 </h4>
             </div>
             <div class="about-content__text-wrapper">
-                <h6 class="font-lora">
+                <h5 class="font-iCeilBeCool">
                     'Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                     sed do eiusmod tempor incididunt ut labore et dolore magna
                     aliqua. ', 'Ut enim ad minim veniam, quis nostrud
@@ -81,7 +78,7 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
                     voluptate velit esse cillum dolore eu fugiat nulla pariatur.
                     ', 'Excepteur sint occaecat cupidatat non proident, sunt in
                     culpa qui officia deserunt mollit anim id est laborum.',
-                </h6>
+                </h5>
             </div>
         </div>
     </div>
@@ -110,7 +107,6 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
 
 .content-container {
     position: absolute;
-    padding: 0rem 10rem;
 }
 
 .wavy-title-container {
@@ -120,7 +116,6 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
 
     .about-content__title {
         text-align: center;
-        font-weight: bolder;
         animation: letter-wavy 1.5s infinite;
         animation-delay: calc(0.1s * var(--i));
     }
@@ -129,8 +124,8 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
 .about-content__text-wrapper {
     text-align: center;
 
-    h6 {
-        font-weight: bolder;
+    h5 {
+        line-height: 100%;
     }
 }
 </style>

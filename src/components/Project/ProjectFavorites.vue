@@ -40,15 +40,15 @@ const FILM_STRIP_BACKGROUND_IMAGE_SIZE = 108;
                     class="favorite-project-title__background-image"
                     src="/assets/images/paper-heart.png"
                 />
-                <h4
-                    class="favorite-project-title__text font-dancing-script"
+                <h3
+                    class="favorite-project-title__text font-arielScript"
                     :style="{
-                        top: `${11.5 * currentScaleRatio}rem`,
+                        top: `${12.5 * currentScaleRatio}rem`,
                         padding: `0rem ${6 * currentScaleRatio}rem 0rem ${6 * currentScaleRatio}rem `,
                     }"
                 >
-                    Some of my favorite Works
-                </h4>
+                    some of my favorite works
+                </h3>
             </div>
             <div class="favorite-project__project-cards">
                 <img
@@ -151,6 +151,7 @@ const FILM_STRIP_BACKGROUND_IMAGE_SIZE = 108;
         transform: rotateZ(-12deg);
         text-align: center;
         position: absolute;
+        line-height: 0.8;
     }
 
     .favorite-project__project-cards {

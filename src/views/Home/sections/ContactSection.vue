@@ -8,8 +8,8 @@ defineProps<{
     <div :id="sectionId" class="contact-section">
         <div class="contact-content-wrapper">
             <div class="thankyou-text">
-                <h1 class="fs-big font-dancing-script">Thank</h1>
-                <h1 class="fs-big font-dancing-script">You !</h1>
+                <h1 class="fs-big font-DFVNRosmerta">Thank</h1>
+                <h1 class="fs-big font-DFVNRosmerta">You !</h1>
             </div>
             <div class="contact-text">
                 <h6><strong>Contact me at</strong></h6>
@@ -38,13 +38,13 @@ defineProps<{
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 5rem;
+        gap: 2.5rem;
     }
 
     .thankyou-text {
         h1 {
             font-style: italic;
-            line-height: 100%;
+            line-height: 80%;
         }
     }
 
