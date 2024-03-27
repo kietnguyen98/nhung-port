@@ -20,10 +20,7 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
             paddingBottom: `${15 * currentScaleRatio}rem`,
         }"
     >
-        <div
-            id="intro-content-images"
-            class="intro-content-images intro-content-images--enter-ani"
-        >
+        <div id="intro-content-images" class="intro-content-images">
             <div class="images-group">
                 <div
                     class="images-group__sub images-group__intro-title"
@@ -35,7 +32,7 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
                     <h1 class="font-arielScript">Welcome to</h1>
                 </div>
                 <img
-                    class="images-group__main"
+                    class="images-group__main slide-up-enter-ani"
                     src="/assets/images/profile-photo.png"
                     :style="{
                         height: `${85 * currentScaleRatio}rem`,
@@ -132,14 +129,8 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
     align-items: center;
 }
 
-.intro-content-images--enter-ani {
-    animation: slide-up 0.75s ease-in;
-}
-
-.intro-content-images--leave-ani {
-    animation: fade-out linear forwards;
-    animation-timeline: view();
-    animation-range: exit;
+.fade-in-enter-ani {
+    opacity: 0;
 }
 
 .images-group {
@@ -148,6 +139,8 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
     .images-group__main {
         height: auto;
         width: auto;
+
+        animation: slide-up 0.75s ease-in;
     }
 
     .images-group__sub {
@@ -155,25 +148,54 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
     }
 
     .images-group__intro-title {
+        opacity: 0;
+        animation: fade-in-only 0.75s 0.75s ease-in forwards;
+
         h1 {
             letter-spacing: -0.5rem;
         }
     }
 
+    .images-group__rose {
+        animation: slide-in-from-right 0.75s ease-in forwards;
+    }
+
     .images-group__butterfly {
-        animation: bubble-bounce 2s infinite;
+        opacity: 0;
+        animation:
+            fade-in-and-scale 0.75s 0.75s ease-in forwards,
+            bubble-bounce 2s ease-in-out infinite;
     }
 
     .images-group__stamp-1 {
-        animation: bubble-bounce 3s infinite;
+        opacity: 0;
+        animation:
+            fade-in-and-scale 0.75s 0.75s ease-in forwards,
+            bubble-bounce 3s ease-in-out infinite;
     }
 
     .images-group__stamp-2 {
-        animation: bubble-bounce 4s infinite;
+        opacity: 0;
+        animation:
+            fade-in-and-scale 0.75s 0.75s ease-in forwards,
+            bubble-bounce 4s ease-in-out infinite;
     }
 
     .images-group__stamp-3 {
-        animation: bubble-bounce 5s infinite;
+        opacity: 0;
+        animation:
+            fade-in-and-scale 0.75s 0.75s ease-in forwards,
+            bubble-bounce 5s ease-in-out infinite;
+    }
+
+    .images-group__stamp-4 {
+        opacity: 0;
+        animation: fade-in-and-scale 0.75s 0.75s ease-in forwards;
+    }
+
+    .images-group__stamp-5 {
+        opacity: 0;
+        animation: fade-in-and-scale 0.75s 0.75s ease-in forwards;
     }
 
     .images-group__port-title {
@@ -188,6 +210,7 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
         align-items: center;
         color: white;
         box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        /* animation */
 
         h4 {
             line-height: 100%;

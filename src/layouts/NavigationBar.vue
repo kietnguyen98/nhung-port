@@ -112,6 +112,6 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
 
 .navigation-bar-enter-animation {
     opacity: 0;
-    animation: fade-in 1.5s linear forwards;
+    animation: fade-in-from-top 1.5s linear forwards;
 }
 </style>

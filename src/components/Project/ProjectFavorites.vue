@@ -1,19 +1,59 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
+import { onMounted } from 'vue';
 
 import { projectMockData } from '@/data';
 import { useResponsiveStore } from '@/stores';
+import { TPost } from '@/types';
 
 import { CardImage } from '..';
-
-const favoriteProjectImageUrl =
-    projectMockData.graphicDesign?.demoImages.mainImageUrl ?? '';
 
 const mediaQueriesStore = useResponsiveStore();
 const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
 
 const FILM_STRIP_IMAGE_HEIGHT_WIDTH_RATIO = 450 / 1024;
 const FILM_STRIP_BACKGROUND_IMAGE_SIZE = 108;
+const favoriteList = projectMockData.graphicDesign?.brands[1]?.posts.slice(
+    0,
+    5
+) as Array<TPost>;
+
+onMounted(() => {
+    const projectSectionCardContainer = document.getElementById(
+        'project-section-cards-wrapper'
+    ) as HTMLElement;
+
+    if (projectSectionCardContainer) {
+        const projectCardList = projectSectionCardContainer.children;
+        let listChildRightPositions: Array<number> = [];
+
+        setInterval(() => {
+            for (let i = 0; i < projectCardList.length; i++) {
+                const slideSpeed = 1 / 240;
+                const child = projectCardList[i] as HTMLElement;
+                const childWidthInRem = child.clientWidth / 16;
+                const resetPosition = -childWidthInRem;
+                const gap = 1;
+                // must be in rem
+                let childRightPosition = listChildRightPositions[i]
+                    ? listChildRightPositions[i] + slideSpeed * 16
+                    : i * (child.clientWidth / 16 + gap) + slideSpeed * 16;
+                if (
+                    childRightPosition >
+                    window.innerWidth / Math.cos((3 / 180) * Math.PI) / 16
+                ) {
+                    childRightPosition = resetPosition;
+                }
+                listChildRightPositions[i] = childRightPosition;
+            }
+
+            for (let i = 0; i < projectCardList.length; i++) {
+                const child = projectCardList[i] as HTMLElement;
+                child.style.right = `${listChildRightPositions[i]}rem`;
+            }
+        }, 1000 / 60);
+    }
+});
 </script>
 
 <template>
@@ -61,48 +101,29 @@ const FILM_STRIP_BACKGROUND_IMAGE_SIZE = 108;
                     src="/assets/images/film-strip-2.png"
                 />
                 <div
-                    class="project-cards__card-container"
+                    class="project-cards__cards-container"
                     :style="{
-                        top: `${8.25 * currentScaleRatio}rem`,
-                        right: `${12 * currentScaleRatio}rem`,
+                        top: `${7.5 * currentScaleRatio}rem`,
+                        right: `${0 * currentScaleRatio}rem`,
                     }"
                 >
-                    <CardImage
-                        alt="favorite project card"
-                        :image-src="favoriteProjectImageUrl"
-                        :height-rem="30"
-                        :width-height-ratio="3 / 4"
-                    />
-                    <CardImage
-                        alt="favorite project card"
-                        :image-src="favoriteProjectImageUrl"
-                        :height-rem="30"
-                        :width-height-ratio="3 / 4"
-                    />
-                    <CardImage
-                        alt="favorite project card"
-                        :image-src="favoriteProjectImageUrl"
-                        :height-rem="30"
-                        :width-height-ratio="3 / 4"
-                    />
-                    <CardImage
-                        alt="favorite project card"
-                        :image-src="favoriteProjectImageUrl"
-                        :height-rem="30"
-                        :width-height-ratio="3 / 4"
-                    />
-                    <CardImage
-                        alt="favorite project card"
-                        :image-src="favoriteProjectImageUrl"
-                        :height-rem="30"
-                        :width-height-ratio="3 / 4"
-                    />
-                    <CardImage
-                        alt="favorite project card"
-                        :image-src="favoriteProjectImageUrl"
-                        :height-rem="30"
-                        :width-height-ratio="3 / 4"
-                    />
+                    <div
+                        id="project-section-cards-wrapper"
+                        class="project-cards__cards-wrapper"
+                    >
+                        <div
+                            v-for="post in favoriteList"
+                            :key="post.sourceUrl"
+                            class="project-card-wrapper"
+                        >
+                            <CardImage
+                                alt="favorite project card"
+                                :image-src="post.sourceUrl ?? ''"
+                                :height-rem="29.5"
+                                :width-height-ratio="3 / 4"
+                            />
+                        </div>
+                    </div>
                 </div>
             </div>
             <img
@@ -161,14 +182,20 @@ const FILM_STRIP_BACKGROUND_IMAGE_SIZE = 108;
             height: auto;
         }
 
-        .project-cards__card-container {
+        .project-cards__cards-container {
+            width: 105vw;
             position: absolute;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-            transform: rotateZ(-3deg);
+        }
+
+        .project-cards__cards-wrapper {
+            width: 100%;
+            position: relative;
             transform-origin: top right;
+            transform: rotateZ(-3deg);
+        }
+
+        .project-cards__cards-wrapper > .project-card-wrapper {
+            position: absolute;
         }
     }
 

@@ -50,12 +50,20 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
         </div>
         <div class="project-cards">
             <div class="project-cards__row">
-                <ProjectGraphicDesignCard />
-                <ProjectAnimationCard />
+                <div class="project-card-enter-ani">
+                    <ProjectGraphicDesignCard />
+                </div>
+                <div class="project-card-enter-ani">
+                    <ProjectAnimationCard />
+                </div>
             </div>
             <div class="project-cards__row">
-                <ProjectPhotosCard />
-                <ProjectIllustrationCard />
+                <div class="project-card-enter-ani">
+                    <ProjectPhotosCard />
+                </div>
+                <div class="project-card-enter-ani">
+                    <ProjectIllustrationCard />
+                </div>
             </div>
         </div>
         <div>
