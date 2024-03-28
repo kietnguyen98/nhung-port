@@ -3,7 +3,6 @@ import { storeToRefs } from 'pinia';
 import { onUpdated, ref, watch } from 'vue';
 
 import { PostViewer, PostViewerIndicator } from '@/components';
-import { COMPONENT_SCALE_RATIO } from '@/constants';
 import {
     useControlPopupStore,
     useResponsiveStore,
@@ -22,7 +21,7 @@ const { setViewProgress } = viewScrollingStore;
 
 // media query for responsive
 const mediaQueriesStore = useResponsiveStore();
-const { currentScreen } = storeToRefs(mediaQueriesStore);
+const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
 
 const postViewerScrollWrapperElement = ref<HTMLElement>();
 const handlePostViewerWheelEvent = ref<(e: WheelEvent) => void>();
@@ -159,10 +158,10 @@ const handleClosePostViewer = () => {
                         : 'posts-wrapper--disappeared',
                 ]"
                 :style="{
-                    gap: `${5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                    padding: `${10 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                    height: `calc(100vh - ${10 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem * 2)`,
-                    width: `calc(100vw - ${10 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem * 2)`,
+                    gap: `${5 * currentScaleRatio}rem`,
+                    padding: `${10 * currentScaleRatio}rem`,
+                    height: `calc(100vh - ${10 * currentScaleRatio}rem * 2)`,
+                    width: `calc(100vw - ${10 * currentScaleRatio}rem * 2)`,
                 }"
             >
                 <PostViewer

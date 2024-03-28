@@ -2,17 +2,24 @@
 import { storeToRefs } from 'pinia';
 
 import { useResponsiveStore } from '@/stores';
-
-defineProps<{
-    imageSrc: string;
-    alt: string;
-    widthHeightRatio?: number;
-    heightRem?: number;
-}>();
-
 const mediaQueriesStore = useResponsiveStore();
 const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
 const IMAGE_CARD_WIDTH_HEIGHT_RATIO = 9 / 16;
+
+withDefaults(
+    defineProps<{
+        imageSrc: string;
+        alt: string;
+        widthHeightRatio?: number;
+        heightRem?: number;
+        isRounded?: boolean;
+    }>(),
+    {
+        widthHeightRatio: IMAGE_CARD_WIDTH_HEIGHT_RATIO,
+        heightRem: 0,
+        isRounded: true,
+    }
+);
 </script>
 
 <template>
@@ -22,15 +29,15 @@ const IMAGE_CARD_WIDTH_HEIGHT_RATIO = 9 / 16;
             backgroundImage: `url(${imageSrc})`,
             height: heightRem ? `${heightRem * currentScaleRatio}rem` : '100%',
             width: heightRem
-                ? `${heightRem * currentScaleRatio * (widthHeightRatio ? widthHeightRatio : IMAGE_CARD_WIDTH_HEIGHT_RATIO)}rem`
+                ? `${heightRem * currentScaleRatio * widthHeightRatio}rem`
                 : 'auto',
+            borderRadius: isRounded ? '2rem' : '0',
         }"
     ></div>
 </template>
 
 <style scoped>
 .image-wrapper {
-    border-radius: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;

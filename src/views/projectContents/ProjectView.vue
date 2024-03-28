@@ -2,7 +2,6 @@
 import { storeToRefs } from 'pinia';
 
 import { CurvedText, ProjectBrands, ProjectDemoPhotos } from '@/components';
-import { COMPONENT_SCALE_RATIO } from '@/constants';
 import { useResponsiveStore } from '@/stores';
 import { TProject } from '@/types';
 
@@ -11,7 +10,7 @@ defineProps<{
 }>();
 
 const mediaQueriesStore = useResponsiveStore();
-const { currentScreen } = storeToRefs(mediaQueriesStore);
+const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
 </script>
 
 <template>
@@ -23,7 +22,7 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
                 <div
                     class="graphic-content__text-wrapper"
                     :style="{
-                        padding: `0rem ${20 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem ${5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem ${20 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                        padding: `0rem ${20 * currentScaleRatio}rem ${5 * currentScaleRatio}rem ${20 * currentScaleRatio}rem`,
                     }"
                 >
                     <h6>

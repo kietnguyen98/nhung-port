@@ -2,7 +2,7 @@
 import { storeToRefs } from 'pinia';
 import { ref, watch } from 'vue';
 
-import { COMPONENT_SCALE_RATIO, POST_TYPE_VALUES } from '@/constants';
+import { POST_TYPE_VALUES } from '@/constants';
 import { useScrollingDebounce } from '@/hooks';
 import { useResponsiveStore, useViewScrollingStore } from '@/stores';
 import { TPost } from '@/types';
@@ -16,7 +16,7 @@ const viewScrollingStore = useViewScrollingStore();
 const { progress } = storeToRefs(viewScrollingStore);
 
 const mediaQueriesStore = useResponsiveStore();
-const { currentScreen, currentViewWidth, currentViewHeight } =
+const { currentScaleRatio, currentViewWidth, currentViewHeight } =
     storeToRefs(mediaQueriesStore);
 
 const { isScrolling } = useScrollingDebounce({
@@ -27,19 +27,15 @@ const { isScrolling } = useScrollingDebounce({
 const INDICATOR_POST_HEIGHT = 5;
 
 const indicatorToViewSizeRatio = ref<number>(
-    (INDICATOR_POST_HEIGHT *
-        COMPONENT_SCALE_RATIO[currentScreen.value.label] *
-        16) /
+    (INDICATOR_POST_HEIGHT * currentScaleRatio.value * 16) /
         currentViewHeight.value
 );
 
 watch(
-    [() => currentScreen.value, () => currentViewHeight.value],
+    [() => currentScaleRatio.value, () => currentViewHeight.value],
     ([newCurrentScreen, newCurrentViewHeight]) => {
         indicatorToViewSizeRatio.value =
-            (INDICATOR_POST_HEIGHT *
-                COMPONENT_SCALE_RATIO[newCurrentScreen.label] *
-                16) /
+            (INDICATOR_POST_HEIGHT * newCurrentScreen * 16) /
             newCurrentViewHeight;
     }
 );
@@ -58,15 +54,15 @@ watch(
             <div
                 class="view-section"
                 :style="{
-                    height: `${INDICATOR_POST_HEIGHT * COMPONENT_SCALE_RATIO[currentScreen.label] + 10 * indicatorToViewSizeRatio * 2}rem`,
+                    height: `${INDICATOR_POST_HEIGHT * currentScaleRatio + 10 * indicatorToViewSizeRatio * 2}rem`,
                     top: `calc(1rem - ${10 * indicatorToViewSizeRatio}rem)`,
-                    width: `${((INDICATOR_POST_HEIGHT * COMPONENT_SCALE_RATIO[currentScreen.label] + 10 * indicatorToViewSizeRatio * 2) * currentViewWidth) / currentViewHeight}rem`,
+                    width: `${((INDICATOR_POST_HEIGHT * currentScaleRatio + 10 * indicatorToViewSizeRatio * 2) * currentViewWidth) / currentViewHeight}rem`,
                     // left = current padding left - view section border width + (full indicator posts width - view section width) * progress / 100
                     // + current padding left = current post padding left
                     left: `calc(
                         2rem 
                         - ${10 * indicatorToViewSizeRatio}rem 
-                        + (100% - ${((INDICATOR_POST_HEIGHT * COMPONENT_SCALE_RATIO[currentScreen.label] + 10 * indicatorToViewSizeRatio * 2) * currentViewWidth) / currentViewHeight}rem + ${10 * indicatorToViewSizeRatio}rem * 2 - 2rem * 2) * ${progress} / 100
+                        + (100% - ${((INDICATOR_POST_HEIGHT * currentScaleRatio + 10 * indicatorToViewSizeRatio * 2) * currentViewWidth) / currentViewHeight}rem + ${10 * indicatorToViewSizeRatio}rem * 2 - 2rem * 2) * ${progress} / 100
                         )`,
                 }"
             >
@@ -80,9 +76,9 @@ watch(
             <div
                 class="post-wrapper"
                 :style="{
-                    height: `${INDICATOR_POST_HEIGHT * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                    height: `${INDICATOR_POST_HEIGHT * currentScaleRatio}rem`,
                     // indicator post image gap = current post image gap * current indicator height (in pixel) / view height (in pixel)
-                    gap: `${INDICATOR_POST_HEIGHT * COMPONENT_SCALE_RATIO[currentScreen.label] * indicatorToViewSizeRatio}rem`,
+                    gap: `${INDICATOR_POST_HEIGHT * currentScaleRatio * indicatorToViewSizeRatio}rem`,
                 }"
             >
                 <img

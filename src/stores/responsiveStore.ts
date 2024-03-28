@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 
-import { COMPONENT_SCALE_RATIO, SCREEN_VALUES } from '@/constants';
+import { SCREEN_VALUES } from '@/constants';
 import { TScreen } from '@/types';
 
 type TMediaQueriesStoreState = {
@@ -34,11 +34,16 @@ export const useResponsiveStore = defineStore('mediaQueries', {
                     this.currentViewWidth <= screenValue.queries.maxWidth
                 ) {
                     this.setScreen(screenValue);
-                    this.setScaleRatio(
-                        COMPONENT_SCALE_RATIO[screenValue.label]
-                    );
                 }
             });
+
+            this.setScaleRatio(
+                Math.ceil(
+                    (this.currentViewWidth /
+                        SCREEN_VALUES.XXL.queries.minWidth) *
+                        100
+                ) / 100
+            );
 
             // run on every resize event
             window.addEventListener('resize', () => {
@@ -57,11 +62,16 @@ export const useResponsiveStore = defineStore('mediaQueries', {
                         this.currentViewWidth <= screenValue.queries.maxWidth
                     ) {
                         this.setScreen(screenValue);
-                        this.setScaleRatio(
-                            COMPONENT_SCALE_RATIO[screenValue.label]
-                        );
                     }
                 });
+
+                this.setScaleRatio(
+                    Math.ceil(
+                        (this.currentViewWidth /
+                            SCREEN_VALUES.XXL.queries.minWidth) *
+                            100
+                    ) / 100
+                );
             });
         },
         setScreen(value: TScreen) {

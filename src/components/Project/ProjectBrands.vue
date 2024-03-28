@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 
-import { COMPONENT_SCALE_RATIO } from '@/constants';
 import { useControlPopupStore, useResponsiveStore } from '@/stores';
 import { TBrand } from '@/types';
 defineProps<{
@@ -17,7 +16,7 @@ const openPostViewer = (brandData: TBrand) => {
 };
 
 const mediaQueriesStore = useResponsiveStore();
-const { currentScreen } = storeToRefs(mediaQueriesStore);
+const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
 </script>
 
 <template>
@@ -32,8 +31,8 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
                 :key="brand.name"
                 class="brand-card brand-card--enter-ani"
                 :style="{
-                    height: `${15 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
-                    width: `${15 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`,
+                    height: `${15 * currentScaleRatio}rem`,
+                    width: `${15 * currentScaleRatio}rem`,
                 }"
                 @:click="openPostViewer(brand)"
             >

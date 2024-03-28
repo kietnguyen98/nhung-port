@@ -63,7 +63,7 @@ watch(
                         // card width in rem
                         childWidthInRem;
 
-                    const childGapInRem = 1.5 * newScaleRatio;
+                    const childGapInRem = 0 * newScaleRatio;
                     // must be in rem
                     let childRightPosition = listChildRightPositions[i]
                         ? listChildRightPositions[i] - slideVelocityInRem
@@ -96,8 +96,8 @@ watch(
         class="project-favorite-container"
         :style="{
             marginTop: `${22.5 * currentScaleRatio}rem`,
-            height: `calc(100vw * ${FILM_STRIP_IMAGE_HEIGHT_WIDTH_RATIO} * ${FILM_STRIP_BACKGROUND_IMAGE_SIZE / 100})`,
-            backgroundSize: `${FILM_STRIP_BACKGROUND_IMAGE_SIZE}vw`,
+            height: `calc(${(FILM_STRIP_BACKGROUND_IMAGE_SIZE / 100) * 160 * currentScaleRatio}rem * ${FILM_STRIP_IMAGE_HEIGHT_WIDTH_RATIO})`,
+            backgroundSize: `${(FILM_STRIP_BACKGROUND_IMAGE_SIZE / 100) * 160 * currentScaleRatio}rem`,
             backgroundPosition: `${-8.5 * currentScaleRatio}rem ${4 * currentScaleRatio}rem`,
             paddingBottom: `${4 * currentScaleRatio}rem`,
         }"
@@ -160,6 +160,7 @@ watch(
                                 :image-src="post.sourceUrl ?? ''"
                                 :height-rem="29.5"
                                 :width-height-ratio="3 / 4"
+                                :is-rounded="false"
                             />
                         </div>
                     </div>
@@ -215,6 +216,7 @@ watch(
     }
 
     .favorite-project__project-cards {
+        position: relative;
         .project-cards__background-image {
             position: relative;
             z-index: 0;
