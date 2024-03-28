@@ -95,7 +95,7 @@ watch(
     <div
         class="project-favorite-container"
         :style="{
-            marginTop: `${25 * currentScaleRatio}rem`,
+            marginTop: `${22.5 * currentScaleRatio}rem`,
             height: `calc(100vw * ${FILM_STRIP_IMAGE_HEIGHT_WIDTH_RATIO} * ${FILM_STRIP_BACKGROUND_IMAGE_SIZE / 100})`,
             backgroundSize: `${FILM_STRIP_BACKGROUND_IMAGE_SIZE}vw`,
             backgroundPosition: `${-8.5 * currentScaleRatio}rem ${4 * currentScaleRatio}rem`,
@@ -106,9 +106,9 @@ watch(
             <div
                 class="favorite-project__title"
                 :style="{
-                    height: `${42.5 * currentScaleRatio}rem`,
-                    top: `${-22.5 * currentScaleRatio}rem`,
-                    left: `${15 * currentScaleRatio}rem`,
+                    height: `${43.5 * currentScaleRatio}rem`,
+                    top: `${-25.5 * currentScaleRatio}rem`,
+                    left: `${12.5 * currentScaleRatio}rem`,
                 }"
             >
                 <img
@@ -118,7 +118,7 @@ watch(
                 <h3
                     class="favorite-project-title__text font-arielScript"
                     :style="{
-                        top: `${12.5 * currentScaleRatio}rem`,
+                        top: `${13.5 * currentScaleRatio}rem`,
                         left: `${2.5 * currentScaleRatio}rem`,
                         padding: `0rem ${6 * currentScaleRatio}rem 0rem ${6 * currentScaleRatio}rem `,
                     }"
