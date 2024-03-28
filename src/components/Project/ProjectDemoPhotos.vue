@@ -2,14 +2,13 @@
 import { storeToRefs } from 'pinia';
 
 import { CardImage } from '@/components';
-import { COMPONENT_SCALE_RATIO } from '@/constants';
 import { useResponsiveStore } from '@/stores';
 import { TDemoImages } from '@/types';
 
 defineProps<{ demoImages: TDemoImages }>();
 
 const mediaQueriesStore = useResponsiveStore();
-const { currentScreen } = storeToRefs(mediaQueriesStore);
+const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
 </script>
 <template>
     <div class="graphic-photos-container">
@@ -23,7 +22,7 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
         <div class="right-photos">
             <div
                 :style="{
-                    transform: `translateY(${20 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem)`,
+                    transform: `translateY(${20 * currentScaleRatio}rem)`,
                 }"
             >
                 <h5>
@@ -48,7 +47,7 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
             <div class="images-container">
                 <div
                     :style="{
-                        transform: `translateX(${-2.5 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem) translateY(${-10 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem) rotate(-15deg)`,
+                        transform: `translateX(${-2.5 * currentScaleRatio}rem) translateY(${-10 * currentScaleRatio}rem) rotate(-15deg)`,
                     }"
                 >
                     <CardImage
@@ -60,7 +59,7 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
 
                 <div
                     :style="{
-                        transform: `translateX(${1 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem) translateY(${-20 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem) rotate(20deg)`,
+                        transform: `translateX(${1 * currentScaleRatio}rem) translateY(${-20 * currentScaleRatio}rem) rotate(20deg)`,
                     }"
                 >
                     <CardImage

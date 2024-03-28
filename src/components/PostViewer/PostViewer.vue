@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 
-import { COMPONENT_SCALE_RATIO, POST_TYPE_VALUES } from '@/constants';
+import { POST_TYPE_VALUES } from '@/constants';
 import { useResponsiveStore } from '@/stores';
 import { TPost } from '@/types';
 
@@ -12,7 +12,7 @@ defineProps<{
 }>();
 
 const mediaQueriesStore = useResponsiveStore();
-const { currentScreen } = storeToRefs(mediaQueriesStore);
+const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
 </script>
 
 <template>
@@ -26,8 +26,8 @@ const { currentScreen } = storeToRefs(mediaQueriesStore);
             v-if="post.type === POST_TYPE_VALUES.VIDEO"
             class="post__video-wrapper"
             :style="{
-                height: `calc(100vh - 2 * ${10 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem)`,
-                width: `calc(100vw - 2 * ${10 * COMPONENT_SCALE_RATIO[currentScreen.label]}rem)`,
+                height: `calc(100vh - 2 * ${10 * currentScaleRatio}rem)`,
+                width: `calc(100vw - 2 * ${10 * currentScaleRatio}rem)`,
             }"
         >
             <LoadingIndicator></LoadingIndicator>
