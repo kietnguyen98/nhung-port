@@ -1,38 +1,58 @@
 @font-face {
-    font-family: 'DancingScript';
-    src: url('@/assets/fonts/DancingScript/DancingScript-Regular.ttf')
+    font-family: 'Bodoni72';
+    src: url('@/assets/fonts/Bodoni/bodoni-72-medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Bodoni72Bold';
+    src: url('@/assets/fonts/Bodoni/bodoni-72-bold.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'ArielScript';
+    src: url('@/assets/fonts/ArielScript/ariel-script-medium.ttf')
         format('truetype');
 }
 
 @font-face {
-    font-family: 'Pacifico';
-    src: url('@/assets/fonts/Pacifico/Pacifico-Regular.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'Lora';
-    src: url('@/assets/fonts/Lora/Lora-Regular.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'Bodoni';
-    src: url('@/assets/fonts/Bodoni/bodoni-72-oldstyle-book.ttf')
+    font-family: 'IBMPlexMono';
+    src: url('@/assets/fonts/IBMPlexMono/ibm-plex-mono-medium.ttf')
         format('truetype');
+}
+
+@font-face {
+    font-family: 'ICeilBeCool';
+    src: url('@/assets/fonts/ICeilBeCool/i-ceil-be-cool-medium.otf')
+        format('opentype');
+}
+
+@font-face {
+    font-family: 'DFVNRosmerta';
+    src: url('@/assets/fonts/DFVNRosmerta/dfvn-rosmerta-medium.otf')
+        format('opentype');
 }
 
 /* custom class with styles */
-.font-pacifico {
-    font-family: Pacifico;
+.font-bodoni72 {
+    font-family: Bodoni72;
 }
 
-.font-dancing-script {
-    font-family: DancingScript;
+.font-bodoni72-bold {
+    font-family: Bodoni72Bold;
 }
 
-.font-lora {
-    font-family: Lora;
+.font-arielScript {
+    font-family: ArielScript;
 }
 
-.font-bodoni {
-    font-family: Bodoni;
+.font-ibmPlexMono {
+    font-family: IBMPlexMono;
+}
+
+.font-iCeilBeCool {
+    font-family: ICeilBeCool;
+}
+
+.font-DFVNRosmerta {
+    font-family: DFVNRosmerta;
 }

@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 
-import { COMPONENT_SCALE_RATIO } from '@/constants';
 import { useResponsiveStore } from '@/stores';
 
 defineProps<{
     imageSrc: string;
     alt: string;
+    widthHeightRatio?: number;
     heightRem?: number;
 }>();
 
 const mediaQueriesStore = useResponsiveStore();
-const { currentScreen } = storeToRefs(mediaQueriesStore);
+const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
 const IMAGE_CARD_WIDTH_HEIGHT_RATIO = 9 / 16;
 </script>
 
@@ -20,11 +20,9 @@ const IMAGE_CARD_WIDTH_HEIGHT_RATIO = 9 / 16;
         class="image-wrapper"
         :style="{
             backgroundImage: `url(${imageSrc})`,
-            height: heightRem
-                ? `${heightRem * COMPONENT_SCALE_RATIO[currentScreen.label]}rem`
-                : '100%',
+            height: heightRem ? `${heightRem * currentScaleRatio}rem` : '100%',
             width: heightRem
-                ? `${heightRem * COMPONENT_SCALE_RATIO[currentScreen.label] * IMAGE_CARD_WIDTH_HEIGHT_RATIO}rem`
+                ? `${heightRem * currentScaleRatio * (widthHeightRatio ? widthHeightRatio : IMAGE_CARD_WIDTH_HEIGHT_RATIO)}rem`
                 : 'auto',
         }"
     ></div>
@@ -32,7 +30,6 @@ const IMAGE_CARD_WIDTH_HEIGHT_RATIO = 9 / 16;
 
 <style scoped>
 .image-wrapper {
-    border: 1rem solid var(--color-white);
     border-radius: 2rem;
     display: flex;
     justify-content: center;

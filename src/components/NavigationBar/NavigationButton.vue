@@ -68,17 +68,13 @@ onMounted(() => {
     <button
         :class="[
             'navigation-button',
-            isScrolled
-                ? 'navigation-button--scrolled'
-                : 'navigation-button--on-top',
-            isActive &&
-                (isScrolled
-                    ? 'navigation-button--scrolled--activated'
-                    : 'navigation-button--on-top--activated'),
+            isActive && 'navigation-button--activated',
         ]"
         @:click="navigateToTarget"
     >
-        <p class="navigation-button__name font-pacifico">{{ name }}</p>
+        <h5 class="navigation-button__title font-bodoni72-bold">
+            {{ name }}
+        </h5>
     </button>
 </template>
 
@@ -86,52 +82,34 @@ onMounted(() => {
 .navigation-button {
     outline: none;
     border: none;
-    padding: 0.2rem 0.75rem;
-    outline-style: solid;
-    outline-width: 2px;
-    border-radius: 1.5rem;
-    transition: all 0.3s linear;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.5rem;
     background-color: transparent;
-    outline-color: transparent;
+    transition: background-color 0.25s linear;
 
-    & .navigation-button__name {
-        text-transform: capitalize;
-        transition: all 0.5s ease-in-out;
+    .navigation-button__title {
+        text-align: start;
+        line-height: 100%;
+        letter-spacing: -0.125rem;
+        color: var(--color-dark);
+        text-transform: lowercase;
+        transition: color 0.25s linear;
     }
 
     &:hover {
-        padding: 0.25rem 1rem;
+        background-color: var(--color-dark);
     }
-}
 
-.navigation-button--on-top {
-    & .navigation-button__name {
+    &:hover > .navigation-button__title {
         color: var(--color-white);
     }
-
-    &:hover {
-        background-color: var(--color-cyan);
-    }
 }
 
-.navigation-button--on-top--activated {
-    background-color: var(--color-cyan);
-    padding: 0.25rem 1rem;
-}
+.navigation-button--activated {
+    background-color: var(--color-dark);
 
-.navigation-button--scrolled {
-    &.navigation-button__name {
-        color: var(--color-white) !important;
-        font-weight: bolder;
+    .navigation-button__title {
+        color: var(--color-white);
     }
-
-    &:hover {
-        background-color: var(--color-strong-cream);
-    }
-}
-
-.navigation-button--scrolled--activated {
-    background-color: var(--color-strong-cream);
-    padding: 0.25rem 1rem;
 }
 </style>

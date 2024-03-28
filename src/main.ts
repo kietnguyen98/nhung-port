@@ -11,7 +11,6 @@ import App from '@/App.vue';
 import loadingImage from '@/assets/images/loader-320px.gif';
 import errorNotFoundImage from '@/assets/images/not-found.svg';
 // components
-import { MaskedImage } from '@/components';
 // layouts
 import {
     AppContainer,
@@ -44,6 +43,5 @@ app.component('PostViewerPopup', PostViewerPopup);
 
 // component register
 app.component('NavigationBar', NavigationBar);
-app.component('MaskedImage', MaskedImage);
 
 app.mount('#app');

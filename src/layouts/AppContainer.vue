@@ -113,13 +113,14 @@ onMounted(() => {
 
             const fullPageHeight =
                 containerScrollWrapperElement.value.scrollHeight;
-
-            // check progress on scrolling
-            progress.value =
+            const scrollingProgress =
                 (containerScrollWrapperElement.value.scrollTop /
                     (fullPageHeight -
                         containerScrollWrapperElement.value.clientHeight)) *
                 100;
+
+            // check progress on scrolling
+            progress.value = Math.min(Math.ceil(scrollingProgress), 100);
         }
     });
 });
@@ -169,7 +170,6 @@ watch(
     position: relative;
     .container__scroll-wrapper {
         height: 100vh;
-        background-color: var(--color-cream);
         overflow-y: scroll;
         overflow-x: hidden;
 

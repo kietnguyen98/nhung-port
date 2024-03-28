@@ -1,80 +1,117 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia';
+
 import { NavigationButton } from '@/components';
+import { useResponsiveStore } from '@/stores';
 import { TSections } from '@/types';
 defineProps<{
     isOnTop: boolean;
     sections: TSections;
     currentActive: string;
 }>();
+
+const mediaQueriesStore = useResponsiveStore();
+const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
 </script>
 
 <template>
     <div
-        :class="{
-            'navigation-bar': true,
-            'navigation-bar--scrolled': !isOnTop,
+        :class="[
+            'navigation-bar-container',
+            'navigation-bar-enter-animation',
+            !isOnTop && 'navigation-bar-container--on-scrolled',
+        ]"
+        :style="{
+            marginTop: `${7 * currentScaleRatio}rem`,
         }"
     >
-        <div class="portfolio-owner">
+        <div class="navigation-bar-wrapper">
             <img
-                class="portfolio-owner__icon"
-                src="/assets/icons/mushroom.png"
+                src="/assets/images/navigation-bar-logo.png"
+                alt="navigation bar logo"
+                class="navigation-bar__logo"
+                :style="{
+                    height: `${15 * currentScaleRatio}rem`,
+                    maxHeight: `${15 * currentScaleRatio}rem`,
+                }"
             />
-            <p class="font-pacifico">Nhung's Port</p>
+            <div class="navigation-button-container">
+                <NavigationButton
+                    :key="sections[0].idName"
+                    :id-name="sections[0].idName"
+                    :name="sections[0].name"
+                    :is-active="sections[0].idName === currentActive"
+                    :is-scrolled="!isOnTop"
+                />
+                <NavigationButton
+                    :key="sections[1].idName"
+                    :id-name="sections[1].idName"
+                    :name="sections[1].name"
+                    :is-active="sections[1].idName === currentActive"
+                    :is-scrolled="!isOnTop"
+                />
+                <div
+                    class="blank-space"
+                    :style="{
+                        height: `100%`,
+                        width: `${(15 * currentScaleRatio * 1024) / 648}rem`,
+                    }"
+                ></div>
+                <NavigationButton
+                    :key="sections[2].idName"
+                    :id-name="sections[2].idName"
+                    :name="sections[2].name"
+                    :is-active="sections[2].idName === currentActive"
+                    :is-scrolled="!isOnTop"
+                />
+                <NavigationButton
+                    :key="sections[3].idName"
+                    :id-name="sections[3].idName"
+                    :name="sections[3].name"
+                    :is-active="sections[3].idName === currentActive"
+                    :is-scrolled="!isOnTop"
+                />
+            </div>
         </div>
-        <nav class="navigation-links">
-            <NavigationButton
-                v-for="section in sections"
-                :key="section.idName"
-                :id-name="section.idName"
-                :name="section.name"
-                :is-active="section.idName === currentActive"
-                :is-scrolled="!isOnTop"
-            />
-        </nav>
     </div>
 </template>
 
 <style scoped>
-.navigation-bar {
-    margin: 0rem 5rem;
-    width: calc(100vw - 2 * 5rem - 2 * 1.5rem);
+.navigation-bar-container {
+    width: 95vw;
     position: absolute;
-    top: 0.5rem;
-    z-index: 1;
-    padding: 0.75rem 1.5rem;
-    border-radius: 5rem;
-    background-color: transparent;
-    display: flex;
-    justify-content: space-between;
-    transition: all 0.5s ease-in-out;
-    color: var(--color-white);
+    left: 2.5vw;
+    z-index: 999;
+    transition: backdrop-filter 0.25s linear;
 
-    /* animation */
-    animation: fade-in-normal 1.5s ease-in;
-}
+    .navigation-bar-wrapper {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-.navigation-bar--scrolled {
-    background-color: white;
-    color: var(--color-black);
-    box-shadow:
-        rgba(0, 0, 0, 0.2) 0px 12px 28px 0px,
-        rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
-        rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
-}
+    .navigation-bar__logo {
+        position: absolute;
+    }
 
-.portfolio-owner {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-
-    .portfolio-owner__icon {
-        width: 1.5rem;
+    .navigation-button-container {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        padding: 0.5rem 0rem;
+        border-top: 0.2rem solid var(--color-dark);
+        border-bottom: 0.2rem solid var(--color-dark);
     }
 }
-.navigation-links {
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
+
+.navigation-bar-container--on-scrolled {
+    backdrop-filter: blur(1rem);
+}
+
+.navigation-bar-enter-animation {
+    opacity: 0;
+    animation: fade-in-from-top 1.5s linear forwards;
 }
 </style>
