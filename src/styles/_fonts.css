@@ -9,12 +9,6 @@
 }
 
 @font-face {
-    font-family: 'DancingScript';
-    src: url('@/assets/fonts/DancingScript/DancingScript-Regular.ttf')
-        format('truetype');
-}
-
-@font-face {
     font-family: 'ArielScript';
     src: url('@/assets/fonts/ArielScript/ariel-script-medium.ttf')
         format('truetype');
