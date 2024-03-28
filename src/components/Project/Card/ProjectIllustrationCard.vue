@@ -13,7 +13,7 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
         :style="{
             height: `${82.5 * currentScaleRatio}rem`,
             maxHeight: `${82.5 * currentScaleRatio}rem`,
-            transform: `translateY(${25 * currentScaleRatio}rem) translateX(${0.5 * currentScaleRatio}rem)`,
+            transform: `translateY(${25 * currentScaleRatio}rem) translateX(${-2.5 * currentScaleRatio}rem)`,
         }"
     >
         <img
@@ -27,8 +27,8 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
             class="illustration__sub-image-butterfly"
             :style="{
                 height: `${22.5 * currentScaleRatio}rem`,
-                left: `${-27.5 * currentScaleRatio}rem`,
-                bottom: `${15 * currentScaleRatio}rem`,
+                left: `${-25.5 * currentScaleRatio}rem`,
+                bottom: `${16 * currentScaleRatio}rem`,
             }"
         />
         <div

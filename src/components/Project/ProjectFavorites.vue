@@ -35,7 +35,6 @@ watch(
             if (typeof animateProjectCardsInterval !== 'undefined') {
                 clearInterval(animateProjectCardsInterval);
             }
-
             // calculate new interval's callback
             const projectCardList = newProjectSectionCardContainer.children;
             let listChildRightPositions: Array<number> = [];

@@ -16,7 +16,7 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
         :style="{
             height: `${90 * currentScaleRatio}rem`,
             maxHeight: `${90 * currentScaleRatio}rem`,
-            transform: `translateY(${-20 * currentScaleRatio}rem) translateX(${-1.5 * currentScaleRatio}rem)`,
+            transform: `translateY(${-20 * currentScaleRatio}rem) translateX(${1.5 * currentScaleRatio}rem)`,
         }"
     >
         <img
