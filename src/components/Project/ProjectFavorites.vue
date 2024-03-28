@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { onMounted } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 
 import { projectMockData } from '@/data';
 import { useResponsiveStore } from '@/stores';
@@ -17,43 +17,78 @@ const favoriteList = projectMockData.graphicDesign?.brands[1]?.posts.slice(
     0,
     5
 ) as Array<TPost>;
+const projectSectionCardContainer = ref<HTMLElement>();
+let animateProjectCardsInterval: ReturnType<typeof setInterval> | undefined;
+const FILM_STRIP_ROTATE_DEG = -3;
 
 onMounted(() => {
-    const projectSectionCardContainer = document.getElementById(
+    projectSectionCardContainer.value = document.getElementById(
         'project-section-cards-wrapper'
     ) as HTMLElement;
-
-    if (projectSectionCardContainer) {
-        const projectCardList = projectSectionCardContainer.children;
-        let listChildRightPositions: Array<number> = [];
-
-        setInterval(() => {
-            for (let i = 0; i < projectCardList.length; i++) {
-                const slideSpeed = 1 / 240;
-                const child = projectCardList[i] as HTMLElement;
-                const childWidthInRem = child.clientWidth / 16;
-                const resetPosition = -childWidthInRem;
-                const gap = 1;
-                // must be in rem
-                let childRightPosition = listChildRightPositions[i]
-                    ? listChildRightPositions[i] + slideSpeed * 16
-                    : i * (child.clientWidth / 16 + gap) + slideSpeed * 16;
-                if (
-                    childRightPosition >
-                    window.innerWidth / Math.cos((3 / 180) * Math.PI) / 16
-                ) {
-                    childRightPosition = resetPosition;
-                }
-                listChildRightPositions[i] = childRightPosition;
-            }
-
-            for (let i = 0; i < projectCardList.length; i++) {
-                const child = projectCardList[i] as HTMLElement;
-                child.style.right = `${listChildRightPositions[i]}rem`;
-            }
-        }, 1000 / 60);
-    }
 });
+
+watch(
+    [() => currentScaleRatio.value, () => projectSectionCardContainer.value],
+    ([newScaleRatio, newProjectSectionCardContainer]) => {
+        if (newScaleRatio && newProjectSectionCardContainer) {
+            // clear prev interval value if exist
+            if (typeof animateProjectCardsInterval !== 'undefined') {
+                clearInterval(animateProjectCardsInterval);
+            }
+
+            // calculate new interval's callback
+            const projectCardList = newProjectSectionCardContainer.children;
+            let listChildRightPositions: Array<number> = [];
+
+            const animateProjectCards = () => {
+                for (let i = 0; i < projectCardList.length; i++) {
+                    const slideVelocity = 1 / 180;
+                    const slideVelocityInRem = slideVelocity * 16;
+                    const child = projectCardList[i] as HTMLElement;
+                    const childWidthInRem = child.clientWidth / 16;
+                    const resetPosition = childWidthInRem;
+
+                    const maximumChildRightPosition =
+                        // full view width in rem / cos(rotateDeg)
+                        -window.innerWidth /
+                            16 /
+                            Math.cos((FILM_STRIP_ROTATE_DEG / 180) * Math.PI) -
+                        // card height in rem * sin(rotateDeg)
+                        (child.clientHeight / 16) *
+                            Math.sin(
+                                Math.abs(
+                                    (FILM_STRIP_ROTATE_DEG / 180) * Math.PI
+                                )
+                            ) -
+                        // card width in rem
+                        childWidthInRem;
+
+                    const childGapInRem = 1.5 * newScaleRatio;
+                    // must be in rem
+                    let childRightPosition = listChildRightPositions[i]
+                        ? listChildRightPositions[i] - slideVelocityInRem
+                        : i * (childWidthInRem + childGapInRem) -
+                          slideVelocityInRem;
+                    if (childRightPosition < maximumChildRightPosition) {
+                        childRightPosition = resetPosition;
+                    }
+                    listChildRightPositions[i] = childRightPosition;
+                }
+
+                for (let i = 0; i < projectCardList.length; i++) {
+                    const child = projectCardList[i] as HTMLElement;
+                    child.style.transform = `translateX(${listChildRightPositions[i]}rem)`;
+                }
+            };
+
+            // set new interval value
+            animateProjectCardsInterval = setInterval(
+                animateProjectCards,
+                1000 / 60
+            );
+        }
+    }
+);
 </script>
 
 <template>
@@ -84,6 +119,7 @@ onMounted(() => {
                     class="favorite-project-title__text font-arielScript"
                     :style="{
                         top: `${12.5 * currentScaleRatio}rem`,
+                        left: `${2.5 * currentScaleRatio}rem`,
                         padding: `0rem ${6 * currentScaleRatio}rem 0rem ${6 * currentScaleRatio}rem `,
                     }"
                 >
@@ -103,13 +139,16 @@ onMounted(() => {
                 <div
                     class="project-cards__cards-container"
                     :style="{
-                        top: `${7.5 * currentScaleRatio}rem`,
+                        top: `${8 * currentScaleRatio}rem`,
                         right: `${0 * currentScaleRatio}rem`,
                     }"
                 >
                     <div
                         id="project-section-cards-wrapper"
                         class="project-cards__cards-wrapper"
+                        :style="{
+                            transform: `rotateZ(${FILM_STRIP_ROTATE_DEG}deg)`,
+                        }"
                     >
                         <div
                             v-for="post in favoriteList"
@@ -169,7 +208,7 @@ onMounted(() => {
     }
 
     .favorite-project__title > .favorite-project-title__text {
-        transform: rotateZ(-12deg);
+        transform: rotateZ(-18deg);
         text-align: center;
         position: absolute;
         line-height: 0.8;
@@ -183,7 +222,6 @@ onMounted(() => {
         }
 
         .project-cards__cards-container {
-            width: 105vw;
             position: absolute;
         }
 
@@ -191,7 +229,6 @@ onMounted(() => {
             width: 100%;
             position: relative;
             transform-origin: top right;
-            transform: rotateZ(-3deg);
         }
 
         .project-cards__cards-wrapper > .project-card-wrapper {
