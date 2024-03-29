@@ -211,6 +211,8 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
         color: white;
         box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
         /* animation */
+        opacity: 0;
+        animation: fade-in-only 0.75s 0.75s ease-in forwards;
 
         h4 {
             line-height: 100%;

@@ -81,7 +81,7 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
     width: 95vw;
     position: absolute;
     left: 2.5vw;
-    z-index: 999;
+    z-index: 2;
     transition: backdrop-filter 0.25s linear;
 
     .navigation-bar-wrapper {

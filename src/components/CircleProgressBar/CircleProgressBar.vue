@@ -58,7 +58,7 @@ const props = defineProps<{ progressValue: number }>();
     position: absolute;
     bottom: 3rem;
     right: 3rem;
-    z-index: 999;
+    z-index: 3;
     display: flex;
     justify-content: center;
     align-items: center;

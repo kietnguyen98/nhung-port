@@ -1,10 +1,19 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 
-import { useResponsiveStore } from '@/stores';
+import { projectMockData } from '@/data';
+import { useHover } from '@/hooks';
+import { useControlPopupStore, useResponsiveStore } from '@/stores';
+
+const outerImageUrl = projectMockData.illustration?.outerImageUrl;
 
 const mediaQueriesStore = useResponsiveStore();
 const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
+
+const controlPopupStore = useControlPopupStore();
+const { setIsPopupOpened, setProjectToView } = controlPopupStore;
+
+const { refElement, isHover } = useHover();
 </script>
 
 <template>
@@ -13,7 +22,7 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
         :style="{
             height: `${82.5 * currentScaleRatio}rem`,
             maxHeight: `${82.5 * currentScaleRatio}rem`,
-            transform: `translateY(${25 * currentScaleRatio}rem) translateX(${0.5 * currentScaleRatio}rem)`,
+            transform: `translateY(${(isHover ? 21.5 : 25) * currentScaleRatio}rem) translateX(${-2.5 * currentScaleRatio}rem)`,
         }"
     >
         <img
@@ -27,24 +36,44 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
             class="illustration__sub-image-butterfly"
             :style="{
                 height: `${22.5 * currentScaleRatio}rem`,
-                left: `${-27.5 * currentScaleRatio}rem`,
-                bottom: `${15 * currentScaleRatio}rem`,
+                left: `${-25.5 * currentScaleRatio}rem`,
+                bottom: `${16 * currentScaleRatio}rem`,
             }"
         />
         <div
             class="illustration__outer-image"
             :style="{
+                backgroundImage: `url(${outerImageUrl})`,
+                backgroundSize: `${isHover ? '112%' : '102%'}`,
                 height: `${45 * currentScaleRatio}rem`,
                 width: `${43.5 * currentScaleRatio}rem`,
                 top: `${21.25 * currentScaleRatio}rem`,
                 left: `${9 * currentScaleRatio}rem`,
             }"
         ></div>
+        <!-- adding an overlay to handle user event -->
+        <div
+            ref="refElement"
+            class="illustration__outer-image-overlay"
+            :style="{
+                height: `${45 * currentScaleRatio}rem`,
+                width: `${43.5 * currentScaleRatio}rem`,
+                top: `${21.25 * currentScaleRatio}rem`,
+                left: `${9 * currentScaleRatio}rem`,
+            }"
+            @click="
+                () => {
+                    setIsPopupOpened(true);
+                    setProjectToView(projectMockData.illustration);
+                }
+            "
+        ></div>
     </div>
 </template>
 
 <style scoped>
 .project-illustration-card {
+    transition: transform 0.5s ease-out;
     position: relative;
 
     .illustration__frame {
@@ -62,12 +91,18 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
         transform: rotateZ(9deg);
         position: absolute;
         z-index: 0;
+        transition: background-size 0.5s linear;
 
         /* background image settings */
         background-color: var(--color-dark);
-        background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+    }
+
+    .illustration__outer-image-overlay {
+        transform: rotateZ(9deg);
+        position: absolute;
+        z-index: 2;
     }
 }
 </style>

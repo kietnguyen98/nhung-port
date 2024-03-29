@@ -1,22 +1,19 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { ref } from 'vue';
 
 import {
+    FavoritePosts,
     ProjectAnimationCard,
-    ProjectFavorites,
     ProjectGraphicDesignCard,
     ProjectIllustrationCard,
     ProjectPhotosCard,
 } from '@/components';
 import { useResponsiveStore } from '@/stores';
-import { TProject } from '@/types';
 import { ProjectView } from '@/views';
 defineProps<{
     sectionId: string;
 }>();
 
-const currentShowedProject = ref<TProject>();
 const mediaQueriesStore = useResponsiveStore();
 const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
 </script>
@@ -79,14 +76,11 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
             </div>
         </div>
         <div>
-            <ProjectFavorites />
+            <FavoritePosts />
         </div>
     </div>
     <ProjectViewerPopup>
-        <ProjectView
-            v-if="currentShowedProject"
-            :project="currentShowedProject"
-        ></ProjectView>
+        <ProjectView></ProjectView>
     </ProjectViewerPopup>
     <PostViewerPopup />
 </template>

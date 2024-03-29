@@ -2,11 +2,17 @@
 import { storeToRefs } from 'pinia';
 
 import { projectMockData } from '@/data';
-import { useResponsiveStore } from '@/stores';
-const outerImageUrl = projectMockData.photo?.outerImageUrl;
+import { useHover } from '@/hooks';
+import { useControlPopupStore, useResponsiveStore } from '@/stores';
+const outerImageUrl = projectMockData.photoLifeStyle?.outerImageUrl;
 
 const mediaQueriesStore = useResponsiveStore();
 const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
+
+const controlPopupStore = useControlPopupStore();
+const { setIsPopupOpened, setProjectToView } = controlPopupStore;
+
+const { refElement, isHover } = useHover();
 </script>
 
 <template>
@@ -15,7 +21,7 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
         :style="{
             height: `${80 * currentScaleRatio}rem`,
             maxHeight: `${80 * currentScaleRatio}rem`,
-            transform: `translateY(${-3 * currentScaleRatio}rem) translateX(${-5 * currentScaleRatio}rem)`,
+            transform: `translateY(${(isHover ? -6.5 : -3) * currentScaleRatio}rem) translateX(${-4 * currentScaleRatio}rem)`,
         }"
     >
         <img
@@ -37,17 +43,36 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
             class="photos__outer-image"
             :style="{
                 backgroundImage: `url(${outerImageUrl})`,
+                backgroundSize: `${isHover ? '110%' : '100%'}`,
                 height: `${43.75 * currentScaleRatio}rem`,
                 width: `${42.25 * currentScaleRatio}rem`,
                 top: `${12.5 * currentScaleRatio}rem`,
                 left: `${18.75 * currentScaleRatio}rem`,
             }"
         ></div>
+        <!-- adding an overlay to handle user event -->
+        <div
+            ref="refElement"
+            class="photos__outer-image-overlay"
+            :style="{
+                height: `${43.75 * currentScaleRatio}rem`,
+                width: `${42.25 * currentScaleRatio}rem`,
+                top: `${12.5 * currentScaleRatio}rem`,
+                left: `${18.75 * currentScaleRatio}rem`,
+            }"
+            @click="
+                () => {
+                    setIsPopupOpened(true);
+                    setProjectToView(projectMockData.photoLifeStyle);
+                }
+            "
+        ></div>
     </div>
 </template>
 
 <style scoped>
 .project-photo-card {
+    transition: transform 0.5s ease-out;
     position: relative;
 
     .photos__frame {
@@ -68,12 +93,18 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
         position: absolute;
         z-index: 0;
         transform: rotateZ(-21deg);
+        transition: background-size 0.5s linear;
 
         /* background image settings */
         background-color: var(--color-dark);
-        background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+    }
+
+    .photos__outer-image-overlay {
+        position: absolute;
+        transform: rotateZ(-21deg);
+        z-index: 2;
     }
 }
 </style>

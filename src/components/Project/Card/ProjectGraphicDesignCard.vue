@@ -2,12 +2,18 @@
 import { storeToRefs } from 'pinia';
 
 import { projectMockData } from '@/data';
-import { useResponsiveStore } from '@/stores';
+import { useHover } from '@/hooks';
+import { useControlPopupStore, useResponsiveStore } from '@/stores';
 
 const outerImageUrl = projectMockData.graphicDesign?.outerImageUrl;
 
 const mediaQueriesStore = useResponsiveStore();
 const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
+
+const controlPopupStore = useControlPopupStore();
+const { setIsPopupOpened, setProjectToView } = controlPopupStore;
+
+const { refElement, isHover } = useHover();
 </script>
 
 <template>
@@ -16,7 +22,7 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
         :style="{
             height: `${90 * currentScaleRatio}rem`,
             maxHeight: `${90 * currentScaleRatio}rem`,
-            transform: `translateY(${-20 * currentScaleRatio}rem) translateX(${-1.5 * currentScaleRatio}rem)`,
+            transform: `translateY(${(isHover ? -23.5 : -20) * currentScaleRatio}rem) translateX(${1.5 * currentScaleRatio}rem)`,
         }"
     >
         <img
@@ -28,17 +34,37 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
             class="graphic-design__outer-image"
             :style="{
                 backgroundImage: `url(${outerImageUrl})`,
+                backgroundSize: `${isHover ? '113%' : '103%'}`,
                 height: `${44.5 * currentScaleRatio}rem`,
                 width: `${42.5 * currentScaleRatio}rem`,
                 top: `${28.75 * currentScaleRatio}rem`,
                 left: `${17 * currentScaleRatio}rem`,
             }"
         ></div>
+        <!-- adding an overlay to handle user event -->
+        <div
+            ref="refElement"
+            class="graphic-design__outer-image-overlay"
+            :style="{
+                height: `${44.5 * currentScaleRatio}rem`,
+                width: `${42.5 * currentScaleRatio}rem`,
+                top: `${28.75 * currentScaleRatio}rem`,
+                left: `${17 * currentScaleRatio}rem`,
+            }"
+            @click="
+                () => {
+                    setIsPopupOpened(true);
+                    setProjectToView(projectMockData.graphicDesign);
+                }
+            "
+        ></div>
     </div>
 </template>
 
 <style scoped>
 .graphic-design-card {
+    transition: transform 0.5s ease-out;
+
     .graphic-design__frame {
         position: relative;
         width: 100%;
@@ -49,13 +75,19 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
     .graphic-design__outer-image {
         position: absolute;
         transform: rotateZ(-8.5deg);
+        transition: background-size 0.5s linear;
         z-index: 0;
 
         /* background image settings */
         background-color: var(--color-dark);
-        background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+    }
+
+    .graphic-design__outer-image-overlay {
+        position: absolute;
+        transform: rotateZ(-8.5deg);
+        z-index: 2;
     }
 }
 </style>
