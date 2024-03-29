@@ -2,9 +2,8 @@
 import { storeToRefs } from 'pinia';
 import { onMounted, ref, watch } from 'vue';
 
-import { projectMockData } from '@/data';
+import { favoritePostsData } from '@/data';
 import { useResponsiveStore } from '@/stores';
-import { TPost } from '@/types';
 
 import { CardImage } from '..';
 
@@ -13,10 +12,7 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
 
 const FILM_STRIP_IMAGE_HEIGHT_WIDTH_RATIO = 450 / 1024;
 const FILM_STRIP_BACKGROUND_IMAGE_SIZE = 108;
-const favoriteList = projectMockData.graphicDesign?.brands[1]?.posts.slice(
-    0,
-    5
-) as Array<TPost>;
+const favoriteList = favoritePostsData;
 const projectSectionCardContainer = ref<HTMLElement>();
 let animateProjectCardsInterval: ReturnType<typeof setInterval> | undefined;
 const FILM_STRIP_ROTATE_DEG = -3;
@@ -37,7 +33,7 @@ watch(
             }
             // calculate new interval's callback
             const projectCardList = newProjectSectionCardContainer.children;
-            let listChildRightPositions: Array<number> = [];
+            let listChildLeftPositions: Array<number> = [];
 
             const animateProjectCards = () => {
                 for (let i = 0; i < projectCardList.length; i++) {
@@ -45,9 +41,8 @@ watch(
                     const slideVelocityInRem = slideVelocity * 16;
                     const child = projectCardList[i] as HTMLElement;
                     const childWidthInRem = child.clientWidth / 16;
-                    const resetPosition = childWidthInRem;
 
-                    const maximumChildRightPosition =
+                    const maximumChildLeftPosition =
                         // full view width in rem / cos(rotateDeg)
                         -window.innerWidth /
                             16 /
@@ -62,21 +57,27 @@ watch(
                         // card width in rem
                         childWidthInRem;
 
-                    const childGapInRem = 0 * newScaleRatio;
+                    const childGapInRem = 1.5 * newScaleRatio;
                     // must be in rem
-                    let childRightPosition = listChildRightPositions[i]
-                        ? listChildRightPositions[i] - slideVelocityInRem
+                    let childLeftPosition = listChildLeftPositions[i]
+                        ? listChildLeftPositions[i] - slideVelocityInRem
                         : i * (childWidthInRem + childGapInRem) -
                           slideVelocityInRem;
-                    if (childRightPosition < maximumChildRightPosition) {
-                        childRightPosition = resetPosition;
+
+                    if (childLeftPosition < maximumChildLeftPosition) {
+                        // set current element to the last position
+                        const resetPosition =
+                            Math.max(...listChildLeftPositions) +
+                            childGapInRem +
+                            childWidthInRem;
+                        childLeftPosition = resetPosition;
                     }
-                    listChildRightPositions[i] = childRightPosition;
+                    listChildLeftPositions[i] = childLeftPosition;
                 }
 
                 for (let i = 0; i < projectCardList.length; i++) {
                     const child = projectCardList[i] as HTMLElement;
-                    child.style.transform = `translateX(${listChildRightPositions[i]}rem)`;
+                    child.style.transform = `translateX(${listChildLeftPositions[i]}rem)`;
                 }
             };
 
@@ -92,7 +93,7 @@ watch(
 
 <template>
     <div
-        class="project-favorite-container"
+        class="favorite-posts-container"
         :style="{
             marginTop: `${22.5 * currentScaleRatio}rem`,
             height: `calc(${(FILM_STRIP_BACKGROUND_IMAGE_SIZE / 100) * 160 * currentScaleRatio}rem * ${FILM_STRIP_IMAGE_HEIGHT_WIDTH_RATIO})`,
@@ -101,9 +102,9 @@ watch(
             paddingBottom: `${4 * currentScaleRatio}rem`,
         }"
     >
-        <div class="favorite-project">
+        <div class="favorite-posts">
             <div
-                class="favorite-project__title"
+                class="favorite-posts__title"
                 :style="{
                     height: `${43.5 * currentScaleRatio}rem`,
                     top: `${-25.5 * currentScaleRatio}rem`,
@@ -111,11 +112,11 @@ watch(
                 }"
             >
                 <img
-                    class="favorite-project-title__background-image"
+                    class="favorite-posts-title__background-image"
                     src="/assets/images/paper-heart.png"
                 />
                 <h3
-                    class="favorite-project-title__text font-arielScript"
+                    class="favorite-posts-title__text font-arielScript"
                     :style="{
                         top: `${13.5 * currentScaleRatio}rem`,
                         left: `${2.5 * currentScaleRatio}rem`,
@@ -125,7 +126,7 @@ watch(
                     some of my favorite works
                 </h3>
             </div>
-            <div class="favorite-project__project-cards">
+            <div class="favorite-posts__project-cards">
                 <img
                     class="project-cards__background-image"
                     :style="{
@@ -159,7 +160,7 @@ watch(
                                 :image-src="post.sourceUrl ?? ''"
                                 :height-rem="29.5"
                                 :width-height-ratio="3 / 4"
-                                :is-rounded="false"
+                                :is-rounded="true"
                             />
                         </div>
                     </div>
@@ -168,7 +169,7 @@ watch(
             <img
                 src="/assets/images/film-pin-2.png"
                 alt="film pin 2"
-                class="favorite-project__image-film-pin"
+                class="favorite-posts__image-film-pin"
                 :style="{
                     height: `${15 * currentScaleRatio}rem`,
                     top: `${-13 * currentScaleRatio}rem`,
@@ -178,7 +179,7 @@ watch(
             <img
                 src="/assets/images/film-pin-1.png"
                 alt="film pin 1"
-                class="favorite-project__image-film-pin"
+                class="favorite-posts__image-film-pin"
                 :style="{
                     height: `${14 * currentScaleRatio}rem`,
                     bottom: `${-4.5 * currentScaleRatio}rem`,
@@ -190,31 +191,31 @@ watch(
 </template>
 
 <style scoped>
-.project-favorite-container {
+.favorite-posts-container {
     width: 100vw;
     background-image: url(/assets/images/film-strip-1.png);
     background-repeat: no-repeat;
     display: flex;
 }
 
-.favorite-project {
+.favorite-posts {
     width: 100%;
     position: relative;
     align-self: flex-end;
 
-    .favorite-project__title {
+    .favorite-posts__title {
         position: absolute;
         z-index: 1;
     }
 
-    .favorite-project__title > .favorite-project-title__text {
+    .favorite-posts__title > .favorite-posts-title__text {
         transform: rotateZ(-18deg);
         text-align: center;
         position: absolute;
         line-height: 0.8;
     }
 
-    .favorite-project__project-cards {
+    .favorite-posts__project-cards {
         position: relative;
         .project-cards__background-image {
             position: relative;
@@ -237,7 +238,7 @@ watch(
         }
     }
 
-    .favorite-project__image-film-pin {
+    .favorite-posts__image-film-pin {
         position: absolute;
         z-index: 1;
     }

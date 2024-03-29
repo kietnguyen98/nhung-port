@@ -2,8 +2,8 @@
 import { storeToRefs } from 'pinia';
 
 import {
+    FavoritePosts,
     ProjectAnimationCard,
-    ProjectFavorites,
     ProjectGraphicDesignCard,
     ProjectIllustrationCard,
     ProjectPhotosCard,
@@ -76,7 +76,7 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
             </div>
         </div>
         <div>
-            <ProjectFavorites />
+            <FavoritePosts />
         </div>
     </div>
     <ProjectViewerPopup>

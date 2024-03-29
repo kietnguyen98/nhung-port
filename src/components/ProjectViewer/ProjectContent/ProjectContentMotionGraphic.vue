@@ -19,6 +19,17 @@ const FILM_STRIP_WIDTH_SCALE_RATIO = 1.075;
                     transform: `translateY(${5.5 * currentScaleRatio}rem)`,
                 }"
             />
+
+            <img
+                src="/assets/images/popup/motion-graphic/film-pins.png"
+                alt="film frame's film pin"
+                class="film-frame__sub-images"
+                :style="{
+                    height: `${29 * currentScaleRatio}rem`,
+                    bottom: `${-20 * currentScaleRatio}rem`,
+                    right: `${-9 * currentScaleRatio}rem`,
+                }"
+            />
         </div>
         <div
             class="film-strip"
@@ -67,6 +78,15 @@ const FILM_STRIP_WIDTH_SCALE_RATIO = 1.075;
     justify-content: center;
     align-items: center;
     overflow-x: hidden;
+}
+
+.film-frame {
+    position: relative;
+
+    .film-frame__sub-images {
+        position: absolute;
+        z-index: 1;
+    }
 }
 
 .film-strip {

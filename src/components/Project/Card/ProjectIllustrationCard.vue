@@ -2,13 +2,18 @@
 import { storeToRefs } from 'pinia';
 
 import { projectMockData } from '@/data';
+import { useHover } from '@/hooks';
 import { useControlPopupStore, useResponsiveStore } from '@/stores';
+
+const outerImageUrl = projectMockData.illustration?.outerImageUrl;
 
 const mediaQueriesStore = useResponsiveStore();
 const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
 
 const controlPopupStore = useControlPopupStore();
 const { setIsPopupOpened, setProjectToView } = controlPopupStore;
+
+const { refElement, isHover } = useHover();
 </script>
 
 <template>
@@ -17,7 +22,7 @@ const { setIsPopupOpened, setProjectToView } = controlPopupStore;
         :style="{
             height: `${82.5 * currentScaleRatio}rem`,
             maxHeight: `${82.5 * currentScaleRatio}rem`,
-            transform: `translateY(${25 * currentScaleRatio}rem) translateX(${-2.5 * currentScaleRatio}rem)`,
+            transform: `translateY(${(isHover ? 21.5 : 25) * currentScaleRatio}rem) translateX(${-2.5 * currentScaleRatio}rem)`,
         }"
     >
         <img
@@ -38,6 +43,8 @@ const { setIsPopupOpened, setProjectToView } = controlPopupStore;
         <div
             class="illustration__outer-image"
             :style="{
+                backgroundImage: `url(${outerImageUrl})`,
+                backgroundSize: `${isHover ? '112%' : '102%'}`,
                 height: `${45 * currentScaleRatio}rem`,
                 width: `${43.5 * currentScaleRatio}rem`,
                 top: `${21.25 * currentScaleRatio}rem`,
@@ -46,6 +53,7 @@ const { setIsPopupOpened, setProjectToView } = controlPopupStore;
         ></div>
         <!-- adding an overlay to handle user event -->
         <div
+            ref="refElement"
             class="illustration__outer-image-overlay"
             :style="{
                 height: `${45 * currentScaleRatio}rem`,
@@ -65,6 +73,7 @@ const { setIsPopupOpened, setProjectToView } = controlPopupStore;
 
 <style scoped>
 .project-illustration-card {
+    transition: transform 0.5s ease-out;
     position: relative;
 
     .illustration__frame {
@@ -82,10 +91,10 @@ const { setIsPopupOpened, setProjectToView } = controlPopupStore;
         transform: rotateZ(9deg);
         position: absolute;
         z-index: 0;
+        transition: background-size 0.5s linear;
 
         /* background image settings */
         background-color: var(--color-dark);
-        background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
     }
