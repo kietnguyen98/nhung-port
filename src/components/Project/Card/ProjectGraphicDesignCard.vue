@@ -2,12 +2,15 @@
 import { storeToRefs } from 'pinia';
 
 import { projectMockData } from '@/data';
-import { useResponsiveStore } from '@/stores';
+import { useControlPopupStore, useResponsiveStore } from '@/stores';
 
 const outerImageUrl = projectMockData.graphicDesign?.outerImageUrl;
 
 const mediaQueriesStore = useResponsiveStore();
 const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
+
+const controlPopupStore = useControlPopupStore();
+const { setIsPopupOpened, setProjectToView } = controlPopupStore;
 </script>
 
 <template>
@@ -34,6 +37,22 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
                 left: `${17 * currentScaleRatio}rem`,
             }"
         ></div>
+        <!-- adding an overlay to handle user event -->
+        <div
+            class="graphic-design__outer-image-overlay"
+            :style="{
+                height: `${44.5 * currentScaleRatio}rem`,
+                width: `${42.5 * currentScaleRatio}rem`,
+                top: `${28.75 * currentScaleRatio}rem`,
+                left: `${17 * currentScaleRatio}rem`,
+            }"
+            @click="
+                () => {
+                    setIsPopupOpened(true);
+                    setProjectToView(projectMockData.graphicDesign);
+                }
+            "
+        ></div>
     </div>
 </template>
 
@@ -56,6 +75,12 @@ const { currentScaleRatio } = storeToRefs(mediaQueriesStore);
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+    }
+
+    .graphic-design__outer-image-overlay {
+        position: absolute;
+        transform: rotateZ(-8.5deg);
+        z-index: 2;
     }
 }
 </style>
