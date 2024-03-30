@@ -9,9 +9,9 @@ export * from './Project';
 export * from './ProjectViewer';
 
 export {
-    CardImage,
-    CircleProgressBar,
-    LoadingIndicator,
-    PostViewer,
-    PostViewerIndicator,
+  CardImage,
+  CircleProgressBar,
+  LoadingIndicator,
+  PostViewer,
+  PostViewerIndicator,
 };

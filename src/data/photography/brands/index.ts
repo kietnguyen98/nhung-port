@@ -5,9 +5,9 @@ import { _lipsticianBrandData } from './lipstician.photography.data';
 import { _sunplayBrandData } from './sunplay.photography.data';
 
 export {
-    _50MegumiBrandData,
-    _flawsomeBrandData,
-    _lipOnLipBrandData,
-    _lipsticianBrandData,
-    _sunplayBrandData,
+  _50MegumiBrandData,
+  _flawsomeBrandData,
+  _lipOnLipBrandData,
+  _lipsticianBrandData,
+  _sunplayBrandData,
 };

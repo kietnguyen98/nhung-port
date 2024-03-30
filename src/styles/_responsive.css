@@ -1,8 +1,8 @@
 :root {
-    --2560px-screen-ratio: 1;
-    --2048px-screen-ratio: 0.8;
-    --1920px-screen-ratio: 0.75;
-    --1600px-screen-ratio: 0.625;
-    --1280px-screen-ratio: 0.5;
-    --1024px-screen-ratio: 0.4;
+  --2560px-screen-ratio: 1;
+  --2048px-screen-ratio: 0.8;
+  --1920px-screen-ratio: 0.75;
+  --1600px-screen-ratio: 0.625;
+  --1280px-screen-ratio: 0.5;
+  --1024px-screen-ratio: 0.4;
 }

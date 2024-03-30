@@ -4,8 +4,8 @@ import ProjectContentMotionGraphic from './ProjectContentMotionGraphic.vue';
 import ProjectContentPhotoLifeStyle from './ProjectContentPhotoLifeStyle.vue';
 
 export {
-    ProjectContentGraphicDesign,
-    ProjectContentIllustration,
-    ProjectContentMotionGraphic,
-    ProjectContentPhotoLifeStyle,
+  ProjectContentGraphicDesign,
+  ProjectContentIllustration,
+  ProjectContentMotionGraphic,
+  ProjectContentPhotoLifeStyle,
 };

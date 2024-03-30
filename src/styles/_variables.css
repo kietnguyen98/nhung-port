@@ -1,19 +1,19 @@
 :root {
-    /* declare color variables */
-    --color-strong-cream: #f4dfc8;
-    --color-cream: #fff8e3;
-    --color-blue: #9fd8df;
-    --color-red: #d35d6e;
-    --color-green: #5aa469;
-    --color-cyan: #468b97;
-    --color-yellow: #f8d49d;
-    --color-brown: #efb08c;
-    --color-pink: #f6c6ea;
-    --color-purple: #c490e4;
-    --color-black: black;
-    --color-dark: #2d1705;
-    --color-white: whitesmoke;
+  /* declare color variables */
+  --color-strong-cream: #f4dfc8;
+  --color-cream: #fff8e3;
+  --color-blue: #9fd8df;
+  --color-red: #d35d6e;
+  --color-green: #5aa469;
+  --color-cyan: #468b97;
+  --color-yellow: #f8d49d;
+  --color-brown: #efb08c;
+  --color-pink: #f6c6ea;
+  --color-purple: #c490e4;
+  --color-black: black;
+  --color-dark: #2d1705;
+  --color-white: whitesmoke;
 
-    /* declare utilities for component */
-    --bubble-size: calc(100vw / 16) /* 16 bubbles per frame */;
+  /* declare utilities for component */
+  --bubble-size: calc(100vw / 16) /* 16 bubbles per frame */;
 }

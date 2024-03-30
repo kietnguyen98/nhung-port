@@ -1,353 +1,353 @@
 @import '_variables.css';
 
 @media (prefers-reduced-motion: no-preference) {
-    @keyframes card-border-glowing {
-        0% {
-            box-shadow:
-                rgba(240, 46, 170, 0.05) 5px 5px,
-                rgba(240, 46, 170, 0.3) 10px 10px,
-                rgba(240, 46, 170, 0.2) 15px 15px,
-                rgba(240, 46, 170, 0.1) 20px 20px,
-                rgba(240, 46, 170, 0.05) 25px 25px;
-        }
-        25% {
-            box-shadow:
-                rgba(240, 46, 170, 0.4) 5px 5px,
-                rgba(240, 46, 170, 0.05) 10px 10px,
-                rgba(240, 46, 170, 0.2) 15px 15px,
-                rgba(240, 46, 170, 0.1) 20px 20px,
-                rgba(240, 46, 170, 0.05) 25px 25px;
-        }
-        50% {
-            box-shadow:
-                rgba(240, 46, 170, 0.4) 5px 5px,
-                rgba(240, 46, 170, 0.3) 10px 10px,
-                rgba(240, 46, 170, 0.05) 15px 15px,
-                rgba(240, 46, 170, 0.1) 20px 20px,
-                rgba(240, 46, 170, 0.05) 25px 25px;
-        }
-        75% {
-            box-shadow:
-                rgba(240, 46, 170, 0.4) 5px 5px,
-                rgba(240, 46, 170, 0.3) 10px 10px,
-                rgba(240, 46, 170, 0.2) 15px 15px,
-                rgba(240, 46, 170, 0.05) 20px 20px,
-                rgba(240, 46, 170, 0.05) 25px 25px;
-        }
-        100% {
-            box-shadow:
-                rgba(240, 46, 170, 0.4) 5px 5px,
-                rgba(240, 46, 170, 0.3) 10px 10px,
-                rgba(240, 46, 170, 0.2) 15px 15px,
-                rgba(240, 46, 170, 0.1) 20px 20px,
-                rgba(240, 46, 170, 0.05) 25px 25px;
-        }
+  @keyframes card-border-glowing {
+    0% {
+      box-shadow:
+        rgba(240, 46, 170, 0.05) 5px 5px,
+        rgba(240, 46, 170, 0.3) 10px 10px,
+        rgba(240, 46, 170, 0.2) 15px 15px,
+        rgba(240, 46, 170, 0.1) 20px 20px,
+        rgba(240, 46, 170, 0.05) 25px 25px;
     }
+    25% {
+      box-shadow:
+        rgba(240, 46, 170, 0.4) 5px 5px,
+        rgba(240, 46, 170, 0.05) 10px 10px,
+        rgba(240, 46, 170, 0.2) 15px 15px,
+        rgba(240, 46, 170, 0.1) 20px 20px,
+        rgba(240, 46, 170, 0.05) 25px 25px;
+    }
+    50% {
+      box-shadow:
+        rgba(240, 46, 170, 0.4) 5px 5px,
+        rgba(240, 46, 170, 0.3) 10px 10px,
+        rgba(240, 46, 170, 0.05) 15px 15px,
+        rgba(240, 46, 170, 0.1) 20px 20px,
+        rgba(240, 46, 170, 0.05) 25px 25px;
+    }
+    75% {
+      box-shadow:
+        rgba(240, 46, 170, 0.4) 5px 5px,
+        rgba(240, 46, 170, 0.3) 10px 10px,
+        rgba(240, 46, 170, 0.2) 15px 15px,
+        rgba(240, 46, 170, 0.05) 20px 20px,
+        rgba(240, 46, 170, 0.05) 25px 25px;
+    }
+    100% {
+      box-shadow:
+        rgba(240, 46, 170, 0.4) 5px 5px,
+        rgba(240, 46, 170, 0.3) 10px 10px,
+        rgba(240, 46, 170, 0.2) 15px 15px,
+        rgba(240, 46, 170, 0.1) 20px 20px,
+        rgba(240, 46, 170, 0.05) 25px 25px;
+    }
+  }
 
-    @keyframes bubble-bounce {
-        0% {
-            transform: translateY(0rem);
-        }
-        50% {
-            transform: translateY(1.5rem);
-        }
-        100% {
-            transform: translateY(0rem);
-        }
+  @keyframes bubble-bounce {
+    0% {
+      transform: translateY(0rem);
     }
+    50% {
+      transform: translateY(1.5rem);
+    }
+    100% {
+      transform: translateY(0rem);
+    }
+  }
 
-    @keyframes slide-down {
-        0% {
-            transform: translateY(-100%);
-        }
-        100% {
-            transform: translateY(0);
-        }
+  @keyframes slide-down {
+    0% {
+      transform: translateY(-100%);
     }
+    100% {
+      transform: translateY(0);
+    }
+  }
 
-    @keyframes slide-up {
-        0% {
-            transform: translateY(100%);
-        }
-        100% {
-            transform: translateY(0);
-        }
+  @keyframes slide-up {
+    0% {
+      transform: translateY(100%);
     }
+    100% {
+      transform: translateY(0);
+    }
+  }
 
-    @keyframes slide-up-only {
-        100% {
-            transform: translateY(0);
-        }
+  @keyframes slide-up-only {
+    100% {
+      transform: translateY(0);
     }
+  }
 
-    @keyframes slide-up {
-        0% {
-            transform: translateY(100%);
-            opacity: 0;
-        }
-        100% {
-            transform: translateY(0);
-            opacity: 1;
-        }
+  @keyframes slide-up {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
     }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
 
-    @keyframes slide-left-ease-in {
-        0% {
-            transform: translateX(100%);
-        }
-        100% {
-            transform: translateX(0);
-        }
+  @keyframes slide-left-ease-in {
+    0% {
+      transform: translateX(100%);
     }
+    100% {
+      transform: translateX(0);
+    }
+  }
 
-    @keyframes slide-right-ease-in {
-        0% {
-            transform: translateX();
-        }
-        100% {
-            transform: translateX(100%);
-        }
+  @keyframes slide-right-ease-in {
+    0% {
+      transform: translateX();
     }
+    100% {
+      transform: translateX(100%);
+    }
+  }
 
-    @keyframes slide-in-from-right {
-        from {
-            transform: translateX(100%);
-        }
-        to {
-            transform: translateX(0);
-        }
+  @keyframes slide-in-from-right {
+    from {
+      transform: translateX(100%);
     }
+    to {
+      transform: translateX(0);
+    }
+  }
 
-    @keyframes slide-in-from-left {
-        from {
-            transform: translateX(-100%);
-        }
-        to {
-            transform: translateX(0);
-        }
+  @keyframes slide-in-from-left {
+    from {
+      transform: translateX(-100%);
     }
+    to {
+      transform: translateX(0);
+    }
+  }
 
-    @keyframes fade-in-only {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
+  @keyframes fade-in-only {
+    0% {
+      opacity: 0;
     }
+    100% {
+      opacity: 1;
+    }
+  }
 
-    @keyframes fade-in-and-scale {
-        0% {
-            opacity: 0;
-            scale: 0.5;
-        }
-        100% {
-            opacity: 1;
-            scale: 1;
-        }
+  @keyframes fade-in-and-scale {
+    0% {
+      opacity: 0;
+      scale: 0.5;
     }
+    100% {
+      opacity: 1;
+      scale: 1;
+    }
+  }
 
-    @keyframes fade-in-slow {
-        0% {
-            opacity: 0;
-            transform: scale(0.8);
-        }
-        50% {
-            opacity: 0;
-            transform: scale(0.8);
-        }
-        100% {
-            opacity: 1;
-            transform: scale(1);
-        }
+  @keyframes fade-in-slow {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
     }
+    50% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
 
-    @keyframes fade-in-from-top {
-        from {
-            transform: translateY(-100%);
-            opacity: 0;
-        }
-        to {
-            transform: translateY(0);
-            opacity: 1;
-        }
+  @keyframes fade-in-from-top {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
     }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
 
-    @keyframes fade-in-from-bottom {
-        from {
-            transform: translateY(50%);
-            opacity: 0;
-        }
-        to {
-            transform: translateY(0);
-            opacity: 1;
-        }
+  @keyframes fade-in-from-bottom {
+    from {
+      transform: translateY(50%);
+      opacity: 0;
     }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
 
-    @keyframes fade-in-from-top-left {
-        from {
-            transform: translateX(-100rem) translateY(-50rem);
-            opacity: 0;
-            scale: 0;
-        }
-        to {
-            transform: translateX(0) translateY(0);
-            opacity: 1;
-            scale: 1;
-        }
+  @keyframes fade-in-from-top-left {
+    from {
+      transform: translateX(-100rem) translateY(-50rem);
+      opacity: 0;
+      scale: 0;
     }
+    to {
+      transform: translateX(0) translateY(0);
+      opacity: 1;
+      scale: 1;
+    }
+  }
 
-    @keyframes fade-in-from-bottom-right {
-        to {
-            transform: translateX(0) translateY(0);
-            opacity: 1;
-            scale: 1;
-        }
+  @keyframes fade-in-from-bottom-right {
+    to {
+      transform: translateX(0) translateY(0);
+      opacity: 1;
+      scale: 1;
     }
+  }
 
-    @keyframes fade-in-from-left {
-        to {
-            transform: translateX(0);
-            opacity: 1;
-            scale: 1;
-        }
+  @keyframes fade-in-from-left {
+    to {
+      transform: translateX(0);
+      opacity: 1;
+      scale: 1;
     }
+  }
 
-    @keyframes fade-out {
-        to {
-            opacity: 0;
-            scale: 0.5;
-        }
+  @keyframes fade-out {
+    to {
+      opacity: 0;
+      scale: 0.5;
     }
+  }
 
-    @keyframes fade-out-to-top {
-        to {
-            opacity: 0;
-            transform: translateY(-50%);
-        }
+  @keyframes fade-out-to-top {
+    to {
+      opacity: 0;
+      transform: translateY(-50%);
     }
+  }
 
-    @keyframes fade-out-to-top-with-scale {
-        to {
-            opacity: 0;
-            scale: 0.5;
-            transform: translateY(-20rem);
-        }
+  @keyframes fade-out-to-top-with-scale {
+    to {
+      opacity: 0;
+      scale: 0.5;
+      transform: translateY(-20rem);
     }
+  }
 
-    @keyframes fade-out-to-top-right {
-        to {
-            transform: translateX(100rem) translateY(-50rem);
-            opacity: 0;
-            scale: 0;
-        }
+  @keyframes fade-out-to-top-right {
+    to {
+      transform: translateX(100rem) translateY(-50rem);
+      opacity: 0;
+      scale: 0;
     }
+  }
 
-    @keyframes fade-out-to-bottom-left {
-        to {
-            transform: translateX(-100rem) translateY(50rem);
-            opacity: 0;
-            scale: 0;
-        }
+  @keyframes fade-out-to-bottom-left {
+    to {
+      transform: translateX(-100rem) translateY(50rem);
+      opacity: 0;
+      scale: 0;
     }
+  }
 
-    @keyframes scale-in-to-top {
-        to {
-            opacity: 0;
-            transform: scale(0) translateY(-40rem);
-        }
+  @keyframes scale-in-to-top {
+    to {
+      opacity: 0;
+      transform: scale(0) translateY(-40rem);
     }
+  }
 
-    @keyframes scale-out {
-        from {
-            opacity: 0;
-            transform: scale(0);
-        }
-        to {
-            opacity: 1;
-            transform: scale(1);
-        }
+  @keyframes scale-out {
+    from {
+      opacity: 0;
+      transform: scale(0);
     }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
 
-    @keyframes scale-out-from-top {
-        to {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-        }
+  @keyframes scale-out-from-top {
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
     }
+  }
 
-    @keyframes scale-in-slight {
-        from {
-            transform: scale(0.5);
-        }
-        to {
-            transform: scale(1);
-        }
+  @keyframes scale-in-slight {
+    from {
+      transform: scale(0.5);
     }
+    to {
+      transform: scale(1);
+    }
+  }
 
-    @keyframes scale-out-slight {
-        from {
-            transform: scale(1);
-        }
-        to {
-            transform: scale(0.75);
-        }
+  @keyframes scale-out-slight {
+    from {
+      transform: scale(1);
     }
+    to {
+      transform: scale(0.75);
+    }
+  }
 
-    @keyframes flip-in-y {
-        from {
-            transform: perspective(20rem) scale(0) rotateY(-90deg);
-            opacity: 0;
-        }
-        to {
-            transform: perspective(20rem) scale(1) rotateY(0);
-            opacity: 1;
-        }
+  @keyframes flip-in-y {
+    from {
+      transform: perspective(20rem) scale(0) rotateY(-90deg);
+      opacity: 0;
     }
+    to {
+      transform: perspective(20rem) scale(1) rotateY(0);
+      opacity: 1;
+    }
+  }
 
-    @keyframes flip-out-y {
-        from {
-            transform: perspective(20rem) scale(1) rotateY(0);
-            opacity: 1;
-        }
-        to {
-            transform: perspective(20rem) scale(0) rotateY(-90deg);
-            opacity: 0;
-        }
+  @keyframes flip-out-y {
+    from {
+      transform: perspective(20rem) scale(1) rotateY(0);
+      opacity: 1;
     }
+    to {
+      transform: perspective(20rem) scale(0) rotateY(-90deg);
+      opacity: 0;
+    }
+  }
 
-    @keyframes trans-background-color-to-dark {
-        0% {
-            background-color: transparent;
-        }
-        100% {
-            background-color: rgba(0, 0, 0, 0.5);
-        }
+  @keyframes trans-background-color-to-dark {
+    0% {
+      background-color: transparent;
     }
+    100% {
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
 
-    @keyframes trans-background-color-to-clear {
-        0% {
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-        100% {
-            background-color: transparent;
-        }
+  @keyframes trans-background-color-to-clear {
+    0% {
+      background-color: rgba(0, 0, 0, 0.5);
     }
+    100% {
+      background-color: transparent;
+    }
+  }
 
-    @keyframes letter-wavy {
-        0%,
-        40%,
-        100% {
-            transform: translateY(0);
-        }
-        20% {
-            transform: translateY(-1rem);
-        }
+  @keyframes letter-wavy {
+    0%,
+    40%,
+    100% {
+      transform: translateY(0);
     }
+    20% {
+      transform: translateY(-1rem);
+    }
+  }
 
-    @keyframes cursor-blink {
-        0% {
-            opacity: 0;
-        }
+  @keyframes cursor-blink {
+    0% {
+      opacity: 0;
     }
+  }
 }
