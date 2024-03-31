@@ -1,16 +1,19 @@
 import { defineStore } from 'pinia';
 
 type TViewScrollingStore = {
-    progress: number;
+  progress: number;
 };
 
-export const useViewScrollingStore = defineStore('viewScrolling', {
+export const useViewScrollingStore = defineStore(
+  'viewScrolling',
+  {
     state: (): TViewScrollingStore => ({
-        progress: 0,
+      progress: 0,
     }),
     actions: {
-        setViewProgress(value: number) {
-            this.progress = value;
-        },
+      setViewProgress(value: number) {
+        this.progress = value;
+      },
     },
-});
+  }
+);

@@ -8,35 +8,35 @@
 @import '_typography.css';
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 /* setup init styles */
 @media (prefers-reduced-motion: no-preference) {
-    body {
-        margin: 0px;
-        overflow: hidden;
-        cursor: url(/assets/icons/pixel-kuromi.png), auto;
-    }
+  body {
+    margin: 0px;
+    overflow: hidden;
+    cursor: url(/assets/icons/pixel-kuromi.png), auto;
+  }
 }
 
 button {
-    &:hover {
-        cursor: url(/assets/icons/pixel-kuromi.png), auto;
-    }
+  &:hover {
+    cursor: url(/assets/icons/pixel-kuromi.png), auto;
+  }
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 
-    :hover {
-        font-weight: bold;
-    }
+  :hover {
+    font-weight: bold;
+  }
 }
 
 img {
-    width: auto;
-    max-width: 100%;
-    height: auto;
-    max-height: 100%;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
 }

@@ -4,8 +4,8 @@ import ProjectIllustrationCard from './ProjectIllustrationCard.vue';
 import ProjectPhotosCard from './ProjectPhotosCard.vue';
 
 export {
-    ProjectAnimationCard,
-    ProjectGraphicDesignCard,
-    ProjectIllustrationCard,
-    ProjectPhotosCard,
+  ProjectAnimationCard,
+  ProjectGraphicDesignCard,
+  ProjectIllustrationCard,
+  ProjectPhotosCard,
 };

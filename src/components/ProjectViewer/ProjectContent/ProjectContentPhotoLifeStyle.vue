@@ -1,34 +1,80 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia';
+
+import { projectMockData } from '@/data';
 import { useResponsiveStore } from '@/stores';
 
+import { BrandLogoStamp } from '.';
+
 const responsiveStore = useResponsiveStore();
-const { currentScaleRatio } = responsiveStore;
+const { currentScaleRatio } = storeToRefs(responsiveStore);
+
+const photoLifeStyleData = projectMockData.photoLifeStyle;
 </script>
 
 <template>
-    <div class="container">
-        <div class="polaroid">
-            <img
-                src="/assets/images/popup/photo-life-style/polaroid.png"
-                alt="photo life style polaroid"
-                class="polaroid__image"
-                :style="{
-                    height: `${80 * currentScaleRatio}rem`,
-                    maxHeight: `${80 * currentScaleRatio}rem`,
-                    transform: `translateY(${5.5 * currentScaleRatio}rem) translateX(${3 * currentScaleRatio}rem)`,
-                }"
-            />
-        </div>
-        <div class="brand"></div>
+  <div class="container">
+    <div class="polaroid">
+      <img
+        src="/assets/images/popup/photo-life-style/polaroid.png"
+        alt="photo life style polaroid"
+        class="polaroid__image"
+        :style="{
+          height: `${80 * currentScaleRatio}rem`,
+          maxHeight: `${80 * currentScaleRatio}rem`,
+          transform: `translateY(${6 * currentScaleRatio}rem) translateX(${3 * currentScaleRatio}rem)`,
+        }"
+      />
     </div>
+    <div
+      v-if="photoLifeStyleData"
+      class="brands"
+      :style="{
+        marginTop: `${8 * currentScaleRatio}rem`,
+        padding: `${5 * currentScaleRatio}rem ${20 * currentScaleRatio}rem`,
+        gap: `${1.5 * currentScaleRatio}rem`,
+      }"
+    >
+      <!-- guideline image -->
+      <img
+        src="/assets/images/popup/photo-life-style/click-on-note.svg"
+        alt="click-on-note"
+        class="click-on-note-img"
+        :style="{
+          height: `${35 * currentScaleRatio}rem`,
+          top: `${-15 * currentScaleRatio}rem`,
+          left: `${3 * currentScaleRatio}rem`,
+        }"
+      />
+      <!-- brands logo -->
+      <BrandLogoStamp
+        v-for="brand in photoLifeStyleData.brands"
+        :key="brand.name"
+        :brand="brand"
+      />
+    </div>
+  </div>
 </template>
 
 <style scoped>
 .container {
-    widows: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  widows: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.click-on-note-img {
+  position: absolute;
+  z-index: 0;
+}
+
+.brands {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 </style>

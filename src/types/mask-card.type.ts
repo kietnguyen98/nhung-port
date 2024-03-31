@@ -1,4 +1,4 @@
 export type TMaskCardDimension = {
-    WIDTH: number;
-    HEIGHT: number;
+  WIDTH: number;
+  HEIGHT: number;
 };

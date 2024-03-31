@@ -9,6 +9,6 @@ const { isNotSupport } = storeToRefs(mediaQueriesStore);
 </script>
 
 <template>
-    <NotSupportScreen v-if="isNotSupport" />
-    <router-view v-if="!isNotSupport"> </router-view>
+  <NotSupportScreen v-if="isNotSupport" />
+  <router-view v-if="!isNotSupport"> </router-view>
 </template>
