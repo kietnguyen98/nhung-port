@@ -7,47 +7,35 @@ import { TBrand } from '@/types';
 
 export const _flawsomeBrandData: TBrand = {
   name: 'Flawsome',
-  logoURL: `${BRAND_LOGO_URL_PREFIX}flawsome.png`,
+  logoURL: `${BRAND_LOGO_URL_PREFIX}flawsome_logo.png`,
   posts: [
     {
       type: POST_TYPE_VALUES.PHOTO,
-      sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1j2sU-c9RQJWSPCLVNFDMdPsuV1g-k2ko`,
+      sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1hU0ZkM23ADuklmwC7RKTr_yul6MhXiXI`,
     },
     {
       type: POST_TYPE_VALUES.PHOTO,
-      sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1q3mApdikzBWWnEf0FbgULEg9PemLV_Nl`,
+      sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1um8l3MdLOjCXBRS_3VuZUMxefPh-HmON`,
     },
     {
       type: POST_TYPE_VALUES.PHOTO,
-      sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1pgxeG6Zpau4BcsvkXc2O0FXiF5KfRSkC`,
+      sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}14VCwVsKwHb7ctMRR6HtFQyk-PE9IE_dJ`,
     },
     {
       type: POST_TYPE_VALUES.PHOTO,
-      sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1ZG2GUkjHD-aPjKJ3A2XZggjA1omyRFDn`,
+      sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1mwA6VfnYvpHLvzvPru8JGo29AeI_sXCK`,
     },
     {
       type: POST_TYPE_VALUES.PHOTO,
-      sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}18HmBVpbv7lekRDzZsDjK_-q90rZogBqk`,
+      sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1-A8-EszC_wgxMENvfaLaHqEYjlZYinRK`,
     },
     {
       type: POST_TYPE_VALUES.PHOTO,
-      sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}15IKNZ0XzdrJWfZw6UXF0FM-IVwkjUHTy`,
+      sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1AQypELESxdEH0Z09A2tg6bRS3-1L4zLA`,
     },
     {
       type: POST_TYPE_VALUES.PHOTO,
-      sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1Etm9PpY9B0fxAYmb8s1XUeUmJcnKZtfc`,
-    },
-    {
-      type: POST_TYPE_VALUES.PHOTO,
-      sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}14SgPy8KBE7yqofBHKflYF2cF4Wn3N8pj`,
-    },
-    {
-      type: POST_TYPE_VALUES.PHOTO,
-      sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}13eSGbL_oWmASHXglVSHFvWXjKu37jBMy`,
-    },
-    {
-      type: POST_TYPE_VALUES.PHOTO,
-      sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1_tHXM2uhgV0UG13uu8Fe1rpK3bppYNux`,
+      sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1G5nHZGaA6ykKWbLHc8dstfaw55rPEPPa`,
     },
   ],
 };

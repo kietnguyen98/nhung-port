@@ -7,7 +7,7 @@ import { TBrand } from '@/types';
 
 export const _sunplayBrandData: TBrand = {
   name: 'Sunplay',
-  logoURL: `${BRAND_LOGO_URL_PREFIX}skin_aqua.png`,
+  logoURL: `${BRAND_LOGO_URL_PREFIX}sunplay_logo.png`,
   posts: [
     {
       type: POST_TYPE_VALUES.PHOTO,

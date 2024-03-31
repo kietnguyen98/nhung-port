@@ -7,7 +7,7 @@ import { TBrand } from '@/types';
 
 export const _50MegumiBrandData: TBrand = {
   name: '50 Megumi',
-  logoURL: `${BRAND_LOGO_URL_PREFIX}50_megumi.png`,
+  logoURL: `${BRAND_LOGO_URL_PREFIX}50megumi_logo.png`,
   posts: [
     {
       type: POST_TYPE_VALUES.PHOTO,

@@ -35,7 +35,6 @@ const graphicDesignData = projectMockData.graphicDesign;
       }"
     >
       <!-- guideline image -->
-
       <img
         src="/assets/images/popup/graphic-design/click-on-note.svg"
         alt="click-on-note"
@@ -68,11 +67,6 @@ const graphicDesignData = projectMockData.graphicDesign;
 .click-on-note-img {
   position: absolute;
   z-index: 0;
-
-  image {
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 800;
-  }
 }
 
 .brands {

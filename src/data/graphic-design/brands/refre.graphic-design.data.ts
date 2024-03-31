@@ -5,9 +5,9 @@ import {
 } from '@/constants';
 import { TBrand } from '@/types';
 
-export const _refreeBrandData: TBrand = {
+export const _refreBrandData: TBrand = {
   name: 'Refree',
-  logoURL: `${BRAND_LOGO_URL_PREFIX}refree.png`,
+  logoURL: `${BRAND_LOGO_URL_PREFIX}refre_logo.png`,
   posts: [
     {
       type: POST_TYPE_VALUES.PHOTO,

@@ -7,7 +7,7 @@ import { _lipOnLipBrandData } from './lip-on-lip.graphic-design.data';
 import { _lipiceBrandData } from './lipice.graphic-design.data';
 import { _lipsticianBrandData } from './lipstician.graphic-design.data';
 import { _pharmacityBrandData } from './pharmacity.graphic-design.data';
-import { _refreeBrandData } from './refree.graphic-design.data';
+import { _refreBrandData } from './refre.graphic-design.data';
 import { _rohtoHealthScienceBrandData } from './rohto-health-science.graphic-design.data';
 import { _selsunBrandData } from './selsun.graphic-design.data';
 import { _sharkTankBrandData } from './shark-tank.graphic-design.data';
@@ -24,7 +24,7 @@ export {
   _lipOnLipBrandData,
   _lipsticianBrandData,
   _pharmacityBrandData,
-  _refreeBrandData,
+  _refreBrandData,
   _rohtoHealthScienceBrandData,
   _selsunBrandData,
   _sharkTankBrandData,
