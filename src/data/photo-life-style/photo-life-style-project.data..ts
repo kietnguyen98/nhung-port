@@ -11,7 +11,7 @@ import {
   _sunplayBrandData,
 } from './brands';
 
-export const photographyProjectData: TProject = {
+export const photoLifeStyleProjectData: TProject = {
   name: 'Photo Life Style',
   idName: 'photo-life-style',
   outerImageUrl:

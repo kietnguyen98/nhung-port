@@ -1,12 +1,29 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 
+import { projectMockData } from '@/data';
+import { usePlayVideo } from '@/hooks';
 import { useResponsiveStore } from '@/stores';
+import { TPost } from '@/types';
+
+import { VideoFrame, VideoThumbnailCard } from '.';
 
 const responsiveStore = useResponsiveStore();
 const { currentScaleRatio } = storeToRefs(responsiveStore);
 
 const FILM_STRIP_WIDTH_SCALE_RATIO = 1.075;
+const motionGraphicPostList = projectMockData.motionGraphic
+  ? projectMockData.motionGraphic.brands.reduce<
+      Array<TPost>
+    >(
+      (accumulator, value) =>
+        accumulator.concat(value.posts),
+      []
+    )
+  : [];
+
+const { currentVideoUrl, handlePlayNewVideo } =
+  usePlayVideo();
 </script>
 
 <template>
@@ -21,15 +38,15 @@ const FILM_STRIP_WIDTH_SCALE_RATIO = 1.075;
           transform: `translateY(${5.5 * currentScaleRatio}rem)`,
         }"
       />
-
+      <VideoFrame :source-url="currentVideoUrl" />
       <img
         src="/assets/images/popup/motion-graphic/film-pins.png"
         alt="film frame's film pin"
         class="film-frame__sub-images"
         :style="{
           height: `${29 * currentScaleRatio}rem`,
-          bottom: `${-20 * currentScaleRatio}rem`,
-          right: `${-9 * currentScaleRatio}rem`,
+          bottom: `${-20.5 * currentScaleRatio}rem`,
+          right: `${-9.25 * currentScaleRatio}rem`,
         }"
       />
     </div>
@@ -40,6 +57,21 @@ const FILM_STRIP_WIDTH_SCALE_RATIO = 1.075;
         paddingBottom: `${12 * currentScaleRatio}rem`,
       }"
     >
+      <div
+        class="video-thumbnails"
+        :style="{
+          top: `${13.75 * currentScaleRatio}rem`,
+          gap: `${1 * currentScaleRatio}rem`,
+        }"
+      >
+        <VideoThumbnailCard
+          v-for="post in motionGraphicPostList"
+          :key="post.sourceUrl"
+          :thumbnail-image-url="post.thumbnailUrl ?? ''"
+          :video-url="post.sourceUrl"
+          :handle-play-video="handlePlayNewVideo"
+        />
+      </div>
       <img
         src="/assets/images/popup/motion-graphic/film-strip.png"
         alt="motion graphic content film strip"
@@ -48,7 +80,6 @@ const FILM_STRIP_WIDTH_SCALE_RATIO = 1.075;
           maxWidth: `${160 * FILM_STRIP_WIDTH_SCALE_RATIO * currentScaleRatio}rem`,
         }"
       />
-
       <img
         class="film-strip__sub-images"
         src="/assets/images/popup/motion-graphic/camera.png"
@@ -101,5 +132,14 @@ const FILM_STRIP_WIDTH_SCALE_RATIO = 1.075;
   .film-strip__sub-images {
     position: absolute;
   }
+}
+
+.video-thumbnails {
+  position: absolute;
+  left: 0rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

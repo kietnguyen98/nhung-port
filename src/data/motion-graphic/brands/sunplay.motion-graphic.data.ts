@@ -8,7 +8,7 @@ import { getGGDriveVideoResourceUrl } from '@/utilities';
 
 export const _sunplayBrandData: TBrand = {
   name: 'Sunplay',
-  logoURL: `${BRAND_LOGO_URL_PREFIX}skin_aqua.png`,
+  logoURL: `${BRAND_LOGO_URL_PREFIX}sunlay_logo.png`,
   posts: [
     {
       type: POST_TYPE_VALUES.VIDEO,
@@ -17,13 +17,13 @@ export const _sunplayBrandData: TBrand = {
       ),
       thumbnailUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1wy303G6hR9a7TMVLQp1RuD7T4fQ9_SsR`,
     },
-    {
-      type: POST_TYPE_VALUES.VIDEO,
-      sourceUrl: getGGDriveVideoResourceUrl(
-        '1Jh5bkXdXDXcYDBcGQoFaePcuMiDUXK8A'
-      ),
-      thumbnailUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1Jh5bkXdXDXcYDBcGQoFaePcuMiDUXK8A`,
-    },
+    // {
+    //   type: POST_TYPE_VALUES.VIDEO,
+    //   sourceUrl: getGGDriveVideoResourceUrl(
+    //     '1Jh5bkXdXDXcYDBcGQoFaePcuMiDUXK8A'
+    //   ),
+    //   thumbnailUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1Jh5bkXdXDXcYDBcGQoFaePcuMiDUXK8A`,
+    // },
     {
       type: POST_TYPE_VALUES.VIDEO,
       sourceUrl: getGGDriveVideoResourceUrl(

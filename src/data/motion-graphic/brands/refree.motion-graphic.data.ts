@@ -8,7 +8,7 @@ import { getGGDriveVideoResourceUrl } from '@/utilities';
 
 export const _refreeBrandData: TBrand = {
   name: 'Refree',
-  logoURL: `${BRAND_LOGO_URL_PREFIX}refree.png`,
+  logoURL: `${BRAND_LOGO_URL_PREFIX}refre_logo.png`,
   posts: [
     {
       type: POST_TYPE_VALUES.VIDEO,
