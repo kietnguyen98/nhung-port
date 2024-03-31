@@ -81,5 +81,9 @@ export const _refreeBrandData: TBrand = {
       type: POST_TYPE_VALUES.PHOTO,
       sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1Ifm-uGZgDEd3-RvsNYyr1UvDChD8tX6t`,
     },
+    {
+      type: POST_TYPE_VALUES.PHOTO,
+      sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1TITKNgoTDU1QI2cw-44duU2VQSsN3H1Y`,
+    },
   ],
 };

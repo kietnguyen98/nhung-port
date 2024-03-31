@@ -7,7 +7,7 @@ import { TBrand } from '@/types';
 
 export const _selsunBrandData: TBrand = {
   name: 'Selsun',
-  logoURL: `${BRAND_LOGO_URL_PREFIX}selsun.png`,
+  logoURL: `${BRAND_LOGO_URL_PREFIX}selsun_logo.png`,
   posts: [
     {
       type: POST_TYPE_VALUES.PHOTO,

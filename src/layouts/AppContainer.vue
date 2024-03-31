@@ -13,6 +13,8 @@ import {
   blockWheelEvent,
 } from '@/utilities';
 
+import { NavigationBar } from '.';
+
 const mediaQueriesStore = useResponsiveStore();
 const { initEvent } = mediaQueriesStore;
 

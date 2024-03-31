@@ -24,10 +24,7 @@ export type TProjectIdName =
 export type TProject = {
   name: string;
   idName: TProjectIdName;
-  description: string;
   outerImageUrl: string;
-  introImageUrl: Array<string>;
-  demoImages: TDemoImages;
   brands: Array<TBrand>;
 };
 

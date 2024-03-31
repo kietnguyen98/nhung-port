@@ -7,7 +7,7 @@ import { TBrand } from '@/types';
 
 export const _huongNghiepDayNgheBrandData: TBrand = {
   name: 'Huong Nghiep Day Nghe',
-  logoURL: `${BRAND_LOGO_URL_PREFIX}huong_nghiep_day_nghe.png`,
+  logoURL: `${BRAND_LOGO_URL_PREFIX}vcci_logo.png`,
   posts: [
     {
       type: POST_TYPE_VALUES.PHOTO,

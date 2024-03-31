@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia';
+
 import { useResponsiveStore } from '@/stores';
 import { TProjectIdName } from '@/types';
 
@@ -7,14 +9,14 @@ defineProps<{
 }>();
 
 const responsiveStore = useResponsiveStore();
-const { currentScaleRatio } = responsiveStore;
+const { currentScaleRatio } = storeToRefs(responsiveStore);
 </script>
 <template>
   <!-- icons -->
   <img
     src="/assets/images/butterfly-2.png"
     alt="butterfly 4"
-    class="icon"
+    class="icon icon-butterfly-1"
     :style="{
       height: `${19.5 * currentScaleRatio}rem`,
       top: `${49 * currentScaleRatio}rem`,
@@ -24,7 +26,7 @@ const { currentScaleRatio } = responsiveStore;
   <img
     src="/assets/images/butterfly-4.png"
     alt="butterfly 4"
-    class="icon"
+    class="icon icon-butterfly-2"
     :style="{
       height: `${19.5 * currentScaleRatio}rem`,
       top: `${7 * currentScaleRatio}rem`,
@@ -83,9 +85,16 @@ const { currentScaleRatio } = responsiveStore;
   position: absolute;
   z-index: 1;
 }
+
+.icon-butterfly-1 {
+  animation: bubble-bounce infinite 2.5s ease-in-out;
+}
+
+.icon-butterfly-2 {
+  animation: bubble-bounce infinite 3.5s ease-in-out;
+}
+
 .title {
   position: absolute;
-  top: 0;
-  left: 0;
 }
 </style>

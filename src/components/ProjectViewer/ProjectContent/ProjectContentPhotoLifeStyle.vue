@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia';
+
 import { useResponsiveStore } from '@/stores';
 
 const responsiveStore = useResponsiveStore();
-const { currentScaleRatio } = responsiveStore;
+const { currentScaleRatio } = storeToRefs(responsiveStore);
 </script>
 
 <template>

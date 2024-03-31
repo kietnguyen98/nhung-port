@@ -151,13 +151,13 @@ watch(
 }
 .popup-content--enter-ani {
   transform: translateX(100%);
-  animation: slide-left-ease-in 0.75s
+  animation: slide-in-from-bottom 0.75s
     cubic-bezier(1, 0, 0.25, 0.9) forwards;
 }
 
 .popup-content--leave-ani {
   transform: translateX(0);
-  animation: slide-right-ease-in 0.75s
+  animation: slide-out-to-bottom 0.75s
     cubic-bezier(1, 0, 0.25, 0.9) forwards;
 }
 </style>

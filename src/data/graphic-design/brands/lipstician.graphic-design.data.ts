@@ -7,7 +7,7 @@ import { TBrand } from '@/types';
 
 export const _lipsticianBrandData: TBrand = {
   name: 'Lipstician',
-  logoURL: `${BRAND_LOGO_URL_PREFIX}lipstician.png`,
+  logoURL: `${BRAND_LOGO_URL_PREFIX}lipstician_logo.png`,
   posts: [
     {
       type: POST_TYPE_VALUES.PHOTO,
@@ -20,6 +20,10 @@ export const _lipsticianBrandData: TBrand = {
     {
       type: POST_TYPE_VALUES.PHOTO,
       sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}13vKqVQMMmq8OK8BpNjf2zxFRVWd4VkIP`,
+    },
+    {
+      type: POST_TYPE_VALUES.PHOTO,
+      sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1dvglaLftdltLrOnYVbuRAwqvvTm5ItII`,
     },
     {
       type: POST_TYPE_VALUES.PHOTO,

@@ -12,12 +12,7 @@ import loadingImage from '@/assets/images/loader-320px.gif';
 import errorNotFoundImage from '@/assets/images/not-found.svg';
 // components
 // layouts
-import {
-  AppContainer,
-  NavigationBar,
-  PostViewerPopup,
-  ProjectViewerPopup,
-} from '@/layouts';
+import { AppContainer } from '@/layouts';
 // router
 import router from '@/router';
 
@@ -38,10 +33,5 @@ app.use(VueLazyload, {
 
 // layout register
 app.component('AppContainer', AppContainer);
-app.component('ProjectViewerPopup', ProjectViewerPopup);
-app.component('PostViewerPopup', PostViewerPopup);
-
-// component register
-app.component('NavigationBar', NavigationBar);
 
 app.mount('#app');

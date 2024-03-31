@@ -37,7 +37,7 @@ const { currentScaleRatio } = storeToRefs(
           <h1 class="font-arielScript">Welcome to</h1>
         </div>
         <img
-          class="images-group__main slide-up-enter-ani"
+          class="images-group__main slide-in-from-bottom-enter-ani"
           src="/assets/images/profile-photo.png"
           :style="{
             height: `${85 * currentScaleRatio}rem`,
@@ -145,7 +145,9 @@ const { currentScaleRatio } = storeToRefs(
     height: auto;
     width: auto;
 
-    animation: slide-up 0.75s ease-in;
+    animation:
+      slide-in-from-bottom 0.75s ease-in,
+      fade-in-only 0.75s ease-in;
   }
 
   .images-group__sub {

@@ -7,7 +7,7 @@ import { TBrand } from '@/types';
 
 export const _sociollaBrandData: TBrand = {
   name: 'Sociolla',
-  logoURL: `${BRAND_LOGO_URL_PREFIX}sociolla.webp`,
+  logoURL: `${BRAND_LOGO_URL_PREFIX}sociolla_logo.png`,
   posts: [
     {
       type: POST_TYPE_VALUES.PHOTO,
@@ -16,6 +16,14 @@ export const _sociollaBrandData: TBrand = {
     {
       type: POST_TYPE_VALUES.PHOTO,
       sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}14CWrpluLsF8uFNxKNz_1jyFzIC83CKDh`,
+    },
+    {
+      type: POST_TYPE_VALUES.PHOTO,
+      sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1_0mA920HVUwFnq0w4VNSkNARWIOTDUo-`,
+    },
+    {
+      type: POST_TYPE_VALUES.PHOTO,
+      sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1LbBgNTZ3NdZlSJy4k3BHepf-Qte2GfPy`,
     },
   ],
 };

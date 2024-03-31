@@ -8,6 +8,10 @@ import {
   ProjectIllustrationCard,
   ProjectPhotosCard,
 } from '@/components';
+import {
+  PostViewerPopup,
+  ProjectViewerPopup,
+} from '@/layouts';
 import { useResponsiveStore } from '@/stores';
 import { ProjectView } from '@/views';
 defineProps<{
@@ -81,9 +85,11 @@ const { currentScaleRatio } = storeToRefs(
       <FavoritePosts />
     </div>
   </div>
+  <!-- project view detail -->
   <ProjectViewerPopup>
     <ProjectView></ProjectView>
   </ProjectViewerPopup>
+  <!-- post view detail -->
   <PostViewerPopup />
 </template>
 
