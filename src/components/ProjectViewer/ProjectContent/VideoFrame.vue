@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 
+import loadingImage from '@/assets/images/loader-320px.gif';
 import { useResponsiveStore } from '@/stores';
 
 defineProps<{
@@ -26,6 +27,12 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
         sourceUrl && 'video-frame-overlay--ready',
       ]"
     >
+      <div
+        v-if="sourceUrl"
+        class="video-frame-loading-in-progress"
+      >
+        <img :src="loadingImage" />
+      </div>
       <iframe
         v-if="sourceUrl"
         :src="sourceUrl"
@@ -53,8 +60,22 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+
+  .video-frame-loading-in-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4rem;
+  }
 
   .video-frame {
+    z-index: 1;
     border-radius: 4rem;
     width: 100%;
     height: 100%;

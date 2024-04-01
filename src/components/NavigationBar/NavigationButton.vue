@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import animateScrollTo from 'animated-scroll-to';
-import { onMounted, ref } from 'vue';
+import { storeToRefs } from 'pinia';
+import { ref, watch } from 'vue';
+
+import { useScrollWrapperStore } from '@/stores';
 
 const props = defineProps<{
   idName: string;
@@ -12,60 +15,73 @@ const props = defineProps<{
 const diffOffset = ref<number>(0);
 const navigateToTarget = ref<() => void>();
 
-onMounted(() => {
-  const targetElement = document.getElementById(
-    `${props.idName}-section`
-  ) as HTMLElement;
+// scroll wrapper store
+const scrollWrapperStore = useScrollWrapperStore();
+const { containerScrollWrapper } = storeToRefs(
+  scrollWrapperStore
+);
 
-  const scrollWrapperElement = document.getElementById(
-    'scroll-wrapper'
-  ) as HTMLElement;
+watch(
+  containerScrollWrapper,
+  (newContainerScrollWrapper) => {
+    if (newContainerScrollWrapper) {
+      const targetElement = document.getElementById(
+        `${props.idName}-section`
+      ) as HTMLElement;
 
-  // initial offset value, handler function
-  diffOffset.value = Math.abs(
-    scrollWrapperElement.scrollTop - targetElement.offsetTop
-  );
+      // initial offset value, handler function
+      diffOffset.value = Math.abs(
+        newContainerScrollWrapper.scrollTop -
+          targetElement.offsetTop
+      );
 
-  navigateToTarget.value = () => {
-    animateScrollTo(targetElement.offsetTop, {
-      cancelOnUserAction: true,
-      easing: (t) => {
-        return --t * t * t + 1;
-      },
-      minDuration:
-        ((diffOffset.value > 0 ? diffOffset.value : 1000) /
-          1000) *
-        1500,
-      elementToScroll: scrollWrapperElement,
-    });
-  };
+      navigateToTarget.value = () => {
+        animateScrollTo(targetElement.offsetTop, {
+          cancelOnUserAction: true,
+          easing: (t) => {
+            return --t * t * t * t * t + 1;
+          },
+          minDuration:
+            ((diffOffset.value > 0
+              ? diffOffset.value
+              : 1000) /
+              1000) *
+            1500,
+          elementToScroll: newContainerScrollWrapper,
+        });
+      };
 
-  // update new offset value and new handler function on scrolling
-  scrollWrapperElement.addEventListener('scroll', () => {
-    diffOffset.value = Math.abs(
-      scrollWrapperElement.scrollTop -
-        targetElement.offsetTop
-    );
+      // update new offset value and new handler function on scrolling
+      newContainerScrollWrapper.addEventListener(
+        'scroll',
+        () => {
+          diffOffset.value = Math.abs(
+            newContainerScrollWrapper.scrollTop -
+              targetElement.offsetTop
+          );
 
-    navigateToTarget.value = () => {
-      animateScrollTo(targetElement.offsetTop, {
-        cancelOnUserAction: true,
-        easing: (t) => {
-          return --t * t * t + 1;
-        },
-        minDuration: Math.min(
-          ((diffOffset.value !== 0
-            ? diffOffset.value
-            : 1000) /
-            1000) *
-            1250,
-          3000
-        ),
-        elementToScroll: scrollWrapperElement,
-      });
-    };
-  });
-});
+          navigateToTarget.value = () => {
+            animateScrollTo(targetElement.offsetTop, {
+              cancelOnUserAction: true,
+              easing: (t) => {
+                return --t * t * t + 1;
+              },
+              minDuration: Math.min(
+                ((diffOffset.value !== 0
+                  ? diffOffset.value
+                  : 1000) /
+                  1000) *
+                  1250,
+                3000
+              ),
+              elementToScroll: newContainerScrollWrapper,
+            });
+          };
+        }
+      );
+    }
+  }
+);
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { onMounted, ref, watch } from 'vue';
+import { ref, watch } from 'vue';
 
 import { favoritePostsData } from '@/data';
 import { useResponsiveStore } from '@/stores';
@@ -15,24 +15,14 @@ const { currentScaleRatio } = storeToRefs(
 const FILM_STRIP_IMAGE_HEIGHT_WIDTH_RATIO = 450 / 1024;
 const FILM_STRIP_BACKGROUND_IMAGE_SIZE = 108;
 const favoriteList = favoritePostsData;
-const projectSectionCardContainer = ref<HTMLElement>();
+const projectSectionCardContainerRef = ref<HTMLElement>();
 let animateProjectCardsInterval:
   | ReturnType<typeof setInterval>
   | undefined;
 const FILM_STRIP_ROTATE_DEG = -3;
 
-onMounted(() => {
-  projectSectionCardContainer.value =
-    document.getElementById(
-      'project-section-cards-wrapper'
-    ) as HTMLElement;
-});
-
 watch(
-  [
-    () => currentScaleRatio.value,
-    () => projectSectionCardContainer.value,
-  ],
+  [currentScaleRatio, projectSectionCardContainerRef],
   ([newScaleRatio, newProjectSectionCardContainer]) => {
     if (newScaleRatio && newProjectSectionCardContainer) {
       // clear prev interval value if exist
@@ -159,7 +149,7 @@ watch(
           }"
         >
           <div
-            id="project-section-cards-wrapper"
+            ref="projectSectionCardContainerRef"
             class="project-cards__cards-wrapper"
             :style="{
               transform: `rotateZ(${FILM_STRIP_ROTATE_DEG}deg)`,

@@ -13,7 +13,7 @@ export function useScrollingDebounce({
 }: TUseScrollingDebounceProps) {
   const isScrolling = ref<boolean>(false);
 
-  scrollWrapperElement.addEventListener(
+  scrollWrapperElement?.addEventListener(
     'scroll',
     function () {
       if (!isScrolling.value) {

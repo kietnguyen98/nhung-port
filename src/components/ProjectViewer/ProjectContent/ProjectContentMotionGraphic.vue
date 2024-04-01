@@ -3,15 +3,26 @@ import { storeToRefs } from 'pinia';
 
 import { projectMockData } from '@/data';
 import { usePlayVideo } from '@/hooks';
-import { useResponsiveStore } from '@/stores';
+import {
+  useResponsiveStore,
+  useScrollWrapperStore,
+} from '@/stores';
 import { TPost } from '@/types';
 
 import { VideoFrame, VideoThumbnailCard } from '.';
 
+// responsive
 const responsiveStore = useResponsiveStore();
 const { currentScaleRatio } = storeToRefs(responsiveStore);
 
+// scroll wrapper store
+const scrollWrapperStore = useScrollWrapperStore();
+const { projectViewerScrollWrapper } = storeToRefs(
+  scrollWrapperStore
+);
+
 const FILM_STRIP_WIDTH_SCALE_RATIO = 1.075;
+
 const motionGraphicPostList = projectMockData.motionGraphic
   ? projectMockData.motionGraphic.brands.reduce<
       Array<TPost>
@@ -22,14 +33,21 @@ const motionGraphicPostList = projectMockData.motionGraphic
     )
   : [];
 
-const { currentVideoUrl, handlePlayNewVideo } =
-  usePlayVideo();
+const {
+  currentVideoUrl,
+  videoFrameElement,
+  handlePlayNewVideo,
+} = usePlayVideo({
+  scrollWrapperElement:
+    projectViewerScrollWrapper.value as HTMLElement,
+});
 </script>
 
 <template>
   <div class="container">
     <div class="film-frame">
       <img
+        ref="videoFrameElement"
         src="/assets/images/popup/motion-graphic/film-frame.png"
         alt="motion graphic content film frame"
         :style="{
