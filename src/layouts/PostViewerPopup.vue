@@ -12,7 +12,10 @@ import {
   useResponsiveStore,
   useScrollWrapperStore,
 } from '@/stores';
-import { animateWheelEvent } from '@/utilities';
+import {
+  animateScroll,
+  animateWheelEvent,
+} from '@/utilities';
 
 // control popup
 const popupStore = useControlPopupStore();
@@ -153,6 +156,19 @@ const handleClosePostViewer = () => {
     });
   }, 1000);
 };
+
+// scroll to any post view when user chose specific post on indicator
+const slideToSpecificPost = (postIndex: number) => {
+  const postToSlide = postViewerScrollWrapperRef.value
+    ?.children[postIndex] as HTMLElement;
+
+  animateScroll({
+    scrollPosition: postToSlide.offsetLeft,
+    wheelDirection: 'horizontal',
+    scrollWrapperElement:
+      postViewerScrollWrapper.value as HTMLElement,
+  });
+};
 </script>
 
 <template>
@@ -217,7 +233,12 @@ const handleClosePostViewer = () => {
             : 'viewer-content__viewer-indicator--disappeared',
         ]"
       >
-        <PostViewerIndicator :posts="brandToView?.posts" />
+        <PostViewerIndicator
+          :posts="brandToView?.posts"
+          :handle-slide-to-specific-post="
+            slideToSpecificPost
+          "
+        />
       </div>
     </div>
   </div>

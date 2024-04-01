@@ -1,3 +1,4 @@
+export * from './animateScroll';
 export * from './animateWheelEvent';
 export * from './blockWheelEvent';
 export * from './getGGDriveVideoResourceUrl';
