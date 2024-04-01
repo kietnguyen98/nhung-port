@@ -3,7 +3,7 @@ import { defineStore } from 'pinia';
 import { TBrand, TProject } from '@/types';
 
 type TControlPopupStoreState = {
-  isPopupOpened: boolean;
+  isProjectViewerOpened: boolean;
   isPostViewerOpened: boolean;
   projectToView?: TProject;
   brandToView?: TBrand;
@@ -13,14 +13,14 @@ export const useControlPopupStore = defineStore(
   'controlPopup',
   {
     state: (): TControlPopupStoreState => ({
-      isPopupOpened: false,
+      isProjectViewerOpened: false,
       isPostViewerOpened: false,
       projectToView: undefined,
       brandToView: undefined,
     }),
     actions: {
-      setIsPopupOpened(value: boolean) {
-        this.isPopupOpened = value;
+      setIsProjectViewerOpened(value: boolean) {
+        this.isProjectViewerOpened = value;
       },
       setIsPostViewerOpened(value: boolean) {
         this.isPostViewerOpened = value;

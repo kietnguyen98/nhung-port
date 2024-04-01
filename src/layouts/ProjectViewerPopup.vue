@@ -1,46 +1,62 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { onMounted, ref, watch } from 'vue';
+import { ref, watch } from 'vue';
 
-import { useControlPopupStore } from '@/stores';
+import {
+  useControlPopupStore,
+  useScrollWrapperStore,
+} from '@/stores';
 import { animateWheelEvent } from '@/utilities';
 
-const store = useControlPopupStore();
-const { isPopupOpened } = storeToRefs(store);
-const { setIsPopupOpened } = store;
+// control popup store
+const controlPopupStore = useControlPopupStore();
+const { isProjectViewerOpened } = storeToRefs(
+  controlPopupStore
+);
+const { setIsProjectViewerOpened } = controlPopupStore;
 
-const popupScrollWrapperElement = ref<HTMLElement>();
+// scroll wrapper store
+const scrollWrapperStore = useScrollWrapperStore();
+const { projectViewerScrollWrapper } = storeToRefs(
+  scrollWrapperStore
+);
+const { setProjectViewerScrollWrapper } =
+  scrollWrapperStore;
+
+const projectViewerScrollWrapperRef = ref<HTMLElement>();
 const handlePopupWheelEvent =
   ref<(e: WheelEvent) => void>();
 
-onMounted(() => {
-  popupScrollWrapperElement.value = document.getElementById(
-    'popup-scroll-wrapper'
-  ) as HTMLElement;
-
-  handlePopupWheelEvent.value = (e: WheelEvent) =>
-    animateWheelEvent({
-      event: e,
-      scrollWrapperElement:
-        popupScrollWrapperElement.value as HTMLElement,
-    });
-});
+watch(
+  projectViewerScrollWrapperRef,
+  (newProjectViewerScrollWrapperRef) => {
+    if (newProjectViewerScrollWrapperRef) {
+      setProjectViewerScrollWrapper(
+        newProjectViewerScrollWrapperRef
+      );
+    }
+  }
+);
 
 watch(
-  () => isPopupOpened.value,
-  (curValue) => {
-    if (
-      handlePopupWheelEvent.value &&
-      popupScrollWrapperElement.value
-    )
-      if (curValue) {
-        popupScrollWrapperElement.value.addEventListener(
+  [isProjectViewerOpened, projectViewerScrollWrapper],
+  ([newIsPopupOpened, newProjectViewerScrollWrapper]) => {
+    handlePopupWheelEvent.value = (e: WheelEvent) =>
+      animateWheelEvent({
+        event: e,
+        scrollWrapperElement:
+          newProjectViewerScrollWrapper as HTMLElement,
+      });
+
+    if (newIsPopupOpened && newProjectViewerScrollWrapper)
+      if (newIsPopupOpened) {
+        newProjectViewerScrollWrapper.addEventListener(
           'wheel',
           handlePopupWheelEvent.value,
           { passive: false }
         );
       } else {
-        popupScrollWrapperElement.value.removeEventListener(
+        newProjectViewerScrollWrapper.removeEventListener(
           'wheel',
           handlePopupWheelEvent.value
         );
@@ -53,13 +69,13 @@ watch(
   <div
     :class="[
       'popup-wrapper',
-      isPopupOpened
+      isProjectViewerOpened
         ? 'popup-wrapper--opened'
         : 'popup-wrapper--closed',
     ]"
   >
     <div
-      id="popup-scroll-wrapper"
+      ref="projectViewerScrollWrapperRef"
       :class="{
         'popup-container': true,
       }"
@@ -67,13 +83,14 @@ watch(
       <div
         :class="{
           'popup-content': true,
-          'popup-content--enter-ani': isPopupOpened,
-          'popup-content--leave-ani': !isPopupOpened,
+          'popup-content--enter-ani': isProjectViewerOpened,
+          'popup-content--leave-ani':
+            !isProjectViewerOpened,
         }"
       >
         <button
           class="popup-content__close-button"
-          @click="setIsPopupOpened(false)"
+          @click="setIsProjectViewerOpened(false)"
         >
           X
         </button>

@@ -15,7 +15,7 @@ export const _sunplayBrandData: TBrand = {
       sourceUrl: getGGDriveVideoResourceUrl(
         '1wy303G6hR9a7TMVLQp1RuD7T4fQ9_SsR'
       ),
-      thumbnailUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1wy303G6hR9a7TMVLQp1RuD7T4fQ9_SsR`,
+      thumbnailUrl: `${GOOGLE_DRIVE_FILE_PREFIX}19P3WqFaZRbKvzSpyz0ZvdWjsv3Su33RX`,
     },
     // {
     //   type: POST_TYPE_VALUES.VIDEO,
@@ -29,7 +29,7 @@ export const _sunplayBrandData: TBrand = {
       sourceUrl: getGGDriveVideoResourceUrl(
         '1dk2--Aac1KU6sSsw4HAD2QaK-QrK1TN1'
       ),
-      thumbnailUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1dk2--Aac1KU6sSsw4HAD2QaK-QrK1TN1`,
+      thumbnailUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1Exuhzo-jmD9xqwJR0TmcFs_JIICgZVES`,
     },
   ],
 };

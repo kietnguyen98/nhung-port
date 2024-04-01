@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { onUpdated, ref, watch } from 'vue';
+import { ref, watch } from 'vue';
 
 import {
-  PostViewer,
+  PostPhotoViewer,
   PostViewerIndicator,
 } from '@/components';
 import {
   useControlPopupStore,
+  usePostViewScrollingStore,
   useResponsiveStore,
-  useViewScrollingStore,
+  useScrollWrapperStore,
 } from '@/stores';
 import { animateWheelEvent } from '@/utilities';
 
@@ -21,7 +22,7 @@ const { setIsPostViewerOpened, setBrandToView } =
   popupStore;
 
 // view scrolling progress
-const viewScrollingStore = useViewScrollingStore();
+const viewScrollingStore = usePostViewScrollingStore();
 const { setViewProgress } = viewScrollingStore;
 
 // media query for responsive
@@ -30,70 +31,92 @@ const { currentScaleRatio } = storeToRefs(
   mediaQueriesStore
 );
 
-const postViewerScrollWrapperElement = ref<HTMLElement>();
+// scroll wrapper control
+const scrollWrapperStore = useScrollWrapperStore();
+const { postViewerScrollWrapper } = storeToRefs(
+  scrollWrapperStore
+);
+const { setPostViewerScrollWrapper } = scrollWrapperStore;
+
+const postViewerScrollWrapperRef = ref<HTMLElement>();
 const handlePostViewerWheelEvent =
   ref<(e: WheelEvent) => void>();
 const handlePostViewerScrollEvent =
   ref<(e?: Event) => void>();
 
-onUpdated(() => {
-  postViewerScrollWrapperElement.value =
-    document.getElementById(
-      'post-viewer-scroll-wrapper'
-    ) as HTMLElement;
-
-  handlePostViewerWheelEvent.value = (e: WheelEvent) =>
-    animateWheelEvent({
-      event: e,
-      wheelSpeed: 5,
-      wheelDirection: 'horizontal',
-      scrollWrapperElement:
-        postViewerScrollWrapperElement.value as HTMLElement,
-    });
-
-  handlePostViewerScrollEvent.value = () => {
-    if (postViewerScrollWrapperElement.value) {
-      const fullScrollWrapperWidth =
-        postViewerScrollWrapperElement.value.scrollWidth;
-      const currentScrollOffsetLeft =
-        postViewerScrollWrapperElement.value.scrollLeft;
-      const currentScreenViewWidth =
-        postViewerScrollWrapperElement.value.clientWidth;
-
-      setViewProgress(
-        Math.ceil(
-          (currentScrollOffsetLeft /
-            (fullScrollWrapperWidth -
-              currentScreenViewWidth)) *
-            100
-        )
+watch(
+  postViewerScrollWrapperRef,
+  (newPostViewerScrollWrapperRef) => {
+    if (newPostViewerScrollWrapperRef) {
+      setPostViewerScrollWrapper(
+        newPostViewerScrollWrapperRef
       );
     }
-  };
-});
+  }
+);
 
 watch(
-  [isPostViewerOpened, postViewerScrollWrapperElement],
+  postViewerScrollWrapper,
+  (newPostViewerScrollWrapper) => {
+    if (newPostViewerScrollWrapper) {
+      handlePostViewerWheelEvent.value = (e: WheelEvent) =>
+        animateWheelEvent({
+          event: e,
+          wheelSpeed: 5,
+          wheelDirection: 'horizontal',
+          scrollWrapperElement: newPostViewerScrollWrapper,
+        });
+
+      handlePostViewerScrollEvent.value = () => {
+        const fullScrollWrapperWidth =
+          newPostViewerScrollWrapper.scrollWidth;
+        const currentScrollOffsetLeft =
+          newPostViewerScrollWrapper.scrollLeft;
+        const currentScreenViewWidth =
+          newPostViewerScrollWrapper.clientWidth;
+
+        setViewProgress(
+          Math.ceil(
+            (currentScrollOffsetLeft /
+              (fullScrollWrapperWidth -
+                currentScreenViewWidth)) *
+              100
+          )
+        );
+      };
+    }
+  }
+);
+
+watch(
+  [
+    isPostViewerOpened,
+    postViewerScrollWrapper,
+    handlePostViewerWheelEvent,
+    handlePostViewerScrollEvent,
+  ],
   ([
     newIsPostViewerOpened,
     newPostViewerScrollWrapperElement,
+    newHandlePostViewerWheelEvent,
+    newHandlePostViewerScrollEvent,
   ]) => {
     if (
       newPostViewerScrollWrapperElement &&
-      handlePostViewerWheelEvent.value &&
-      handlePostViewerScrollEvent.value
+      newHandlePostViewerWheelEvent &&
+      newHandlePostViewerScrollEvent
     ) {
       if (newIsPostViewerOpened) {
         // popup opened
         newPostViewerScrollWrapperElement.addEventListener(
           'wheel',
-          handlePostViewerWheelEvent.value,
+          newHandlePostViewerWheelEvent,
           { passive: false }
         );
 
         newPostViewerScrollWrapperElement.addEventListener(
           'scroll',
-          handlePostViewerScrollEvent.value,
+          newHandlePostViewerScrollEvent,
           {
             passive: false,
           }
@@ -102,12 +125,12 @@ watch(
         // popup closed
         newPostViewerScrollWrapperElement.removeEventListener(
           'wheel',
-          handlePostViewerWheelEvent.value
+          newHandlePostViewerWheelEvent
         );
 
         newPostViewerScrollWrapperElement.removeEventListener(
           'scroll',
-          handlePostViewerScrollEvent.value
+          newHandlePostViewerScrollEvent
         );
 
         // reset viewer progress to 0
@@ -125,7 +148,7 @@ const handleClosePostViewer = () => {
   setIsPostViewerOpened(false);
   setTimeout(() => {
     setBrandToView(undefined);
-    postViewerScrollWrapperElement.value?.scrollTo({
+    postViewerScrollWrapper.value?.scrollTo({
       top: 0,
     });
   }, 1000);
@@ -166,7 +189,7 @@ const handleClosePostViewer = () => {
       </div>
       <div
         v-if="brandToView?.posts.length"
-        id="post-viewer-scroll-wrapper"
+        ref="postViewerScrollWrapperRef"
         :class="[
           'posts-wrapper',
           isPostViewerOpened
@@ -180,7 +203,7 @@ const handleClosePostViewer = () => {
           width: `calc(100vw - ${10 * currentScaleRatio}rem * 2)`,
         }"
       >
-        <PostViewer
+        <PostPhotoViewer
           v-for="post in brandToView.posts"
           :key="post.sourceUrl"
           :post="post"
@@ -194,13 +217,7 @@ const handleClosePostViewer = () => {
             : 'viewer-content__viewer-indicator--disappeared',
         ]"
       >
-        <PostViewerIndicator
-          v-if="postViewerScrollWrapperElement"
-          :posts="brandToView?.posts"
-          :scroll-wrapper-element="
-            postViewerScrollWrapperElement
-          "
-        />
+        <PostViewerIndicator :posts="brandToView?.posts" />
       </div>
     </div>
   </div>

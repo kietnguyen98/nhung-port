@@ -1,13 +1,13 @@
 import { defineStore } from 'pinia';
 
-type TViewScrollingStore = {
+type TPostViewScrollingStore = {
   progress: number;
 };
 
-export const useViewScrollingStore = defineStore(
-  'viewScrolling',
+export const usePostViewScrollingStore = defineStore(
+  'postViewerScrolling',
   {
-    state: (): TViewScrollingStore => ({
+    state: (): TPostViewScrollingStore => ({
       progress: 0,
     }),
     actions: {

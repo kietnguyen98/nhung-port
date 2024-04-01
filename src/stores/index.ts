@@ -1,3 +1,4 @@
 export * from './controlPopupStore';
+export * from './postViewerScrollingStore';
 export * from './responsiveStore';
-export * from './viewerScrollingStore';
+export * from './scrollWrapperStore';

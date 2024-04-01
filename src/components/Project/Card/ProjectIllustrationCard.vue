@@ -17,7 +17,7 @@ const { currentScaleRatio } = storeToRefs(
 );
 
 const controlPopupStore = useControlPopupStore();
-const { setIsPopupOpened, setProjectToView } =
+const { setIsProjectViewerOpened, setProjectToView } =
   controlPopupStore;
 
 const { refElement, isHover } = useHover();
@@ -70,7 +70,7 @@ const { refElement, isHover } = useHover();
       }"
       @click="
         () => {
-          setIsPopupOpened(true);
+          setIsProjectViewerOpened(true);
           setProjectToView(projectMockData.illustration);
         }
       "

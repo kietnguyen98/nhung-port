@@ -5,18 +5,25 @@ import { ref, watch } from 'vue';
 import { POST_TYPE_VALUES } from '@/constants';
 import { useScrollingDebounce } from '@/hooks';
 import {
+  usePostViewScrollingStore,
   useResponsiveStore,
-  useViewScrollingStore,
+  useScrollWrapperStore,
 } from '@/stores';
 import { TPost } from '@/types';
 
-const props = defineProps<{
+defineProps<{
   posts?: Array<TPost>;
-  scrollWrapperElement: HTMLElement;
 }>();
 
-const viewScrollingStore = useViewScrollingStore();
+// view scrolling store
+const viewScrollingStore = usePostViewScrollingStore();
 const { progress } = storeToRefs(viewScrollingStore);
+
+// scroll wrapper store
+const scrollWrapperStore = useScrollWrapperStore();
+const { postViewerScrollWrapper } = storeToRefs(
+  scrollWrapperStore
+);
 
 const mediaQueriesStore = useResponsiveStore();
 const {
@@ -26,7 +33,8 @@ const {
 } = storeToRefs(mediaQueriesStore);
 
 const { isScrolling } = useScrollingDebounce({
-  scrollWrapperElement: props.scrollWrapperElement,
+  scrollWrapperElement:
+    postViewerScrollWrapper.value as HTMLElement,
   debounceTime: 500,
 });
 
