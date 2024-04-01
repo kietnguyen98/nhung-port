@@ -64,19 +64,25 @@ watch(
         : 'indicator-container--appeared',
     ]"
   >
-    <div v-if="posts && posts.length > 0" class="indicator">
+    <div
+      v-if="posts && posts.length > 0"
+      class="indicator"
+      :style="{
+        padding: `${1 * currentScaleRatio}rem ${2 * currentScaleRatio}rem`,
+      }"
+    >
       <div
         class="view-section"
         :style="{
           height: `${INDICATOR_POST_HEIGHT * currentScaleRatio + 10 * indicatorToViewSizeRatio * 2}rem`,
-          top: `calc(1rem - ${10 * indicatorToViewSizeRatio}rem)`,
+          top: `calc(${1 * currentScaleRatio}rem - ${10 * indicatorToViewSizeRatio}rem)`,
           width: `${((INDICATOR_POST_HEIGHT * currentScaleRatio + 10 * indicatorToViewSizeRatio * 2) * currentViewWidth) / currentViewHeight}rem`,
           // left = current padding left - view section border width + (full indicator posts width - view section width) * progress / 100
           // + current padding left = current post padding left
           left: `calc(
-                        2rem 
+                        ${2 * currentScaleRatio}rem 
                         - ${10 * indicatorToViewSizeRatio}rem 
-                        + (100% - ${((INDICATOR_POST_HEIGHT * currentScaleRatio + 10 * indicatorToViewSizeRatio * 2) * currentViewWidth) / currentViewHeight}rem + ${10 * indicatorToViewSizeRatio}rem * 2 - 2rem * 2) * ${progress} / 100
+                        + (100% - ${((INDICATOR_POST_HEIGHT * currentScaleRatio + 10 * indicatorToViewSizeRatio * 2) * currentViewWidth) / currentViewHeight}rem + ${10 * indicatorToViewSizeRatio}rem * 2 - ${2 * currentScaleRatio}rem * 2) * ${progress} / 100
                         )`,
         }"
       >
@@ -153,7 +159,6 @@ watch(
 }
 
 .indicator {
-  padding: 1rem 2rem;
   position: relative;
 }
 
@@ -173,14 +178,10 @@ watch(
   .section-popover__title {
     position: absolute;
     z-index: 1;
-    top: -4.25rem;
-    left: -0.5rem;
-    height: 3rem;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.25rem 0.5rem;
     background-color: var(--color-dark);
     color: var(--color-cream);
     text-align: center;
