@@ -37,6 +37,9 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
         v-if="sourceUrl"
         :src="sourceUrl"
         class="video-frame"
+        :style="{
+          borderRadius: `${4 * currentScaleRatio}rem`,
+        }"
         allow="autoplay"
         frameborder="0"
       ></iframe>
@@ -48,12 +51,10 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
 .video-frame-container {
   position: absolute;
   z-index: 1;
-  border-radius: 4rem;
   background-color: transparent;
 }
 
 .video-frame-overlay {
-  border-radius: 4rem;
   width: calc(100% - 2 * 2rem);
   height: calc(100% - 2 * 2rem);
   padding: 2rem;
@@ -71,12 +72,10 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 4rem;
   }
 
   .video-frame {
     z-index: 1;
-    border-radius: 4rem;
     width: 100%;
     height: 100%;
   }
