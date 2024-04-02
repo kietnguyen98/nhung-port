@@ -1,6 +1,7 @@
 import { TProject } from '@/types';
 
 import {
+  _lipOnLipBrandData,
   _refreeBrandData,
   _rmitBrandData,
   _sunplayBrandData,
@@ -14,6 +15,7 @@ export const motionGraphicProjectData: TProject = {
   brands: [
     _refreeBrandData,
     _rmitBrandData,
+    _lipOnLipBrandData,
     _sunplayBrandData,
   ],
 };
