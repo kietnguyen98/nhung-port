@@ -154,8 +154,7 @@ const {
 
 .video-thumbnails {
   position: absolute;
-  left: 0rem;
-  width: 100%;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;

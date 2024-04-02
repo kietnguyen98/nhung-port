@@ -19,7 +19,7 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
     class="video-thumbnail"
     :style="{
       height: `${27.75 * currentScaleRatio}rem`,
-      width: `${25.6 * currentScaleRatio}rem`,
+      width: `${18.9 * currentScaleRatio}rem`,
       backgroundImage: `url(${thumbnailImageUrl})`,
     }"
   >
