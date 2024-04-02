@@ -100,6 +100,11 @@ watch(
             ? listChildLeftPositions.value[i] -
               slideVelocityInRem
             : i * (childWidthInRem + childGapInRem) -
+              window.innerWidth /
+                Math.cos(
+                  (FILM_STRIP_ROTATE_DEG / 180) * Math.PI
+                ) /
+                16 -
               slideVelocityInRem;
 
           if (

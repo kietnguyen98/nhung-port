@@ -43,6 +43,7 @@ const { postViewerScrollWrapper } = storeToRefs(
 const { setPostViewerScrollWrapper } = scrollWrapperStore;
 
 const postViewerScrollWrapperRef = ref<HTMLElement>();
+const postViewerContainerRef = ref<HTMLElement>();
 const handlePostViewerWheelEvent =
   ref<(e: WheelEvent) => void>();
 const handlePostViewerScrollEvent =
@@ -160,7 +161,7 @@ const handleClosePostViewer = () => {
 
 // scroll to any post view when user chose specific post on indicator
 const slideToSpecificPost = (postIndex: number) => {
-  const postToSlide = postViewerScrollWrapperRef.value
+  const postToSlide = postViewerContainerRef.value
     ?.children[postIndex] as HTMLElement;
 
   animateScroll({
@@ -207,17 +208,25 @@ const slideToSpecificPost = (postIndex: number) => {
             : 'posts-wrapper--disappeared',
         ]"
         :style="{
-          gap: `${5 * currentScaleRatio}rem`,
           padding: `${10 * currentScaleRatio}rem`,
           height: `calc(100vh - ${10 * currentScaleRatio}rem * 2)`,
           width: `calc(100vw - ${10 * currentScaleRatio}rem * 2)`,
         }"
       >
-        <PostPhotoViewer
-          v-for="post in brandToView.posts"
-          :key="post.sourceUrl"
-          :post="post"
-        />
+        <div
+          ref="postViewerContainerRef"
+          class="post-photo-viewer-container"
+          :style="{
+            gap: `${5 * currentScaleRatio}rem`,
+            height: `calc(100vh - ${10 * currentScaleRatio}rem * 2)`,
+          }"
+        >
+          <PostPhotoViewer
+            v-for="post in brandToView.posts"
+            :key="post.sourceUrl"
+            :post="post"
+          />
+        </div>
       </div>
       <div
         :class="[
@@ -285,8 +294,7 @@ const slideToSpecificPost = (postIndex: number) => {
 
 .posts-wrapper {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   overflow-x: auto;
   /* hiding scroll bar */
@@ -306,6 +314,13 @@ const slideToSpecificPost = (postIndex: number) => {
 .posts-wrapper--disappeared {
   opacity: 0;
   transition: opacity 0.5s linear;
+}
+
+.post-photo-viewer-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .empty-post {

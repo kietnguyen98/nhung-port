@@ -98,7 +98,7 @@ watch(
           >
             <span v-if="progress === 0"
               >Wheel your mouse or click on any specific
-              image to Start!</span
+              image to watch!</span
             >
             <span v-if="progress < 100 && progress > 0"
               >You are here!</span
