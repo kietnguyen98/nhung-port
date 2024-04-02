@@ -1,6 +1,4 @@
-import animateScrollTo from 'animated-scroll-to';
-
-import { MIN_WHEEL_SCROLL_DURATION } from '@/constants';
+import { animateScroll } from '.';
 
 export type TAnimateWheelEventProps = {
   event: WheelEvent;
@@ -24,18 +22,9 @@ export const animateWheelEvent = ({
       : scrollWrapperElement.scrollLeft) +
     delta * scrollSpeed;
 
-  animateScrollTo(
-    wheelDirection === 'vertical'
-      ? [0, scrollPosition]
-      : [scrollPosition, 0],
-    {
-      cancelOnUserAction: false,
-      easing: (t) => {
-        return --t * t * t * t * t + 1;
-      },
-      minDuration: MIN_WHEEL_SCROLL_DURATION,
-      maxDuration: MIN_WHEEL_SCROLL_DURATION,
-      elementToScroll: scrollWrapperElement,
-    }
-  );
+  animateScroll({
+    scrollPosition: scrollPosition,
+    wheelDirection: wheelDirection,
+    scrollWrapperElement: scrollWrapperElement,
+  });
 };

@@ -2,7 +2,6 @@
 import { storeToRefs } from 'pinia';
 import { ref, watch } from 'vue';
 
-import { POST_TYPE_VALUES } from '@/constants';
 import { useScrollingDebounce } from '@/hooks';
 import {
   usePostViewScrollingStore,
@@ -13,6 +12,7 @@ import { TPost } from '@/types';
 
 defineProps<{
   posts?: Array<TPost>;
+  handleSlideToSpecificPost: (postIndex: number) => void;
 }>();
 
 // view scrolling store
@@ -46,13 +46,10 @@ const indicatorToViewSizeRatio = ref<number>(
 );
 
 watch(
-  [
-    () => currentScaleRatio.value,
-    () => currentViewHeight.value,
-  ],
-  ([newCurrentScreen, newCurrentViewHeight]) => {
+  [currentScaleRatio, currentViewHeight],
+  ([newCurrentScaleRatio, newCurrentViewHeight]) => {
     indicatorToViewSizeRatio.value =
-      (INDICATOR_POST_HEIGHT * newCurrentScreen * 16) /
+      (INDICATOR_POST_HEIGHT * newCurrentScaleRatio * 16) /
       newCurrentViewHeight;
   }
 );
@@ -67,25 +64,45 @@ watch(
         : 'indicator-container--appeared',
     ]"
   >
-    <div v-if="posts && posts.length > 0" class="indicator">
+    <div
+      v-if="posts && posts.length > 0"
+      class="indicator"
+      :style="{
+        padding: `${1 * currentScaleRatio}rem ${2 * currentScaleRatio}rem`,
+      }"
+    >
       <div
         class="view-section"
         :style="{
           height: `${INDICATOR_POST_HEIGHT * currentScaleRatio + 10 * indicatorToViewSizeRatio * 2}rem`,
-          top: `calc(1rem - ${10 * indicatorToViewSizeRatio}rem)`,
+          top: `calc(${1 * currentScaleRatio}rem - ${10 * indicatorToViewSizeRatio}rem)`,
           width: `${((INDICATOR_POST_HEIGHT * currentScaleRatio + 10 * indicatorToViewSizeRatio * 2) * currentViewWidth) / currentViewHeight}rem`,
           // left = current padding left - view section border width + (full indicator posts width - view section width) * progress / 100
           // + current padding left = current post padding left
           left: `calc(
-                        2rem 
+                        ${2 * currentScaleRatio}rem 
                         - ${10 * indicatorToViewSizeRatio}rem 
-                        + (100% - ${((INDICATOR_POST_HEIGHT * currentScaleRatio + 10 * indicatorToViewSizeRatio * 2) * currentViewWidth) / currentViewHeight}rem + ${10 * indicatorToViewSizeRatio}rem * 2 - 2rem * 2) * ${progress} / 100
+                        + (100% - ${((INDICATOR_POST_HEIGHT * currentScaleRatio + 10 * indicatorToViewSizeRatio * 2) * currentViewWidth) / currentViewHeight}rem + ${10 * indicatorToViewSizeRatio}rem * 2 - ${2 * currentScaleRatio}rem * 2) * ${progress} / 100
                         )`,
         }"
       >
         <div class="section-popover">
-          <div class="section-popover__title">
-            <span v-if="progress < 100">You are here!</span>
+          <div
+            class="section-popover__title"
+            :style="{
+              top: `${(progress === 0 ? -9.25 : -4.25) * currentScaleRatio}rem`,
+              left: `${-0.5 * currentScaleRatio}rem`,
+              height: `${(progress === 0 ? 8 : 3) * currentScaleRatio}rem`,
+              padding: `${0.25 * currentScaleRatio}rem ${0.5 * currentScaleRatio}rem`,
+            }"
+          >
+            <span v-if="progress === 0"
+              >Wheel your mouse or click on any specific
+              image to Start!</span
+            >
+            <span v-if="progress < 100 && progress > 0"
+              >You are here!</span
+            >
             <span v-if="progress === 100"
               >End of list!</span
             >
@@ -101,15 +118,12 @@ watch(
         }"
       >
         <img
-          v-for="post in posts"
+          v-for="(post, index) in posts"
           :key="post.sourceUrl"
-          v-lazy="
-            post.type === POST_TYPE_VALUES.PHOTO
-              ? post.sourceUrl
-              : post.thumbnailUrl
-          "
+          v-lazy="post.sourceUrl"
           :alt="'post image ' + post.sourceUrl"
-          class="post-wrapper__post_image"
+          class="post-wrapper__post-image"
+          @click="handleSlideToSpecificPost(index)"
         />
       </div>
     </div>
@@ -145,7 +159,6 @@ watch(
 }
 
 .indicator {
-  padding: 1rem 2rem;
   position: relative;
 }
 
@@ -165,14 +178,10 @@ watch(
   .section-popover__title {
     position: absolute;
     z-index: 1;
-    top: -4.25rem;
-    left: -0.5rem;
-    height: 3rem;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0.25rem 0.5rem;
     background-color: var(--color-dark);
     color: var(--color-cream);
     text-align: center;
@@ -195,8 +204,14 @@ watch(
   display: flex;
   justify-content: center;
   align-items: center;
+
   .post-wrapper__post-image {
     width: fit-content;
+    transition: scale 0.15s linear;
+
+    &:hover {
+      scale: 1.1;
+    }
   }
 }
 </style>

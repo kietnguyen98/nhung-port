@@ -15,7 +15,11 @@ const { projectToView } = storeToRefs(controlPopupStore);
   <div class="project-view-wrapper">
     <img
       class="project-view__background"
-      src="/assets/images/project-popup-view-bg.jpg"
+      :src="
+        projectToView?.idName === 'illustration'
+          ? '/assets/images/project-popup-illustration-bg.jpg'
+          : '/assets/images/project-popup-view-bg.jpg'
+      "
       alt="project view background"
     />
     <ProjectViewTitle

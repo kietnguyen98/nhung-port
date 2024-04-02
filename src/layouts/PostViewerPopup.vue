@@ -4,6 +4,7 @@ import { ref, watch } from 'vue';
 
 import {
   PostPhotoViewer,
+  PostViewerCloseButton,
   PostViewerIndicator,
 } from '@/components';
 import {
@@ -12,7 +13,10 @@ import {
   useResponsiveStore,
   useScrollWrapperStore,
 } from '@/stores';
-import { animateWheelEvent } from '@/utilities';
+import {
+  animateScroll,
+  animateWheelEvent,
+} from '@/utilities';
 
 // control popup
 const popupStore = useControlPopupStore();
@@ -153,6 +157,19 @@ const handleClosePostViewer = () => {
     });
   }, 1000);
 };
+
+// scroll to any post view when user chose specific post on indicator
+const slideToSpecificPost = (postIndex: number) => {
+  const postToSlide = postViewerScrollWrapperRef.value
+    ?.children[postIndex] as HTMLElement;
+
+  animateScroll({
+    scrollPosition: postToSlide.offsetLeft,
+    wheelDirection: 'horizontal',
+    scrollWrapperElement:
+      postViewerScrollWrapper.value as HTMLElement,
+  });
+};
 </script>
 
 <template>
@@ -165,17 +182,10 @@ const handleClosePostViewer = () => {
     ]"
   >
     <div class="viewer-content">
-      <button
-        :class="[
-          'viewer-content__close-button',
-          isPostViewerOpened
-            ? 'viewer-content__close-button--appeared'
-            : 'viewer-content__close-button--disappeared',
-        ]"
-        @click="handleClosePostViewer"
-      >
-        X
-      </button>
+      <PostViewerCloseButton
+        :is-post-viewer-opened="isPostViewerOpened"
+        :handle-close="handleClosePostViewer"
+      />
       <div
         v-if="!brandToView?.posts.length"
         :class="[
@@ -217,7 +227,12 @@ const handleClosePostViewer = () => {
             : 'viewer-content__viewer-indicator--disappeared',
         ]"
       >
-        <PostViewerIndicator :posts="brandToView?.posts" />
+        <PostViewerIndicator
+          :posts="brandToView?.posts"
+          :handle-slide-to-specific-post="
+            slideToSpecificPost
+          "
+        />
       </div>
     </div>
   </div>
@@ -250,38 +265,6 @@ const handleClosePostViewer = () => {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  .viewer-content__close-button {
-    position: fixed;
-    top: 2rem;
-    right: 3rem;
-    z-index: 1;
-    outline: none;
-    border: none;
-    font-size: 2rem;
-    width: 4rem;
-    height: 4rem;
-    border-radius: 50%;
-    background-color: var(--color-dark);
-    color: var(--color-cream);
-    box-shadow:
-      rgba(0, 0, 0, 0.07) 0px 1px 2px,
-      rgba(0, 0, 0, 0.07) 0px 2px 4px,
-      rgba(0, 0, 0, 0.07) 0px 4px 8px,
-      rgba(0, 0, 0, 0.07) 0px 8px 16px,
-      rgba(0, 0, 0, 0.07) 0px 16px 32px,
-      rgba(0, 0, 0, 0.07) 0px 32px 64px;
-  }
-
-  .viewer-content__close__close-button--appeared {
-    transform: rotateZ(0deg) scale(1);
-    transition: transform 0.5s 0.5s linear;
-  }
-
-  .viewer-content__close-button--disappeared {
-    transform: rotateZ(-360deg) scale(0);
-    transition: transform 0.5s linear;
-  }
 
   .viewer-content__viewer-indicator {
     position: fixed;
