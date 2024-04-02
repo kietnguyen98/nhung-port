@@ -1,12 +1,14 @@
 import { defineStore } from 'pinia';
 
-import { TBrand, TProject } from '@/types';
+import { TBrand, TPost, TProject } from '@/types';
 
 type TControlPopupStoreState = {
   isProjectViewerOpened: boolean;
   isPostViewerOpened: boolean;
+  isFavoritePostViewerOpened: boolean;
   projectToView?: TProject;
   brandToView?: TBrand;
+  favoritePostToView?: TPost;
 };
 
 export const useControlPopupStore = defineStore(
@@ -15,8 +17,10 @@ export const useControlPopupStore = defineStore(
     state: (): TControlPopupStoreState => ({
       isProjectViewerOpened: false,
       isPostViewerOpened: false,
+      isFavoritePostViewerOpened: false,
       projectToView: undefined,
       brandToView: undefined,
+      favoritePostToView: undefined,
     }),
     actions: {
       setIsProjectViewerOpened(value: boolean) {
@@ -25,11 +29,17 @@ export const useControlPopupStore = defineStore(
       setIsPostViewerOpened(value: boolean) {
         this.isPostViewerOpened = value;
       },
+      setIsFavoritePostViewerOpened(value: boolean) {
+        this.isFavoritePostViewerOpened = value;
+      },
       setProjectToView(projectData: TProject | undefined) {
         this.projectToView = projectData;
       },
       setBrandToView(brandData: TBrand | undefined) {
         this.brandToView = brandData;
+      },
+      setFavoritePostToView(postData: TPost | undefined) {
+        this.favoritePostToView = postData;
       },
     },
   }

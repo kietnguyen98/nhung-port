@@ -12,21 +12,18 @@ export function useHover() {
     isHover.value = false;
   };
 
-  watch(
-    () => refElement.value,
-    (newRefElement) => {
-      if (newRefElement) {
-        newRefElement.addEventListener(
-          'mouseenter',
-          handleHoverElement
-        );
-        newRefElement.addEventListener(
-          'mouseleave',
-          handleUnHoverElement
-        );
-      }
+  watch(refElement, (newRefElement) => {
+    if (newRefElement) {
+      newRefElement.addEventListener(
+        'mouseenter',
+        handleHoverElement
+      );
+      newRefElement.addEventListener(
+        'mouseleave',
+        handleUnHoverElement
+      );
     }
-  );
+  });
 
   return {
     refElement,

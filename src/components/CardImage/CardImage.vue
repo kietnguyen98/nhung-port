@@ -15,11 +15,15 @@ withDefaults(
     widthHeightRatio?: number;
     heightRem?: number;
     isRounded?: boolean;
+    withOverlay: boolean;
+    clickEventCallback?: () => void;
   }>(),
   {
     widthHeightRatio: IMAGE_CARD_WIDTH_HEIGHT_RATIO,
     heightRem: 0,
     isRounded: true,
+    withOverlay: false,
+    clickEventCallback: undefined,
   }
 );
 </script>
@@ -37,7 +41,18 @@ withDefaults(
         : 'auto',
       borderRadius: isRounded ? '2rem' : '0',
     }"
-  ></div>
+    @click="clickEventCallback"
+  >
+    <div
+      v-if="withOverlay"
+      class="hover-overlay"
+      :style="{
+        borderRadius: isRounded ? '2rem' : '0',
+      }"
+    >
+      <p class="hover-overlay__title">click to view</p>
+    </div>
+  </div>
 </template>
 
 <style scoped>
@@ -49,5 +64,25 @@ withDefaults(
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.hover-overlay {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  transition: opacity 0.25s linear;
+
+  .hover-overlay__title {
+    color: var(--color-white);
+    font-weight: bolder;
+  }
+
+  &:hover {
+    opacity: 1;
+  }
 }
 </style>

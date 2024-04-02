@@ -3,27 +3,57 @@ import { storeToRefs } from 'pinia';
 import { ref, watch } from 'vue';
 
 import { favoritePostsData } from '@/data';
-import { useResponsiveStore } from '@/stores';
+import { useHover } from '@/hooks';
+import {
+  useControlPopupStore,
+  useResponsiveStore,
+} from '@/stores';
 
 import { CardImage } from '..';
 
+// responsive store
 const mediaQueriesStore = useResponsiveStore();
 const { currentScaleRatio } = storeToRefs(
   mediaQueriesStore
 );
 
+// control popup store
+const controlPopupStore = useControlPopupStore();
+const { isFavoritePostViewerOpened } = storeToRefs(
+  controlPopupStore
+);
+const {
+  setIsFavoritePostViewerOpened,
+  setFavoritePostToView,
+} = controlPopupStore;
+
 const FILM_STRIP_IMAGE_HEIGHT_WIDTH_RATIO = 450 / 1024;
 const FILM_STRIP_BACKGROUND_IMAGE_SIZE = 108;
 const favoriteList = favoritePostsData;
+const FAVORITE_LIST_SLIDE_VELOCITY = 1 / 180;
 const projectSectionCardContainerRef = ref<HTMLElement>();
+const listChildLeftPositions = ref<Array<number>>([]);
 let animateProjectCardsInterval:
   | ReturnType<typeof setInterval>
   | undefined;
 const FILM_STRIP_ROTATE_DEG = -3;
 
+const { isHover: isUserHoverOnList, refElement } =
+  useHover();
+
 watch(
-  [currentScaleRatio, projectSectionCardContainerRef],
-  ([newScaleRatio, newProjectSectionCardContainer]) => {
+  [
+    currentScaleRatio,
+    isUserHoverOnList,
+    isFavoritePostViewerOpened,
+    projectSectionCardContainerRef,
+  ],
+  ([
+    newScaleRatio,
+    newIsUserHoverOnList,
+    newIsFavoritePostViewerOpened,
+    newProjectSectionCardContainer,
+  ]) => {
     if (newScaleRatio && newProjectSectionCardContainer) {
       // clear prev interval value if exist
       if (
@@ -34,12 +64,15 @@ watch(
       // calculate new interval's callback
       const projectCardList =
         newProjectSectionCardContainer.children;
-      let listChildLeftPositions: Array<number> = [];
 
       const animateProjectCards = () => {
         for (let i = 0; i < projectCardList.length; i++) {
-          const slideVelocity = 1 / 180;
-          const slideVelocityInRem = slideVelocity * 16;
+          const slideVelocityInRem =
+            newIsFavoritePostViewerOpened
+              ? 0
+              : newIsUserHoverOnList
+                ? (FAVORITE_LIST_SLIDE_VELOCITY * 16) / 3
+                : FAVORITE_LIST_SLIDE_VELOCITY * 16;
           const child = projectCardList[i] as HTMLElement;
           const childWidthInRem = child.clientWidth / 16;
 
@@ -62,8 +95,10 @@ watch(
 
           const childGapInRem = 1.5 * newScaleRatio;
           // must be in rem
-          let childLeftPosition = listChildLeftPositions[i]
-            ? listChildLeftPositions[i] - slideVelocityInRem
+          let childLeftPosition = listChildLeftPositions
+            .value[i]
+            ? listChildLeftPositions.value[i] -
+              slideVelocityInRem
             : i * (childWidthInRem + childGapInRem) -
               slideVelocityInRem;
 
@@ -72,17 +107,18 @@ watch(
           ) {
             // set current element to the last position
             const resetPosition =
-              Math.max(...listChildLeftPositions) +
+              Math.max(...listChildLeftPositions.value) +
               childGapInRem +
               childWidthInRem;
             childLeftPosition = resetPosition;
           }
-          listChildLeftPositions[i] = childLeftPosition;
+          listChildLeftPositions.value[i] =
+            childLeftPosition;
         }
 
         for (let i = 0; i < projectCardList.length; i++) {
           const child = projectCardList[i] as HTMLElement;
-          child.style.transform = `translateX(${listChildLeftPositions[i]}rem)`;
+          child.style.transform = `translateX(${listChildLeftPositions.value[i]}rem)`;
         }
       };
 
@@ -142,6 +178,7 @@ watch(
           src="/assets/images/film-strip-2.png"
         />
         <div
+          ref="refElement"
           class="project-cards__cards-container"
           :style="{
             top: `${8 * currentScaleRatio}rem`,
@@ -166,6 +203,13 @@ watch(
                 :height-rem="29.5"
                 :width-height-ratio="3 / 4"
                 :is-rounded="true"
+                :with-overlay="true"
+                :click-event-callback="
+                  () => {
+                    setIsFavoritePostViewerOpened(true);
+                    setFavoritePostToView(post);
+                  }
+                "
               />
             </div>
           </div>

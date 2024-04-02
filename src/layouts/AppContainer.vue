@@ -22,9 +22,10 @@ const { initEvent } = mediaQueriesStore;
 
 // control popup store
 const controlPopupStore = useControlPopupStore();
-const { isProjectViewerOpened } = storeToRefs(
-  controlPopupStore
-);
+const {
+  isProjectViewerOpened,
+  isFavoritePostViewerOpened,
+} = storeToRefs(controlPopupStore);
 
 // scroll wrapper store
 const scrollWrapperStore = useScrollWrapperStore();
@@ -171,16 +172,24 @@ watch(
 );
 
 watch(
-  [isProjectViewerOpened, containerScrollWrapper],
+  [
+    isProjectViewerOpened,
+    isFavoritePostViewerOpened,
+    containerScrollWrapper,
+  ],
   ([
     newIsProjectViewerOpened,
+    newIsFavoriteProjectViewerOpened,
     newContainerScrollWrapper,
   ]) => {
     if (
       newContainerScrollWrapper &&
       handleContainerWheelEvent.value
     ) {
-      if (newIsProjectViewerOpened) {
+      if (
+        newIsProjectViewerOpened ||
+        newIsFavoriteProjectViewerOpened
+      ) {
         newContainerScrollWrapper.removeEventListener(
           'wheel',
           handleContainerWheelEvent.value

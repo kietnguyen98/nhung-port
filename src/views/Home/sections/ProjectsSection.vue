@@ -9,6 +9,7 @@ import {
   ProjectPhotosCard,
 } from '@/components';
 import {
+  FavoritePostViewPopup,
   PostViewerPopup,
   ProjectViewerPopup,
 } from '@/layouts';
@@ -91,6 +92,8 @@ const { currentScaleRatio } = storeToRefs(
   </ProjectViewerPopup>
   <!-- post view detail -->
   <PostViewerPopup />
+  <!-- favorite post view detail -->
+  <FavoritePostViewPopup />
 </template>
 
 <style scoped>
