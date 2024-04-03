@@ -7,7 +7,7 @@ import { TBrand } from '@/types';
 
 export const _skinAquaBrandData: TBrand = {
   name: 'Skin Aqua',
-  logoURL: `${BRAND_LOGO_URL_PREFIX}skin_aqua.png`,
+  logoURL: `${BRAND_LOGO_URL_PREFIX}skin_aqua.webp`,
   posts: [
     // guardian
     {

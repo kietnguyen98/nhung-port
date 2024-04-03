@@ -35,7 +35,7 @@ const { currentScaleRatio } = storeToRefs(
   >
     <div class="projects-section__title-and-cards">
       <img
-        src="/assets/images/project-section-line-bg.png"
+        src="/assets/images/project-section-line-bg.webp"
         alt="project section line background"
         class="projects-section__line-bg"
         :style="{
@@ -46,14 +46,14 @@ const { currentScaleRatio } = storeToRefs(
       />
       <div class="title">
         <img
-          src="/assets/images/view-all-project-bg.png"
+          src="/assets/images/view-all-project-bg.webp"
           alt="view all my works title"
           :style="{
             height: `${27.5 * currentScaleRatio}rem`,
           }"
         />
         <img
-          src="/assets/images/butterfly-4.png"
+          src="/assets/images/butterfly-4.webp"
           alt="butterfly 4"
           class="title__butterfly"
           :style="{

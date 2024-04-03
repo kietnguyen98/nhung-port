@@ -14,7 +14,7 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
 <template>
   <!-- icons -->
   <img
-    src="/assets/images/butterfly-2.png"
+    src="/assets/images/butterfly-2.webp"
     alt="butterfly 4"
     class="icon icon-butterfly-1"
     :style="{
@@ -24,7 +24,7 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
     }"
   />
   <img
-    src="/assets/images/butterfly-4.png"
+    src="/assets/images/butterfly-4.webp"
     alt="butterfly 4"
     class="icon icon-butterfly-2"
     :style="{
@@ -36,7 +36,7 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
   <!-- project title -->
   <img
     v-if="projectIdName === 'graphic-design'"
-    src="/assets/images/popup/graphic-design/title.png"
+    src="/assets/images/popup/graphic-design/title.webp"
     alt="project view graphic design title"
     class="title"
     :style="{
@@ -47,7 +47,7 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
   />
   <img
     v-if="projectIdName === 'motion-graphic'"
-    src="/assets/images/popup/motion-graphic/title.png"
+    src="/assets/images/popup/motion-graphic/title.webp"
     alt="project view motion graphic title"
     class="title"
     :style="{
@@ -58,7 +58,7 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
   />
   <img
     v-if="projectIdName === 'photo-life-style'"
-    src="/assets/images/popup/photo-life-style/title.png"
+    src="/assets/images/popup/photo-life-style/title.webp"
     alt="project view photos life style title"
     class="title"
     :style="{
@@ -69,7 +69,7 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
   />
   <img
     v-if="projectIdName === 'illustration'"
-    src="/assets/images/popup/illustration/title.png"
+    src="/assets/images/popup/illustration/title.webp"
     alt="project view photos life style title"
     class="title"
     :style="{

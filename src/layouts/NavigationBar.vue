@@ -29,7 +29,7 @@ const { currentScaleRatio } = storeToRefs(
   >
     <div class="navigation-bar-wrapper">
       <img
-        src="/assets/images/navigation-bar-logo.png"
+        src="/assets/images/navigation-bar-logo.webp"
         alt="navigation bar logo"
         class="navigation-bar__logo"
         :style="{

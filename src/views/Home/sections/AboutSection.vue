@@ -37,11 +37,11 @@ const { currentScaleRatio } = storeToRefs(
     <!-- background -->
     <img
       class="about-section__bg-image"
-      src="/assets/images/about-me-bg.png"
+      src="/assets/images/about-me-bg.webp"
     />
     <!-- sub image -->
     <img
-      src="/assets/images/rose-1.png"
+      src="/assets/images/rose-1.webp"
       class="about-section__sub-image about-section__flower"
       :style="{
         height: `${85 * currentScaleRatio}rem`,

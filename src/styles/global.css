@@ -16,13 +16,13 @@ html {
   body {
     margin: 0px;
     overflow: hidden;
-    cursor: url(/assets/icons/pixel-kuromi.png), auto;
+    cursor: url(/assets/icons/pixel-kuromi.webp), auto;
   }
 }
 
 button {
   &:hover {
-    cursor: url(/assets/icons/pixel-kuromi.png), auto;
+    cursor: url(/assets/icons/pixel-kuromi.webp), auto;
   }
 }
 

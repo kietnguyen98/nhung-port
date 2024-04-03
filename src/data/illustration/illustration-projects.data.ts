@@ -13,7 +13,7 @@ export const illustrationProjectData: TProject = {
   name: 'Illustration',
   idName: 'illustration',
   outerImageUrl:
-    '/assets/images/project-wallpaper/illustration.jpeg',
+    '/assets/images/project-wallpaper/illustration.webp',
   brands: [
     _graduationBrandData,
     _haulucidBrandData,

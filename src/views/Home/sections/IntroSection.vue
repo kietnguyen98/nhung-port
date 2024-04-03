@@ -38,13 +38,13 @@ const { currentScaleRatio } = storeToRefs(
         </div>
         <img
           class="images-group__main slide-in-from-bottom-enter-ani"
-          src="/assets/images/profile-photo.png"
+          src="/assets/images/profile-photo.webp"
           :style="{
             height: `${85 * currentScaleRatio}rem`,
           }"
         />
         <img
-          src="/assets/images/butterfly-2.png"
+          src="/assets/images/butterfly-2.webp"
           class="images-group__sub images-group__butterfly"
           :style="{
             height: `${17 * currentScaleRatio}rem`,
@@ -53,7 +53,7 @@ const { currentScaleRatio } = storeToRefs(
           }"
         />
         <img
-          src="/assets/images/rose-2.png"
+          src="/assets/images/rose-2.webp"
           class="images-group__sub images-group__rose"
           :style="{
             height: `${95 * currentScaleRatio}rem`,
@@ -63,7 +63,7 @@ const { currentScaleRatio } = storeToRefs(
           }"
         />
         <img
-          src="/assets/images/stamp-graphic-designer.png"
+          src="/assets/images/stamp-graphic-designer.webp"
           class="images-group__sub images-group__stamp-1"
           :style="{
             height: `${32.5 * currentScaleRatio}rem`,
@@ -72,7 +72,7 @@ const { currentScaleRatio } = storeToRefs(
           }"
         />
         <img
-          src="/assets/images/stamp-illustrator.png"
+          src="/assets/images/stamp-illustrator.webp"
           class="images-group__sub images-group__stamp-2"
           :style="{
             height: `${27 * currentScaleRatio}rem`,
@@ -81,7 +81,7 @@ const { currentScaleRatio } = storeToRefs(
           }"
         />
         <img
-          src="/assets/images/stamp-stylist.png"
+          src="/assets/images/stamp-stylist.webp"
           class="images-group__sub images-group__stamp-3"
           :style="{
             height: `${21 * currentScaleRatio}rem`,
@@ -90,7 +90,7 @@ const { currentScaleRatio } = storeToRefs(
           }"
         />
         <img
-          src="/assets/images/stamp-wave.png"
+          src="/assets/images/stamp-wave.webp"
           class="images-group__sub images-group__stamp-4"
           :style="{
             height: `${15 * currentScaleRatio}rem`,
@@ -99,7 +99,7 @@ const { currentScaleRatio } = storeToRefs(
           }"
         />
         <img
-          src="/assets/images/stamp-flower.png"
+          src="/assets/images/stamp-flower.webp"
           class="images-group__sub images-group__stamp-5"
           :style="{
             height: `${21 * currentScaleRatio}rem`,
@@ -209,7 +209,7 @@ const { currentScaleRatio } = storeToRefs(
 
   .images-group__port-title {
     /* attributes */
-    background-image: url(/assets/images/portfolio-title-bg.png);
+    background-image: url(/assets/images/portfolio-title-bg.webp);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

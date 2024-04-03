@@ -7,7 +7,7 @@ import { TBrand } from '@/types';
 
 export const _guardianBrandData: TBrand = {
   name: 'Guardian',
-  logoURL: `${BRAND_LOGO_URL_PREFIX}guardian_logo.png`,
+  logoURL: `${BRAND_LOGO_URL_PREFIX}guardian_logo.webp`,
   posts: [
     {
       type: POST_TYPE_VALUES.PHOTO,

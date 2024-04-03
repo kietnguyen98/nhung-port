@@ -11,7 +11,7 @@ export const motionGraphicProjectData: TProject = {
   name: 'Motion Graphic',
   idName: 'motion-graphic',
   outerImageUrl:
-    '/assets/images/project-wallpaper/motion-graphic.jpg',
+    '/assets/images/project-wallpaper/motion-graphic.webp',
   brands: [
     _refreeBrandData,
     _rmitBrandData,

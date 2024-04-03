@@ -7,7 +7,7 @@ import { TBrand } from '@/types';
 
 export const _pharmacityBrandData: TBrand = {
   name: 'Pharmacity',
-  logoURL: `${BRAND_LOGO_URL_PREFIX}pharmacity_logo.png`,
+  logoURL: `${BRAND_LOGO_URL_PREFIX}pharmacity_logo.webp`,
   posts: [
     {
       type: POST_TYPE_VALUES.PHOTO,

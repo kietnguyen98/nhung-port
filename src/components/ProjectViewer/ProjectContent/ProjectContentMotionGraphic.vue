@@ -48,7 +48,7 @@ const {
     <div class="film-frame">
       <img
         ref="videoFrameElement"
-        src="/assets/images/popup/motion-graphic/film-frame.png"
+        src="/assets/images/popup/motion-graphic/film-frame.webp"
         alt="motion graphic content film frame"
         :style="{
           height: `${90 * currentScaleRatio}rem`,
@@ -58,7 +58,7 @@ const {
       />
       <VideoFrame :source-url="currentVideoUrl" />
       <img
-        src="/assets/images/popup/motion-graphic/film-pins.png"
+        src="/assets/images/popup/motion-graphic/film-pins.webp"
         alt="film frame's film pin"
         class="film-frame__sub-images"
         :style="{
@@ -91,7 +91,7 @@ const {
         />
       </div>
       <img
-        src="/assets/images/popup/motion-graphic/film-strip.png"
+        src="/assets/images/popup/motion-graphic/film-strip.webp"
         alt="motion graphic content film strip"
         :style="{
           width: `${160 * FILM_STRIP_WIDTH_SCALE_RATIO * currentScaleRatio}rem`,
@@ -100,7 +100,7 @@ const {
       />
       <img
         class="film-strip__sub-images"
-        src="/assets/images/popup/motion-graphic/camera.png"
+        src="/assets/images/popup/motion-graphic/camera.webp"
         alt="film strip's camera"
         :style="{
           height: `${22.5 * currentScaleRatio}rem`,
@@ -110,7 +110,7 @@ const {
       />
       <img
         class="film-strip__sub-images"
-        src="/assets/images/popup/motion-graphic/note.png"
+        src="/assets/images/popup/motion-graphic/note.webp"
         alt="film strip's note"
         :style="{
           height: `${18 * FILM_STRIP_WIDTH_SCALE_RATIO * currentScaleRatio}rem`,
