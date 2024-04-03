@@ -16,7 +16,7 @@ const graphicDesignData = projectMockData.graphicDesign;
   <div class="container">
     <div class="polaroid">
       <img
-        src="/assets/images/popup/graphic-design/polaroid.png"
+        src="/assets/images/popup/graphic-design/polaroid.webp"
         alt="graphic design polaroid"
         class="polaroid__image"
         :style="{
@@ -36,7 +36,7 @@ const graphicDesignData = projectMockData.graphicDesign;
     >
       <!-- guideline image -->
       <img
-        src="/assets/images/popup/graphic-design/click-on-note.svg"
+        src="/assets/images/popup/click-on-note.webp"
         alt="click-on-note"
         class="click-on-note-img"
         :style="{

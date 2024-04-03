@@ -47,7 +47,7 @@ const { currentScaleRatio } = storeToRefs(
   justify-content: center;
   align-items: center;
 
-  background-image: url(/assets/images/contact-bg.png);
+  background-image: url(/assets/images/contact-bg.webp);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

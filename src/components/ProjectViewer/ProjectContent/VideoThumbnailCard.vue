@@ -26,7 +26,7 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
     <div class="video-thumbnail__play-icon-overlay">
       <img
         ref="refElement"
-        src="/assets/icons/play.png"
+        src="/assets/icons/play.webp"
         alt="play icon"
         class="video-thumbnail__play-icon"
         :style="{

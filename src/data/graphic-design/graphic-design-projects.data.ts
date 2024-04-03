@@ -22,7 +22,7 @@ export const graphicDesignProjectData: TProject = {
   name: 'Graphic Design',
   idName: 'graphic-design',
   outerImageUrl:
-    '/assets/images/project-wallpaper/graphic-design.jpeg',
+    '/assets/images/project-wallpaper/graphic-design.webp',
   brands: [
     _50MegumiBrandData,
     _guardianBrandData,

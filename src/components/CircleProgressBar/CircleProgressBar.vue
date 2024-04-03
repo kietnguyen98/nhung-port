@@ -20,12 +20,12 @@ const props = defineProps<{ progressValue: number }>();
           leaves: true,
           'leaves--glowed': props.progressValue === 100,
         }"
-        src="/assets/icons/leaves.png"
+        src="/assets/icons/leaves.webp"
         alt="flower's leave"
       />
       <img
         class="flower"
-        src="/assets/icons/flower.png"
+        src="/assets/icons/flower.webp"
         alt="flower"
         :style="{
           transform: `rotateZ(${(props.progressValue / 100) * 360}deg)`,
@@ -37,7 +37,7 @@ const props = defineProps<{ progressValue: number }>();
           'face-happy--disappeared':
             props.progressValue === 100,
         }"
-        src="/assets/icons/happy.png"
+        src="/assets/icons/happy.webp"
         alt="emotion"
       />
       <img
@@ -46,7 +46,7 @@ const props = defineProps<{ progressValue: number }>();
           'face-laughing--appeared':
             props.progressValue === 100,
         }"
-        src="/assets/icons/laughing.png"
+        src="/assets/icons/laughing.webp"
         alt="emotion"
       />
     </div>

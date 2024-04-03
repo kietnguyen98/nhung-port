@@ -32,12 +32,12 @@ const { refElement, isHover } = useHover();
     }"
   >
     <img
-      src="/assets/images/project-photos-frame.png"
+      src="/assets/images/project-photos-frame.webp"
       alt="project photos frame"
       class="photos__frame"
     />
     <img
-      src="/assets/images/butterfly-3.png"
+      src="/assets/images/butterfly-3.webp"
       alt="butterfly 3"
       class="photos__sub-image-butterfly"
       :style="{

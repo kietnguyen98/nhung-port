@@ -15,7 +15,7 @@ export const photoLifeStyleProjectData: TProject = {
   name: 'Photo Life Style',
   idName: 'photo-life-style',
   outerImageUrl:
-    '/assets/images/project-wallpaper/photo-life-style.jpg',
+    '/assets/images/project-wallpaper/photo-life-style.webp',
   brands: [
     _50MegumiBrandData,
     _flawsomeBrandData,

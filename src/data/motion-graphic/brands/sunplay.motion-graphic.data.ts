@@ -8,7 +8,7 @@ import { getGGDriveVideoResourceUrl } from '@/utilities';
 
 export const _sunplayBrandData: TBrand = {
   name: 'Sunplay',
-  logoURL: `${BRAND_LOGO_URL_PREFIX}sunlay_logo.png`,
+  logoURL: `${BRAND_LOGO_URL_PREFIX}sunlay_logo.webp`,
   posts: [
     {
       type: POST_TYPE_VALUES.VIDEO,

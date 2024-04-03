@@ -33,7 +33,7 @@ const { refElement, isHover } = useHover();
     }"
   >
     <img
-      src="/assets/images/project-graphic-design-frame.png"
+      src="/assets/images/project-graphic-design-frame.webp"
       alt="project graphic design frame"
       class="graphic-design__frame"
     />

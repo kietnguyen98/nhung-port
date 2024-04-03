@@ -7,7 +7,7 @@ import { TBrand } from '@/types';
 
 export const _lipOnLipBrandData: TBrand = {
   name: 'LIP On Lip',
-  logoURL: `${BRAND_LOGO_URL_PREFIX}LOL_logo.png`,
+  logoURL: `${BRAND_LOGO_URL_PREFIX}LOL_logo.webp`,
   posts: [
     {
       type: POST_TYPE_VALUES.PHOTO,

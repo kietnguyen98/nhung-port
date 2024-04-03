@@ -7,7 +7,7 @@ import { TBrand } from '@/types';
 
 export const _lipiceBrandData: TBrand = {
   name: 'LipIce',
-  logoURL: `${BRAND_LOGO_URL_PREFIX}lipice_logo.png`,
+  logoURL: `${BRAND_LOGO_URL_PREFIX}lipice_logo.webp`,
   posts: [
     // hello kitty
     {

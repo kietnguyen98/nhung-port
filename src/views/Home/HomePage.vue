@@ -22,14 +22,14 @@ import {
 ..
 <style scoped>
 .home-page-intro {
-  background-image: url(/assets/images/home-page-bg.png);
+  background-image: url(/assets/images/home-page-bg.webp);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 .home-page-about-project-contact {
-  background-image: url(/assets/images/paper-bg.png);
+  background-image: url(/assets/images/paper-bg.webp);
   background-position: center;
   background-size: contain;
   background-repeat: repeat-y;

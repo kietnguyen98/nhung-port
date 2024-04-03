@@ -159,7 +159,7 @@ watch(
       >
         <img
           class="favorite-posts-title__background-image"
-          src="/assets/images/paper-heart.png"
+          src="/assets/images/paper-heart.webp"
         />
         <h3
           class="favorite-posts-title__text font-arielScript"
@@ -180,7 +180,7 @@ watch(
             maxWidth: `${225 * currentScaleRatio}rem`,
             left: `${-22.5 * currentScaleRatio}rem`,
           }"
-          src="/assets/images/film-strip-2.png"
+          src="/assets/images/film-strip-2.webp"
         />
         <div
           ref="refElement"
@@ -221,7 +221,7 @@ watch(
         </div>
       </div>
       <img
-        src="/assets/images/film-pin-2.png"
+        src="/assets/images/film-pin-2.webp"
         alt="film pin 2"
         class="favorite-posts__image-film-pin"
         :style="{
@@ -231,7 +231,7 @@ watch(
         }"
       />
       <img
-        src="/assets/images/film-pin-1.png"
+        src="/assets/images/film-pin-1.webp"
         alt="film pin 1"
         class="favorite-posts__image-film-pin"
         :style="{
@@ -247,7 +247,7 @@ watch(
 <style scoped>
 .favorite-posts-container {
   width: 100vw;
-  background-image: url(/assets/images/film-strip-1.png);
+  background-image: url(/assets/images/film-strip-1.webp);
   background-repeat: no-repeat;
   display: flex;
 }

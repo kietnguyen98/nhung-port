@@ -16,7 +16,7 @@ const photoLifeStyleData = projectMockData.photoLifeStyle;
   <div class="container">
     <div class="polaroid">
       <img
-        src="/assets/images/popup/photo-life-style/polaroid.png"
+        src="/assets/images/popup/photo-life-style/polaroid.webp"
         alt="photo life style polaroid"
         class="polaroid__image"
         :style="{
@@ -37,7 +37,7 @@ const photoLifeStyleData = projectMockData.photoLifeStyle;
     >
       <!-- guideline image -->
       <img
-        src="/assets/images/popup/photo-life-style/click-on-note.svg"
+        src="/assets/images/popup/click-on-note.webp"
         alt="click-on-note"
         class="click-on-note-img"
         :style="{

@@ -32,7 +32,7 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
       <!-- graduation -->
       <div class="brand-image">
         <img
-          :src="graduationData.posts[0].sourceUrl"
+          v-lazy="graduationData.posts[0].sourceUrl"
           alt="graduation main"
           class="brand-image__main-image"
           :style="{
@@ -40,7 +40,7 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
           }"
         />
         <img
-          :src="NOTE_IMAGE_URL_PREFIX + 'graduation.png'"
+          v-lazy="NOTE_IMAGE_URL_PREFIX + 'graduation.webp'"
           alt="graduation note"
           class="brand-image__note-image"
           :style="{
@@ -61,7 +61,7 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
       >
         <div class="brand-image">
           <img
-            :src="personalData.posts[0].sourceUrl"
+            v-lazy="personalData.posts[0].sourceUrl"
             alt="personal 1 main"
             class="brand-image__main-image"
             :style="{
@@ -69,7 +69,7 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
             }"
           />
           <img
-            :src="NOTE_IMAGE_URL_PREFIX + 'personal.png'"
+            v-lazy="NOTE_IMAGE_URL_PREFIX + 'personal.webp'"
             alt="personal note"
             class="brand-image__note-image"
             :style="{
@@ -90,7 +90,7 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
       >
         <div class="brand-image">
           <img
-            :src="personalData.posts[1].sourceUrl"
+            v-lazy="personalData.posts[1].sourceUrl"
             alt="personal 1 main"
             class="brand-image__main-image"
             :style="{
@@ -98,7 +98,7 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
             }"
           />
           <img
-            :src="NOTE_IMAGE_URL_PREFIX + 'personal.png'"
+            v-lazy="NOTE_IMAGE_URL_PREFIX + 'personal.webp'"
             alt="personal note"
             class="brand-image__note-image"
             :style="{
@@ -120,7 +120,7 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
       >
         <div class="brand-image">
           <img
-            :src="highSchoolData.posts[0].sourceUrl"
+            v-lazy="highSchoolData.posts[0].sourceUrl"
             alt="high school anniversary 1 main"
             class="brand-image__main-image"
             :style="{
@@ -128,9 +128,9 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
             }"
           />
           <img
-            :src="
+            v-lazy="
               NOTE_IMAGE_URL_PREFIX +
-              'highschool-anniversary.png'
+              'highschool-anniversary.webp'
             "
             alt="high school anniversary note"
             class="brand-image__note-image"
@@ -152,7 +152,7 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
       >
         <div class="brand-image">
           <img
-            :src="highSchoolData.posts[1].sourceUrl"
+            v-lazy="highSchoolData.posts[1].sourceUrl"
             alt="high school anniversary 1 main"
             class="brand-image__main-image"
             :style="{
@@ -160,9 +160,9 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
             }"
           />
           <img
-            :src="
+            v-lazy="
               NOTE_IMAGE_URL_PREFIX +
-              'highschool-anniversary.png'
+              'highschool-anniversary.webp'
             "
             alt="high school anniversary note"
             class="brand-image__note-image"
@@ -184,7 +184,7 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
       >
         <div class="brand-image">
           <img
-            :src="insideTheTunnelData.posts[0].sourceUrl"
+            v-lazy="insideTheTunnelData.posts[0].sourceUrl"
             alt="inside the tunnel main"
             class="brand-image__main-image"
             :style="{
@@ -192,9 +192,9 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
             }"
           />
           <img
-            :src="
+            v-lazy="
               NOTE_IMAGE_URL_PREFIX +
-              'inside-the-tunnel.png'
+              'inside-the-tunnel.webp'
             "
             alt="inside the tunnel note"
             class="brand-image__note-image"
@@ -216,7 +216,7 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
       >
         <div class="brand-image">
           <img
-            :src="rambutanData.posts[0].sourceUrl"
+            v-lazy="rambutanData.posts[0].sourceUrl"
             alt="rambutan main"
             class="brand-image__main-image"
             :style="{
@@ -224,7 +224,7 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
             }"
           />
           <img
-            :src="NOTE_IMAGE_URL_PREFIX + 'rambutan.png'"
+            v-lazy="NOTE_IMAGE_URL_PREFIX + 'rambutan.webp'"
             alt="rambutan note"
             class="brand-image__note-image"
             :style="{
@@ -245,7 +245,7 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
       >
         <div class="brand-image">
           <img
-            :src="haulucidData.posts[0].sourceUrl"
+            v-lazy="haulucidData.posts[0].sourceUrl"
             alt="haulucid main"
             class="brand-image__main-image"
             :style="{
@@ -253,7 +253,7 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
             }"
           />
           <img
-            :src="NOTE_IMAGE_URL_PREFIX + 'haulucid.png'"
+            v-lazy="NOTE_IMAGE_URL_PREFIX + 'haulucid.webp'"
             alt="haulucid note"
             class="brand-image__note-image"
             :style="{
@@ -266,7 +266,7 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
       </div>
       <!-- pencil -->
       <img
-        src="/assets/images/popup/illustration/pencil.png"
+        src="/assets/images/popup/illustration/pencil.webp"
         alt="pencil"
         class="brands__icons"
         :style="{

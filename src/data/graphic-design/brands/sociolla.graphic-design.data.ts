@@ -7,7 +7,7 @@ import { TBrand } from '@/types';
 
 export const _sociollaBrandData: TBrand = {
   name: 'Sociolla',
-  logoURL: `${BRAND_LOGO_URL_PREFIX}sociolla_logo.png`,
+  logoURL: `${BRAND_LOGO_URL_PREFIX}sociolla_logo.webp`,
   posts: [
     {
       type: POST_TYPE_VALUES.PHOTO,

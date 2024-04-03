@@ -9,7 +9,7 @@ import VueLazyload from 'vue-lazyload';
 
 import App from '@/App.vue';
 import loadingImage from '@/assets/images/loader-320px.gif';
-import errorNotFoundImage from '@/assets/images/not-found.svg';
+import errorNotFoundImage from '@/assets/images/not-found.webp';
 // components
 // layouts
 import { AppContainer } from '@/layouts';
@@ -28,7 +28,8 @@ app.use(VueLazyload, {
   preLoad: 1.3,
   error: errorNotFoundImage,
   loading: loadingImage,
-  attempt: 1,
+  // retry once after load asset fail
+  attempt: 2,
 });
 
 // layout register
