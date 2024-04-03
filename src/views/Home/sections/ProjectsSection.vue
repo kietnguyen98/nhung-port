@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
+import { defineAsyncComponent } from 'vue';
 
 import {
   FavoritePosts,
@@ -8,13 +9,23 @@ import {
   ProjectIllustrationCard,
   ProjectPhotosCard,
 } from '@/components';
-import {
-  FavoritePostViewPopup,
-  PostViewerPopup,
-  ProjectViewerPopup,
-} from '@/layouts';
 import { useResponsiveStore } from '@/stores';
-import { ProjectView } from '@/views';
+
+const ProjectViewerPopup = defineAsyncComponent(
+  () => import('@/layouts/ProjectViewerPopup.vue')
+);
+const ProjectView = defineAsyncComponent(
+  () => import('@/views/projectContents/ProjectView.vue')
+);
+
+const FavoritePostViewPopup = defineAsyncComponent(
+  () => import('@/layouts/FavoritePostViewPopup.vue')
+);
+
+const PostViewerPopup = defineAsyncComponent(
+  () => import('@/layouts/PostViewerPopup.vue')
+);
+
 defineProps<{
   sectionId: string;
 }>();
