@@ -7,6 +7,7 @@ import {
   _insideTheTunnelBrandData,
   _personalBrandData,
   _rambutanBrandData,
+  _theJumpBrandData,
 } from './brands';
 
 export const illustrationProjectData: TProject = {
@@ -21,5 +22,6 @@ export const illustrationProjectData: TProject = {
     _insideTheTunnelBrandData,
     _personalBrandData,
     _rambutanBrandData,
+    _theJumpBrandData,
   ],
 };
