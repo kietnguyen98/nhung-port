@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
 
-import {
-  useControlPopupStore,
-  useResponsiveStore,
-} from '@/stores';
+import { useResponsiveStore } from '@/stores';
 import { TProjectIdName } from '@/types';
 
 defineProps<{
@@ -14,12 +11,6 @@ defineProps<{
 // responsive store
 const responsiveStore = useResponsiveStore();
 const { currentScaleRatio } = storeToRefs(responsiveStore);
-
-// control popup store
-const controlPopupStore = useControlPopupStore();
-const { isProjectViewerOpened } = storeToRefs(
-  controlPopupStore
-);
 </script>
 <template>
   <!-- icons -->
@@ -48,10 +39,7 @@ const { isProjectViewerOpened } = storeToRefs(
     v-if="projectIdName === 'graphic-design'"
     src="/assets/images/popup/graphic-design/title.webp"
     alt="project view graphic design title"
-    :class="[
-      'title',
-      isProjectViewerOpened && 'title-entry-ani',
-    ]"
+    class="title title-entry-ani"
     :style="{
       height: `${24 * currentScaleRatio}rem`,
       top: `${22.5 * currentScaleRatio}rem`,
@@ -62,10 +50,7 @@ const { isProjectViewerOpened } = storeToRefs(
     v-if="projectIdName === 'motion-graphic'"
     src="/assets/images/popup/motion-graphic/title.webp"
     alt="project view motion graphic title"
-    :class="[
-      'title',
-      isProjectViewerOpened && 'title-entry-ani',
-    ]"
+    class="title title-entry-ani"
     :style="{
       height: `${25.5 * currentScaleRatio}rem`,
       top: `${21 * currentScaleRatio}rem`,
@@ -76,10 +61,7 @@ const { isProjectViewerOpened } = storeToRefs(
     v-if="projectIdName === 'photo-life-style'"
     src="/assets/images/popup/photo-life-style/title.webp"
     alt="project view photos life style title"
-    :class="[
-      'title',
-      isProjectViewerOpened && 'title-entry-ani',
-    ]"
+    class="title title-entry-ani"
     :style="{
       height: `${22.25 * currentScaleRatio}rem`,
       top: `${22.75 * currentScaleRatio}rem`,
@@ -90,10 +72,7 @@ const { isProjectViewerOpened } = storeToRefs(
     v-if="projectIdName === 'illustration'"
     src="/assets/images/popup/illustration/title.webp"
     alt="project view photos life style title"
-    :class="[
-      'title',
-      isProjectViewerOpened && 'title-entry-ani',
-    ]"
+    class="title title-entry-ani"
     :style="{
       height: `${27 * currentScaleRatio}rem`,
       top: `${21 * currentScaleRatio}rem`,

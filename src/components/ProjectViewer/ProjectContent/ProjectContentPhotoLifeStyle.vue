@@ -42,8 +42,8 @@ const photoLifeStyleData = projectMockData.photoLifeStyle;
         class="click-on-note-img"
         :style="{
           height: `${35 * currentScaleRatio}rem`,
-          top: `${-15 * currentScaleRatio}rem`,
-          left: `${5.5 * currentScaleRatio}rem`,
+          top: `${-20 * currentScaleRatio}rem`,
+          left: `${3.5 * currentScaleRatio}rem`,
         }"
       />
       <!-- brands logo -->
@@ -67,7 +67,7 @@ const photoLifeStyleData = projectMockData.photoLifeStyle;
 
 .click-on-note-img {
   position: absolute;
-  z-index: 1;
+  z-index: 0;
   animation: heart-beat 2s ease-in-out infinite;
 }
 

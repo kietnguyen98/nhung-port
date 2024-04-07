@@ -6,14 +6,18 @@ import {
   useControlPopupStore,
   useScrollWrapperStore,
 } from '@/stores';
-import { animateWheelEvent } from '@/utilities';
+import {
+  animateWheelEvent,
+  blockWheelEvent,
+} from '@/utilities';
 
 // control popup store
 const controlPopupStore = useControlPopupStore();
 const { isProjectViewerOpened } = storeToRefs(
   controlPopupStore
 );
-const { setIsProjectViewerOpened } = controlPopupStore;
+const { setIsProjectViewerOpened, setProjectToView } =
+  controlPopupStore;
 
 // scroll wrapper store
 const scrollWrapperStore = useScrollWrapperStore();
@@ -48,14 +52,46 @@ watch(
           newProjectViewerScrollWrapper as HTMLElement,
       });
 
-    if (newIsPopupOpened && newProjectViewerScrollWrapper)
+    if (newProjectViewerScrollWrapper)
       if (newIsPopupOpened) {
+        // open popup
+        // reset view position to the top
+        newProjectViewerScrollWrapper.scrollTo({
+          top: 0,
+        });
+        // block wheel event for 1.5s (0.75s for popup ani, 0.75s for title ani)
+        // to wait for entry animation to be finished
         newProjectViewerScrollWrapper.addEventListener(
           'wheel',
-          handlePopupWheelEvent.value,
+          blockWheelEvent,
           { passive: false }
         );
+
+        setTimeout(() => {
+          // unblock wheel event
+          newProjectViewerScrollWrapper.removeEventListener(
+            'wheel',
+            blockWheelEvent
+          );
+
+          // add animate wheel event
+          if (handlePopupWheelEvent.value) {
+            newProjectViewerScrollWrapper.addEventListener(
+              'wheel',
+              handlePopupWheelEvent.value,
+              { passive: false }
+            );
+          }
+        }, 1500);
       } else {
+        // close popup
+        // block wheel event and remove animate wheel event
+        newProjectViewerScrollWrapper.addEventListener(
+          'wheel',
+          blockWheelEvent,
+          { passive: false }
+        );
+
         newProjectViewerScrollWrapper.removeEventListener(
           'wheel',
           handlePopupWheelEvent.value
@@ -63,6 +99,14 @@ watch(
       }
   }
 );
+
+// reset scroll position when close popup
+const handleCloseProjectViewer = () => {
+  setIsProjectViewerOpened(false);
+  setTimeout(() => {
+    setProjectToView(undefined);
+  }, 750);
+};
 </script>
 
 <template>
@@ -90,7 +134,7 @@ watch(
       >
         <button
           class="popup-content__close-button"
-          @click="setIsProjectViewerOpened(false)"
+          @click="handleCloseProjectViewer"
         >
           X
         </button>
