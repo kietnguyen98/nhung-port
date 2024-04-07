@@ -72,16 +72,11 @@ const { currentScaleRatio } = storeToRefs(
       </div>
       <div class="about-content__text-wrapper">
         <h5 class="font-iCeilBeCool">
-          'Lorem ipsum dolor sit amet, consectetur
-          adipiscing elit, sed do eiusmod tempor incididunt
-          ut labore et dolore magna aliqua. ', 'Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco
-          laboris nisi ut aliquip ex ea commodo consequat.
-          ', 'Duis aute irure dolor in reprehenderit in
-          voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. ', 'Excepteur sint occaecat cupidatat
-          non proident, sunt in culpa qui officia deserunt
-          mollit anim id est laborum.',
+          A 24 years old graphic designer with a potential
+          attraction towards photography, illustration and a
+          bit to motion graphic, born in Hue City and living
+          in Ho Chi Minh City with nearly 2 years of agency
+          experience.
         </h5>
       </div>
     </div>
@@ -129,7 +124,7 @@ const { currentScaleRatio } = storeToRefs(
   text-align: center;
 
   h5 {
-    line-height: 100%;
+    line-height: 120%;
   }
 }
 </style>
