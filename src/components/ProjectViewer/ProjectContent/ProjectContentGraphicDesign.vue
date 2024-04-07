@@ -41,8 +41,8 @@ const graphicDesignData = projectMockData.graphicDesign;
         class="click-on-note-img"
         :style="{
           height: `${35 * currentScaleRatio}rem`,
-          top: `${-15 * currentScaleRatio}rem`,
-          left: `${3 * currentScaleRatio}rem`,
+          top: `${-16 * currentScaleRatio}rem`,
+          left: `${5 * currentScaleRatio}rem`,
         }"
       />
       <!-- brands logo -->
@@ -66,7 +66,8 @@ const graphicDesignData = projectMockData.graphicDesign;
 
 .click-on-note-img {
   position: absolute;
-  z-index: 0;
+  z-index: 1;
+  animation: heart-beat 2s ease-in-out infinite;
 }
 
 .brands {
