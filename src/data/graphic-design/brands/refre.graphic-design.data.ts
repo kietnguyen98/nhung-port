@@ -11,6 +11,10 @@ export const _refreBrandData: TBrand = {
   posts: [
     {
       type: POST_TYPE_VALUES.PHOTO,
+      sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1K0treLO0uhfI_2UMm0x7Gfc_nuz2c5XS`,
+    },
+    {
+      type: POST_TYPE_VALUES.PHOTO,
       sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}12a_TYKNhOhjuEgpImTIJtzpfbQtczE5j`,
     },
     {
@@ -84,6 +88,10 @@ export const _refreBrandData: TBrand = {
     {
       type: POST_TYPE_VALUES.PHOTO,
       sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1TITKNgoTDU1QI2cw-44duU2VQSsN3H1Y`,
+    },
+    {
+      type: POST_TYPE_VALUES.PHOTO,
+      sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1U3PvsuqZV8xDXOBH5JZ5Xmif13ka_Y8X`,
     },
   ],
 };

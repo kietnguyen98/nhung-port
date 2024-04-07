@@ -2,8 +2,11 @@
 import { storeToRefs } from 'pinia';
 
 import { projectMockData } from '@/data';
-import { useResponsiveStore } from '@/stores';
-import { TProject } from '@/types';
+import {
+  useControlPopupStore,
+  useResponsiveStore,
+} from '@/stores';
+import { TBrand, TProject } from '@/types';
 
 const illustrationData =
   projectMockData.illustration as TProject;
@@ -16,9 +19,21 @@ const highSchoolData = illustrationData.brands[2];
 const insideTheTunnelData = illustrationData.brands[3];
 const personalData = illustrationData.brands[4];
 const rambutanData = illustrationData.brands[5];
+const theJumpData = illustrationData.brands[6];
 
+// responsive store
 const responsiveStore = useResponsiveStore();
 const { currentScaleRatio } = storeToRefs(responsiveStore);
+
+// control popup store
+const controlPopupStore = useControlPopupStore();
+const { setIsPostViewerOpened, setBrandToView } =
+  controlPopupStore;
+
+const viewBrand = (brand: TBrand) => {
+  setIsPostViewerOpened(true);
+  setBrandToView(brand);
+};
 </script>
 
 <template>
@@ -30,9 +45,12 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
       }"
     >
       <!-- graduation -->
-      <div class="brand-image">
+      <div
+        class="brand-image"
+        @click="viewBrand(graduationData)"
+      >
         <img
-          v-lazy="graduationData.posts[0].sourceUrl"
+          v-lazy="graduationData.demoPosts?.[0].sourceUrl"
           alt="graduation main"
           class="brand-image__main-image"
           :style="{
@@ -55,17 +73,18 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
       <div
         class="brand-image-wrapper--float"
         :style="{
-          top: `${-30 * currentScaleRatio}rem`,
-          left: `${35 * currentScaleRatio}rem`,
+          top: `${-26 * currentScaleRatio}rem`,
+          right: `${18 * currentScaleRatio}rem`,
         }"
+        @click="viewBrand(personalData)"
       >
         <div class="brand-image">
           <img
-            v-lazy="personalData.posts[0].sourceUrl"
+            v-lazy="personalData.demoPosts?.[0].sourceUrl"
             alt="personal 1 main"
             class="brand-image__main-image"
             :style="{
-              height: `${26 * currentScaleRatio}rem`,
+              height: `${24 * currentScaleRatio}rem`,
             }"
           />
           <img
@@ -87,10 +106,11 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
           bottom: `${-27.5 * currentScaleRatio}rem`,
           right: `${-10 * currentScaleRatio}rem`,
         }"
+        @click="viewBrand(personalData)"
       >
         <div class="brand-image">
           <img
-            v-lazy="personalData.posts[1].sourceUrl"
+            v-lazy="personalData.demoPosts?.[1].sourceUrl"
             alt="personal 1 main"
             class="brand-image__main-image"
             :style="{
@@ -109,18 +129,39 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
           />
         </div>
       </div>
+      <!-- the jump -->
+      <div
+        class="brand-image-wrapper--float"
+        :style="{
+          top: `${-32 * currentScaleRatio}rem`,
+          left: `${16 * currentScaleRatio}rem`,
+        }"
+        @click="viewBrand(theJumpData)"
+      >
+        <div class="brand-image">
+          <img
+            v-lazy="theJumpData.demoPosts?.[0].sourceUrl"
+            alt="personal 1 main"
+            class="brand-image__main-image"
+            :style="{
+              height: `${36 * currentScaleRatio}rem`,
+            }"
+          />
+        </div>
+      </div>
       <!-- high school anniversary -->
       <!-- high school anniversary 1 -->
       <div
         class="brand-image-wrapper--float"
         :style="{
-          top: `${-24.5 * currentScaleRatio}rem`,
-          left: `${-14 * currentScaleRatio}rem`,
+          top: `${-22.5 * currentScaleRatio}rem`,
+          left: `${-22 * currentScaleRatio}rem`,
         }"
+        @click="viewBrand(highSchoolData)"
       >
         <div class="brand-image">
           <img
-            v-lazy="highSchoolData.posts[0].sourceUrl"
+            v-lazy="highSchoolData.demoPosts?.[0].sourceUrl"
             alt="high school anniversary 1 main"
             class="brand-image__main-image"
             :style="{
@@ -149,10 +190,11 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
           bottom: `${-35.5 * currentScaleRatio}rem`,
           left: `${-15 * currentScaleRatio}rem`,
         }"
+        @click="viewBrand(highSchoolData)"
       >
         <div class="brand-image">
           <img
-            v-lazy="highSchoolData.posts[1].sourceUrl"
+            v-lazy="highSchoolData.demoPosts?.[1].sourceUrl"
             alt="high school anniversary 1 main"
             class="brand-image__main-image"
             :style="{
@@ -178,17 +220,20 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
       <div
         class="brand-image-wrapper--float"
         :style="{
-          right: `${-11 * currentScaleRatio}rem`,
-          top: `${-25 * currentScaleRatio}rem`,
+          right: `${-22 * currentScaleRatio}rem`,
+          top: `${-16 * currentScaleRatio}rem`,
         }"
+        @click="viewBrand(insideTheTunnelData)"
       >
         <div class="brand-image">
           <img
-            v-lazy="insideTheTunnelData.posts[0].sourceUrl"
+            v-lazy="
+              insideTheTunnelData.demoPosts?.[0].sourceUrl
+            "
             alt="inside the tunnel main"
             class="brand-image__main-image"
             :style="{
-              height: `${42 * currentScaleRatio}rem`,
+              height: `${44 * currentScaleRatio}rem`,
             }"
           />
           <img
@@ -213,10 +258,11 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
           left: `${24 * currentScaleRatio}rem`,
           bottom: `${-58 * currentScaleRatio}rem`,
         }"
+        @click="viewBrand(rambutanData)"
       >
         <div class="brand-image">
           <img
-            v-lazy="rambutanData.posts[0].sourceUrl"
+            v-lazy="rambutanData.demoPosts?.[0].sourceUrl"
             alt="rambutan main"
             class="brand-image__main-image"
             :style="{
@@ -242,10 +288,11 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
           right: `${-4 * currentScaleRatio}rem`,
           bottom: `${-50 * currentScaleRatio}rem`,
         }"
+        @click="viewBrand(haulucidData)"
       >
         <div class="brand-image">
           <img
-            v-lazy="haulucidData.posts[0].sourceUrl"
+            v-lazy="haulucidData.demoPosts?.[0].sourceUrl"
             alt="haulucid main"
             class="brand-image__main-image"
             :style="{
@@ -318,8 +365,8 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
       box-shadow:
         rgba(0, 0, 0, 0.3) 0px 19px 38px,
         rgba(0, 0, 0, 0.22) 0px 15px 12px;
-      z-index: 9;
 
+      z-index: 9;
       animation: zoom-in-out 1.5s ease-in-out infinite;
     }
   }

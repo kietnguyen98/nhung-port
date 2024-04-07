@@ -4,6 +4,7 @@ import { _highschoolAnniversaryBrandData } from './highschool-anniversary.illust
 import { _insideTheTunnelBrandData } from './inside-the-tunnel.illustration.data';
 import { _personalBrandData } from './personal.ilustration.data';
 import { _rambutanBrandData } from './rambutan.illustration.data';
+import { _theJumpBrandData } from './the-jump.illustration.data';
 
 export {
   _graduationBrandData,
@@ -12,4 +13,5 @@ export {
   _insideTheTunnelBrandData,
   _personalBrandData,
   _rambutanBrandData,
+  _theJumpBrandData,
 };
