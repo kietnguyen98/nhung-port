@@ -14,9 +14,6 @@ import { useResponsiveStore } from '@/stores';
 const ProjectViewerPopup = defineAsyncComponent(
   () => import('@/layouts/ProjectViewerPopup.vue')
 );
-const ProjectView = defineAsyncComponent(
-  () => import('@/views/projectContents/ProjectView.vue')
-);
 
 const FavoritePostViewPopup = defineAsyncComponent(
   () => import('@/layouts/FavoritePostViewPopup.vue')
@@ -24,6 +21,10 @@ const FavoritePostViewPopup = defineAsyncComponent(
 
 const PostViewerPopup = defineAsyncComponent(
   () => import('@/layouts/PostViewerPopup.vue')
+);
+
+const ProjectView = defineAsyncComponent(
+  () => import('@/views/projectContents/ProjectView.vue')
 );
 
 defineProps<{

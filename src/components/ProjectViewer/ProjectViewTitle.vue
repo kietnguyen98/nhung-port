@@ -8,6 +8,7 @@ defineProps<{
   projectIdName: TProjectIdName;
 }>();
 
+// responsive store
 const responsiveStore = useResponsiveStore();
 const { currentScaleRatio } = storeToRefs(responsiveStore);
 </script>
@@ -38,7 +39,7 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
     v-if="projectIdName === 'graphic-design'"
     src="/assets/images/popup/graphic-design/title.webp"
     alt="project view graphic design title"
-    class="title"
+    class="title title-entry-ani"
     :style="{
       height: `${24 * currentScaleRatio}rem`,
       top: `${22.5 * currentScaleRatio}rem`,
@@ -49,7 +50,7 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
     v-if="projectIdName === 'motion-graphic'"
     src="/assets/images/popup/motion-graphic/title.webp"
     alt="project view motion graphic title"
-    class="title"
+    class="title title-entry-ani"
     :style="{
       height: `${25.5 * currentScaleRatio}rem`,
       top: `${21 * currentScaleRatio}rem`,
@@ -60,7 +61,7 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
     v-if="projectIdName === 'photo-life-style'"
     src="/assets/images/popup/photo-life-style/title.webp"
     alt="project view photos life style title"
-    class="title"
+    class="title title-entry-ani"
     :style="{
       height: `${22.25 * currentScaleRatio}rem`,
       top: `${22.75 * currentScaleRatio}rem`,
@@ -71,7 +72,7 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
     v-if="projectIdName === 'illustration'"
     src="/assets/images/popup/illustration/title.webp"
     alt="project view photos life style title"
-    class="title"
+    class="title title-entry-ani"
     :style="{
       height: `${27 * currentScaleRatio}rem`,
       top: `${21 * currentScaleRatio}rem`,
@@ -93,8 +94,15 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
 .icon-butterfly-2 {
   animation: bubble-bounce infinite 3.5s ease-in-out;
 }
-
 .title {
+  z-index: 9;
   position: absolute;
+}
+
+.title-entry-ani {
+  opacity: 0;
+  animation: flip-x 1.5s ease-in-out forwards;
+  animation-delay: 0.75s;
+  transform-style: preserve-3d;
 }
 </style>

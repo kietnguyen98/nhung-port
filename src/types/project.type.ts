@@ -7,6 +7,7 @@ export type TPost = {
 export type TBrand = {
   name: string;
   logoURL: string;
+  demoPosts?: Array<TPost>;
   posts: Array<TPost>;
 };
 

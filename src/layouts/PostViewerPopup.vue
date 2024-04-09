@@ -112,7 +112,11 @@ watch(
       newHandlePostViewerScrollEvent
     ) {
       if (newIsPostViewerOpened) {
-        // popup opened
+        // open popup
+        postViewerScrollWrapper.value?.scrollTo({
+          top: 0,
+        });
+
         newPostViewerScrollWrapperElement.addEventListener(
           'wheel',
           newHandlePostViewerWheelEvent,
@@ -127,7 +131,7 @@ watch(
           }
         );
       } else {
-        // popup closed
+        // close popup
         newPostViewerScrollWrapperElement.removeEventListener(
           'wheel',
           newHandlePostViewerWheelEvent
@@ -153,9 +157,6 @@ const handleClosePostViewer = () => {
   setIsPostViewerOpened(false);
   setTimeout(() => {
     setBrandToView(undefined);
-    postViewerScrollWrapper.value?.scrollTo({
-      top: 0,
-    });
   }, 1000);
 };
 
