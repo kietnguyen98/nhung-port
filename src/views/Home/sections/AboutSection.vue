@@ -74,9 +74,9 @@ const { currentScaleRatio } = storeToRefs(
         <h5 class="font-iCeilBeCool">
           A 24 years old graphic designer with a potential
           attraction towards photography, illustration and a
-          bit to motion graphic, born in Hue City and living
-          in Ho Chi Minh City with nearly 2 years of agency
-          experience.
+          bit to motion graphic, <br />
+          born in Hue City and living in Ho Chi Minh City
+          with nearly 2 years of agency experience.
         </h5>
       </div>
     </div>
