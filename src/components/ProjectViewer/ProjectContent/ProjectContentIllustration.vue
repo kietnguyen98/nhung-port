@@ -147,6 +147,16 @@ const viewBrand = (brand: TBrand) => {
               height: `${36 * currentScaleRatio}rem`,
             }"
           />
+          <img
+            v-lazy="NOTE_IMAGE_URL_PREFIX + 'the-jump.webp'"
+            alt="high school anniversary note"
+            class="brand-image__note-image"
+            :style="{
+              height: `${7 * currentScaleRatio}rem`,
+              bottom: `${-3.5 * currentScaleRatio}rem`,
+              right: `${-6 * currentScaleRatio}rem`,
+            }"
+          />
         </div>
       </div>
       <!-- high school anniversary -->
