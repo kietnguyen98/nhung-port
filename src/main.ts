@@ -29,7 +29,7 @@ app.use(VueLazyload, {
   error: errorNotFoundImage,
   loading: loadingImage,
   // retry once after load asset fail
-  attempt: 2,
+  attempt: 10,
 });
 
 // layout register
