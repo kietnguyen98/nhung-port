@@ -5,6 +5,7 @@ export type TAnimateWheelEventProps = {
   wheelSpeed?: number;
   wheelDirection?: 'horizontal' | 'vertical';
   scrollWrapperElement: HTMLElement;
+  shouldAnimate: boolean;
 };
 
 export const animateWheelEvent = ({
@@ -12,19 +13,23 @@ export const animateWheelEvent = ({
   wheelSpeed = 3.5,
   wheelDirection = 'vertical',
   scrollWrapperElement,
+  shouldAnimate,
 }: TAnimateWheelEventProps) => {
-  event.preventDefault();
-  const scrollSpeed = wheelSpeed;
-  const delta = event.deltaY;
-  const scrollPosition =
-    (wheelDirection === 'vertical'
-      ? scrollWrapperElement.scrollTop
-      : scrollWrapperElement.scrollLeft) +
-    delta * scrollSpeed;
+  if (shouldAnimate) {
+    event.preventDefault();
+    const scrollSpeed = wheelSpeed;
+    const delta = event.deltaY;
+    const scrollPosition =
+      (wheelDirection === 'vertical'
+        ? scrollWrapperElement.scrollTop
+        : scrollWrapperElement.scrollLeft) +
+      delta * scrollSpeed;
 
-  animateScroll({
-    scrollPosition: scrollPosition,
-    wheelDirection: wheelDirection,
-    scrollWrapperElement: scrollWrapperElement,
-  });
+    animateScroll({
+      scrollPosition: scrollPosition,
+      wheelDirection: wheelDirection,
+      scrollWrapperElement: scrollWrapperElement,
+    });
+  }
+  // else leave the scroll behavior as default
 };

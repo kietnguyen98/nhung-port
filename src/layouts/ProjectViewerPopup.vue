@@ -50,6 +50,7 @@ watch(
         event: e,
         scrollWrapperElement:
           newProjectViewerScrollWrapper as HTMLElement,
+        shouldAnimate: false,
       });
 
     if (newProjectViewerScrollWrapper)

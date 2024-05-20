@@ -1,22 +1,31 @@
+<script setup lang="ts"></script>
+
 <template>
   <div class="container">
-    <h1 class="title font-lora">
-      This device resolution are not support on this
-      website!. Please use a device with a higher resolution
-      ( >= 1024 pixel in landscape) to view
-    </h1>
+    <img
+      class="loading-image"
+      src="/src/assets/images/loader-320px.gif"
+    />
   </div>
 </template>
 
 <style scoped>
 .container {
-  height: calc(100vh);
-  width: calc(100vw);
+  height: 100vh;
+  width: 100vw;
 
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: var(--color-black);
+  backdrop-filter: blur(1rem);
+
+  .loading-image {
+  }
 
   .title {
     text-align: center;
