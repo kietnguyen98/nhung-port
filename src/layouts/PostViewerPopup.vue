@@ -61,15 +61,16 @@ watch(
 );
 
 watch(
-  postViewerScrollWrapper,
-  (newPostViewerScrollWrapper) => {
+  [postViewerScrollWrapper, currentScaleRatio],
+  ([newPostViewerScrollWrapper, newCurrentScaleRatio]) => {
     if (newPostViewerScrollWrapper) {
       handlePostViewerWheelEvent.value = (e: WheelEvent) =>
         animateWheelEvent({
           event: e,
-          wheelSpeed: 5,
+          wheelSpeed: 8 * newCurrentScaleRatio,
           wheelDirection: 'horizontal',
           scrollWrapperElement: newPostViewerScrollWrapper,
+          shouldAnimate: true,
         });
 
       handlePostViewerScrollEvent.value = () => {

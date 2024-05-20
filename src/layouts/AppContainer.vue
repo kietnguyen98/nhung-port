@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { onMounted, ref, watch } from 'vue';
+import { ref, watch } from 'vue';
 
 import { CircleProgressBar } from '@/components';
 import {
   useControlPopupStore,
-  useResponsiveStore,
   useScrollWrapperStore,
 } from '@/stores';
 import { TSections } from '@/types';
@@ -15,10 +14,6 @@ import {
 } from '@/utilities';
 
 import { NavigationBar } from '.';
-
-// responsive store
-const mediaQueriesStore = useResponsiveStore();
-const { initEvent } = mediaQueriesStore;
 
 // control popup store
 const controlPopupStore = useControlPopupStore();
@@ -48,11 +43,6 @@ const handleContainerWheelEvent =
 const currentActive = ref<string>(sections.value[0].idName);
 const isOnTop = ref<boolean>(true);
 const progress = ref<number>(0);
-
-onMounted(() => {
-  // init media queries
-  initEvent();
-});
 
 watch(
   containerScrollWrapperRef,
@@ -88,6 +78,7 @@ watch(
         event: e,
         scrollWrapperElement:
           newContainerScrollWrapper as HTMLElement,
+        shouldAnimate: false,
       });
 
     newContainerScrollWrapper.addEventListener(

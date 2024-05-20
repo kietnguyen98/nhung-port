@@ -69,5 +69,9 @@ export const _sunplayBrandData: TBrand = {
       type: POST_TYPE_VALUES.PHOTO,
       sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1UYYXM3j60CSOSm-Q9IfUasWPkkRMI67K`,
     },
+    {
+      type: POST_TYPE_VALUES.PHOTO,
+      sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1ljCAJcROY2fu8mipeD2deNTBTSnPIlWe`,
+    },
   ],
 };

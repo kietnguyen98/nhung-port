@@ -90,6 +90,10 @@ export const _lipiceBrandData: TBrand = {
       type: POST_TYPE_VALUES.PHOTO,
       sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}17eqAIqre9per8KoE9paPHm2Xm4MbLVqh`,
     },
+    {
+      type: POST_TYPE_VALUES.PHOTO,
+      sourceUrl: `${GOOGLE_DRIVE_FILE_PREFIX}1Mwi1wpBM7PT8xoFuemZsWZjNtAwuMkG-`,
+    },
     // sheer q
     {
       type: POST_TYPE_VALUES.PHOTO,
