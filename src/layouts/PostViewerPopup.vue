@@ -31,7 +31,7 @@ const { setViewProgress } = viewScrollingStore;
 
 // media query for responsive
 const mediaQueriesStore = useResponsiveStore();
-const { currentScaleRatio } = storeToRefs(
+const { currentScaleRatio, currentViewWidth } = storeToRefs(
   mediaQueriesStore
 );
 
@@ -61,8 +61,16 @@ watch(
 );
 
 watch(
-  [postViewerScrollWrapper, currentScaleRatio],
-  ([newPostViewerScrollWrapper, newCurrentScaleRatio]) => {
+  [
+    postViewerScrollWrapper,
+    currentScaleRatio,
+    currentViewWidth,
+  ],
+  ([
+    newPostViewerScrollWrapper,
+    newCurrentScaleRatio,
+    newViewWidth,
+  ]) => {
     if (newPostViewerScrollWrapper) {
       handlePostViewerWheelEvent.value = (e: WheelEvent) =>
         animateWheelEvent({
@@ -78,16 +86,11 @@ watch(
           newPostViewerScrollWrapper.scrollWidth;
         const currentScrollOffsetLeft =
           newPostViewerScrollWrapper.scrollLeft;
-        const currentScreenViewWidth =
-          newPostViewerScrollWrapper.clientWidth;
 
         setViewProgress(
-          Math.ceil(
-            (currentScrollOffsetLeft /
-              (fullScrollWrapperWidth -
-                currentScreenViewWidth)) *
-              100
-          )
+          (currentScrollOffsetLeft /
+            (fullScrollWrapperWidth - newViewWidth)) *
+            100
         );
       };
     }
