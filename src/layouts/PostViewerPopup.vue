@@ -165,9 +165,12 @@ const handleClosePostViewer = () => {
 const slideToSpecificPost = (postIndex: number) => {
   const postToSlide = postViewerContainerRef.value
     ?.children[postIndex] as HTMLElement;
+  const targetLeft = postToSlide.offsetLeft;
+  const targetAlignLeftToView =
+    (window.innerWidth - postToSlide.clientWidth) / 2;
 
   animateScroll({
-    scrollPosition: postToSlide.offsetLeft,
+    scrollPosition: targetLeft - targetAlignLeftToView,
     wheelDirection: 'horizontal',
     scrollWrapperElement:
       postViewerScrollWrapper.value as HTMLElement,
@@ -210,16 +213,15 @@ const slideToSpecificPost = (postIndex: number) => {
             : 'posts-wrapper--disappeared',
         ]"
         :style="{
-          padding: `${10 * currentScaleRatio}rem`,
+          padding: `${10 * currentScaleRatio}rem ${5 * currentScaleRatio}rem`,
           height: `calc(100vh - ${10 * currentScaleRatio}rem * 2)`,
-          width: `calc(100vw - ${10 * currentScaleRatio}rem * 2)`,
+          width: `calc(100vw - ${5 * currentScaleRatio}rem * 2)`,
         }"
       >
         <div
           ref="postViewerContainerRef"
           class="post-photo-viewer-container"
           :style="{
-            gap: `${5 * currentScaleRatio}rem`,
             height: `calc(100vh - ${10 * currentScaleRatio}rem * 2)`,
           }"
         >
