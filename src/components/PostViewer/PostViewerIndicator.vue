@@ -93,7 +93,7 @@ watch(
           left: `calc(
                   ${1.5 * currentScaleRatio}rem 
                   - ${5 * currentScaleRatio * indicatorPostToViewerPostSizeRatio}rem
-                  + (100% - (${1.5 * currentScaleRatio}rem * 2 - ${5 * currentScaleRatio * indicatorPostToViewerPostSizeRatio}rem * 2) - ${(currentViewWidth / 16) * indicatorPostToViewerPostSizeRatio}rem) * (${progress} / 100)
+                  + (100% - ${1.5 * currentScaleRatio * 2}rem + ${5 * currentScaleRatio * indicatorPostToViewerPostSizeRatio * 2}rem - ${(currentViewWidth / 16) * indicatorPostToViewerPostSizeRatio}rem) * (${progress} / 100)
                   )`,
         }"
       >
