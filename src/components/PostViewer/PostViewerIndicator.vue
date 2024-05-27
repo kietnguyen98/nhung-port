@@ -90,9 +90,9 @@ watch(
           <div
             class="section-popover__title"
             :style="{
-              top: `${(progress === 0 ? -9.25 : -4.25) * currentScaleRatio}rem`,
+              top: `${(progress === 0 ? -11.25 : -4.5) * currentScaleRatio}rem`,
               left: `${-0.5 * currentScaleRatio}rem`,
-              height: `${(progress === 0 ? 8 : 3) * currentScaleRatio}rem`,
+              height: `${(progress === 0 ? 10 : 3.25) * currentScaleRatio}rem`,
               padding: `${0.25 * currentScaleRatio}rem ${0.5 * currentScaleRatio}rem`,
             }"
           >

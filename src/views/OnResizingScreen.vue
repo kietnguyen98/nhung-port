@@ -17,7 +17,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 99;
+  /* should be above every things */
+  z-index: 100;
   display: flex;
   flex-direction: column;
   justify-content: center;
