@@ -148,7 +148,7 @@ const handleCloseProjectViewer = () => {
 <style scoped>
 .popup-wrapper {
   position: absolute;
-  z-index: 99;
+  z-index: 20;
   top: 0;
   left: 0;
   width: 100vw;
@@ -193,7 +193,7 @@ const handleCloseProjectViewer = () => {
     position: absolute;
     top: 2rem;
     right: 3rem;
-    z-index: 999;
+    z-index: 30;
     outline: none;
     border: none;
     font-size: 2rem;

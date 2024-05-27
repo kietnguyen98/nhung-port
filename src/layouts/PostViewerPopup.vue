@@ -252,7 +252,7 @@ const slideToSpecificPost = (postIndex: number) => {
 <style scope>
 .viewer-popup {
   position: absolute;
-  z-index: 999;
+  z-index: 40;
   top: 0;
   left: 0;
 }
