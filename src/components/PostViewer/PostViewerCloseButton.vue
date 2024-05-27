@@ -7,6 +7,7 @@ defineProps<{
 
 <template>
   <button
+    type="button"
     :class="[
       'close-button',
       isPostViewerOpened

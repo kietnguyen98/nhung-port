@@ -38,19 +38,30 @@ const { isScrolling } = useScrollingDebounce({
   debounceTime: 500,
 });
 
+// the indicator of post viewer will be 5rem height in 2560px or larger
 const INDICATOR_POST_HEIGHT = 5;
 
-const indicatorToViewSizeRatio = ref<number>(
-  (INDICATOR_POST_HEIGHT * currentScaleRatio.value * 16) /
-    currentViewHeight.value
+const VIEWER_CONTAINER_PADDING_Y_VALUE = 10;
+
+// calculate indicator size ratio
+// ratio = INDICATOR_POST_HEIGHT * currentScaleRatioValue / (currentViewHeightValue / 16 (must divide by 16 to change to rem in px) - 10 * currentScaleRatio * 2 (padding Y))
+const indicatorPostToViewerPostSizeRatio = ref<number>(
+  (INDICATOR_POST_HEIGHT * currentScaleRatio.value) /
+    (currentViewHeight.value / 16 -
+      VIEWER_CONTAINER_PADDING_Y_VALUE *
+        currentScaleRatio.value *
+        2)
 );
 
 watch(
   [currentScaleRatio, currentViewHeight],
   ([newCurrentScaleRatio, newCurrentViewHeight]) => {
-    indicatorToViewSizeRatio.value =
-      (INDICATOR_POST_HEIGHT * newCurrentScaleRatio * 16) /
-      newCurrentViewHeight;
+    indicatorPostToViewerPostSizeRatio.value =
+      (INDICATOR_POST_HEIGHT * newCurrentScaleRatio) /
+      (newCurrentViewHeight / 16 -
+        VIEWER_CONTAINER_PADDING_Y_VALUE *
+          newCurrentScaleRatio *
+          2);
   }
 );
 </script>
@@ -68,22 +79,22 @@ watch(
       v-if="posts && posts.length > 0"
       class="indicator"
       :style="{
-        padding: `${1 * currentScaleRatio}rem ${2 * currentScaleRatio}rem`,
+        padding: `${1 * currentScaleRatio}rem ${1.5 * currentScaleRatio}rem`,
       }"
     >
       <div
         class="view-section"
         :style="{
-          height: `${INDICATOR_POST_HEIGHT * currentScaleRatio + 10 * indicatorToViewSizeRatio * 2}rem`,
-          top: `calc(${1 * currentScaleRatio}rem - ${10 * indicatorToViewSizeRatio}rem)`,
-          width: `${((INDICATOR_POST_HEIGHT * currentScaleRatio + 10 * indicatorToViewSizeRatio * 2) * currentViewWidth) / currentViewHeight}rem`,
+          height: `${(currentViewHeight / 16) * indicatorPostToViewerPostSizeRatio}rem`,
+          top: `calc(${1 * currentScaleRatio}rem - ${VIEWER_CONTAINER_PADDING_Y_VALUE * currentScaleRatio * indicatorPostToViewerPostSizeRatio}rem)`,
+          width: `${(currentViewWidth / 16) * indicatorPostToViewerPostSizeRatio}rem`,
           // left = current padding left - view section border width + (full indicator posts width - view section width) * progress / 100
           // + current padding left = current post padding left
           left: `calc(
-                        ${2 * currentScaleRatio}rem 
-                        - ${10 * indicatorToViewSizeRatio}rem 
-                        + (100% - ${((INDICATOR_POST_HEIGHT * currentScaleRatio + 10 * indicatorToViewSizeRatio * 2) * currentViewWidth) / currentViewHeight}rem + ${10 * indicatorToViewSizeRatio}rem * 2 - ${2 * currentScaleRatio}rem * 2) * ${progress} / 100
-                        )`,
+                  ${1.5 * currentScaleRatio}rem 
+                  - ${5 * currentScaleRatio * indicatorPostToViewerPostSizeRatio}rem
+                  + (100% - (${1.5 * currentScaleRatio}rem * 2 - ${5 * currentScaleRatio * indicatorPostToViewerPostSizeRatio}rem * 2) - ${(currentViewWidth / 16) * indicatorPostToViewerPostSizeRatio}rem) * (${progress} / 100)
+                  )`,
         }"
       >
         <div class="section-popover">
@@ -114,7 +125,7 @@ watch(
         :style="{
           height: `${INDICATOR_POST_HEIGHT * currentScaleRatio}rem`,
           // indicator post image gap = current post image gap * current indicator height (in pixel) / view height (in pixel)
-          gap: `${INDICATOR_POST_HEIGHT * currentScaleRatio * indicatorToViewSizeRatio}rem`,
+          gap: `${5 * currentScaleRatio * indicatorPostToViewerPostSizeRatio}rem`,
         }"
       >
         <img
@@ -206,7 +217,8 @@ watch(
   align-items: center;
 
   .post-wrapper__post-image {
-    width: fit-content;
+    border-radius: 0.125rem;
+    width: 100%;
     transition: scale 0.15s linear;
 
     &:hover {
