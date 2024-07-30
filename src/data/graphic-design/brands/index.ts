@@ -6,6 +6,7 @@ import { _huongNghiepDayNgheBrandData } from './huong-nghiep-day-nghe.graphic-de
 import { _lipOnLipBrandData } from './lip-on-lip.graphic-design.data';
 import { _lipiceBrandData } from './lipice.graphic-design.data';
 import { _lipsticianBrandData } from './lipstician.graphic-design.data';
+import { _mMusicRecordBrandData } from './mmusic-record.graphic-design.data';
 import { _pharmacityBrandData } from './pharmacity.graphic-design.data';
 import { _refreBrandData } from './refre.graphic-design.data';
 import { _rohtoHealthScienceBrandData } from './rohto-health-science.graphic-design.data';
@@ -23,6 +24,7 @@ export {
   _lipiceBrandData,
   _lipOnLipBrandData,
   _lipsticianBrandData,
+  _mMusicRecordBrandData,
   _pharmacityBrandData,
   _refreBrandData,
   _rohtoHealthScienceBrandData,

@@ -2,6 +2,7 @@ import { TProject } from '@/types';
 
 import {
   _lipOnLipBrandData,
+  _mMusicRecordbrandData,
   _refreeBrandData,
   _rmitBrandData,
   _sunplayBrandData,
@@ -17,5 +18,6 @@ export const motionGraphicProjectData: TProject = {
     _rmitBrandData,
     _lipOnLipBrandData,
     _sunplayBrandData,
+    _mMusicRecordbrandData,
   ],
 };
