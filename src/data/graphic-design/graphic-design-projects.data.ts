@@ -9,6 +9,7 @@ import {
   _lipiceBrandData,
   _lipOnLipBrandData,
   _lipsticianBrandData,
+  _mMusicRecordBrandData,
   _pharmacityBrandData,
   _refreBrandData,
   _rohtoHealthScienceBrandData,
@@ -39,5 +40,6 @@ export const graphicDesignProjectData: TProject = {
     _sharkTankBrandData,
     _sociollaBrandData,
     _sunplayBrandData,
+    _mMusicRecordBrandData,
   ],
 };
