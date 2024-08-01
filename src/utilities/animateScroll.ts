@@ -19,7 +19,7 @@ export function animateScroll({
       : [scrollPosition, 0],
     {
       cancelOnUserAction: false,
-      easing: (t) => 1 - --t * t * t * t,
+      easing: (t) => t,
       minDuration: 0,
       maxDuration: MIN_WHEEL_SCROLL_DURATION,
       elementToScroll: scrollWrapperElement,
