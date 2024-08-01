@@ -39,10 +39,6 @@ export const animateWheelEvent = ({
         : scrollWrapperElement.scrollLeft) +
       delta * scrollSpeed;
 
-    console.log({ wheelSpeed });
-    console.log({ scrollPosition });
-    console.log({ delta });
-
     animateScroll({
       scrollPosition: scrollPosition,
       wheelDirection: wheelDirection,
