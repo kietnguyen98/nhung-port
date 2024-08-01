@@ -75,7 +75,7 @@ watch(
       handlePostViewerWheelEvent.value = (e: WheelEvent) =>
         animateWheelEvent({
           event: e,
-          wheelSpeed: 8 * newCurrentScaleRatio,
+          wheelSpeed: 2 * newCurrentScaleRatio,
           wheelDirection: 'horizontal',
           scrollWrapperElement: newPostViewerScrollWrapper,
           shouldAnimate: true,
