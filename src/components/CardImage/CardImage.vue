@@ -57,6 +57,7 @@ withDefaults(
 
 <style scoped>
 .image-wrapper {
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;

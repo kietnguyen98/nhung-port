@@ -92,6 +92,7 @@ const { refElement, isHover } = useHover();
   }
 
   .animation__outer-image-overlay {
+    cursor: pointer;
     position: absolute;
     transform: rotateZ(14.5deg);
     z-index: 2;
