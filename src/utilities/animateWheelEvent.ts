@@ -22,6 +22,7 @@ export const animateWheelEvent = ({
 }: TAnimateWheelEventProps) => {
   if (shouldAnimate) {
     event.preventDefault();
+    if (event.deltaY < 50) return;
     const delta =
       event.deltaY < 0
         ? Math.min(
