@@ -20,7 +20,7 @@ export function animateScroll({
     {
       cancelOnUserAction: false,
       easing: (t) => 1 - --t * t * t * t,
-      minDuration: MIN_WHEEL_SCROLL_DURATION,
+      minDuration: 0,
       maxDuration: MIN_WHEEL_SCROLL_DURATION,
       elementToScroll: scrollWrapperElement,
     }

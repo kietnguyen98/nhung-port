@@ -35,5 +35,5 @@ export const MASK_CARD_DIMENSIONS: {
 };
 
 export const MIN_WHEEL_SCROLL_DURATION: number = 1250;
-export const MIN_NEGATIVE_SCROLL_DELTA_Y = -80;
-export const MIN_POSITIVE_SCROLL_DELTA_Y = 80;
+export const MIN_NEGATIVE_SCROLL_DELTA_Y = -40;
+export const MIN_POSITIVE_SCROLL_DELTA_Y = 40;
