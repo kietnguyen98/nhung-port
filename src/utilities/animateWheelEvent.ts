@@ -22,7 +22,6 @@ export const animateWheelEvent = ({
 }: TAnimateWheelEventProps) => {
   if (shouldAnimate) {
     event.preventDefault();
-    const scrollSpeed = wheelSpeed;
     const delta =
       event.deltaY < 0
         ? Math.min(
@@ -37,7 +36,7 @@ export const animateWheelEvent = ({
       (wheelDirection === 'vertical'
         ? scrollWrapperElement.scrollTop
         : scrollWrapperElement.scrollLeft) +
-      delta * scrollSpeed;
+      delta * wheelSpeed;
 
     animateScroll({
       scrollPosition: scrollPosition,
