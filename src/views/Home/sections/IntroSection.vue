@@ -34,7 +34,14 @@ const { currentScaleRatio } = storeToRefs(
             left: `${18 * currentScaleRatio}rem`,
           }"
         >
-          <h1 class="font-arielScript">Welcome to</h1>
+          <h1
+            :style="{
+              letterSpacing: `${0.5 * currentScaleRatio}rem`,
+            }"
+            class="font-arielScript"
+          >
+            Welcome to
+          </h1>
         </div>
         <img
           class="images-group__main slide-in-from-bottom-enter-ani"
@@ -157,10 +164,6 @@ const { currentScaleRatio } = storeToRefs(
   .images-group__intro-title {
     opacity: 0;
     animation: fade-in-only 0.75s 0.75s ease-in forwards;
-
-    h1 {
-      letter-spacing: -0.5rem;
-    }
   }
 
   .images-group__rose {

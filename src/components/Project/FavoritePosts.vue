@@ -64,6 +64,8 @@ watch(
       // calculate new interval's callback
       const projectCardList =
         newProjectSectionCardContainer.children;
+      // reset list of child's position
+      listChildLeftPositions.value = [];
 
       const animateProjectCards = () => {
         for (let i = 0; i < projectCardList.length; i++) {
@@ -71,8 +73,13 @@ watch(
             newIsFavoritePostViewerOpened
               ? 0
               : newIsUserHoverOnList
-                ? (FAVORITE_LIST_SLIDE_VELOCITY * 16) / 3
-                : FAVORITE_LIST_SLIDE_VELOCITY * 16;
+                ? (FAVORITE_LIST_SLIDE_VELOCITY *
+                    newScaleRatio *
+                    16) /
+                  3
+                : FAVORITE_LIST_SLIDE_VELOCITY *
+                  newScaleRatio *
+                  16;
           const child = projectCardList[i] as HTMLElement;
           const childWidthInRem = child.clientWidth / 16;
 
