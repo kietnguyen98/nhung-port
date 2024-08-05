@@ -92,6 +92,7 @@ const { refElement, isHover } = useHover();
   }
 
   .graphic-design__outer-image-overlay {
+    cursor: pointer;
     position: absolute;
     transform: rotateZ(-8.5deg);
     z-index: 2;

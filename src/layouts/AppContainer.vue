@@ -79,6 +79,7 @@ watch(
         scrollWrapperElement:
           newContainerScrollWrapper as HTMLElement,
         shouldAnimate: false,
+        toDefaultBrowserBehavior: true,
       });
 
     newContainerScrollWrapper.addEventListener(

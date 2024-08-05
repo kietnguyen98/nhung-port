@@ -75,10 +75,10 @@ watch(
       handlePostViewerWheelEvent.value = (e: WheelEvent) =>
         animateWheelEvent({
           event: e,
-          wheelSpeed: 8 * newCurrentScaleRatio,
+          wheelSpeed: 2 * newCurrentScaleRatio,
           wheelDirection: 'horizontal',
           scrollWrapperElement: newPostViewerScrollWrapper,
-          shouldAnimate: true,
+          shouldAnimate: false,
         });
 
       handlePostViewerScrollEvent.value = () => {
@@ -106,28 +106,40 @@ watch(
   ],
   ([
     newIsPostViewerOpened,
-    newPostViewerScrollWrapperElement,
+    newPostViewerScrollWrapper,
     newHandlePostViewerWheelEvent,
     newHandlePostViewerScrollEvent,
   ]) => {
     if (
-      newPostViewerScrollWrapperElement &&
+      newPostViewerScrollWrapper &&
       newHandlePostViewerWheelEvent &&
       newHandlePostViewerScrollEvent
     ) {
       if (newIsPostViewerOpened) {
         // open popup
-        postViewerScrollWrapper.value?.scrollTo({
+        newPostViewerScrollWrapper.scrollTo({
           top: 0,
         });
 
-        newPostViewerScrollWrapperElement.addEventListener(
+        // remove first
+        newPostViewerScrollWrapper.removeEventListener(
+          'wheel',
+          newHandlePostViewerWheelEvent
+        );
+
+        newPostViewerScrollWrapper.removeEventListener(
+          'scroll',
+          newHandlePostViewerScrollEvent
+        );
+
+        // then add new
+        newPostViewerScrollWrapper.addEventListener(
           'wheel',
           newHandlePostViewerWheelEvent,
           { passive: false }
         );
 
-        newPostViewerScrollWrapperElement.addEventListener(
+        newPostViewerScrollWrapper.addEventListener(
           'scroll',
           newHandlePostViewerScrollEvent,
           {
@@ -136,12 +148,12 @@ watch(
         );
       } else {
         // close popup
-        newPostViewerScrollWrapperElement.removeEventListener(
+        newPostViewerScrollWrapper.removeEventListener(
           'wheel',
           newHandlePostViewerWheelEvent
         );
 
-        newPostViewerScrollWrapperElement.removeEventListener(
+        newPostViewerScrollWrapper.removeEventListener(
           'scroll',
           newHandlePostViewerScrollEvent
         );

@@ -32,9 +32,9 @@ const viewBrand = (brandToView: TBrand) => {
     ref="refElement"
     class="brand-logo"
     :style="{
-      height: `${18.5 * currentScaleRatio}rem`,
-      width: `${18.5 * currentScaleRatio}rem`,
-      transform: `translateY(${isHover ? -2 * currentScaleRatio : 0}rem)`,
+      height: `${16 * currentScaleRatio}rem`,
+      width: `${16 * currentScaleRatio}rem`,
+      transform: `translateY(${isHover ? -1 * currentScaleRatio : 0}rem)`,
     }"
     @click="viewBrand(brand)"
   >
@@ -48,6 +48,7 @@ const viewBrand = (brandToView: TBrand) => {
 
 <style scoped>
 .brand-logo {
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;

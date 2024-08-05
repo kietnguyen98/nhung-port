@@ -217,6 +217,7 @@ watch(
   align-items: center;
 
   .post-wrapper__post-image {
+    cursor: pointer;
     border-radius: 0.125rem;
     width: 100%;
     transition: scale 0.15s linear;

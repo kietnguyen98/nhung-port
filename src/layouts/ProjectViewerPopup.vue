@@ -51,6 +51,7 @@ watch(
         scrollWrapperElement:
           newProjectViewerScrollWrapper as HTMLElement,
         shouldAnimate: false,
+        toDefaultBrowserBehavior: true,
       });
 
     if (newProjectViewerScrollWrapper)
