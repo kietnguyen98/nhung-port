@@ -3,15 +3,10 @@ import { storeToRefs } from 'pinia';
 import { onMounted } from 'vue';
 
 import { useResponsiveStore } from '@/stores';
-import {
-  NotSupportScreen,
-  OnResizingScreen,
-} from '@/views';
+import { OnResizingScreen } from '@/views';
 
 const mediaQueriesStore = useResponsiveStore();
-const { isNotSupport, isResizing } = storeToRefs(
-  mediaQueriesStore
-);
+const { isResizing } = storeToRefs(mediaQueriesStore);
 
 // responsive store
 const { initEvent } = mediaQueriesStore;
@@ -23,7 +18,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <NotSupportScreen v-if="isNotSupport && !isResizing" />
+  <!-- <NotSupportScreen v-if="isNotSupport && !isResizing" /> -->
   <OnResizingScreen v-if="isResizing" />
-  <router-view v-if="!isNotSupport"> </router-view>
+  <router-view> </router-view>
 </template>

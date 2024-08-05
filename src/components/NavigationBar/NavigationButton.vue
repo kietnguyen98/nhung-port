@@ -3,7 +3,10 @@ import animateScrollTo from 'animated-scroll-to';
 import { storeToRefs } from 'pinia';
 import { ref, watch } from 'vue';
 
-import { useScrollWrapperStore } from '@/stores';
+import {
+  useResponsiveStore,
+  useScrollWrapperStore,
+} from '@/stores';
 
 const props = defineProps<{
   idName: string;
@@ -20,6 +23,10 @@ const scrollWrapperStore = useScrollWrapperStore();
 const { containerScrollWrapper } = storeToRefs(
   scrollWrapperStore
 );
+
+// responsive store
+const responsiveStore = useResponsiveStore();
+const { currentScaleRatio } = storeToRefs(responsiveStore);
 
 watch(
   containerScrollWrapper,
@@ -90,9 +97,18 @@ watch(
       'navigation-button',
       isActive && 'navigation-button--activated',
     ]"
+    :style="{
+      padding: `${0.25 * currentScaleRatio}rem ${0.5 * currentScaleRatio}rem`,
+      borderRadius: `${0.5 * currentScaleRatio}rem`,
+    }"
     @:click="navigateToTarget"
   >
-    <h5 class="navigation-button__title font-bodoni72-bold">
+    <h5
+      class="navigation-button__title font-bodoni72-bold"
+      :style="{
+        letterSpacing: `${-0.125 * currentScaleRatio}rem`,
+      }"
+    >
       {{ name }}
     </h5>
   </button>
@@ -102,15 +118,12 @@ watch(
 .navigation-button {
   outline: none;
   border: none;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.5rem;
   background-color: transparent;
   transition: background-color 0.25s linear;
 
   .navigation-button__title {
     text-align: start;
     line-height: 100%;
-    letter-spacing: -0.125rem;
     color: var(--color-dark);
     text-transform: lowercase;
     transition: color 0.25s linear;

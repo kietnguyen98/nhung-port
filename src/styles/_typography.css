@@ -27,7 +27,7 @@ h1 {
   font-family: Bodoni72;
 }
 
-@media only screen and (min-width: 2560px) and (orientation: landscape) {
+@media only screen and (min-width: 2560px) {
   span {
     font-size: calc(
       var(--span-tag-base-font-size) *
@@ -99,7 +99,7 @@ h1 {
   }
 }
 
-@media only screen and (min-width: 2048px) and (max-width: 2559px) and (orientation: landscape) {
+@media only screen and (min-width: 2048px) and (max-width: 2559px) {
   span {
     font-size: calc(
       var(--span-tag-base-font-size) *
@@ -171,7 +171,7 @@ h1 {
   }
 }
 
-@media only screen and (min-width: 1920px) and (max-width: 2047px) and (orientation: landscape) {
+@media only screen and (min-width: 1920px) and (max-width: 2047px) {
   span {
     font-size: calc(
       var(--span-tag-base-font-size) *
@@ -243,7 +243,7 @@ h1 {
   }
 }
 
-@media only screen and (min-width: 1600px) and (max-width: 1919px) and (orientation: landscape) {
+@media only screen and (min-width: 1600px) and (max-width: 1919px) {
   span {
     font-size: calc(
       var(--span-tag-base-font-size) *
@@ -315,7 +315,7 @@ h1 {
   }
 }
 
-@media only screen and (min-width: 1280px) and (max-width: 1599px) and (orientation: landscape) {
+@media only screen and (min-width: 1280px) and (max-width: 1599px) {
   span {
     font-size: calc(
       var(--span-tag-base-font-size) *
@@ -387,7 +387,7 @@ h1 {
   }
 }
 
-@media only screen and (min-width: 1024px) and (max-width: 1279px) and (orientation: landscape) {
+@media only screen and (min-width: 1024px) and (max-width: 1279px) {
   span {
     font-size: calc(
       var(--span-tag-base-font-size) *
@@ -455,6 +455,150 @@ h1 {
     font-size: calc(
       var(--big-title-base-font-size) *
         var(--1024px-screen-ratio)
+    );
+  }
+}
+
+@media only screen and (min-width: 720px) and (max-width: 1023px) {
+  span {
+    font-size: calc(
+      var(--span-tag-base-font-size) *
+        var(--720px-screen-ratio)
+    );
+  }
+
+  p {
+    font-size: calc(
+      var(--p-tag-base-font-size) *
+        var(--720px-screen-ratio)
+    );
+  }
+
+  h6 {
+    font-size: calc(
+      var(--h6-tag-base-font-size) *
+        var(--720px-screen-ratio)
+    );
+  }
+
+  h5 {
+    font-size: calc(
+      var(--h5-tag-base-font-size) *
+        var(--720px-screen-ratio)
+    );
+  }
+
+  h4 {
+    font-size: calc(
+      var(--h4-tag-base-font-size) *
+        var(--720px-screen-ratio)
+    );
+  }
+
+  h3 {
+    font-size: calc(
+      var(--h3-tag-base-font-size) *
+        var(--720px-screen-ratio)
+    );
+  }
+
+  h2 {
+    font-size: calc(
+      var(--h2-tag-base-font-size) *
+        var(--720px-screen-ratio)
+    );
+  }
+
+  h1 {
+    font-size: calc(
+      var(--h1-tag-base-font-size) *
+        var(--720px-screen-ratio)
+    );
+  }
+
+  textPath {
+    font-size: calc(
+      var(--h1-tag-base-font-size) *
+        var(--720px-screen-ratio)
+    );
+  }
+
+  .fs-big {
+    font-size: calc(
+      var(--big-title-base-font-size) *
+        var(--720px-screen-ratio)
+    );
+  }
+}
+
+@media only screen and (min-width: 360px) and (max-width: 719px) {
+  span {
+    font-size: calc(
+      var(--span-tag-base-font-size) *
+        var(--360px-screen-ratio)
+    );
+  }
+
+  p {
+    font-size: calc(
+      var(--p-tag-base-font-size) *
+        var(--360px-screen-ratio)
+    );
+  }
+
+  h6 {
+    font-size: calc(
+      var(--h6-tag-base-font-size) *
+        var(--360px-screen-ratio)
+    );
+  }
+
+  h5 {
+    font-size: calc(
+      var(--h5-tag-base-font-size) *
+        var(--360px-screen-ratio)
+    );
+  }
+
+  h4 {
+    font-size: calc(
+      var(--h4-tag-base-font-size) *
+        var(--360px-screen-ratio)
+    );
+  }
+
+  h3 {
+    font-size: calc(
+      var(--h3-tag-base-font-size) *
+        var(--360px-screen-ratio)
+    );
+  }
+
+  h2 {
+    font-size: calc(
+      var(--h2-tag-base-font-size) *
+        var(--360px-screen-ratio)
+    );
+  }
+
+  h1 {
+    font-size: calc(
+      var(--h1-tag-base-font-size) *
+        var(--360px-screen-ratio)
+    );
+  }
+
+  textPath {
+    font-size: calc(
+      var(--h1-tag-base-font-size) *
+        var(--360px-screen-ratio)
+    );
+  }
+
+  .fs-big {
+    font-size: calc(
+      var(--big-title-base-font-size) *
+        var(--360px-screen-ratio)
     );
   }
 }

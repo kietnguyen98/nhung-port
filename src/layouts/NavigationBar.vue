@@ -37,7 +37,12 @@ const { currentScaleRatio } = storeToRefs(
           maxHeight: `${15 * currentScaleRatio}rem`,
         }"
       />
-      <div class="navigation-button-container">
+      <div
+        class="navigation-button-container"
+        :style="{
+          padding: `${0.5 * currentScaleRatio}rem 0rem`,
+        }"
+      >
         <NavigationButton
           :key="sections[0].idName"
           :id-name="sections[0].idName"
@@ -102,7 +107,6 @@ const { currentScaleRatio } = storeToRefs(
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 0.5rem 0rem;
     border-top: 0.2rem solid var(--color-dark);
     border-bottom: 0.2rem solid var(--color-dark);
   }

@@ -1,5 +1,13 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia';
+
+import { useResponsiveStore } from '@/stores';
+
 const props = defineProps<{ progressValue: number }>();
+
+// responsive store
+const responsiveStore = useResponsiveStore();
+const { currentScaleRatio } = storeToRefs(responsiveStore);
 </script>
 
 <template>
@@ -12,13 +20,28 @@ const props = defineProps<{ progressValue: number }>();
             transparent 80% 100%
         ),
         conic-gradient(var(--color-purple) ${props.progressValue}%, var(--color-pink) 0)`,
+      width: `${6 * Math.max(currentScaleRatio, 0.5)}rem`,
+      height: `${6 * Math.max(currentScaleRatio, 0.5)}rem`,
+      bottom: `${3 * Math.max(currentScaleRatio, 0.3)}rem`,
+      right: `${3 * Math.max(currentScaleRatio, 0.3)}rem`,
+      padding: `${1 * Math.max(currentScaleRatio, 0.5)}rem`,
     }"
   >
-    <div class="flower-wrapper">
+    <div
+      class="flower-wrapper"
+      :style="{
+        width: `${5 * Math.max(currentScaleRatio, 0.5)}rem`,
+        height: `${5 * Math.max(currentScaleRatio, 0.5)}rem`,
+      }"
+    >
       <img
         :class="{
           leaves: true,
           'leaves--glowed': props.progressValue === 100,
+        }"
+        :style="{
+          width: `${6 * Math.max(currentScaleRatio, 0.5)}rem`,
+          height: `${6 * Math.max(currentScaleRatio, 0.5)}rem`,
         }"
         src="/assets/icons/leaves.webp"
         alt="flower's leave"
@@ -39,6 +62,12 @@ const props = defineProps<{ progressValue: number }>();
         }"
         src="/assets/icons/happy.webp"
         alt="emotion"
+        :style="{
+          width: `${2.5 * Math.max(currentScaleRatio, 0.5)}rem`,
+          height: `${2.5 * Math.max(currentScaleRatio, 0.5)}rem`,
+          top: `calc(50% - ${2.5 * Math.max(currentScaleRatio, 0.5)}rem / 2)`,
+          left: `calc(50% - ${2.5 * Math.max(currentScaleRatio, 0.5)}rem / 2)`,
+        }"
       />
       <img
         :class="{
@@ -48,6 +77,12 @@ const props = defineProps<{ progressValue: number }>();
         }"
         src="/assets/icons/laughing.webp"
         alt="emotion"
+        :style="{
+          width: `${2.5 * Math.max(currentScaleRatio, 0.5)}rem`,
+          height: `${2.5 * Math.max(currentScaleRatio, 0.5)}rem`,
+          top: `calc(50% - ${2.5 * Math.max(currentScaleRatio, 0.5)}rem / 2)`,
+          left: `calc(50% - ${2.5 * Math.max(currentScaleRatio, 0.5)}rem / 2)`,
+        }"
       />
     </div>
   </div>
@@ -55,16 +90,11 @@ const props = defineProps<{ progressValue: number }>();
 
 <style scoped>
 .progress-bar {
-  width: 6rem;
-  height: 6rem;
   position: absolute;
-  bottom: 3rem;
-  right: 3rem;
   z-index: 3;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1rem;
   border-radius: 50%;
   -webkit-box-shadow: 0px 0px 40px 10px
     rgba(255, 46, 182, 0.45);
@@ -81,16 +111,12 @@ const props = defineProps<{ progressValue: number }>();
 }
 .flower-wrapper {
   position: relative;
-  width: 5rem;
-  height: 5rem;
 
   .leaves {
     position: absolute;
     top: -0.6rem;
     left: 0rem;
     z-index: 1;
-    height: 6rem;
-    width: 6rem;
     transform: scale(0);
     opacity: 0;
     transition: all 1s linear;
@@ -109,10 +135,6 @@ const props = defineProps<{ progressValue: number }>();
 
   .face-happy {
     position: absolute;
-    width: 2.5rem;
-    height: 2.5rem;
-    top: calc(50% - 2.5rem / 2);
-    left: calc(50% - 2.5rem / 2);
     z-index: 4;
     transform: rotateZ(22.5deg);
     opacity: 1;
@@ -126,10 +148,6 @@ const props = defineProps<{ progressValue: number }>();
 
   .face-laughing {
     position: absolute;
-    width: 2.5rem;
-    height: 2.5rem;
-    top: calc(50% - 2.5rem / 2);
-    left: calc(50% - 2.5rem / 2);
     z-index: 3;
     opacity: 0.5;
     transition: all 0.75s linear;

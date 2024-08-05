@@ -39,7 +39,9 @@ withDefaults(
       width: heightRem
         ? `${heightRem * currentScaleRatio * widthHeightRatio}rem`
         : 'auto',
-      borderRadius: isRounded ? '2rem' : '0',
+      borderRadius: isRounded
+        ? `${2 * currentScaleRatio}rem`
+        : '0',
     }"
     @click="clickEventCallback"
   >
@@ -47,7 +49,9 @@ withDefaults(
       v-if="withOverlay"
       class="hover-overlay"
       :style="{
-        borderRadius: isRounded ? '2rem' : '0',
+        borderRadius: isRounded
+          ? `${2 * currentScaleRatio}rem`
+          : '0',
       }"
     >
       <p class="hover-overlay__title">click to view</p>
