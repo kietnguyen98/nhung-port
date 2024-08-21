@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { ref, watch } from 'vue';
+import { ref, watchEffect } from 'vue';
 
-import { useScrollingDebounce } from '@/hooks';
 import {
   usePostViewScrollingStore,
   useResponsiveStore,
-  useScrollWrapperStore,
 } from '@/stores';
 import { TPost } from '@/types';
 
@@ -19,24 +17,12 @@ defineProps<{
 const viewScrollingStore = usePostViewScrollingStore();
 const { progress } = storeToRefs(viewScrollingStore);
 
-// scroll wrapper store
-const scrollWrapperStore = useScrollWrapperStore();
-const { postViewerScrollWrapper } = storeToRefs(
-  scrollWrapperStore
-);
-
 const mediaQueriesStore = useResponsiveStore();
 const {
   currentScaleRatio,
   currentViewWidth,
   currentViewHeight,
 } = storeToRefs(mediaQueriesStore);
-
-const { isScrolling } = useScrollingDebounce({
-  scrollWrapperElement:
-    postViewerScrollWrapper.value as HTMLElement,
-  debounceTime: 500,
-});
 
 // the indicator of post viewer will be 5rem height in 2560px or larger
 const INDICATOR_POST_HEIGHT = 5;
@@ -53,26 +39,22 @@ const indicatorPostToViewerPostSizeRatio = ref<number>(
         2)
 );
 
-watch(
-  [currentScaleRatio, currentViewHeight],
-  ([newCurrentScaleRatio, newCurrentViewHeight]) => {
-    indicatorPostToViewerPostSizeRatio.value =
-      (INDICATOR_POST_HEIGHT * newCurrentScaleRatio) /
-      (newCurrentViewHeight / 16 -
-        VIEWER_CONTAINER_PADDING_Y_VALUE *
-          newCurrentScaleRatio *
-          2);
-  }
-);
+// update indicator post size ratio whenever window resize
+watchEffect(() => {
+  indicatorPostToViewerPostSizeRatio.value =
+    (INDICATOR_POST_HEIGHT * currentScaleRatio.value) /
+    (currentViewHeight.value / 16 -
+      VIEWER_CONTAINER_PADDING_Y_VALUE *
+        currentScaleRatio.value *
+        2);
+});
 </script>
 
 <template>
   <div
     :class="[
       'indicator-container',
-      isScrolling
-        ? 'indicator-container--appeared'
-        : 'indicator-container--appeared',
+      'indicator-container--appeared',
     ]"
   >
     <div
@@ -101,21 +83,14 @@ watch(
           <div
             class="section-popover__title"
             :style="{
-              top: `${(progress === 0 ? -11.25 : -4.5) * currentScaleRatio}rem`,
+              top: `${-4.5 * currentScaleRatio}rem`,
               left: `${-0.5 * currentScaleRatio}rem`,
-              height: `${(progress === 0 ? 10 : 3.25) * currentScaleRatio}rem`,
+              height: `${3.25 * currentScaleRatio}rem`,
               padding: `${0.25 * currentScaleRatio}rem ${0.5 * currentScaleRatio}rem`,
             }"
           >
-            <span v-if="progress === 0"
-              >Wheel your mouse or click on any specific
-              image to watch!</span
-            >
-            <span v-if="progress < 100 && progress > 0"
+            <span v-if="progress <= 100 && progress >= 0"
               >You are here!</span
-            >
-            <span v-if="progress === 100"
-              >End of list!</span
             >
           </div>
         </div>

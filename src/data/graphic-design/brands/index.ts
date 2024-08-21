@@ -1,4 +1,5 @@
 import { _50MegumiBrandData } from './50-megumi.graphic-design.data';
+import { _DJIBrandData } from './dji.graphic-design.data';
 import { _guardianBrandData } from './guardian.graphic-design.data';
 import { _hannahOlalaBrandData } from './hannah-olala.graphic-design.data';
 import { _hasakiBrandData } from './hasaki.graphic.design.data';
@@ -17,6 +18,7 @@ import { _sunplayBrandData } from './sunplay.graphic-design.data';
 
 export {
   _50MegumiBrandData,
+  _DJIBrandData,
   _guardianBrandData,
   _hannahOlalaBrandData,
   _hasakiBrandData,

@@ -7,7 +7,7 @@ import { TBrand } from '@/types';
 
 export const _mMusicRecordBrandData: TBrand = {
   name: 'MmusicRecord',
-  logoURL: `${BRAND_LOGO_URL_PREFIX}mmusic_record.png`,
+  logoURL: `${BRAND_LOGO_URL_PREFIX}mmusic_record_logo.webp`,
   posts: [
     {
       type: POST_TYPE_VALUES.PHOTO,

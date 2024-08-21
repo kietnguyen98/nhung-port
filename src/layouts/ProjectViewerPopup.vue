@@ -4,12 +4,19 @@ import { ref, watch } from 'vue';
 
 import {
   useControlPopupStore,
+  useResponsiveStore,
   useScrollWrapperStore,
 } from '@/stores';
 import {
   animateWheelEvent,
   blockWheelEvent,
 } from '@/utilities';
+
+// responsive store
+const mediaQueriesStore = useResponsiveStore();
+const { currentScaleRatio } = storeToRefs(
+  mediaQueriesStore
+);
 
 // control popup store
 const controlPopupStore = useControlPopupStore();
@@ -122,20 +129,25 @@ const handleCloseProjectViewer = () => {
   >
     <div
       ref="projectViewerScrollWrapperRef"
-      :class="{
-        'popup-container': true,
-      }"
+      class="popup-container"
     >
       <div
-        :class="{
-          'popup-content': true,
-          'popup-content--enter-ani': isProjectViewerOpened,
-          'popup-content--leave-ani':
-            !isProjectViewerOpened,
-        }"
+        :class="[
+          'popup-content',
+          isProjectViewerOpened
+            ? 'popup-content--enter-ani'
+            : 'popup-content--leave-ani',
+        ]"
       >
         <button
           class="popup-content__close-button"
+          :style="{
+            top: `${Math.max(1, 2 * currentScaleRatio)}rem`,
+            right: `${Math.max(1, 2 * currentScaleRatio)}rem`,
+            width: `${Math.max(2, 4 * currentScaleRatio)}rem`,
+            height: `${Math.max(2, 4 * currentScaleRatio)}rem`,
+            fontSize: `${Math.max(1, 2 * currentScaleRatio)}rem`,
+          }"
           @click="handleCloseProjectViewer"
         >
           X
@@ -192,15 +204,10 @@ const handleCloseProjectViewer = () => {
 
   .popup-content__close-button {
     position: absolute;
-    top: 2rem;
-    right: 3rem;
     z-index: 30;
     outline: none;
     border: none;
-    font-size: 2rem;
     border-radius: 50%;
-    width: 4rem;
-    height: 4rem;
     background-color: var(--color-red);
     color: var(--color-cream);
     box-shadow:

@@ -35,11 +35,22 @@ const projectSectionCardContainerRef = ref<HTMLElement>();
 const listChildLeftPositions = ref<Array<number>>([]);
 let animateProjectCardsInterval:
   | ReturnType<typeof setInterval>
-  | undefined;
+  | undefined = undefined;
 const FILM_STRIP_ROTATE_DEG = -3;
 
 const { isHover: isUserHoverOnList, refElement } =
   useHover();
+
+// watch for window resize, scale ratio change or project section card container update
+// the should reset list child left position
+watch(
+  [currentScaleRatio, projectSectionCardContainerRef],
+  ([newScaleRatio, newProjectSectionCardContainer]) => {
+    if (newScaleRatio && newProjectSectionCardContainer) {
+      listChildLeftPositions.value = [];
+    }
+  }
+);
 
 watch(
   [
@@ -56,30 +67,26 @@ watch(
   ]) => {
     if (newScaleRatio && newProjectSectionCardContainer) {
       // clear prev interval value if exist
-      if (
-        typeof animateProjectCardsInterval !== 'undefined'
-      ) {
+      if (animateProjectCardsInterval !== undefined) {
         clearInterval(animateProjectCardsInterval);
       }
       // calculate new interval's callback
       const projectCardList =
         newProjectSectionCardContainer.children;
-      // reset list of child's position
-      listChildLeftPositions.value = [];
-
       const animateProjectCards = () => {
         for (let i = 0; i < projectCardList.length; i++) {
+          const slideVelocityDefaultInRem =
+            FAVORITE_LIST_SLIDE_VELOCITY *
+            newScaleRatio *
+            16;
+          const slideVelocityWhileHoverInRem =
+            slideVelocityDefaultInRem / 3;
           const slideVelocityInRem =
             newIsFavoritePostViewerOpened
               ? 0
               : newIsUserHoverOnList
-                ? (FAVORITE_LIST_SLIDE_VELOCITY *
-                    newScaleRatio *
-                    16) /
-                  3
-                : FAVORITE_LIST_SLIDE_VELOCITY *
-                  newScaleRatio *
-                  16;
+                ? slideVelocityWhileHoverInRem
+                : slideVelocityDefaultInRem;
           const child = projectCardList[i] as HTMLElement;
           const childWidthInRem = child.clientWidth / 16;
 
@@ -134,7 +141,7 @@ watch(
         }
       };
 
-      // set new interval value
+      // set new interval value, 60 frames per second
       animateProjectCardsInterval = setInterval(
         animateProjectCards,
         1000 / 60

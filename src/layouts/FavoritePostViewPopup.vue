@@ -53,6 +53,7 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
         <PostPhotoViewer
           v-if="favoritePostToView"
           :post="favoritePostToView"
+          :should-padding="false"
         />
       </div>
     </div>
