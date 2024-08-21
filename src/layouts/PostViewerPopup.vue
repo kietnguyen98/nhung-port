@@ -158,7 +158,7 @@ watch(
         setTimeout(() => {
           // wait for popup totally closed
           setViewProgress(0);
-        }, 1000);
+        }, 500);
       }
     }
   }
@@ -169,7 +169,7 @@ const handleClosePostViewer = () => {
   setIsPostViewerOpened(false);
   setTimeout(() => {
     setBrandToView(undefined);
-  }, 1000);
+  }, 500);
 };
 
 // scroll to any post view when user chose specific post on indicator

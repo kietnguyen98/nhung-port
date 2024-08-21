@@ -14,11 +14,21 @@ import {
 const controlPopupStore = useControlPopupStore();
 const { isFavoritePostViewerOpened, favoritePostToView } =
   storeToRefs(controlPopupStore);
-const { setIsFavoritePostViewerOpened } = controlPopupStore;
+const {
+  setIsFavoritePostViewerOpened,
+  setFavoritePostToView,
+} = controlPopupStore;
 
 // responsive store
 const responsiveStore = useResponsiveStore();
 const { currentScaleRatio } = storeToRefs(responsiveStore);
+
+const handleCloseFavoritePostViewer = () => {
+  setIsFavoritePostViewerOpened(false);
+  setTimeout(() => {
+    setFavoritePostToView(undefined);
+  }, 500);
+};
 </script>
 
 <template>
@@ -33,9 +43,7 @@ const { currentScaleRatio } = storeToRefs(responsiveStore);
     <div class="viewer-content">
       <PostViewerCloseButton
         :is-post-viewer-opened="isFavoritePostViewerOpened"
-        :handle-close="
-          () => setIsFavoritePostViewerOpened(false)
-        "
+        :handle-close="handleCloseFavoritePostViewer"
       />
       <div
         :class="[
