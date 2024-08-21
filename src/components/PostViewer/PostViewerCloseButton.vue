@@ -1,8 +1,14 @@
 <script setup lang="ts">
+import { storeToRefs } from 'pinia';
+
+import { useResponsiveStore } from '@/stores';
+
 defineProps<{
   isPostViewerOpened: boolean;
   handleClose: () => void;
 }>();
+const responsiveStore = useResponsiveStore();
+const { currentScaleRatio } = storeToRefs(responsiveStore);
 </script>
 
 <template>
@@ -14,6 +20,13 @@ defineProps<{
         ? 'close-button--appeared'
         : 'close-button--disappeared',
     ]"
+    :style="{
+      top: `${Math.max(1, 2 * currentScaleRatio)}rem`,
+      right: `${Math.max(1.5, 3 * currentScaleRatio)}rem`,
+      width: `${Math.max(2, 4 * currentScaleRatio)}rem`,
+      height: `${Math.max(2, 4 * currentScaleRatio)}rem`,
+      fontSize: `${Math.max(1, 2 * currentScaleRatio)}rem`,
+    }"
     @click="handleClose"
   >
     X
@@ -23,14 +36,9 @@ defineProps<{
 <style scoped>
 .close-button {
   position: fixed;
-  top: 2rem;
-  right: 3rem;
   z-index: 1;
   outline: none;
   border: none;
-  font-size: 2rem;
-  width: 4rem;
-  height: 4rem;
   border-radius: 50%;
   background-color: var(--color-dark);
   color: var(--color-cream);

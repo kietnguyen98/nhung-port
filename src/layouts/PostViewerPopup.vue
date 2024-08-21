@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia';
-import { ref, watch } from 'vue';
+import { ref, watch, watchEffect } from 'vue';
 
 import {
   PostPhotoViewer,
@@ -42,23 +42,20 @@ const { postViewerScrollWrapper } = storeToRefs(
 );
 const { setPostViewerScrollWrapper } = scrollWrapperStore;
 
-const postViewerScrollWrapperRef = ref<HTMLElement>();
-const postViewerContainerRef = ref<HTMLElement>();
+const postViewerScrollWrapperRef = ref<HTMLDivElement>();
+const postViewerContainerRef = ref<HTMLDivElement>();
 const handlePostViewerWheelEvent =
   ref<(e: WheelEvent) => void>();
 const handlePostViewerScrollEvent =
   ref<(e?: Event) => void>();
 
-watch(
-  postViewerScrollWrapperRef,
-  (newPostViewerScrollWrapperRef) => {
-    if (newPostViewerScrollWrapperRef) {
-      setPostViewerScrollWrapper(
-        newPostViewerScrollWrapperRef
-      );
-    }
+watchEffect(() => {
+  if (postViewerScrollWrapperRef.value) {
+    setPostViewerScrollWrapper(
+      postViewerScrollWrapperRef.value
+    );
   }
-);
+});
 
 watch(
   [
@@ -86,12 +83,11 @@ watch(
           newPostViewerScrollWrapper.scrollWidth;
         const currentScrollOffsetLeft =
           newPostViewerScrollWrapper.scrollLeft;
-
-        setViewProgress(
+        const scrollProgress =
           (currentScrollOffsetLeft /
             (fullScrollWrapperWidth - newViewWidth)) *
-            100
-        );
+          100;
+        setViewProgress(scrollProgress);
       };
     }
   }
@@ -243,11 +239,13 @@ const slideToSpecificPost = (postIndex: number) => {
           <PostPhotoViewer
             v-for="post in brandToView.posts"
             :key="post.sourceUrl"
+            :style="{ flexShrink: 0 }"
             :post="post"
           />
         </div>
       </div>
       <div
+        v-if="currentViewWidth > 1024"
         :class="[
           'viewer-content__viewer-indicator',
           isPostViewerOpened

@@ -1,27 +1,59 @@
 <script setup lang="ts">
+// modules
 import { storeToRefs } from 'pinia';
+import { ref, watchEffect } from 'vue';
 
 import { POST_TYPE_VALUES } from '@/constants';
 import { useResponsiveStore } from '@/stores';
 import { TPost } from '@/types';
+
+// component props
+const { post, shouldPadding } = withDefaults(
+  defineProps<{
+    post: TPost;
+    shouldPadding?: boolean;
+  }>(),
+  {
+    shouldPadding: true,
+  }
+);
+
+// store
 const responsiveStore = useResponsiveStore();
-const { currentScaleRatio } = storeToRefs(responsiveStore);
-defineProps<{
-  post: TPost;
-}>();
+const {
+  currentScaleRatio,
+  currentViewHeight,
+  currentViewWidth,
+} = storeToRefs(responsiveStore);
+
+const isLandscape = ref<boolean>(
+  currentViewWidth.value > currentViewHeight.value
+);
+
+// update isLandscape value whenever window resize
+watchEffect(() => {
+  isLandscape.value =
+    currentViewWidth.value > currentViewHeight.value;
+});
 </script>
 
 <template>
   <div
     class="post-wrapper"
     :style="{
-      paddingRight: `${5 * currentScaleRatio}rem`,
+      width: isLandscape ? 'auto' : '100%',
+      height: isLandscape ? '100%' : 'auto',
+      paddingRight: `${shouldPadding ? 5 * currentScaleRatio : 0}rem`,
     }"
   >
     <div class="post">
       <img
         v-if="post.type === POST_TYPE_VALUES.PHOTO"
-        v-lazy="post.sourceUrl"
+        :src="post.sourceUrl"
+        :style="{
+          width: isLandscape ? 'auto' : '100%',
+          height: isLandscape ? '100%' : 'auto',
+        }"
         :alt="'post-image ' + post.sourceUrl"
         class="post__image"
       />
@@ -31,7 +63,6 @@ defineProps<{
 
 <style scoped>
 .post-wrapper {
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,7 +70,8 @@ defineProps<{
 }
 
 .post {
-  height: 100%;
+  width: inherit;
+  height: inherit;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -49,8 +81,6 @@ defineProps<{
 }
 
 .post__image {
-  height: 100%;
-  width: auto;
   border-radius: 1rem;
 }
 </style>

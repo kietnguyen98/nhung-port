@@ -2,6 +2,7 @@ import { TProject } from '@/types';
 
 import {
   _50MegumiBrandData,
+  _DJIBrandData,
   _guardianBrandData,
   _hannahOlalaBrandData,
   _hasakiBrandData,
@@ -41,5 +42,6 @@ export const graphicDesignProjectData: TProject = {
     _sociollaBrandData,
     _sunplayBrandData,
     _mMusicRecordBrandData,
+    _DJIBrandData,
   ],
 };
